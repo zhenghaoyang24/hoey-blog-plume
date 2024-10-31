@@ -28,7 +28,7 @@ export default defineThemeConfig({
             '</svg>',name:'uiw:mail'}, link: 'mailto:zheng.hy@foxamil.com' },
   ],
   footer:{
-    message: "🥼 vuepress-theme-plume & ✒️ Hoey",
+    message: '🥼 <a target="_blank" href="https://theme-plume.vuejs.press/">vuepress-theme-plume</a> & ✒️ Hoey'
   }
 
 })
