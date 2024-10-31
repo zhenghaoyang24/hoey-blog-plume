@@ -30,7 +30,7 @@
 <span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">}</span></span></code></pre>
 
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>要实现这个功能并不难，主要在于API的使用与异步问题。该项目源码在此<a href="https://github.com/zhenghaoyang24/WeChatProjects-BlueWord" target="_blank" rel="noopener noreferrer">链接</a>。
-<img src="@source/assets/042601_1.gif" alt="img.png" width="440" height="782"></p>
+<img src="@source/assets/042601_1.gif" alt="img.png"></p>
 </div></template>
 
 

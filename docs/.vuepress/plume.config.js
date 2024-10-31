@@ -10,11 +10,9 @@ export default defineThemeConfig({
   // your git repo url
   docsRepo: '',
   docsDir: 'docs',
-
-  appearance: true,
-
+  appearance: "dark",
   profile: {
-    avatar: 'avatar.png',
+    avatar: 'avatar.jpg',
     name: 'Hoey',
     description: '',
     circle: true,
