@@ -8,7 +8,7 @@ export const navbar = defineNavbarConfig([
     {
         text: '笔记',
         items: [
-            {text: '查漏补缺', link: '/notes/chalou/README.md'},
+            {text: '查漏补缺', link: '/notes/patch/README.md'},
         ]
     },
 ])

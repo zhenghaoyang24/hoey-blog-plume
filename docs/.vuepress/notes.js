@@ -1,8 +1,8 @@
 import {defineNoteConfig, defineNotesConfig} from 'vuepress-theme-plume'
 
 const demoNote = defineNoteConfig({
-        dir: 'chalou',
-        link: '/chalou/',
+        dir: 'patch',
+        link: '/patch/',
         sidebar: 'auto',
     },
 
