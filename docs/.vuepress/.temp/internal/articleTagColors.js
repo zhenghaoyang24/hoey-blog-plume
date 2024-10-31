@@ -1,0 +1,2 @@
+import './articleTagColors.css'
+export const articleTagColors = {"CSS":"pvxv","HTML":"pvxv","JavaScript":"bnfj","Vue":"xx83","DeBug":"y3c3","微信小程序":"xx83","数据结构":"3r31","Thought":"y3c3","markdown":"sw4g"}
