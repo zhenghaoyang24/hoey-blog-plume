@@ -4,7 +4,7 @@ createTime: 2024/4/31 15:41:27
 permalink: /patch/Vue/
 ---
 
-## 一、Vue中的常用指令
+## 1. Vue中的常用指令
 
 **概念：**指令（Directives）是 Vue 提供的带有 **v- 前缀** 的 特殊 标签**属性**。  
 vue 中的指令按照不同的用途可以分为如下 6 大类：
@@ -17,7 +17,7 @@ vue 中的指令按照不同的用途可以分为如下 6 大类：
 
 指令是 vue 开发中最基础、最常用、最简单的知识点。
 
-## 二、内容渲染指令
+### 1.1 内容渲染指令
 
 内容渲染指令用来辅助开发者渲染 DOM 元素的文本内容。常用的内容渲染指令有如下2 个：
 
@@ -32,7 +32,7 @@ vue 中的指令按照不同的用途可以分为如下 6 大类：
 - 类似 innerHTML，使用该语法，能够将HTML标签的样式呈现出来。
 
 
-## 三、条件渲染指令
+### 1.2 条件渲染指令
 
 条件判断指令，用来辅助开发者按需控制 DOM 的显示与隐藏。条件渲染指令有如下两个，分别是：
 
@@ -55,7 +55,7 @@ vue 中的指令按照不同的用途可以分为如下 6 大类：
 - 2. 语法：v-else  v-else-if="表达式"
 - 3. 需要紧接着v-if使用
 
-## 四、事件绑定指令
+### 1.3 事件绑定指令
 
 使用Vue时，如需为DOM注册事件，及其的简单，语法如下：
 
@@ -91,7 +91,7 @@ vue 中的指令按照不同的用途可以分为如下 6 大类：
 - 如果不传递任何参数，则方法无需加小括号；methods方法中可以直接使用 e 当做事件对象
 - 如果传递了参数，则实参 `$event` 表示事件对象，固定用法。
 
-## 五、属性绑定指令
+### 1.4 属性绑定指令
 
 1. **作用**： 动态设置html的标签属性 比如：src、url、title
 2. **语法** ：**v-bind:** 属性名=“表达式”
@@ -103,7 +103,7 @@ vue 中的指令按照不同的用途可以分为如下 6 大类：
 - `<img v-bind:src="url" />`
 - `<img :src="url" />`   （v-bind可以省略）
 
-## 六、列表渲染指令
+### 1.5 列表渲染指令
 
 Vue 提供了 v-for 列表渲染指令，用来辅助开发者基于一个数组来循环渲染一个列表结构。
 
@@ -129,7 +129,7 @@ index:遍历索引从0开始
 // item从1 开始
 ```
 
-## 七、key
+## 2. key
 **语法：** key="唯一值"  
 **作用：**给列表项添加的**唯一标识**。便于Vue进行列表项的**正确排序复用**。  
 **为什么加key：** Vue 的默认行为会尝试原地修改元素（**就地复用**）  
@@ -147,10 +147,12 @@ index:遍历索引从0开始
 1.  key 的值只能是字符串 或 数字类型
 2.  key 的值必须具有唯一性
 3.  推荐使用  id 作为 key（唯一），不推荐使用 index 作为 key（会变化，不对应）
-### 1.用 key 管理可复用的元素
-当不希望元素复用，而是两个元素独立时，只需添加一个具有唯一值的`key`attribute 即可。
 
-## 八、v-model
+::: tip
+当不希望元素复用，而是两个元素独立时，只需添加一个具有唯一值的`key`attribute 即可。
+:::
+
+## 3. 表单输入绑定
 所谓双向绑定就是：
 1. 数据改变后，呈现的页面结果会更新
 2. 页面结果更新后，数据也会随之而变
@@ -205,13 +207,13 @@ index:遍历索引从0开始
 </script>
 ```
 :::
-## 九、指令修饰符
+## 4. 修饰符
 
 修饰符就是通过“.”指明一些指令**后缀** 不同的**后缀**封装了不同的处理操作，从而简化代码。
 
-### 1. 按键修饰符
+### 4.1. 按键修饰符
 - @keyup.enter —> 当点击enter键的时候才触发
-### 2. v-model修饰符
+### 4.2. v-model修饰符
 - v-model.trim  —>去除首位空格。
 - v-model.number —>转为数字。
 - v-model.lazy  —>取消数据同步，而转为在 change 事件之后进行同步。
@@ -238,16 +240,17 @@ index:遍历索引从0开始
 :::
 
 
-### 3. 事件修饰符
+### 4.3. 事件修饰符
 - @事件名.stop —> 阻止冒泡
 - @事件名.prevent  —>阻止默认行为（如a标签上添加事件）
 - @事件名.stop.prevent —>可以连用 即阻止事件冒泡也阻止默认行为
 
-## 十、v-bind绑定HTML-Class
+## 5. v-bind
 
 为了方便开发者进行样式控制， Vue 扩展了 v-bind 的语法，可以针对 **class 类名** 和 **style 行内样式** 进行控制 。
 
-### 1.对象语法
+### 5.1 绑定HTML-Class
+#### 5.1.1. 对象语法
 
 当class动态绑定的是**对象**时，**键就是类名，值就是布尔值**，如果值是**true**，就有这个类，否则没有这个类
 
@@ -256,7 +259,7 @@ index:遍历索引从0开始
 ```
 适用场景：一个类名，来回切换
 
-### 2.数组语法
+#### 5.1.2.数组语法
 
 当class动态绑定的是**数组**时 → 数组中所有的类，都会添加到盒子上，本质就是一个 class 列表
 
@@ -271,14 +274,14 @@ index:遍历索引从0开始
 - 
 ::: vue-demo 对象与数组语法演示
 ```vue
- <style>
+<style>
     .colorActive {
       color: red;
     }
     .size-active {
       font-size: 30px;
     }
-  </style>
+</style>
 <template>
     <!--绑定对象-->
     <div ref="arrClass" style="padding-bottom: 5px" :class="[{ colorActive: textColor}, sizeClass]">对象语法</div>
@@ -313,14 +316,450 @@ index:遍历索引从0开始
 ```
 :::
 
-## 十一.v-bind绑定内联样式
+### 5.2 绑定内联样式
 :::tip
 `v-bind:style`同样有对象语法与数组语法
 :::
-### 1.多重值
+#### 5.2.1. 多重值
 可以为 style 绑定中的 property 提供一个包含多个值的数组，常用于提供多个带前缀的值，例如：
 ```html
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 这样写只会渲染数组中最后一个被浏览器支持的值。
 如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 display: flex。
+
+## 6. 生命周期钩子
+Vue生命周期：就是一个Vue实例从创建 到 销毁 的整个过程。  
+生命周期**四个阶段**：① 创建 ② 挂载 ③ 更新 ④ 销毁
+1. 创建阶段：创建响应式数据
+2. 挂载阶段：渲染模板
+3. 更新阶段：修改数据，更新视图
+4. 销毁阶段：销毁Vue实例
+
+Vue生命周期过程中，会**自动运行一些函数**，被称为**生命周期钩子**，
+让开发者可以在**特定阶段**运行自己的代码。
+![patch_vue_Lifecycle_01.png](../../../assets/patch_vue_Lifecycle_01.png)
+
+## 7. 计算属性和侦听器
+
+### 7.1. 计算属性
+#### 7.1.1. 概念
+基于**现有的数据**计算出来的**新属性**。 **依赖**原数据变化，**自动**重新计算。  
+
+::: tip
+1. 声明在 **computed 配置项**中，一个计算属性对应一个函数
+2. 使用起来和普通属性一样使用  {{ 计算属性名}}
+:::
+
+::: warning
+1. computed配置项和data配置项是**同级**的
+2. computed中的计算属性**虽然是函数的写法**，但他**依然是个属性**
+3. computed中的计算属性**不能**和data中的属性**同名**
+4. 使用computed中的计算属性和使用data中的属性是一样的用法
+5. computed中计算属性内部的**this**依然**指向的是Vue实例**
+:::
+
+#### 7.1.2. computed VS methods  
+计算属性会对计算出来的结果缓存，再次使用直接读取缓存，  
+依赖项变化了，会自动重新计算并再次缓存  
+methods没有缓存特性
+#### 7.1.3. 计算属性的 setter
+计算属性默认只有 `getter`，在需要修改时需要使用`setter`。
+```js
+computed:{
+   //  默认
+   属性名(){
+       //逻辑
+      return 结果
+   }
+    // 完整
+   属性名(){
+      getter(){
+         //逻辑
+         return 结果
+      }
+      setter(){
+        // 修改逻辑
+      }
+   }
+}
+```
+#### 7.1.4. computed VS watch
+当有一些数据需要随着其它数据变动而变动时，很容易滥用 `watch`,通常更好的做法是使用计算属性。  
+::: vue-demo
+```vue
+<template>
+   姓：<input type="text" v-model="firstName"> +
+   名：<input type="text" v-model="lastName"> =
+   <span>姓名：{{ fullName }}</span><br><br>
+</template>
+<script>
+   export default {
+      data() {
+          return{
+             firstName: '郑',
+             lastName: '昊洋',
+          }
+      },
+      computed: {
+         fullName: {
+            get () {
+               return this.firstName + this.lastName
+            },
+            set (value) {
+               this.firstName = value.slice(0, 1)
+               this.lastName = value.slice(1)
+            }
+         }
+      }
+   }
+</script>
+```
+:::
+若用watch实现以上功能，则较为繁琐。
+```js
+data: {
+    firstName: '郑',
+    lastName: '昊洋',
+    fullName: '郑昊洋'
+  },
+  watch: {
+    firstName: function (val) {
+      this.fullName = val + this.lastName
+    },
+    lastName: function (val) {
+      this.fullName = this.firstName + val
+    }
+  }
+```
+### 7.2. 侦听器
+计算属性在大多数情况下更合适，但有时也需要一个自定义的侦听器。当需要在数据变化时**执行异步或开销较大**的操作时，这个方式是最有用的。
+```js
+watch: {
+    属性名(newValue) {
+        // 防抖: 延迟执行 → 干啥事先等一等，延迟一会，一段时间内没有再次触发，才执行
+        clearTimeout(this.timer)
+        this.timer = setTimeout(async () => {
+        const res = await axios({
+            url: 'XXX', 
+            params: {
+            words: newValue
+            }
+        })
+           this.result = res.data.data
+              console.log(res.data.data)
+        }, 300)
+    }
+}
+```
+watch监听在最初绑定时并不会立即执行，需要等到监听值发生变化时才执行监听计算。若需要在绑定阶段就执行监听，则需要使用
+`immediate: true`。  
+如果我们需要监听一个对象obj，当obj的所有字段发生改变时就执行监听，需要对obj的多个字段
+都写一样的监听逻辑，非常繁琐，则可以使用 `deep: true`实现深度监听。
+::: vue-demo watch演示
+```vue
+<script>
+   export default {
+      data() {
+         return {
+            obj: {
+               words: '你好',
+               lang: 'english'
+            },
+            result: ''
+         }
+      },
+      watch: {
+         obj: {
+            deep: true, // 深度监视obj所有字段
+            immediate: true, // 立刻执行，一进入页面handler就立刻执行一次
+            handler(newValue) {
+               clearTimeout(this.timer)
+               this.timer = setTimeout(async () => {
+                  this.result = '将'+newValue.words+'翻译为'+newValue.lang
+               }, 300)
+            }
+         }
+      }
+   }
+</script>
+<template>
+   <!-- 条件选择框 -->
+   <div class="query">
+      <span>翻译成的语言：</span>
+      <select v-model="obj.lang">
+         <option value="english">英语</option>
+         <option value="italy">意大利</option>
+         <option value="german">德语</option>
+      </select>
+   </div>
+
+   <!-- 翻译框 -->
+   <div class="box">
+      <div class="input-wrap">
+         <textarea v-model="obj.words"></textarea>
+         <span><i>⌨️</i>文档翻译</span>
+      </div>
+      <div class="output-wrap">
+         <div class="transbox">{{result}}</div>
+      </div>
+   </div>
+</template>
+<style>
+   * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-size: 18px;
+   }
+
+   #app {
+      padding: 10px 20px;
+   }
+
+   .query {
+      margin: 10px 0;
+   }
+
+   .box {
+      display: flex;
+   }
+
+   textarea {
+      width: 300px;
+      height: 160px;
+      font-size: 15px;
+      border: 1px solid #dedede;
+      outline: none;
+      resize: none;
+      padding: 10px;
+   }
+
+   textarea:hover {
+      border: 1px solid #1589f5;
+   }
+
+   .transbox {
+      width: 300px;
+      height: 160px;
+      background-color: #888888;
+      padding: 10px;
+      border: none;
+      font-size: 15px;
+   }
+
+   .tip-box {
+      width: 300px;
+      height: 25px;
+      line-height: 25px;
+      display: flex;
+   }
+
+   .tip-box span {
+      flex: 1;
+      text-align: center;
+   }
+
+   .query span {
+      font-size: 18px;
+   }
+
+   .input-wrap {
+      position: relative;
+   }
+
+   .input-wrap span {
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+      font-size: 12px;
+   }
+
+   .input-wrap i {
+      font-size: 20px;
+      font-style: normal;
+   }
+</style>
+```
+:::
+
+## 8. 组件通信
+### 8.1 props
+#### 8.1.1 props类型
+
+```js
+props: {
+  title: String,
+  likes: Number,
+  isPublished: Boolean,
+  commentIds: Array,
+  author: Object,
+  callback: Function,
+  contactsPromise: Promise
+}
+```
+::: tip
+1. type 可用数组声明多种类型。
+2. 如果 type 仅为 null 而非使用数组语法，它将允许任何类型。
+2. type 也可以是自定义的类或构造函数,Vue 将会通过 instanceof 来检查类型是否匹配。
+:::
+
+#### 8.1.2 props校验
+当 prop 验证失败的时候，(开发环境构建版本的) Vue 将会产生一个控制台的警告。
+```js
+props: {
+    校验的属性名: {
+    type: 类型, // Number String Boolean ...
+    required: true, // 是否必填
+    default: 默认值, // 简单默认值
+    // 对象或数组默认值必须从一个工厂函数获取
+    default: function () {
+        return { message: 'hello' }
+    }
+    // 自定义类型校验函数
+    // 在 3.4+ 中完整的 props 作为第二个参数传入
+    validator (value,props) {
+        // 自定义校验逻辑
+        return 是否通过校验
+        }
+    }
+}
+```
+::: warning
+1. default和required一般不同时写（因为当时必填项时，肯定是有值的）
+2. default后面如果是简单类型的值，可以直接写默认。如果是复杂类型的值，则需要以函数的形式return一个默认值。
+3. prop 的校验是在组件实例被创建之前，所以实例的属性 (比如 data、computed 等) 将在 default 或 validator 函数中不可用。
+:::
+
+#### 8.1.3 props父子通信
+1. 父组件通过 **props** 将数据传递给子组件。（静态与动态props查看[此链接](https://cn.vuejs.org/guide/components/props.html#static-vs-dynamic-props)）
+2. 子组件利用 **$emit** 通知父组件修改更新。  
+
+在子组件中发送监听:
+``` vue
+<button @click="$emit('increaseBy', 1)">加一</button>
+```
+在父组件监听事件:
+``` vue
+<MyButton :value="count" @increase-by="(n) => count += n" />
+```
+::: tip
+1. 内联的箭头函数可以改为组件方法。
+2. 父组件中推荐使用 kebab-case 形式来监听。props同理。
+:::
+
+### 8.2 v-model
+[v-model](https://cn.vuejs.org/guide/components/v-model.html)本质上是一个语法糖。例如应用在输入框上，就是value属性 和 input事件 的合写。  
+```html
+<input v-model="msg" type="text">
+```
+在代码背后，模板编译器会对 v-model 进行更冗长的等价展开。因此上面的代码其实等价于下面这段：
+```html
+<input :value="msg" @input="msg = $event.target.value" type="text">
+```
+因此，若需要在父组件利用v-model实现父子组件通信，只需要将子组件prop为声明value，并触发 input事件。
+```vue
+<!--子组件-->
+<select :value="value" @change="handleChange">...</select>
+props: {
+    value: String
+},
+methods: {
+    handleChange (e) {
+        this.$emit('input', e.target.value)
+    }
+}
+<!--父组件-->
+<BaseSelect v-model="selectId"></BaseSelect>
+```
+
+### 8.3 .sync修饰符
+.sync修饰符 就是 **:属性名** 和 **@update:属性名** 合写。  
+父组件
+```vue
+//.sync写法
+<BaseDialog :visible.sync="isShow" />
+//完整写法
+<BaseDialog 
+  :visible="isShow" 
+  @update:visible="isShow = $event" 
+/>
+```
+子组件
+```js
+props: {
+    visible: Boolean
+},
+methods:{
+   closeBox() {
+      this.$emit('update:visible',false)
+   },
+}
+```
+
+### 8.3 event bus
+在某些场景中，需要非父子组件之间进行简易消息传递，则使用`event bus`。  
+以一个Vue场景为例，文件结构为：
+:::file-tree
+- src
+  - components
+    - SendVue.vue
+    - ReceiveVue.vue
+  - utils
+    - EventBus.js
+  - App.vue
+:::
+1. 创建一个都能访问的事件总线 （空Vue实例）
+```js
+// EventBus.js
+import Vue from 'vue'
+const Bus  =  new Vue()
+export default Bus   //导出
+```
+2. 组件（接受方），监听Bus的 $on事件
+```js
+import Bus from '../utils/EventBus'
+created () {
+    Bus.$on('sendMsg', (msg) => {
+    this.msg = msg
+    })
+}
+```
+3. 组件（发送方），触发Bus的$emit事件
+```js
+import Bus from '../utils/EventBus'
+sendMsgAFn() {
+   Bus.$emit('sendAMsg', '今天天气不错，适合旅游')
+},
+```
+
+### 8.4 provide&inject
+父组件利用provide可为子/孙组件提供数据。  
+1. 父组件 provide提供数据
+```js
+export default {
+    provide () {
+        return {
+       // 普通类型【非响应式】
+       color: this.color, 
+       // 复杂类型【响应式】
+       userInfo: this.userInfo, 
+        }
+    }
+}
+```
+2. 子/孙组件 inject获取数据
+```js
+export default {
+    inject: ['color','userInfo'],
+        created () {
+        console.log(this.color, this.userInfo)
+    }
+}
+```
+::: tip
+- provide提供的简单类型的数据不是响应式的，复杂类型数据是响应式。（推荐提供复杂类型数据）
+- 子/孙组件通过inject获取的数据，不能在自身组件内修改
+:::
+
+
