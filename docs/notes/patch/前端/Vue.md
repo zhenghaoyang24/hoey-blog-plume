@@ -726,6 +726,7 @@ created () {
 }
 ```
 3. 组件（发送方），触发Bus的$emit事件
+
 ```js
 import Bus from '../utils/EventBus'
 sendMsgAFn() {
@@ -762,4 +763,195 @@ export default {
 - 子/孙组件通过inject获取的数据，不能在自身组件内修改
 :::
 
+## 9. 自定义指令
+- 内置指令：**v-html、v-if、v-bind、v-on**... 这都是Vue给咱们内置的一些指令，可以直接使用
+- 自定义指令：同时Vue也支持让开发者，自己注册一些指令。这些指令被称为**自定义指令**，每个指令都有自己各自独立的功能
+### 9.1. 自定义指令语法
+全局注册
+```js
+//在main.js中
+Vue.directive('指令名', {
+    "inserted" (el) {
+    // 可以对 el 标签，扩展额外功能
+    el.focus()
+    }
+})
+```
+局部注册
+```js
+//在Vue组件的配置项中
+directives: {
+    "指令名": {
+        inserted () {
+            // 可以对 el 标签，扩展额外功能
+            el.focus()
+        }
+    }
+}
+```
+配置介绍：  
+inserted:被绑定元素插入父节点时调用的钩子函数。  
+el：使用指令的那个DOM元素。
 
+### 9.2. 自定义指令的指
+- 在绑定指令时，可以通过“等号”的形式为指令绑定具体的参数值。
+- 通过 `binding.value` 可以拿到指令值，**指令值修改会触发update函数**。
+::: vue-demo 指令演示
+```vue
+<template>
+  <div v-color="color">我是内容</div>
+  <button type="button" @click="changeColor">修改指令值</button>
+</template>
+<script>
+  export default {
+    data () {
+        return{
+            color: "red"
+        }
+    },
+    methods: {
+      changeColor() {
+          if (this.color==="red"){
+            this.color = "blue"
+          }
+          else{
+            this.color = "red"
+          }
+      },
+    },
+    directives: {
+      color: {
+        inserted(el, binding) {
+          // binding.value 就是指令的值
+          el.style.color = binding.value
+        },
+        // 2. update 指令的值修改的时候触发，提供值变化后，dom更新的逻辑
+        updated(el, binding) {
+          el.style.color = binding.value
+        }
+      }
+    }
+  }
+</script>
+```
+:::
+
+## 10. 插槽
+\<slot> 元素是一个插槽出口 (slot outlet)，标示了父元素提供的插槽内容 (slot content) 将在哪里被渲染。
+举例来说，这里有一个 \<FancyButton> 组件，可以像这样使用：
+```html
+<FancyButton>
+Click me! <!-- 插槽内容 -->
+</FancyButton>
+```
+而 \<FancyButton> 的模板是这样的：
+```html
+<button class="fancy-btn">
+<slot></slot> <!-- 插槽出口 -->
+</button>
+```
+最终渲染出的 DOM 是这样：
+```html
+<button class="fancy-btn">Click me!</button>
+```
+:::tip
+插槽内容可以访问到父组件的数据作用域。  
+插槽内容无法访问子组件的数据。
+:::
+
+### 10.1 默认内容
+\<slot>之间的内容，将在父组件没有提供任何插槽内容时作为默内容。
+```html
+<button type="submit">
+  <slot>
+    Submit <!-- 默认内容 -->
+  </slot>
+</button>
+```
+### 10.2 具名插槽
+带`name`的插槽被称为具名插槽(named slots)。没有提供name的 `<slot>` 出口会隐式地命名为“default”（name="default"）。  
+要为具名插槽传入内容，需要使用一个含 `v-slot` 指令的 `<template>` 元素，并将目标插槽的名字传给该指令：
+```vue
+<!--子模板中-->
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+</div>
+<!--父组件调用时-->
+<BaseLayout>
+  <template v-slot:header>
+    <!-- header 插槽的内容放这里 -->
+  </template>
+</BaseLayout>
+```
+`<template v-slot:header>`可以简写为`<template #header>`。  
+当一个组件同时接收默认插槽和具名插槽时，所有位于顶级的非 `<template>` 节点都被隐式地视为默认插槽的内容。
+
+### 10.3 作用域插槽
+解决插槽的内容无法访问到子组件的状态。
+#### 10.3.1 默认作用域插槽
+```vue
+<!-- <MyComponent> 的模板 -->
+<div>
+  <slot :text="greetingMessage" :count="1"></slot>
+</div>
+```
+默认插槽通过子组件标签上的 `v-slot` 指令，直接接收到了一个插槽 `props` 对象。
+```vue
+<MyComponent v-slot="slotProps">
+  {{ slotProps.text }} {{ slotProps.count }}
+</MyComponent>
+```
+以上代码可以解构为：
+```vue
+<MyComponent v-slot="{ text, count }">
+  {{ text }} {{ count }}
+</MyComponent>
+```
+#### 10.3.2 具名作用域插槽
+具名作用域插槽的工作方式也是类似的，插槽 `props` 可以作为 `v-slot` 指令的值被访问到：
+`v-slot:name="slotProps"`。当使用缩写时是这样：
+```vue
+<MyComponent>
+  <template #header="headerProps">
+    {{ headerProps }}
+  </template>
+</MyComponent>
+```
+向具名插槽中传入 props：
+```vue
+<slot name="header" message="hello"></slot>
+```
+`name` 是一个 Vue 特别保留的 attribute，不会作为 props 传递给插槽。
+因此最终 `headerProps` 的结果是 `{ message: 'hello' }`。
+
+同时使用了具名插槽与默认插槽，则需要为默认插槽使用显式的 `<template>` 标签。直接为组件添加 `v-slot` 
+指令将导致**编译错误**!
+```html
+<!-- <MyComponent> template -->
+<div>
+  <slot :message="hello"></slot>
+  <slot name="footer" />
+</div>
+
+<!-- 该模板无法编译 -->
+<MyComponent v-slot="{ message }">
+  <p>{{ message }}</p>
+  <template #footer>
+    <!-- message 属于默认插槽，此处不可用！ -->
+    <p>{{ message }}</p>
+  </template>
+</MyComponent>
+
+<!--正确写法-->
+<MyComponent>
+  <!-- 使用显式的默认插槽 -->
+  <template #default="{ message }">
+    <p>{{ message }}</p>
+  </template>
+  <template #footer>
+    <p>Here's some contact info</p>
+  </template>
+</MyComponent>
+```
