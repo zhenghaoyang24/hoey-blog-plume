@@ -4,7 +4,7 @@ import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
   head: [
-      ['meta', { name: 'referrer', content: 'never' }]
+      ['meta', { name: 'referrer', content: 'no-referrer' }]
   ],
   base: '/',
   lang: 'zh-CN',
