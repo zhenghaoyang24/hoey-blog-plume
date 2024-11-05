@@ -8,10 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/auto-frontmatter.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/auto-frontmatter.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/03921784" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/03921784" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/18b6b968" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/18b6b968" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/227e60ae" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/227e60ae" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/5301ea31" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/5301ea31" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/56faed2e" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/56faed2e" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/6aa0a5b4" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/6aa0a5b4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/735c8eb4" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/735c8eb4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/8b25db72" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/8b25db72" afterDir="false" />
@@ -20,6 +18,7 @@
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/eaded38e" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/eaded38e" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/blogData.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/blogData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/sidebar.js" afterDir="false" />
@@ -29,22 +28,32 @@
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22041901/index.html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22041901/index.html.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22101101/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22101101/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22101101/index.html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22101101/index.html.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22110801/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22110801/index.html.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23010801/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23010801/index.html.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23042001/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23042001/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23042601/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23042601/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23042601/index.html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23042601/index.html.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23050701/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23050701/index.html.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23053001/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23053001/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23091201/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23091201/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23091201/index.html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/23091201/index.html.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/CSS3/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/CSS3/index.html.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24081301/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24081301/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/CSS3/index.html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/CSS3/index.html.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/Vue Basic/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/Vue Basic/index.html.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/Vue Basic/index.html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/Vue Basic/index.html.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/Vue Depth/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/Vue Depth/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/Vue Depth/index.html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/Vue Depth/index.html.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/index.html.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/index.html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/index.html.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/notes/patch/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/notes/patch/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/notes/patch/Vue/vuebasic.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/notes/patch/Vue/vuebasic.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/22032301_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/22032301_01.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/22041901_01.gif" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/22041901_01.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/22092701_01.gif" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/22092701_01.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/22101101_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/22101101_01.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/22101101_02.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/22101101_02.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/22101101_03.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/22101101_03.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/22101101_04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/22101101_04.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/22101101_05.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/22101101_05.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/23042601_01.gif" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/23042601_01.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/23091201_01.gif" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/23091201_01.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/patch_css3_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/patch_css3_01.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/patch_vuebasic_lifecycle.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/assets/patch_vuedepth_slot.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/public/assets/patch_vuedepth_slot.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/notes/patch/Vue/vuedepth.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/notes/patch/Vue/vuedepth.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/notes/patch/前端基础/CSS3.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/notes/patch/前端基础/CSS3.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/学文/22032301.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/学文/22032301.md" afterDir="false" />
@@ -74,22 +83,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "G:/200-Project/hoey-blog-plume/docs/.vuepress/public/images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.docs:build.executor": "Run",
-    "npm.docs:dev.executor": "Run",
-    "ts.external.directory.path": "E:\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;G:/200-Project/hoey-blog-plume/docs/.vuepress/public/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.docs:build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.docs:dev.executor&quot;: &quot;Run&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="G:\200-Project\hoey-blog-plume\docs\.vuepress\public\images" />
@@ -98,10 +107,10 @@
       <recent name="G:\200-Project\hoey-blog-plume\docs\.vuepress\public\font" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\200-Project\hoey-blog-plume\docs\.vuepress\public" />
       <recent name="G:\200-Project\hoey-blog-plume\docs\notes\patch\Vue" />
       <recent name="G:\200-Project\hoey-blog-plume\docs\assets" />
       <recent name="G:\200-Project\hoey-blog-plume\docs\notes\chalou\前端" />
-      <recent name="G:\200-Project\hoey-blog-plume\docs\.vuepress\public" />
     </key>
   </component>
   <component name="RunManager" selected="npm.docs:dev">
@@ -170,6 +179,7 @@
       <workItem from="1730813875855" duration="42000" />
       <workItem from="1730815568345" duration="630000" />
       <workItem from="1730816483215" duration="2318000" />
+      <workItem from="1730819038560" duration="605000" />
     </task>
     <servers />
   </component>

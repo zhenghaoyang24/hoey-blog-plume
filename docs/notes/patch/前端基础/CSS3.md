@@ -6,7 +6,7 @@ permalink: /patch/CSS3/
 
 ## 1. 背景
 **box的区域：**  
-![img.png](../../../assets/patch_css3_01.jpg)
+![img.png](/assets/patch_css3_01.jpg)
 ::: tabs
 @tab background-origin  
 **作用**：指定了背景图像的位置区域。  
