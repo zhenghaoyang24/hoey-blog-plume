@@ -276,7 +276,7 @@ Click me! <!-- 插槽内容 -->
 ```html
 <button class="fancy-btn">Click me!</button>
 ```
-![默认内容](https://wx2.sinaimg.cn/mw690/006oZMAtly1hvbaxkgg77j31280egwiu.jpg)
+![默认内容](https://cdn.ipfsscan.io/weibo/mw690/006oZMAtly1hvbaxkgg77j31280egwiu.jpg)
 :::tip
 插槽内容可以访问到父组件的数据作用域。  
 插槽内容无法访问子组件的数据。

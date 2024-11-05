@@ -6,7 +6,7 @@ permalink: /patch/CSS3/
 
 ## 1. 背景
 **box的区域：**  
-![img.png](https://wx3.sinaimg.cn/mw690/006oZMAtly1hvbao5gelhj30bz05ldg5.jpg)
+![img.png](https://cdn.ipfsscan.io/weibo/mw690/006oZMAtly1hvbao5gelhj30bz05ldg5.jpg)
 ::: tabs
 @tab background-origin  
 **作用**：指定了背景图像的位置区域。  

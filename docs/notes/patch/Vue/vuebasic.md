@@ -337,7 +337,7 @@ Vue生命周期：就是一个Vue实例从创建 到 销毁 的整个过程。
 
 Vue生命周期过程中，会**自动运行一些函数**，被称为**生命周期钩子**，
 让开发者可以在**特定阶段**运行自己的代码。  
-![patch_vue_Lifecycle_01.png](https://wx2.sinaimg.cn/mw690/006oZMAtly1hvbao5j76zj30zy0c6wjh.jpg)
+![patch_vue_Lifecycle_01.png](https://cdn.ipfsscan.io/weibo/mw690/006oZMAtly1hvbao5j76zj30zy0c6wjh.jpg)
 
 ## 7. 计算属性和侦听器
 
