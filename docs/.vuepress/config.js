@@ -3,6 +3,9 @@ import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
+  head: [
+      ['meta', { name: 'referrer', content: 'never' }]
+  ],
   base: '/',
   lang: 'zh-CN',
   title: 'Hoey',
