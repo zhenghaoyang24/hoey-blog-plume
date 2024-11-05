@@ -76,7 +76,7 @@ created阶段获取them值且改变按钮相应状态。</p>
 <span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">}</span></span></code></pre>
 
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_4-效果" tabindex="-1"><a class="header-anchor" href="#_4-效果"><span>4.效果</span></a></h3>
-<p><img src="@source/assets/091201_1.gif" alt="img.png"></p>
+<p><img src="https://wx4.sinaimg.cn/large/006oZMAtly1hvbao5y806g30u00k07wi.gif" alt="img.png"></p>
 </div></template>
 
 

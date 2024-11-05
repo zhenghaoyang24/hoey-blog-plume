@@ -386,8 +386,8 @@ vue 中的指令按照不同的用途可以分为如下 6 大类：</p>
 <li>销毁阶段：销毁Vue实例</li>
 </ol>
 <p>Vue生命周期过程中，会<strong>自动运行一些函数</strong>，被称为<strong>生命周期钩子</strong>，
-让开发者可以在<strong>特定阶段</strong>运行自己的代码。
-<img src="@source/assets/patch_vue_Lifecycle_01.png" alt="patch_vue_Lifecycle_01.png"></p>
+让开发者可以在<strong>特定阶段</strong>运行自己的代码。<br>
+<img src="https://wx2.sinaimg.cn/mw690/006oZMAtly1hvbao5j76zj30zy0c6wjh.jpg" alt="patch_vue_Lifecycle_01.png"></p>
 <h2 id="_7-计算属性和侦听器" tabindex="-1"><a class="header-anchor" href="#_7-计算属性和侦听器"><span>7. 计算属性和侦听器</span></a></h2>
 <h3 id="_7-1-计算属性" tabindex="-1"><a class="header-anchor" href="#_7-1-计算属性"><span>7.1. 计算属性</span></a></h3>
 <h4 id="_7-1-1-概念" tabindex="-1"><a class="header-anchor" href="#_7-1-1-概念"><span>7.1.1. 概念</span></a></h4>
@@ -903,7 +903,8 @@ el：使用指令的那个DOM元素。</p>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>最终渲染出的 DOM 是这样：</p>
 <div class="language-html line-numbers-mode" data-ext="html" data-title="html"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">button</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A"> class</span><span style="--shiki-light:#999999;--shiki-dark:#666666">=</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">fancy-btn</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span><span style="--shiki-light:#393A34;--shiki-dark:#DBD7CAEE">Click me!</span><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;/</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">button</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span></code></pre>
 
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div></div></div><div class="hint-container tip">
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div></div></div><p><img src="https://wx2.sinaimg.cn/mw690/006oZMAtly1hvbaxkgg77j31280egwiu.jpg" alt="默认内容"></p>
+<div class="hint-container tip">
 <p class="hint-container-title">提示</p>
 <p>插槽内容可以访问到父组件的数据作用域。<br>
 插槽内容无法访问子组件的数据。</p>
