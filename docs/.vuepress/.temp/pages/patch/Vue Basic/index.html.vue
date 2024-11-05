@@ -387,7 +387,7 @@ vue 中的指令按照不同的用途可以分为如下 6 大类：</p>
 </ol>
 <p>Vue生命周期过程中，会<strong>自动运行一些函数</strong>，被称为<strong>生命周期钩子</strong>，
 让开发者可以在<strong>特定阶段</strong>运行自己的代码。<br>
-<img src="https://cdn.ipfsscan.io/weibo/mw690/006oZMAtly1hvbao5j76zj30zy0c6wjh.jpg" alt="patch_vue_Lifecycle_01.png"></p>
+<img src="/assets/patch_vuebasic_lifecycle.jpg" alt="patch_vue_Lifecycle_01.png"></p>
 <h2 id="_7-计算属性和侦听器" tabindex="-1"><a class="header-anchor" href="#_7-计算属性和侦听器"><span>7. 计算属性和侦听器</span></a></h2>
 <h3 id="_7-1-计算属性" tabindex="-1"><a class="header-anchor" href="#_7-1-计算属性"><span>7.1. 计算属性</span></a></h3>
 <h4 id="_7-1-1-概念" tabindex="-1"><a class="header-anchor" href="#_7-1-1-概念"><span>7.1.1. 概念</span></a></h4>

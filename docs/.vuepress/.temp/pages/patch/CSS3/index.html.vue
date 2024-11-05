@@ -1,6 +1,6 @@
 <template><div><h2 id="_1-背景" tabindex="-1"><a class="header-anchor" href="#_1-背景"><span>1. 背景</span></a></h2>
 <p><strong>box的区域：</strong><br>
-<img src="https://cdn.ipfsscan.io/weibo/mw690/006oZMAtly1hvbao5gelhj30bz05ldg5.jpg" alt="img.png"></p>
+<img src="@source/assets/patch_css3_01.jpg" alt="img.png"></p>
 <Tabs id="6" :data='[{"id":"background-origin"},{"id":"background-clip"}]'>
 <template #title0="{ value, isActive }">background-origin</template><template #title1="{ value, isActive }">background-clip</template><template #tab0="{ value, isActive }"><p><strong>作用</strong>：指定了背景图像的位置区域。<br>
 <strong>属性值：</strong> content-box | padding-box | border-box</p>
