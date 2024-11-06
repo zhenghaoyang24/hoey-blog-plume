@@ -1,5 +1,5 @@
 ---
-title: 基础
+title: Vue基础
 createTime: 2024/4/31 15:41:27
 permalink: /patch/Vue Basic/
 ---
@@ -359,8 +359,7 @@ Vue生命周期过程中，会**自动运行一些函数**，被称为**生命�
 :::
 
 #### 7.1.2. computed VS methods  
-计算属性会对计算出来的结果缓存，再次使用直接读取缓存，  
-依赖项变化了，会自动重新计算并再次缓存  
+计算属性会对计算出来的结果缓存，再次使用直接读取缓存，依赖项变化了，会自动重新计算并再次缓存。  
 methods没有缓存特性
 #### 7.1.3. 计算属性的 setter
 计算属性默认只有 `getter`，在需要修改时需要使用`setter`。
@@ -384,13 +383,17 @@ computed:{
 }
 ```
 #### 7.1.4. computed VS watch
+
 当有一些数据需要随着其它数据变动而变动时，很容易滥用 `watch`,通常更好的做法是使用计算属性。  
+当有修改dom/异步请求时，放在 `watch`里。
+
 ::: vue-demo
 ```vue
 <template>
    姓：<input type="text" v-model="firstName"> +
    名：<input type="text" v-model="lastName"> =
    <span>姓名：{{ fullName }}</span><br><br>
+   <button @click="resetName">重置</button>
 </template>
 <script>
    export default {
@@ -406,9 +409,17 @@ computed:{
                return this.firstName + this.lastName
             },
             set (value) {
+                // 当fullName被改变时执行set()
+                // value为当前计算属性值
+                console.log(value)
                this.firstName = value.slice(0, 1)
                this.lastName = value.slice(1)
             }
+         }
+      },
+      methods:{
+         resetName(){
+            this.fullName = '郑昊洋'
          }
       }
    }

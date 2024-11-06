@@ -57,7 +57,7 @@ permalink: /patch/HTML5/
 ### 4.meter
 \<meter> 标签定义度量衡。仅用于已知最大和最小值的度量。  
 ::: caution
-\<meter> 不能作为一个进度条来使用， 进度条 \<progress> 标签。
+\<meter> 不能作为一个进度条来使用， 进度条使用 \<progress> 标签。
 :::
 ::: normal-demo 代码演示  
 ```html
