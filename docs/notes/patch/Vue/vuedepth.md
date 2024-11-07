@@ -1,7 +1,7 @@
 ---
 title: Vue深入
 createTime: 2024/11/05 14:13:26
-permalink: /patch/Vue Depth/
+permalink: /patch/VueDepth/
 ---
 ## 1. 组件通信
 ### 1.1 props

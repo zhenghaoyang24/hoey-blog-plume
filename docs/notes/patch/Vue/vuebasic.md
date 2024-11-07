@@ -1,7 +1,7 @@
 ---
 title: Vue基础
 createTime: 2024/4/31 15:41:27
-permalink: /patch/Vue Basic/
+permalink: /patch/VueBasic/
 ---
 
 ## 1. Vue中的常用指令
