@@ -433,3 +433,11 @@ pluging:[
 :::tip
  vue3.4 之前需要导入 defineModel 且在 `vite.config.js` 配置 `defineModel:true`。
 :::
+
+## 2. Pinia
+`Pinia` 是 Vue 的专属状态管理库，是 Vuex的替代品。[Pinia官网](https://pinia.vuejs.org/zh/)就 Pinia 学习提供了详细指南
+，可前往阅读。
+### 2.1 storeToRefs工具函数
+使用 `storeToRefs` 函数可以辅助保持数据（state + getter）的响应式解构。
+### 2.1 持久化
+`vuex` 可以使用[vuex-persistedstate](https://www.npmjs.com/package/vuex-persistedstate)实现持久化，同样 `Pinia` 也有持久化方案 - [pinia-plugin-persistedstate](https://prazdevs.github.io/pinia-plugin-persistedstate/zh/)。

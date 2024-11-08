@@ -403,6 +403,13 @@ reactive 总是深度响应的,用 reactive 创建的响应式对象，即时 de
 <p class="hint-container-title">提示</p>
 <p>vue3.4 之前需要导入 defineModel 且在 <code v-pre>vite.config.js</code> 配置 <code v-pre>defineModel:true</code>。</p>
 </div>
+<h2 id="_2-pinia" tabindex="-1"><a class="header-anchor" href="#_2-pinia"><span>2. Pinia</span></a></h2>
+<p><code v-pre>Pinia</code> 是 Vue 的专属状态管理库，是 Vuex的替代品。<a href="https://pinia.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">Pinia官网</a>就 Pinia 学习提供了详细指南
+，可前往阅读。</p>
+<h3 id="_2-1-storetorefs工具函数" tabindex="-1"><a class="header-anchor" href="#_2-1-storetorefs工具函数"><span>2.1 storeToRefs工具函数</span></a></h3>
+<p>使用 <code v-pre>storeToRefs</code> 函数可以辅助保持数据（state + getter）的响应式解构。</p>
+<h3 id="_2-1-持久化" tabindex="-1"><a class="header-anchor" href="#_2-1-持久化"><span>2.1 持久化</span></a></h3>
+<p><code v-pre>vuex</code> 可以使用<a href="https://www.npmjs.com/package/vuex-persistedstate" target="_blank" rel="noopener noreferrer">vuex-persistedstate</a>实现持久化，同样 <code v-pre>Pinia</code> 也有持久化方案 - <a href="https://prazdevs.github.io/pinia-plugin-persistedstate/zh/" target="_blank" rel="noopener noreferrer">pinia-plugin-persistedstate</a>。</p>
 </div></template>
 
 
