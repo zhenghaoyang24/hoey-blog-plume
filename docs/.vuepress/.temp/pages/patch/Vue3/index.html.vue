@@ -1,6 +1,6 @@
 <template><div><h2 id="_1-组合式api" tabindex="-1"><a class="header-anchor" href="#_1-组合式api"><span>1. 组合式API</span></a></h2>
 <h3 id="_1-1-使用" tabindex="-1"><a class="header-anchor" href="#_1-1-使用"><span>1.1 使用</span></a></h3>
-<p><strong>执行时期：</strong><code v-pre>setup()</code>在在<code v-pre>beforeCreate</code>钩子之前执行。<br>
+<p><strong>执行时期：</strong><code v-pre>setup()</code>在<code v-pre>beforeCreate</code>钩子之前执行。<br>
 在setup函数中写的数据和方法需要在末尾以对象的方式return，才能给模版使用：</p>
 <div class="language-js line-numbers-mode" data-ext="js" data-title="js"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">export</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375"> default</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> {</span></span>
 <span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">    setup</span><span style="--shiki-light:#999999;--shiki-dark:#666666">(){</span></span>

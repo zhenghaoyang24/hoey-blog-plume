@@ -6,7 +6,7 @@ permalink: /patch/Vue3/
 
 ## 1. 组合式API
 ### 1.1 使用
-**执行时期：**`setup()`在在`beforeCreate`钩子之前执行。  
+**执行时期：**`setup()`在`beforeCreate`钩子之前执行。  
 在setup函数中写的数据和方法需要在末尾以对象的方式return，才能给模版使用：
 ```js
 export default {
