@@ -2,8 +2,7 @@
 pageLayout: home
 externalLinkIcon: false
 config:
-  -
-    type: hero
+  - type: hero
     full: true
     background: tint-plate
     hero:
@@ -15,5 +14,5 @@ config:
           theme: brand
           text: 博客
           link: /blog/
----
 
+---

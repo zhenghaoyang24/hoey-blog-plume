@@ -9,7 +9,7 @@ export default defineUserConfig({
   base: '/',
   lang: 'zh-CN',
   title: 'Hoey',
-  description: '老师，我太想进步了。',
+  description: 'Hoey\' blog.',
 
   bundler: viteBundler(),
 
