@@ -1,8 +1,9 @@
 ---
 title: Vue3快速入门
-createTime: 2024/11/6 10:19:27
+createTime: 2024/8/5 10:19:27
 permalink: /patch/vue3quickStart/
 ---
+
 ## 1. Vue3简介
  
 **性能的提升**
@@ -83,7 +84,6 @@ npm run serve
 <img src="/assets/patch_vue3quickStar_2-2-02.png"/>
 </div>
 
-
 * 具体操作如下（点击查看[官方文档](https://cn.vuejs.org/guide/quick-start.html#creating-a-vue-application)）
 
 ```powershell
@@ -144,7 +144,6 @@ npm create vue@latest
 <img src="/assets/patch_vue3quickStar_3-03.gif"/>
 <img src="/assets/patch_vue3quickStar_3-04.gif"/>
 </div>
-
 
 ### 3.2 setup
 

@@ -1,6 +1,6 @@
 ---
 title: Vue2深入
-createTime: 2024/11/05 14:13:26
+createTime: 2024/5/5 14:13:26
 permalink: /patch/VueDepth/
 ---
 ## 1. 组件通信
