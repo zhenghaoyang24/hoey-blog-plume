@@ -1,5 +1,5 @@
 ---
-title: Vue深入
+title: Vue2深入
 createTime: 2024/11/05 14:13:26
 permalink: /patch/VueDepth/
 ---

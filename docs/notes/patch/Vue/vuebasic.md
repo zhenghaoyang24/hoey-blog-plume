@@ -1,5 +1,5 @@
 ---
-title: Vue基础
+title: Vue2基础
 createTime: 2024/4/31 15:41:27
 permalink: /patch/VueBasic/
 ---

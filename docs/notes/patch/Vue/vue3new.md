@@ -1,7 +1,7 @@
 ---
 title: Vue3新特性
 createTime: 2024/11/6 10:19:27
-permalink: /patch/Vue3/
+permalink: /patch/Vue3new/
 ---
 
 ## 1. 组合式API
