@@ -125,7 +125,7 @@ npm create vue@latest
 
 ## 3. Vue3核心语法
 
-### 3.1 OptionsAPI 与 CompositionAPI
+### 3.1 Options & Composition
 
 - `Vue2`的`API`设计是`Options`（配置）风格的。
 - `Vue3`的`API`设计是`Composition`（组合）风格的。
@@ -163,8 +163,6 @@ npm create vue@latest
     <h2>姓名：{{name}}</h2>
     <h2>年龄：{{age}}</h2>
     <button @click="changeName">修改名字</button>
-    <button @click="changeAge">年龄+1</button>
-    <button @click="showTel">点我查看联系方式</button>
   </div>
 </template>
 
@@ -172,26 +170,16 @@ npm create vue@latest
   export default {
     name:'Person',
     setup(){
-      // 数据，原来写在data中（注意：此时的name、age、tel数据都不是响应式数据）
+      // 数据，原来写在data中（注意：此时的name不是响应式数据）
       let name = '张三'
-      let age = 18
-      let tel = '13888888888'
-
+       
       // 方法，原来写在methods中
       function changeName(){
         name = 'zhang-san' //注意：此时这么修改name页面是不变化的
         console.log(name)
       }
-      function changeAge(){
-        age += 1 //注意：此时这么修改age页面是不变化的
-        console.log(age)
-      }
-      function showTel(){
-        alert(tel)
-      }
-
       // 返回一个对象，对象中的内容，模板中可以直接使用
-      return {name,age,tel,changeName,changeAge,showTel}
+      return {name,changeName}
     }
   }
 </script>
@@ -222,10 +210,7 @@ setup(){
 <template>
   <div class="person">
     <h2>姓名：{{name}}</h2>
-    <h2>年龄：{{age}}</h2>
     <button @click="changName">修改名字</button>
-    <button @click="changAge">年龄+1</button>
-    <button @click="showTel">点我查看联系方式</button>
   </div>
 </template>
 
@@ -234,36 +219,28 @@ setup(){
     name:'Person',
   }
 </script>
-
 <!-- 下面的写法是setup语法糖 -->
 <script setup lang="ts">
   console.log(this) //undefined
-  
-  // 数据（注意：此时的name、age、tel都不是响应式数据）
+  // 数据（注意：此时的name不是响应式数据）
   let name = '张三'
-  let age = 18
-  let tel = '13888888888'
-
   // 方法
   function changName(){
     name = '李四'//注意：此时这么修改name页面是不变化的
-  }
-  function changAge(){
-    console.log(age)
-    age += 1 //注意：此时这么修改age页面是不变化的
-  }
-  function showTel(){
-    alert(tel)
   }
 </script>
 ```
 
 扩展：上述代码，还需要编写一个不写`setup`的`script`标签，去指定组件名字，比较麻烦，我们可以借助`vite`中的插件简化
 
-1. 第一步：`npm i vite-plugin-vue-setup-extend -D`
-2. 第二步：`vite.config.ts`
+1. 第一步：
+```sh
+npm i vite-plugin-vue-setup-extend -D
+```
 
-```jsx
+2. 第二步：
+```js
+// vite.config.ts
 import { defineConfig } from 'vite'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 
@@ -273,3 +250,189 @@ export default defineConfig({
 ```
 
 3. 第三步：`<script setup lang="ts" name="Person">`
+
+
+### 3.3 ref
+##### **创建基本类型响应式数据**
+- **作用：** 定义响应式变量。
+- **语法：**` let xxx = ref(初始值)`。
+- **返回值：** 一个`RefImpl`的实例对象，简称`ref对象`或`ref`，`ref`对象的`value`**属性是响应式的**。
+- **注意点：**
+  - `JS`中操作数据需要：`xxx.value`，但模板中不需要`.value`，直接使用即可。
+  - 对于`let name = ref('张三')`来说，`name`不是响应式的，`name.value`是响应式的。
+
+```vue
+<template>
+  <div class="person">
+    <h2>姓名：{{name}}</h2>
+    <h2>年龄：{{age}}</h2>
+    <button @click="changeName">修改名字</button>
+    <button @click="changeAge">年龄+1</button>
+    <button @click="showTel">点我查看联系方式</button>
+  </div>
+</template>
+
+<script setup lang="ts" name="Person">
+  import {ref} from 'vue'
+  // name和age是一个RefImpl的实例对象，简称ref对象，它们的value属性是响应式的。
+  let name = ref('张三')
+  let age = ref(18)
+  // tel就是一个普通的字符串，不是响应式的
+  let tel = '13888888888'
+
+  function changeName(){
+    // JS中操作ref对象时候需要.value
+    name.value = '李四'
+    console.log(name.value)
+    // 注意：name不是响应式的，name.value是响应式的，所以如下代码并不会引起页面的更新。
+    // name = ref('zhang-san')
+  }
+  function changeAge(){
+    // JS中操作ref对象时候需要.value
+    age.value += 1 
+    console.log(age.value)
+  }
+  function showTel(){
+    alert(tel)
+  }
+</script>
+```
+
+##### **创建对象类型的响应式数据**
+
+- `ref` 接收的数据可以是：**基本类型**、**对象类型**。
+- 当 `ref()` 包裹的是一个对象时，对这个对象的属性进行修改也会触发响应式更新。
+- 若 `ref` 接收的是对象类型，内部其实也是调用了 `reactive` 函数。
+
+```vue
+<template>
+  <div class="person">
+    <h2>汽车信息：一台{{ car.brand }}汽车，价值{{ car.price }}万</h2>
+    <button @click="changeCarPrice">修改汽车价格</button>
+  </div>
+</template>
+
+<script lang="ts" setup name="Person">
+import { ref } from 'vue'
+
+// 数据
+let car = ref({ brand: '奔驰', price: 100 })
+console.log(car)
+
+function changeCarPrice() {
+  car.value.price += 10
+}
+</script>
+```
+
+### 3.4 reactive
+##### **创建对象类型的响应式数据**
+- **作用：**定义一个**响应式对象**（基本类型不要用它，要用`ref`，否则报错）
+- **语法：**`let 响应式对象 = reactive(源对象)`。
+- **返回值：** 一个`Proxy`的实例对象，简称：响应式对象。
+- **注意点：**`reactive`定义的响应式数据是“深层次”的。
+
+```vue
+<template>
+  <div class="person">
+    <h2>汽车信息：一台{{ car.brand }}汽车，价值{{ car.price }}万</h2>
+    <h2>游戏列表：</h2>
+    <ul>
+      <li v-for="g in games" :key="g.id">{{ g.name }}</li>
+    </ul>
+    <h2>测试：{{obj.a.b.c.d}}</h2>
+  </div>
+</template>
+
+<script lang="ts" setup name="Person">
+import { reactive } from 'vue'
+
+// 数据
+let car = reactive({ brand: '奔驰', price: 100 })
+let games = reactive([
+  { id: 'ahsgdyfa01', name: '英雄联盟' },
+  { id: 'ahsgdyfa02', name: '王者荣耀' },
+  { id: 'ahsgdyfa03', name: '原神' }
+])
+let obj = reactive({
+  a:{
+    b:{
+      c:{
+        d:666
+      }
+    }
+  }
+})
+</script>
+```
+
+### 3.5 ref 对比 reactive
+
+- `ref`用来定义：**基本类型数据**、**对象类型数据**；
+- `reactive`用来定义：**对象类型数据**。
+- 区别：
+  - `ref`创建的变量必须使用`.value`（可以使用`volar`插件自动添加`.value`）。
+  - ![自定添加value插件](/assets/patch_vue3quickStar_3-6-01.png)
+- `reactive`重新分配一个新对象，会**失去**响应式（可以使用`Object.assign`去整体替换）,`ref` 不会。
+```vue
+<template>
+   <div>
+      <h2>汽车信息：一台{{ car.brand }}汽车，价值{{ car.price }}万</h2>
+      <h2>用户信息：姓名：{{ car.brand }}，年龄：{{ car.price }}</h2>
+   </div>
+</template>
+<script lang="ts" setup>
+   import { reactive , ref} from 'vue'
+   // 数据
+   const car = reactive({ brand: '奔驰', price: 100 })
+   const user = ref({name: '小张', age: 20 })
+   function changeCar(){
+      //失去响应式
+      car = { brand: '奔驰', price: 100 }
+      //正确写法
+      Object.assign(car,{ brand: '宝马', price: 200 })
+   }
+   function changeUser(){
+      //不会失去响应式
+      user = ref({name: '小王', age: 22 })
+   }
+</script>
+```
+:::tip
+1. 若需要一个基本类型的响应式数据，必须使用 `ref`。
+2. 若需要一个响应式对象，层级不深，`ref`、`reactive`都可以。
+3. 若需要一个响应式对象，且层级较深，推荐使用 `reactive`。
+:::
+
+### 3.7 toRefs 与 toRef
+
+- 作用：将一个响应式对象中的每一个属性，转换为`ref`对象。
+- 备注：`toRefs`与`toRef`功能一致，但`toRefs`可以批量转换。
+
+```vue
+<template>
+  <div class="person">
+    <h2>姓名：{{person.name}}</h2>
+    <h2>年龄：{{person.age}}</h2>
+    <h2>性别：{{person.gender}}</h2>
+    <button @click="changeName">修改名字</button>
+  </div>
+</template>
+
+<script lang="ts" setup name="Person">
+  import {reactive,toRefs,toRef} from 'vue'
+  // 数据
+  let person = reactive({name:'张三', age:18, gender:'男'})
+  // 通过toRefs将person对象中的n个属性批量取出，且依然保持响应式的能力（结构为ref对象）
+  let {name, gender } =  toRefs(person)
+  // 通过toRef将person对象中的gender属性取出，且依然保持响应式的能力（结构为ref对象）
+  let age = toRef(person,'age')
+  // 方法
+  function changeName(){
+    // person.name 与 name.value等价，name为ref对象
+    name.value + = '小红'
+    person.nname + = '小明'
+  }
+</script>
+```
+

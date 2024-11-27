@@ -3,6 +3,7 @@ title: Vue2深入
 createTime: 2024/5/5 14:13:26
 permalink: /patch/VueDepth/
 ---
+
 ## 1. 组件通信
 ### 1.1 props
 #### 1.1.1 props类型
