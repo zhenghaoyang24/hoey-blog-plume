@@ -7,13 +7,17 @@
     <list default="true" id="2bb704c9-5977-48db-a438-c6066c945fcd" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/auto-frontmatter.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/auto-frontmatter.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/iconify.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/iconify.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/44768ecf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/44768ecf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/_metadata.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/blogData.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/blogData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/iconify.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/iconify.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/iconify.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/iconify.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/themePlumeData.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/themePlumeData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22032301/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22032301/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22041901/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22041901/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.js" afterDir="false" />
@@ -31,11 +35,10 @@
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24081301/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24081301/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24091101/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24091101/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24103001/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24103001/index.html.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/vue3quickStart/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/vue3quickStart/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/vue3quickStart/index.html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/vue3quickStart/index.html.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/sites-collect/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/sites-collect/index.html.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/notes/patch/Vue/vue3QuickStart.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/notes/patch/Vue/vue3QuickStart.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/notes/patch/Vue/vuedepth.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/notes/patch/Vue/vuedepth.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,6 +202,7 @@
       <workItem from="1732622156045" duration="868000" />
       <workItem from="1732636147253" duration="207000" />
       <workItem from="1732683900396" duration="5692000" />
+      <workItem from="1732690469080" duration="776000" />
     </task>
     <servers />
   </component>

@@ -348,8 +348,8 @@
 <li><code v-pre>reactive</code>用来定义：<strong>对象类型数据</strong>。</li>
 <li>区别：
 <ul>
-<li><code v-pre>ref</code>创建的变量必须使用<code v-pre>.value</code>（可以使用<code v-pre>volar</code>插件自动添加<code v-pre>.value</code>）。</li>
-<li><img src="/assets/patch_vue3quickStar_3-6-01.png" alt="自定添加value插件"></li>
+<li><code v-pre>ref</code>创建的变量必须使用<code v-pre>.value</code>（可以使用<code v-pre>volar</code>插件自动添加<code v-pre>.value</code>）。
+<img src="/assets/patch_vue3quickStar_3-6-01.png" alt="自定添加value插件"></li>
 </ul>
 </li>
 <li><code v-pre>reactive</code>重新分配一个新对象，会<strong>失去</strong>响应式（可以使用<code v-pre>Object.assign</code>去整体替换）,<code v-pre>ref</code> 不会。</li>

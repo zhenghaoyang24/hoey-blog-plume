@@ -372,7 +372,7 @@ let obj = reactive({
 - `reactive`用来定义：**对象类型数据**。
 - 区别：
   - `ref`创建的变量必须使用`.value`（可以使用`volar`插件自动添加`.value`）。
-  - ![自定添加value插件](/assets/patch_vue3quickStar_3-6-01.png)
+    ![自定添加value插件](/assets/patch_vue3quickStar_3-6-01.png)
 - `reactive`重新分配一个新对象，会**失去**响应式（可以使用`Object.assign`去整体替换）,`ref` 不会。
 ```vue
 <template>

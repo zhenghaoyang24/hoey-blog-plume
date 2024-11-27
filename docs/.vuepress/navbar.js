@@ -8,8 +8,8 @@ export const navbar = defineNavbarConfig([
     {
         text: '笔记',
         items: [
-            {text: '温故知新', link: '/notes/patch/README.md'},
-            {text:'网址导航', link: '/notes/site.md'},
+            {text: '温故知新', link: '/notes/patch/README.md',icon:'fluent-emoji-high-contrast:thinking-face'},
+            {text:'网址导航', link: '/notes/site.md',icon:'dashicons:admin-site-alt3'},
         ],
         icon:'ic:outline-note-alt'
     },
