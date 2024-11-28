@@ -404,7 +404,7 @@ let obj = reactive({
 3. 若需要一个响应式对象，且层级较深，推荐使用 `reactive`。
 :::
 
-### 3.7 toRefs 与 toRef
+### 3.6 toRefs 与 toRef
 
 - 作用：将一个响应式对象中的每一个属性，转换为`ref`对象。
 - 备注：`toRefs`与`toRef`功能一致，但`toRefs`可以批量转换。
@@ -430,9 +430,161 @@ let obj = reactive({
   // 方法
   function changeName(){
     // person.name 与 name.value等价，name为ref对象
-    name.value + = '小红'
-    person.nname + = '小明'
+    name.value  = '小红'
+    person.nname  = '小明'
   }
+</script>
+```
+
+
+### 3.7 computed
+
+作用：根据已有数据计算出新数据（和`Vue2`中的`computed`作用一致）。  
+具体用法查看[Vue3新特新-computed](/patch/Vue3new/#_1-4-computed)。
+
+### 3.8 watch
+
+作用：监视数据的变化（和`Vue2`中的`watch`作用一致）  
+特点：`Vue3`中的`watch`只能监视以下**四种数据**：
+1. `ref`定义的数据。
+ 2. `reactive`定义的数据。
+3. 函数返回一个值（`getter`函数）。
+4. 一个包含上述内容的数组。
+
+在使用过程中，注意以下几点：
+1. 监视`ref`定义的 **基本类型** 数据：直接写数据名即可，监视的是其`value`值的改变。
+2. 监视`ref`定义的**对象类型**数据：直接写数据名；若想监视对象内部的数据，要手动开启深度监视。
+3. 监视`reactive`定义的**对象类型**数据，默认**开启了深度监视**。
+4. 监视`ref`或`reactive`定义的**对象类型**数据中的**某个属性**，注意点如下：
+  - 若该属性值**不是**对象类型，需要写成函数形式。
+  - 若该属性值是**依然**是对象类型，可直接编，也可写成函数，建议写成函数。
+
+使用 `watch` 监听多个数据查看[Vue3新特新-watch](/patch/Vue3new/#_1-5-watch)。
+
+
+### 3.9 watchEffect
+
+[官网](https://cn.vuejs.org/api/reactivity-core.html#watcheffect)：立即运行一个函数，同时响应式地追踪其依赖，并在依赖更改时重新执行该函数。
+
+**`watch`对比`watchEffect`**:
+1. 都能监听响应式数据的变化，不同的是监听数据变化的方式不同
+2. `watch`：要明确指出监视的数据
+3. `watchEffect`：不用明确指出监视的数据（函数中用到哪些属性，那就监视哪些属性）：
+```vue
+<template>
+  <div class="person">
+    <h1>需求：水温达到50℃，或水位达到20cm，则联系服务器</h1>
+    <h2 id="demo">水温：{{temp}}</h2>
+    <h2>水位：{{height}}</h2>
+    <button @click="changePrice">水温+1</button>
+    <button @click="changeSum">水位+10</button>
+  </div>
+</template>
+
+<script lang="ts" setup name="Person">
+  import {ref,watch,watchEffect} from 'vue'
+  // 数据
+  let temp = ref(0)
+  let height = ref(0)
+
+  // 方法
+  function changePrice(){
+    temp.value += 10
+  }
+  function changeSum(){
+    height.value += 1
+  }
+
+  // 用watch实现，需要明确的指出要监视：temp、height
+  watch([temp,height],(value)=>{
+    // 从value中获取最新的temp值、height值
+    const [newTemp,newHeight] = value
+    // 室温达到50℃，或水位达到20cm，立刻联系服务器
+    if(newTemp >= 50 || newHeight >= 20){
+      console.log('联系服务器')
+    }
+  })
+
+  // 用watchEffect实现，不用
+  const stopWtach = watchEffect(()=>{
+    // 室温达到50℃，或水位达到20cm，立刻联系服务器
+    if(temp.value >= 50 || height.value >= 20){
+      console.log(document.getElementById('demo')?.innerText)
+      console.log('联系服务器')
+    }
+    // 水温达到100，或水位达到50，取消监视
+    if(temp.value === 100 || height.value === 50){
+      console.log('清理了')
+      stopWtach()
+    }
+  })
+</script>
+```
+
+### 3.10 标签的 ref 属性
+
+作用：用于注册模板引用。
+> 用在普通`DOM`标签上，获取的是`DOM`节点。  
+> 用在组件标签上，获取的是组件实例对象。  
+
+用法查看 [Vue3新特性-模板引用](/patch/Vue3new/#_1-8-模板引用)。
+
+
+### 3.11 props
+[为组件的 props 标注类型](https://cn.vuejs.org/guide/typescript/composition-api.html#typing-component-props)
+```ts
+// 定义一个接口，限制每个Person对象的格式  types/types.ts
+export interface PersonInter {
+  id:string,
+  name:string,
+  age:number,
+  address?:String   //可选
+}
+// 定义一个自定义类型Persons
+export type Persons = Array<PersonInter>
+```
+`App.vue`中代码：
+```vue
+<template>
+  <Person :list="persons"/>
+
+</template>
+<script lang="ts" setup name="App">
+  import {type Persons} from './types'
+  let persons = reactive<Persons>([
+    {id:'e98219e12',name:'张三',age:18},
+    {id:'e98219e13',name:'李四',age:19},
+    {id:'e98219e14',name:'王五',age:20}
+])
+</script>
+```
+`Person.vue`中代码：
+```vue
+<template>
+<div class="person">
+<ul>
+  <li v-for="item in list" :key="item.id">
+     {{item.name}}--{{item.age}}
+   </li>
+ </ul>
+</div>
+</template>
+
+<script lang="ts" setup name="Person">
+import {defineProps} from 'vue'
+import {type PersonInter} from '@/types'
+
+// 第一种写法：仅接收
+// const props = defineProps(['list'])
+
+// 第二种写法：接收+限制类型
+// defineProps<{list:Persons}>()
+
+// 第三种写法：接收+限制类型+指定默认值+限制必要性
+let props = withDefaults(defineProps<{list?:Persons}>(),{
+  list:()=>[{id:'asdasg01',name:'小猪佩奇',age:18}]
+})
+console.log(props)
 </script>
 ```
 
