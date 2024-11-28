@@ -588,3 +588,108 @@ console.log(props)
 </script>
 ```
 
+### 3.12 生命周期
+
+* 概念：`Vue`组件实例在创建时要经历一系列的初始化步骤，在此过程中`Vue`会在合适的时机，
+调用特定的函数，从而让开发者有机会在特定阶段运行自己的代码，这些特定的函数统称为：[生命周期钩子](https://cn.vuejs.org/guide/essentials/lifecycle)
+
+* 规律：
+
+  > 生命周期整体分为四个阶段，分别是：**创建、挂载、更新、销毁**，每个阶段都有两个钩子，一前一后。
+
+* `Vue2`的生命周期
+
+  > 创建阶段：`beforeCreate`、`created`
+  >
+  > 挂载阶段：`beforeMount`、`mounted`
+  >
+  > 更新阶段：`beforeUpdate`、`updated`
+  >
+  > 销毁阶段：`beforeDestroy`、`destroyed`
+
+* `Vue3`的生命周期
+
+  > 创建阶段：`setup`  
+  > 
+  > 挂载阶段：`onBeforeMount`、`onMounted`
+  >
+  > 更新阶段：`onBeforeUpdate`、`onUpdated`
+  >
+  > 卸载阶段：`onBeforeUnmount`、`onUnmounted`
+
+* 常用的钩子：`onMounted`(挂载完毕)、`onUpdated`(更新完毕)、`onBeforeUnmount`(卸载之前)
+
+### 3.13 自定义hook
+
+`hook` 本质是一个函数，把 `setup` 函数中使用的 `Composition API` 进行了封装，类似于 `vue2.x` 中的 `mixin`。
+
+自定义 `hook` 的**优势**：复用代码, 让 `setup` 中的逻辑更清楚易懂。
+
+- `useSum.ts`中内容如下：
+```ts
+import {ref,onMounted} from 'vue'
+// 以函数导出
+export default function(){
+    let sum = ref(0)
+
+    const increment = ()=>{
+        sum.value += 1
+    }
+    const decrement = ()=>{
+        sum.value -= 1
+    }
+    onMounted(()=>{
+        increment()
+    })
+
+    //向外部暴露数据
+    return {sum,increment,decrement}
+}	
+```
+- 组件中具体使用：
+```ts
+<template>
+  <h2>当前求和为：{{sum}}</h2>
+  <button @click="increment">点我+1</button>
+  <button @click="decrement">点我-1</button>
+  <hr>
+</template>
+    
+<script setup lang="ts">
+  // 导入hook
+  import useSum from './hooks/useSum'
+  let {sum,increment,decrement} = useSum()
+</script>
+```
+
+## 4. 路由
+> 1. [路由](https://router.vuejs.org/zh/guide/)组件通常存放在`pages` 或 `views`文件夹，一般组件通常存放在`components`文件夹。  
+> 2. 通过点击导航，视觉效果上“消失” 了的路由组件，默认是被**卸载**掉的，需要的时候再去**挂载**。
+
+### 4.1 路由器工作模式
+1. `history`模式
+
+   > 优点：`URL`更加美观，不带有`#`，更接近传统的网站`URL`。
+   >
+   > 缺点：后期项目上线，需要服务端配合处理路径问题，否则刷新会有`404`错误。
+   >
+   > ```js
+   > const router = createRouter({
+   > 	history:createWebHistory(), //history模式
+   > 	/******/
+   > })
+   > ```
+
+2. `hash`模式
+
+   > 优点：兼容性更好，因为不需要服务器端处理路径。
+   >
+   > 缺点：`URL`带有`#`不太美观，且在`SEO`优化方面相对较差。
+   >
+   > ```js
+   > const router = createRouter({
+   > 	history:createWebHashHistory(), //hash模式
+   > 	/******/
+   > })
+   > ```
+   

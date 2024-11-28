@@ -557,6 +557,115 @@
 <span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">console</span><span style="--shiki-light:#999999;--shiki-dark:#666666">.</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665">log</span><span style="--shiki-light:#999999;--shiki-dark:#666666">(</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">props</span><span style="--shiki-light:#999999;--shiki-dark:#666666">)</span></span>
 <span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;/</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">script</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span></code></pre>
 
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_3-12-生命周期" tabindex="-1"><a class="header-anchor" href="#_3-12-生命周期"><span>3.12 生命周期</span></a></h3>
+<ul>
+<li>
+<p>概念：<code v-pre>Vue</code>组件实例在创建时要经历一系列的初始化步骤，在此过程中<code v-pre>Vue</code>会在合适的时机，
+调用特定的函数，从而让开发者有机会在特定阶段运行自己的代码，这些特定的函数统称为：<a href="https://cn.vuejs.org/guide/essentials/lifecycle" target="_blank" rel="noopener noreferrer">生命周期钩子</a></p>
+</li>
+<li>
+<p>规律：</p>
+<blockquote>
+<p>生命周期整体分为四个阶段，分别是：<strong>创建、挂载、更新、销毁</strong>，每个阶段都有两个钩子，一前一后。</p>
+</blockquote>
+</li>
+<li>
+<p><code v-pre>Vue2</code>的生命周期</p>
+<blockquote>
+<p>创建阶段：<code v-pre>beforeCreate</code>、<code v-pre>created</code></p>
+<p>挂载阶段：<code v-pre>beforeMount</code>、<code v-pre>mounted</code></p>
+<p>更新阶段：<code v-pre>beforeUpdate</code>、<code v-pre>updated</code></p>
+<p>销毁阶段：<code v-pre>beforeDestroy</code>、<code v-pre>destroyed</code></p>
+</blockquote>
+</li>
+<li>
+<p><code v-pre>Vue3</code>的生命周期</p>
+<blockquote>
+<p>创建阶段：<code v-pre>setup</code></p>
+<p>挂载阶段：<code v-pre>onBeforeMount</code>、<code v-pre>onMounted</code></p>
+<p>更新阶段：<code v-pre>onBeforeUpdate</code>、<code v-pre>onUpdated</code></p>
+<p>卸载阶段：<code v-pre>onBeforeUnmount</code>、<code v-pre>onUnmounted</code></p>
+</blockquote>
+</li>
+<li>
+<p>常用的钩子：<code v-pre>onMounted</code>(挂载完毕)、<code v-pre>onUpdated</code>(更新完毕)、<code v-pre>onBeforeUnmount</code>(卸载之前)</p>
+</li>
+</ul>
+<h3 id="_3-13-自定义hook" tabindex="-1"><a class="header-anchor" href="#_3-13-自定义hook"><span>3.13 自定义hook</span></a></h3>
+<p><code v-pre>hook</code> 本质是一个函数，把 <code v-pre>setup</code> 函数中使用的 <code v-pre>Composition API</code> 进行了封装，类似于 <code v-pre>vue2.x</code> 中的 <code v-pre>mixin</code>。</p>
+<p>自定义 <code v-pre>hook</code> 的<strong>优势</strong>：复用代码, 让 <code v-pre>setup</code> 中的逻辑更清楚易懂。</p>
+<ul>
+<li><code v-pre>useSum.ts</code>中内容如下：</li>
+</ul>
+<div class="language-ts line-numbers-mode" data-ext="ts" data-title="ts"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">import</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> {</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">ref</span><span style="--shiki-light:#999999;--shiki-dark:#666666">,</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">onMounted</span><span style="--shiki-light:#999999;--shiki-dark:#666666">}</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375"> from</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77"> '</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">vue</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">'</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD">// 以函数导出</span></span>
+<span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">export</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375"> default</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676"> function</span><span style="--shiki-light:#999999;--shiki-dark:#666666">(){</span></span>
+<span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">    let </span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">sum</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> =</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665"> ref</span><span style="--shiki-light:#999999;--shiki-dark:#666666">(</span><span style="--shiki-light:#2F798A;--shiki-dark:#4C9A91">0</span><span style="--shiki-light:#999999;--shiki-dark:#666666">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">    const </span><span style="--shiki-light:#59873A;--shiki-dark:#80A665">increment</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> =</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> ()=>{</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">        sum</span><span style="--shiki-light:#999999;--shiki-dark:#666666">.</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">value</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676"> += </span><span style="--shiki-light:#2F798A;--shiki-dark:#4C9A91">1</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">    }</span></span>
+<span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">    const </span><span style="--shiki-light:#59873A;--shiki-dark:#80A665">decrement</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> =</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> ()=>{</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">        sum</span><span style="--shiki-light:#999999;--shiki-dark:#666666">.</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">value</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676"> -= </span><span style="--shiki-light:#2F798A;--shiki-dark:#4C9A91">1</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">    }</span></span>
+<span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">    onMounted</span><span style="--shiki-light:#999999;--shiki-dark:#666666">(()=>{</span></span>
+<span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">        increment</span><span style="--shiki-light:#999999;--shiki-dark:#666666">()</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">    })</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD">    //向外部暴露数据</span></span>
+<span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">    return</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> {</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">sum</span><span style="--shiki-light:#999999;--shiki-dark:#666666">,</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">increment</span><span style="--shiki-light:#999999;--shiki-dark:#666666">,</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">decrement</span><span style="--shiki-light:#999999;--shiki-dark:#666666">}</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">}</span></span></code></pre>
+
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>组件中具体使用：</li>
+</ul>
+<div class="language-ts line-numbers-mode" data-ext="ts" data-title="ts"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;</span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994">template</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">  &#x3C;</span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994">h2</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span><span style="--shiki-light:#393A34;--shiki-dark:#DBD7CAEE">当前求和为：</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">{{sum}}</span><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">/</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">h2</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">  &#x3C;</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">button</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> @</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">click</span><span style="--shiki-light:#999999;--shiki-dark:#666666">=</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">increment</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span><span style="--shiki-light:#393A34;--shiki-dark:#DBD7CAEE">点我</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">+</span><span style="--shiki-light:#2F798A;--shiki-dark:#4C9A91">1</span><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">/</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">button</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">  &#x3C;</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">button</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> @</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">click</span><span style="--shiki-light:#999999;--shiki-dark:#666666">=</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">decrement</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span><span style="--shiki-light:#393A34;--shiki-dark:#DBD7CAEE">点我</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">-</span><span style="--shiki-light:#2F798A;--shiki-dark:#4C9A91">1</span><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">/</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">button</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">  &#x3C;</span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994">hr</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">/</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">template</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="--shiki-light:#393A34;--shiki-dark:#DBD7CAEE">    </span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">script</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A"> setup</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A"> lang</span><span style="--shiki-light:#999999;--shiki-dark:#666666">=</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">ts</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD">  // 导入hook</span></span>
+<span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">  import</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A"> useSum</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375"> from</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77"> '</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">./hooks/useSum</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">'</span></span>
+<span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">  let </span><span style="--shiki-light:#999999;--shiki-dark:#666666">{</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">sum</span><span style="--shiki-light:#999999;--shiki-dark:#666666">,</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">increment</span><span style="--shiki-light:#999999;--shiki-dark:#666666">,</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">decrement</span><span style="--shiki-light:#999999;--shiki-dark:#666666">}</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> =</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665"> useSum</span><span style="--shiki-light:#999999;--shiki-dark:#666666">()</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">/</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A">script</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span></code></pre>
+
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_4-路由" tabindex="-1"><a class="header-anchor" href="#_4-路由"><span>4. 路由</span></a></h2>
+<blockquote>
+<ol>
+<li><a href="https://router.vuejs.org/zh/guide/" target="_blank" rel="noopener noreferrer">路由</a>组件通常存放在<code v-pre>pages</code> 或 <code v-pre>views</code>文件夹，一般组件通常存放在<code v-pre>components</code>文件夹。</li>
+<li>通过点击导航，视觉效果上“消失” 了的路由组件，默认是被<strong>卸载</strong>掉的，需要的时候再去<strong>挂载</strong>。</li>
+</ol>
+</blockquote>
+<h3 id="_4-1-路由器工作模式" tabindex="-1"><a class="header-anchor" href="#_4-1-路由器工作模式"><span>4.1 路由器工作模式</span></a></h3>
+<ol>
+<li>
+<p><code v-pre>history</code>模式</p>
+<blockquote>
+<p>优点：<code v-pre>URL</code>更加美观，不带有<code v-pre>#</code>，更接近传统的网站<code v-pre>URL</code>。</p>
+<p>缺点：后期项目上线，需要服务端配合处理路径问题，否则刷新会有<code v-pre>404</code>错误。</p>
+<div class="language-js line-numbers-mode" data-ext="js" data-title="js"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">const</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A"> router</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> =</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665"> createRouter</span><span style="--shiki-light:#999999;--shiki-dark:#666666">({</span></span>
+<span class="line"><span style="--shiki-light:#998418;--shiki-dark:#B8A965">	history</span><span style="--shiki-light:#999999;--shiki-dark:#666666">:</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665">createWebHistory</span><span style="--shiki-light:#999999;--shiki-dark:#666666">(),</span><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"> //history模式</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD">	/******/</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">})</span></span></code></pre>
+
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></blockquote>
+</li>
+<li>
+<p><code v-pre>hash</code>模式</p>
+<blockquote>
+<p>优点：兼容性更好，因为不需要服务器端处理路径。</p>
+<p>缺点：<code v-pre>URL</code>带有<code v-pre>#</code>不太美观，且在<code v-pre>SEO</code>优化方面相对较差。</p>
+<div class="language-js line-numbers-mode" data-ext="js" data-title="js"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">const</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A"> router</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> =</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665"> createRouter</span><span style="--shiki-light:#999999;--shiki-dark:#666666">({</span></span>
+<span class="line"><span style="--shiki-light:#998418;--shiki-dark:#B8A965">	history</span><span style="--shiki-light:#999999;--shiki-dark:#666666">:</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665">createWebHashHistory</span><span style="--shiki-light:#999999;--shiki-dark:#666666">(),</span><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"> //hash模式</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD">	/******/</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">})</span></span></code></pre>
+
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></blockquote>
+</li>
+</ol>
+</div></template>
 
 
