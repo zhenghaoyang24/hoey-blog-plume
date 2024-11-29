@@ -1,7 +1,7 @@
 <template><div><h2 id="_1-组合式api" tabindex="-1"><a class="header-anchor" href="#_1-组合式api"><span>1. 组合式API</span></a></h2>
 <h3 id="_1-1-使用" tabindex="-1"><a class="header-anchor" href="#_1-1-使用"><span>1.1 使用</span></a></h3>
 <p><strong>执行时期：</strong><code v-pre>setup()</code>在<code v-pre>beforeCreate</code>钩子之前执行。<br>
-在setup函数中写的数据和方法需要在末尾以对象的方式return，才能给模版使用：</p>
+在setup函数中写的数据和方法需要在末尾以对象的方式return，才能给<code v-pre>模版</code>使用：</p>
 <div class="language-js line-numbers-mode" data-ext="js" data-title="js"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">export</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375"> default</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> {</span></span>
 <span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">    setup</span><span style="--shiki-light:#999999;--shiki-dark:#666666">(){</span></span>
 <span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676">      const</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A"> message</span><span style="--shiki-light:#999999;--shiki-dark:#666666"> =</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77"> '</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">this is message</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">'</span></span>
@@ -256,7 +256,7 @@ reactive 总是深度响应的,用 reactive 创建的响应式对象，即时 de
 <ol>
 <li>调用ref函数生成一个ref对象。</li>
 <li>通过ref标识绑定ref对象到标签。</li>
-<li>通过ref对象.value则可获取绑定的dom对象。</li>
+<li>通过ref对象.value则可获取绑定的对象。</li>
 </ol>
 </blockquote>
 <div class="language-vue line-numbers-mode" data-ext="vue" data-title="vue"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">script</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A"> setup</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span>

@@ -45,8 +45,8 @@
 </CardGrid>
 <h2 id="css相关" tabindex="-1"><a class="header-anchor" href="#css相关"><span>CSS相关</span></a></h2>
 <CardGrid>
-  <LinkCard title="Less" icon="logos:less" href="https://lesscss.org/" />
-  <LinkCard title="SASS" icon="logos:sass" href="https://sass-lang.com/" />
+  <LinkCard title="Less" icon="logos:less" href="https://less.bootcss.com/" />
+  <LinkCard title="SASS" icon="logos:sass" href="https://sass.js.cn/documentation/" />
   <LinkCard title="Stylus" icon="logos:stylus" href="https://stylus-lang.com/" />
 </CardGrid>
 <hr>

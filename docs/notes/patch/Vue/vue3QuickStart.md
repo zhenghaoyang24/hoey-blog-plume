@@ -439,15 +439,36 @@ let obj = reactive({
 
 ### 3.7 computed
 
-作用：根据已有数据计算出新数据（和`Vue2`中的`computed`作用一致）。  
-具体用法查看[Vue3新特新-computed](/patch/Vue3new/#_1-4-computed)。
+作用：根据已有数据计算出新数据（和`Vue2`中的`computed`作用一致），组合式API下的计算属性只是修改了API写法。
+```js
+// script setup
+import {ref, computed } from 'vue'
+// 原始数据
+const list = ref([1,2,3,4,5,6,7,8])
+// 计算属性list 过滤大于2后的数据
+const filterList = computed(()=>{
+    list.value.filter(item=>item>2)
+})
+```
+若需要使用`set`与`get`，只需要将函数写为对象：
+```js
+// script setup
+import {ref, computed } from 'vue'
+// 原始数据
+const count = ref(1)
+// 计算属性list 过滤大于2后的数据
+const countPlusOne = computed({
+    get:()=>count.value+1,
+    set:(val)=> //修改逻辑
+})
+```
 
 ### 3.8 watch
 
 作用：监视数据的变化（和`Vue2`中的`watch`作用一致）  
 特点：`Vue3`中的`watch`只能监视以下**四种数据**：
 1. `ref`定义的数据。
- 2. `reactive`定义的数据。
+2. `reactive`定义的数据。
 3. 函数返回一个值（`getter`函数）。
 4. 一个包含上述内容的数组。
 
@@ -457,9 +478,35 @@ let obj = reactive({
 3. 监视`reactive`定义的**对象类型**数据，默认**开启了深度监视**。
 4. 监视`ref`或`reactive`定义的**对象类型**数据中的**某个属性**，注意点如下：
   - 若该属性值**不是**对象类型，需要写成函数形式。
-  - 若该属性值是**依然**是对象类型，可直接编，也可写成函数，建议写成函数。
-
-使用 `watch` 监听多个数据查看[Vue3新特新-watch](/patch/Vue3new/#_1-5-watch)。
+  - 若该属性值**依然**是对象类型，可直接写数据名，也可写成函数，建议写成函数。
+```ts
+// 数据
+let person = reactive({
+  name:'张三',
+  age:18,
+  car:{
+    c1:'奔驰',
+    c2:'宝马'
+  }
+})
+// 监视响应式对象中的某个属性，且该属性是对象类型的，可以直接写，也能写函数，更推荐写函数
+watch(()=>person.car,(newValue,oldValue)=>{
+    console.log('person.car变化了',newValue,oldValue)
+},{deep:true})
+```
+**侦听多个数据**，第一个参数可以改写成**数组**的写法：
+```js
+<script setup>
+  // 1. 导入watch
+  import { ref, watch } from 'vue'
+  const count = ref(0)
+  const name = ref('cp')
+  // 2. 调用watch 侦听变化
+  watch([count, name], ([newCount, newName],[oldCount,oldName])=>{
+    console.log(`count或者name变化了，[newCount, newName],[oldCount,oldName])
+  })
+</script>
+```
 
 
 ### 3.9 watchEffect
@@ -526,8 +573,41 @@ let obj = reactive({
 作用：用于注册模板引用。
 > 用在普通`DOM`标签上，获取的是`DOM`节点。  
 > 用在组件标签上，获取的是组件实例对象。  
+> 通过ref对象.value则可获取绑定的对象。
 
-用法查看 [Vue3新特性-模板引用](/patch/Vue3new/#_1-8-模板引用)。
+```vue
+<script setup>
+  import {onMounted, ref} from 'vue'
+  // 1.调用ref函数得到ref对象
+  const inputRef = ref(null)
+  const focusFn = ()=>{
+      // 获取焦点
+      inputRef.value.focus()
+  }
+</script>
+
+<template>
+  <!--2. 通过ref标识绑定ref对象-->
+  <input type="text" ref="inputRef">
+  <button @click="focusFn">获取焦点</button>
+</template>
+```
+在 `vue2` 中将 `ref` 绑定在组件上，父组件通过 `this.$refs.ref值.function()` 或 `this.$refs.ref值.属性名`
+可以直接访问子组件方法与属性。  
+但在 `vue3` 中，默认情况下在
+`<script setup>` **语法糖下组件内部的属性和方法是不开放给父组件访问的**，可以通过 `defineExpose` 编译宏 指定哪些属性和方法容许访问。
+```js
+// 子组件
+import { defineExpose,ref }  from 'vue';
+const money = ref(100)
+const addMoneyPlus = ()=>{
+    money.value++
+}
+defineExpose({
+    // 指定向外暴露的属性与方法
+    money,addMoneyPlus
+})
+```
 
 
 ### 3.11 props
@@ -663,7 +743,11 @@ export default function(){
 ```
 
 ## 4. 路由
-> 1. [路由](https://router.vuejs.org/zh/guide/)组件通常存放在`pages` 或 `views`文件夹，一般组件通常存放在`components`文件夹。  
+
+后文默认已经了解了 [动态路由](https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html)、 [嵌套路由](https://router.vuejs.org/zh/guide/essentials/nested-routes.html) 
+、[命名路由](https://router.vuejs.org/zh/guide/essentials/named-routes.html)。在使用router前，需确保[Router安装](https://router.vuejs.org/zh/installation.html)成功。
+
+> 1. 组件通常存放在`pages` 或 `views`文件夹，一般组件通常存放在`components`文件夹。  
 > 2. 通过点击导航，视觉效果上“消失” 了的路由组件，默认是被**卸载**掉的，需要的时候再去**挂载**。
 
 ### 4.1 路由器工作模式
@@ -693,3 +777,124 @@ export default function(){
    > })
    > ```
    
+### 4.2 路由传参
+
+##### query参数
+
+1. 传递参数
+
+   ```vue
+   <!-- 跳转并携带query参数（to的字符串写法） -->
+   <router-link to="/news/detail?a=1&b=2&content=欢迎你">
+       跳转
+   </router-link>
+                   
+   <!-- 跳转并携带query参数（to的对象写法） -->
+   <RouterLink 
+     :to="{
+       //name:'xiang', //用name也可以跳转
+       path:'/news/detail',
+       query:{
+         id:news.id,
+         title:news.title,
+         content:news.content
+       }
+     }"
+   >
+     {{news.title}}
+   </RouterLink>
+   ```
+
+2. 接收参数：
+
+   ```js
+   import {useRoute} from 'vue-router'
+   const route = useRoute()
+   // 打印query参数
+   console.log(route.query)
+   ```
+
+
+##### params参数
+
+1. 传递参数
+
+   ```vue
+   <!-- 跳转并携带params参数（to的字符串写法） -->
+   <RouterLink :to="`/news/detail/001/新闻001/内容001`">{{news.title}}</RouterLink>
+                   
+   <!-- 跳转并携带params参数（to的对象写法） -->
+   <RouterLink 
+     :to="{
+       name:'xiang', //用name跳转
+       params:{
+         id:news.id,
+         title:news.title,
+         content:news.title
+       }
+     }"
+   >
+     {{news.title}}
+   </RouterLink>
+   ```
+
+2. 接收参数：
+
+   ```js
+   import {useRoute} from 'vue-router'
+   const route = useRoute()
+   // 打印params参数
+   console.log(route.params)
+   ```
+::: tip
+1. 传递 `params` 参数时，若使用 `to` 的对象写法，必须使用 `name` 配置项，不能用 `path`。  
+2. 传递 `params` 参数时，需要提前在
+[动态路由](https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html)规则中占位。
+:::
+
+
+### 4.3 路由的props配置
+
+作用：让路由组件更方便的收到参数（可以将路由参数作为`props`传给组件）
+
+```js
+{
+	name:'xiang',
+	path:'detail/:id/:title/:content',
+	component:Detail,
+
+  // props的对象写法，作用：把对象中的每一组key-value作为props传给Detail组件
+  // props:{a:1,b:2,c:3}, 
+
+  // props的布尔值写法，作用：把收到了每一组params参数，作为props传给Detail组件
+  // props:true
+  
+  // props的函数写法，作用：把返回的对象中每一组key-value作为props传给Detail组件
+  props(route){
+    return route.query
+  }
+}
+```
+
+### 4.4 replace属性
+1. 作用：控制路由跳转时操作浏览器历史记录的模式。  
+2. 浏览器的历史记录有两种写入方式：分别为```push```和```replace```：
+- ```push```是追加历史记录（默认值）。
+- `replace`是替换当前记录。
+
+### 4.5 编程式导航
+
+路由组件的两个重要的属性：`$route`和`$router`变成了两个`hooks`
+
+```js
+import {useRoute,useRouter} from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
+
+console.log(route.query)
+console.log(route.parmas)
+console.log(router.push)
+console.log(router.replace)
+```
+
