@@ -5,7 +5,6 @@ const demoNote = defineNoteConfig({
         link: '/patch/',
         sidebar: 'auto',
     },
-
 )
 
 export const notes = defineNotesConfig({

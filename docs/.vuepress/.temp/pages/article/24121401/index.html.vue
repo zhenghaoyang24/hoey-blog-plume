@@ -1,7 +1,7 @@
 <template><div><p>在 <code v-pre>webstorm</code> 中导入部分组件时 <code v-pre>IDE爆红</code>，运行正常，但会导致构建错误的解决办法。</p>
 <!-- more -->  
 <p>在使用 <code v-pre>webstorm</code> 开发 Vue3 + TS 项目时，编辑器一直有一个报错，因为不影响运行，所以就一直没在意，但有天准备部署到 <code v-pre>netlify</code>
-时出现在 <code v-pre>build</code> 阶段出现错误，查看日志之后发现 <strong>找不到 .vue 的声明文件</strong> 的错误，同时错误指向
+时在 <code v-pre>build</code> 阶段出现错误，查看日志之后发现是 <strong>找不到 .vue 的声明文件</strong> 的错误，同时错误位置指向
 <code v-pre>import SearchInput from &quot;@/components/SearchInputResult.vue&quot;</code> ，随后尝试在 IDE 构建时也出现了相同的错误。</p>
 <p><img src="/assets/24121401_01.png" alt="24121401_01.png"></p>
 <p>最终找到错误原因为在 <code v-pre>.d.ts</code> 中缺少了对 <code v-pre>*.vue</code> 的 声明，解决办法是在 <code v-pre>env.d.ts</code> 加入以下代码：</p>
