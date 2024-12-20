@@ -13,7 +13,7 @@
     "@vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "52afcf2c",
+      "fileHash": "0ecba4f0",
       "needsInterop": false
     },
     "minisearch": {
@@ -25,7 +25,7 @@
     "@vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "f40bc460",
+      "fileHash": "da6717a4",
       "needsInterop": false
     },
     "@vue/devtools-api": {
@@ -43,13 +43,13 @@
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "6a0d5b3d",
+      "fileHash": "d4633dcb",
       "needsInterop": false
     },
     "vue-router": {
       "src": "../../../../node_modules/vue-router/dist/vue-router.esm-bundler.js",
       "file": "vue-router.js",
-      "fileHash": "6fcd91db",
+      "fileHash": "c4f44de0",
       "needsInterop": false
     }
   },

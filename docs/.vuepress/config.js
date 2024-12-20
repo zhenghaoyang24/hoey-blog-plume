@@ -17,7 +17,6 @@ export default defineUserConfig({
 
     // 添加您的部署域名
     hostname: 'https://hoeyzheng.top',
-
     plugins: {
       markdownPower: {  //图片优化
         imageSize: true, // 'local' | 'all'
