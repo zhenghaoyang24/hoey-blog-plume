@@ -1,7 +1,4 @@
-<template><div></div></template>
-
-
-e>npm</code> 包的详细流程以及可能会遇到的问题。</p>
+<template><div><p>发布 <code v-pre>npm</code> 包的详细流程以及可能会遇到的问题。</p>
 <!-- more -->  
 <h2 id="_1-初始化文件" tabindex="-1"><a class="header-anchor" href="#_1-初始化文件"><span>1. 初始化文件</span></a></h2>
 <p>创建一个空文件夹 <code v-pre>npm-demo</code> ，并创建以下文件：</p>
