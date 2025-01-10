@@ -16,7 +16,7 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-L2JNJ22P.js";
+} from "./chunk-LW4I4DCF.js";
 
 // node_modules/vue-router/node_modules/@vue/devtools-api/lib/esm/env.js
 function getDevtoolsGlobalHook() {
@@ -852,7 +852,7 @@ function tokensToParser(segments, extraOptions) {
     pattern += "/?";
   if (options.end)
     pattern += "$";
-  else if (options.strict)
+  else if (options.strict && !pattern.endsWith("/"))
     pattern += "(?:/|$)";
   const re = new RegExp(pattern, options.sensitive ? "" : "i");
   function parse(path) {
@@ -1148,8 +1148,12 @@ function createRouterMatcher(routes, globalOptions) {
         originalMatcher = originalMatcher || matcher;
         if (originalMatcher !== matcher)
           originalMatcher.alias.push(matcher);
-        if (isRootAdd && record.name && !isAliasRecord(matcher))
+        if (isRootAdd && record.name && !isAliasRecord(matcher)) {
+          if (true) {
+            checkSameNameAsAncestor(record, parent);
+          }
           removeRoute(record.name);
+        }
       }
       if (isMatchable(matcher)) {
         insertMatcher(matcher);
@@ -1351,6 +1355,13 @@ function checkSameParams(a, b) {
 function checkChildMissingNameWithEmptyPath(mainNormalizedRecord, parent) {
   if (parent && parent.record.name && !mainNormalizedRecord.name && !mainNormalizedRecord.path) {
     warn(`The route named "${String(parent.record.name)}" has a child without a name and an empty path. Using that name won't render the empty path child so you probably want to move the name to the child instead. If this is intentional, add a name to the child route to remove the warning.`);
+  }
+}
+function checkSameNameAsAncestor(record, parent) {
+  for (let ancestor = parent; ancestor; ancestor = ancestor.parent) {
+    if (ancestor.record.name === record.name) {
+      throw new Error(`A route named "${String(record.name)}" has been added as a ${parent === ancestor ? "child" : "descendant"} of a route with the same name. Route names must be unique and a nested route cannot use the same name as an ancestor.`);
+    }
   }
 }
 function checkMissingParamsInAbsolutePath(record, parent) {
@@ -1690,10 +1701,14 @@ function useLink(props) {
   const isExactActive = computed(() => activeRecordIndex.value > -1 && activeRecordIndex.value === currentRoute.matched.length - 1 && isSameRouteLocationParams(currentRoute.params, route.value.params));
   function navigate(e = {}) {
     if (guardEvent(e)) {
-      return router[unref(props.replace) ? "replace" : "push"](
+      const p = router[unref(props.replace) ? "replace" : "push"](
         unref(props.to)
         // avoid uncaught errors are they are logged anyway
       ).catch(noop);
+      if (props.viewTransition && typeof document !== "undefined" && "startViewTransition" in document) {
+        document.startViewTransition(() => p);
+      }
+      return p;
     }
     return Promise.resolve();
   }
@@ -1723,6 +1738,9 @@ function useLink(props) {
     isExactActive,
     navigate
   };
+}
+function preferSingleVNode(vnodes) {
+  return vnodes.length === 1 ? vnodes[0] : vnodes;
 }
 var RouterLinkImpl = defineComponent({
   name: "RouterLink",
@@ -1756,7 +1774,7 @@ var RouterLinkImpl = defineComponent({
       [getLinkClass(props.exactActiveClass, options.linkExactActiveClass, "router-link-exact-active")]: link.isExactActive
     }));
     return () => {
-      const children = slots.default && slots.default(link);
+      const children = slots.default && preferSingleVNode(slots.default(link));
       return props.custom ? children : h("a", {
         "aria-current": link.isExactActive ? props.ariaCurrentValue : null,
         href: link.href,
@@ -2664,7 +2682,7 @@ ${JSON.stringify(newTargetLocation, null, 2)}
       const toLocation = resolve(to);
       const shouldRedirect = handleRedirectRecord(toLocation);
       if (shouldRedirect) {
-        pushWithRedirect(assign(shouldRedirect, { replace: true }), toLocation).catch(noop);
+        pushWithRedirect(assign(shouldRedirect, { replace: true, force: true }), toLocation).catch(noop);
         return;
       }
       pendingLocation = toLocation;
@@ -2686,7 +2704,9 @@ ${JSON.stringify(newTargetLocation, null, 2)}
           /* ErrorTypes.NAVIGATION_GUARD_REDIRECT */
         )) {
           pushWithRedirect(
-            error.to,
+            assign(locationAsObject(error.to), {
+              force: true
+            }),
             toLocation
             // avoid an uncaught rejection, let push call triggerError
           ).then((failure) => {
@@ -2903,7 +2923,7 @@ export {
 
 vue-router/dist/vue-router.mjs:
   (*!
-    * vue-router v4.4.5
+    * vue-router v4.5.0
     * (c) 2024 Eduardo San Martin Morote
     * @license MIT
     *)

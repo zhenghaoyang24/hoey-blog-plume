@@ -4,6 +4,8 @@ import CodeTabs from 'G:/200-Project/hoey-blog-plume/node_modules/vuepress-plugi
 import Plot from 'G:/200-Project/hoey-blog-plume/node_modules/vuepress-plugin-md-power/lib/client/components/Plot.vue'
 import FileTreeItem from 'G:/200-Project/hoey-blog-plume/node_modules/vuepress-plugin-md-power/lib/client/components/FileTreeItem.vue'
 
+import 'G:/200-Project/hoey-blog-plume/node_modules/vuepress-plugin-md-power/lib/client/styles/index.css'
+
 export default defineClientConfig({
   enhance({ router, app }) {
     app.component('Tabs', Tabs)

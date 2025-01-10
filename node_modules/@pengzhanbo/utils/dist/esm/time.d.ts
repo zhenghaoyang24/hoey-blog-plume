@@ -1,5 +1,5 @@
 /**
- * 时间类的工具库， 推荐使用：
+ * Recommended time library:
  *
  * - [dayjs](https://day.js.org/)
  * - [date-fns](https://date-fns.org)

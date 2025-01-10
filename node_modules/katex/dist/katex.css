@@ -132,7 +132,7 @@
   border-color: currentColor;
 }
 .katex .katex-version::after {
-  content: "0.16.11";
+  content: "0.16.19";
 }
 .katex .katex-mathml {
   /* Accessibility hack to only show to screen readers
@@ -232,6 +232,7 @@
   font-family: KaTeX_SansSerif;
   font-weight: bold;
 }
+.katex .mathsfit,
 .katex .mathitsf,
 .katex .textitsf {
   font-family: KaTeX_SansSerif;

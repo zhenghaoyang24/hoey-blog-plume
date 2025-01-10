@@ -1,8 +1,8 @@
-import { IS_NON_DIMENSIONAL } from '../constants';
+import { IS_NON_DIMENSIONAL, SVG_NAMESPACE } from '../constants';
 import options from '../options';
 
 function setStyle(style, key, value) {
-	if (key[0] === '-') {
+	if (key[0] == '-') {
 		style.setProperty(key, value == null ? '' : value);
 	} else if (value == null) {
 		style[key] = '';
@@ -12,6 +12,8 @@ function setStyle(style, key, value) {
 		style[key] = value + 'px';
 	}
 }
+
+const CAPTURE_REGEX = /(PointerCapture)$|Capture$/i;
 
 // A logical clock to solve issues like https://github.com/preactjs/preact/issues/3927.
 // When the DOM performs an event it leaves micro-ticks in between bubbling up which means that
@@ -28,7 +30,7 @@ let eventClock = 0;
 
 /**
  * Set a property value on a DOM node
- * @param {PreactElement} dom The DOM node to modify
+ * @param {import('../internal').PreactElement} dom The DOM node to modify
  * @param {string} name The name of the property to set
  * @param {*} value The value to set the property to
  * @param {*} oldValue The old value the property had
@@ -37,7 +39,7 @@ let eventClock = 0;
 export function setProperty(dom, name, value, oldValue, namespace) {
 	let useCapture;
 
-	o: if (name === 'style') {
+	o: if (name == 'style') {
 		if (typeof value == 'string') {
 			dom.style.cssText = value;
 		} else {
@@ -63,15 +65,14 @@ export function setProperty(dom, name, value, oldValue, namespace) {
 		}
 	}
 	// Benchmark for comparison: https://esbench.com/bench/574c954bdb965b9a00965ac6
-	else if (name[0] === 'o' && name[1] === 'n') {
-		useCapture =
-			name !== (name = name.replace(/(PointerCapture)$|Capture$/i, '$1'));
+	else if (name[0] == 'o' && name[1] == 'n') {
+		useCapture = name != (name = name.replace(CAPTURE_REGEX, '$1'));
 
 		// Infer correct casing for DOM built-in events:
 		if (
 			name.toLowerCase() in dom ||
-			name === 'onFocusOut' ||
-			name === 'onFocusIn'
+			name == 'onFocusOut' ||
+			name == 'onFocusIn'
 		)
 			name = name.toLowerCase().slice(2);
 		else name = name.slice(2);
@@ -98,7 +99,7 @@ export function setProperty(dom, name, value, oldValue, namespace) {
 			);
 		}
 	} else {
-		if (namespace == 'http://www.w3.org/2000/svg') {
+		if (namespace == SVG_NAMESPACE) {
 			// Normalize incorrect prop usage for SVG:
 			// - xlink:href / xlinkHref --> href (xlink:href was removed from SVG and isn't needed)
 			// - className --> class
@@ -135,7 +136,7 @@ export function setProperty(dom, name, value, oldValue, namespace) {
 
 		if (typeof value == 'function') {
 			// never serialize functions as attribute values
-		} else if (value != null && (value !== false || name[4] === '-')) {
+		} else if (value != null && (value !== false || name[4] == '-')) {
 			dom.setAttribute(name, name == 'popover' && value == true ? '' : value);
 		} else {
 			dom.removeAttribute(name);
@@ -151,7 +152,7 @@ export function setProperty(dom, name, value, oldValue, namespace) {
 function createEventProxy(useCapture) {
 	/**
 	 * Proxy an event to hooked event handlers
-	 * @param {PreactEvent} e The event object from the browser
+	 * @param {import('../internal').PreactEvent} e The event object from the browser
 	 * @private
 	 */
 	return function (e) {

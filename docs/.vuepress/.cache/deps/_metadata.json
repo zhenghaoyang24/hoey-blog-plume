@@ -1,64 +1,64 @@
 {
-  "hash": "bda3f531",
-  "configHash": "9ca612ce",
-  "lockfileHash": "758d830a",
-  "browserHash": "b0cfd0cf",
+  "hash": "5dd4cbc1",
+  "configHash": "563175c1",
+  "lockfileHash": "e5ad2a46",
+  "browserHash": "ac5b1643",
   "optimized": {
     "mark.js/src/vanilla.js": {
       "src": "../../../../node_modules/mark.js/src/vanilla.js",
       "file": "mark__js_src_vanilla__js.js",
-      "fileHash": "af74578c",
+      "fileHash": "abb5584b",
       "needsInterop": false
     },
     "@vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "0ecba4f0",
+      "fileHash": "47ab7d15",
       "needsInterop": false
     },
     "minisearch": {
       "src": "../../../../node_modules/minisearch/dist/es/index.js",
       "file": "minisearch.js",
-      "fileHash": "0f51f5e4",
+      "fileHash": "b595cd10",
       "needsInterop": false
     },
     "@vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "da6717a4",
+      "fileHash": "fb4fcc1b",
       "needsInterop": false
     },
     "@vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/dist/index.js",
       "file": "@vue_devtools-api.js",
-      "fileHash": "132ba76e",
+      "fileHash": "a3540b49",
       "needsInterop": false
     },
     "@vuepress/shared": {
       "src": "../../../../node_modules/@vuepress/shared/dist/index.js",
       "file": "@vuepress_shared.js",
-      "fileHash": "98be067b",
+      "fileHash": "a6e401f9",
       "needsInterop": false
     },
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "d4633dcb",
+      "fileHash": "b9f05627",
       "needsInterop": false
     },
     "vue-router": {
       "src": "../../../../node_modules/vue-router/dist/vue-router.esm-bundler.js",
       "file": "vue-router.js",
-      "fileHash": "c4f44de0",
+      "fileHash": "f8ca3c46",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-WKZGOBHF": {
-      "file": "chunk-WKZGOBHF.js"
+    "chunk-33Q7YEDZ": {
+      "file": "chunk-33Q7YEDZ.js"
     },
-    "chunk-L2JNJ22P": {
-      "file": "chunk-L2JNJ22P.js"
+    "chunk-LW4I4DCF": {
+      "file": "chunk-LW4I4DCF.js"
     }
   }
 }

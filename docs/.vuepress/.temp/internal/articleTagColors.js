@@ -1,5 +1,5 @@
 import './articleTagColors.css'
-export const articleTagColors = {"CSS":"hyvu","HTML":"hyvu","JavaScript":"t3cc","Vue":"lmhf","DeBug":"lfmu","微信小程序":"lmhf","Node":"px7n","npm":"j38z","pnpm":"lofx","TypeScript":"5l91","数据结构":"5l91"}
+export const articleTagColors = {"CSS":"e6i7","HTML":"e6i7","Vue":"1gad","JavaScript":"xn60","DeBug":"aybs","微信小程序":"1gad","Node":"ca8s","npm":"n3o6","pnpm":"9va1","TypeScript":"9lhj","数据结构":"9lhj"}
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()

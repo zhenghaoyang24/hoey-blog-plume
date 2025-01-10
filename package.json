@@ -16,12 +16,12 @@
     "vp-update": "npx vp-update"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.18",
+    "@vuepress/bundler-vite": "2.0.0-rc.19",
     "http-server": "^14.1.1",
     "sass-embedded": "^1.80.4",
-    "vue": "^3.5.12",
-    "vuepress": "2.0.0-rc.18",
-    "vuepress-theme-plume": "1.0.0-rc.113"
+    "vue": "^3.5.13",
+    "vuepress": "2.0.0-rc.19",
+    "vuepress-theme-plume": "1.0.0-rc.128"
   },
   "dependencies": {
     "@iconify/json": "^2.2.266"

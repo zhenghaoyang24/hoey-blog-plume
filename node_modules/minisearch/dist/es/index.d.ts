@@ -219,7 +219,7 @@ declare class SearchableMap<T = any> {
      * ```
      *
      * @param key  The key to update
-     * @param defaultValue  A function that creates a new value if the key does not exist
+     * @param initial  A function that creates a new value if the key does not exist
      * @return The existing or new value at the given key
      */
     fetch(key: string, initial: () => T): T;
@@ -1198,7 +1198,7 @@ declare class MiniSearch<T = any> {
      * external libraries that implement a parser for custom query languages.
      *
      * @param query  Search query
-     * @param options  Search options. Each option, if not given, defaults to the corresponding value of `searchOptions` given to the constructor, or to the library default.
+     * @param searchOptions  Search options. Each option, if not given, defaults to the corresponding value of `searchOptions` given to the constructor, or to the library default.
      */
     search(query: Query, searchOptions?: SearchOptions): SearchResult[];
     /**
