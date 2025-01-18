@@ -1,55 +1,55 @@
 {
-  "hash": "5dd4cbc1",
+  "hash": "82942fe4",
   "configHash": "563175c1",
-  "lockfileHash": "e5ad2a46",
-  "browserHash": "ac5b1643",
+  "lockfileHash": "937d97d9",
+  "browserHash": "c1f4bf9f",
   "optimized": {
     "mark.js/src/vanilla.js": {
       "src": "../../../../node_modules/mark.js/src/vanilla.js",
       "file": "mark__js_src_vanilla__js.js",
-      "fileHash": "abb5584b",
+      "fileHash": "2cb8fe67",
       "needsInterop": false
     },
     "@vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "47ab7d15",
+      "fileHash": "f62cf2c9",
       "needsInterop": false
     },
     "minisearch": {
       "src": "../../../../node_modules/minisearch/dist/es/index.js",
       "file": "minisearch.js",
-      "fileHash": "b595cd10",
+      "fileHash": "3dcc0fb3",
       "needsInterop": false
     },
     "@vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "fb4fcc1b",
+      "fileHash": "00dc7e43",
       "needsInterop": false
     },
     "@vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/dist/index.js",
       "file": "@vue_devtools-api.js",
-      "fileHash": "a3540b49",
+      "fileHash": "5f276959",
       "needsInterop": false
     },
     "@vuepress/shared": {
       "src": "../../../../node_modules/@vuepress/shared/dist/index.js",
       "file": "@vuepress_shared.js",
-      "fileHash": "a6e401f9",
+      "fileHash": "991d0225",
       "needsInterop": false
     },
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "b9f05627",
+      "fileHash": "15dbf585",
       "needsInterop": false
     },
     "vue-router": {
       "src": "../../../../node_modules/vue-router/dist/vue-router.esm-bundler.js",
       "file": "vue-router.js",
-      "fileHash": "f8ca3c46",
+      "fileHash": "39e38dce",
       "needsInterop": false
     }
   },
