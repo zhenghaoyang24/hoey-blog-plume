@@ -13,4 +13,12 @@ export const navbar = defineNavbarConfig([
         ],
         icon:'ic:outline-note-alt'
     },
+    {
+
+        text: '拾光',
+        items: [
+            {text: '随影', link: '/notes/lifetime/camera.md',icon:'material-symbols:camera'},
+        ],
+        icon:'memory:time-sand'
+    },
 ])
