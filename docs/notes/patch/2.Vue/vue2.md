@@ -1,7 +1,7 @@
 ---
-title: Vue2基础
+title: Vue2 快速上手
 createTime: 2024/4/21 15:41:27
-permalink: /patch/VueBasic/
+permalink: /patch/vue2/
 ---
 
 ## 1. Vue中的常用指令
