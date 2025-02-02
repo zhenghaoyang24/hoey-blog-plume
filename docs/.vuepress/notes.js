@@ -7,8 +7,15 @@ const demoNote = defineNoteConfig({
     },
 )
 
+const demoNote2 = defineNoteConfig({
+        dir: 'interview',
+        link: '/interview/',
+        sidebar: 'auto',
+    },
+)
+
 export const notes = defineNotesConfig({
     dir: 'notes',
     link: '/',
-    notes: [demoNote],
+    notes: [demoNote,demoNote2],
 })
