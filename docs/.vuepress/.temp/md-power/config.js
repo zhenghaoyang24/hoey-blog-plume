@@ -3,6 +3,8 @@ import Tabs from 'G:/200-Project/hoey-blog-plume/node_modules/vuepress-plugin-md
 import CodeTabs from 'G:/200-Project/hoey-blog-plume/node_modules/vuepress-plugin-md-power/lib/client/components/CodeTabs.vue'
 import Plot from 'G:/200-Project/hoey-blog-plume/node_modules/vuepress-plugin-md-power/lib/client/components/Plot.vue'
 import FileTreeItem from 'G:/200-Project/hoey-blog-plume/node_modules/vuepress-plugin-md-power/lib/client/components/FileTreeItem.vue'
+import VPDemoBasic from 'G:/200-Project/hoey-blog-plume/node_modules/vuepress-plugin-md-power/lib/client/components/VPDemoBasic.vue'
+import VPDemoNormal from 'G:/200-Project/hoey-blog-plume/node_modules/vuepress-plugin-md-power/lib/client/components/VPDemoNormal.vue'
 
 import 'G:/200-Project/hoey-blog-plume/node_modules/vuepress-plugin-md-power/lib/client/styles/index.css'
 
@@ -12,5 +14,7 @@ export default defineClientConfig({
     app.component('CodeTabs', CodeTabs)
     app.component('Plot', Plot)
     app.component('FileTreeItem', FileTreeItem)
+    app.component('VPDemoBasic', VPDemoBasic)
+    app.component('VPDemoNormal', VPDemoNormal)
   }
 })

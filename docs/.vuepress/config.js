@@ -20,6 +20,7 @@ export default defineUserConfig({
     plugins: {
       markdownPower: {  //图片优化
         imageSize: true, // 'local' | 'all'
+        demo:true
       },
       /**
        * Shiki 代码高亮
