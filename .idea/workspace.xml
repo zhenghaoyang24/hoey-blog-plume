@@ -8,6 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/auto-frontmatter.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/auto-frontmatter.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/iconify.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/iconify.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/56faed2e" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/56faed2e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/735c8eb4" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/735c8eb4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/_metadata.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.js" afterDir="false" />
@@ -17,7 +19,6 @@
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/themePlumeData.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/themePlumeData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22032301/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22032301/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22041901/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22041901/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.js" afterDir="false" />
@@ -37,10 +38,10 @@
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24122701/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24122701/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24123101/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24123101/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/lifetime/record/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/lifetime/record/index.html.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/VueBasic/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/VueBasic/index.html.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/VueBasic/index.html.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/patch/VueBasic/index.html.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/sites-collect/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/sites-collect/index.html.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/notes.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/notes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/notes/patch/数据结构/tree.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/notes/patch/Vue/vuebasic.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/notes/patch/Vue/vuebasic.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +83,7 @@
     "nodejs_package_manager_path": "npm",
     "npm.docs:build.executor": "Run",
     "npm.docs:dev.executor": "Run",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "settings.editor.selected.configurable": "preferences.rainbow.brackets.disable.when",
     "ts.external.directory.path": "E:\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -283,7 +284,10 @@
       <workItem from="1737202441405" duration="193000" />
       <workItem from="1738332423930" duration="3589000" />
       <workItem from="1738397168167" duration="15000" />
-      <workItem from="1738473435020" duration="2510000" />
+      <workItem from="1738473435020" duration="2892000" />
+      <workItem from="1738477645306" duration="272000" />
+      <workItem from="1738477938672" duration="87000" />
+      <workItem from="1738486263820" duration="1860000" />
     </task>
     <servers />
   </component>
