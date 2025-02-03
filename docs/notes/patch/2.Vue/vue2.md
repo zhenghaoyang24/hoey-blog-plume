@@ -866,8 +866,8 @@ el：使用指令的那个DOM元素。
 
 ## 10. 插槽
 
-\<slot> 元素是一个插槽出口 (slot outlet)，标示了父元素提供的插槽内容 (slot content) 将在哪里被渲染。
-举例来说，这里有一个 \<FancyButton> 组件，可以像这样使用：
+`<slot>` 元素是一个插槽出口 (slot outlet)，标示了父元素提供的插槽内容 (slot content) 将在哪里被渲染。
+举例来说，这里有一个 `<FancyButton>` 组件，可以像这样使用：
 
 ```html
 <FancyButton>
@@ -875,7 +875,7 @@ Click me! <!-- 插槽内容 -->
 </FancyButton>
 ```
 
-而 \<FancyButton> 的模板是这样的：
+而 `<FancyButton>` 的模板是这样的：
 
 ```html
 <button class="fancy-btn">
@@ -897,7 +897,7 @@ Click me! <!-- 插槽内容 -->
 :::
 
 ### 10.1 默认内容
-\<slot>之间的内容，将在父组件没有提供任何插槽内容时作为默内容。
+`<slot>` 之间的内容，将在父组件没有提供任何插槽内容时作为默内容。
 
 ```html
 <button type="submit">
@@ -908,7 +908,7 @@ Click me! <!-- 插槽内容 -->
 ```
 
 ### 10.2 具名插槽
-带`name`的插槽被称为具名插槽(named slots)。没有提供name的 `<slot>` 出口会隐式地命名为“default”（name="default"）。  
+带 `name` 的插槽被称为具名插槽(named slots)。没有提供name的 `<slot>` 出口会隐式地命名为“default”（name="default"）。  
 要为具名插槽传入内容，需要使用一个含 `v-slot` 指令的 `<template>` 元素，并将目标插槽的名字传给该指令：
 
 ```vue
