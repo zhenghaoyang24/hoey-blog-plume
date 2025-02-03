@@ -1302,7 +1302,7 @@ function sendToy(){
 
 **注意这个重要的内置关系，总线依赖着这个内置关系**。
 
-### 6.4.v-model
+### 6.4. v-model
 
 1. 概述：实现 **父↔子** 之间相互通信。
 
@@ -1324,13 +1324,13 @@ function sendToy(){
 
    ```vue
    <!-- 组件标签上使用v-model指令 -->
-   <AtguiguInput v-model="userName"/>
+   <ComInput v-model="userName"/>
    
    <!-- 组件标签上v-model的本质 -->
-   <AtguiguInput :modelValue="userName" @update:model-value="userName = $event"/>
+   <ComInput :modelValue="userName" @update:model-value="userName = $event"/>
    ```
 
-   `AtguiguInput`组件中：
+   `ComInput` 组件中：
 
    ```vue
    <template>
@@ -1357,13 +1357,13 @@ function sendToy(){
 
    ```vue
    <!-- 也可以更换value，例如改成abc-->
-   <AtguiguInput v-model:abc="userName"/>
+   <ComInput v-model:abc="userName"/>
    
    <!-- 上面代码的本质如下 -->
-   <AtguiguInput :abc="userName" @update:abc="userName = $event"/>
+   <ComInput :abc="userName" @update:abc="userName = $event"/>
    ```
 
-   `AtguiguInput`组件中：
+   `ComInput`组件中：
 
    ```vue
    <template>
@@ -1376,7 +1376,7 @@ function sendToy(){
      </div>
    </template>
    
-   <script setup lang="ts" name="AtguiguInput">
+   <script setup lang="ts" name="ComInput">
      // 接收props
      defineProps(['abc'])
      // 声明事件
@@ -1387,11 +1387,11 @@ function sendToy(){
 5. 如果`value`可以更换，那么就可以在组件标签上多次使用`v-model`
 
    ```vue
-   <AtguiguInput v-model:abc="userName" v-model:xyz="password"/>
+   <ComInput v-model:abc="userName" v-model:xyz="password"/>
    ```
 
 
-### 6.5.$attrs
+### 6.5. $attrs
 
 1. 概述：`$attrs`用于实现**当前组件的父组件**，向**当前组件的子组件**通信（**祖→孙**）。
 
@@ -1459,7 +1459,7 @@ function sendToy(){
 </script>
 ```
 
-### 6.6. \$refs、$parent
+### 6.6. $refs、$parent
 
 1. 概述：
 
@@ -1519,7 +1519,7 @@ function sendToy(){
 
    > 注意：子组件中不用编写任何东西，是不受到任何打扰的
 
-   【第二步】孙组件中使用`inject`配置项接受数据。
+   【第二步】孙组件中使用 `inject` 配置项接受数据。
 
    ```vue
    <template>
@@ -1538,6 +1538,89 @@ function sendToy(){
      let car = inject('car')
    </script>
    ```
+
+### 7. 插槽
+
+### 1. 默认插槽
+
+![img](http://49.232.112.44/images/default_slot.png)
+
+```vue
+父组件中：
+        <Category title="今日热门游戏">
+          <ul>
+            <li v-for="g in games" :key="g.id">{{ g.name }}</li>
+          </ul>
+        </Category>
+子组件中：
+        <template>
+          <div class="item">
+            <h3>{{ title }}</h3>
+            <!-- 默认插槽 -->
+            <slot></slot>
+          </div>
+        </template>
+```
+
+### 2. 具名插槽
+
+```vue
+父组件中：
+        <Category title="今日热门游戏">
+          <template v-slot:s1>
+            <ul>
+              <li v-for="g in games" :key="g.id">{{ g.name }}</li>
+            </ul>
+          </template>
+          <template #s2>
+            <a href="">更多</a>
+          </template>
+        </Category>
+子组件中：
+        <template>
+          <div class="item">
+            <h3>{{ title }}</h3>
+            <slot name="s1"></slot>
+            <slot name="s2"></slot>
+          </div>
+        </template>
+```
+
+### 3. 作用域插槽
+
+1. 理解：<span style="color:red">数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。</span>（新闻数据在`News`组件中，但使用数据所遍历出来的结构由`App`组件决定）
+
+2. 具体编码：
+
+   ```vue
+   父组件中：
+         <Game v-slot="params">
+         <!-- <Game v-slot:default="params"> -->
+         <!-- <Game #default="params"> -->
+           <ul>
+             <li v-for="g in params.games" :key="g.id">{{ g.name }}</li>
+           </ul>
+         </Game>
+   
+   子组件中：
+         <template>
+           <div class="category">
+             <h2>今日游戏榜单</h2>
+             <slot :games="games" a="哈哈"></slot>
+           </div>
+         </template>
+   
+         <script setup lang="ts" name="Category">
+           import {reactive} from 'vue'
+           let games = reactive([
+             {id:'asgdytsa01',name:'英雄联盟'},
+             {id:'asgdytsa02',name:'王者荣耀'},
+             {id:'asgdytsa03',name:'红色警戒'},
+             {id:'asgdytsa04',name:'斗罗大陆'}
+           ])
+         </script>
+   ```
+
 
 
 
