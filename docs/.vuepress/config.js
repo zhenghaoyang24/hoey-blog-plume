@@ -3,6 +3,11 @@ import { defineUserConfig } from 'vuepress'
 import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
+  autoFrontmatter: {
+    permalink: true, // 是否生成永久链接
+    createTime: true, // 是否生成创建时间
+    title: true, // 是否生成标题
+  },
   head: [
       ['meta', { name: 'referrer', content: 'no-referrer' }]
   ],

@@ -14,3 +14,5 @@ if (import.meta.hot) {
     __VUE_HMR_RUNTIME__.updatePageData(data)
   })
 }
+
+}
