@@ -5,7 +5,8 @@
 </div>
 <hr>
 <h3 id="盒模型简述" tabindex="-1"><a class="header-anchor" href="#盒模型简述"><span>盒模型简述</span></a></h3>
-<p>在网页布局中，盒模型（Box Model）是一个非常基础且重要的概念。每一个 HTML 元素在页面中都会被看作一个矩形的盒子，这个盒子由内容区（Content）、内边距（Padding）、边框（Border）和外边距（Margin）这几个部分组成。</p>
+<p>在网页布局中，盒模型（Box Model）是一个非常基础且重要的概念。每一个 HTML 元素在页面中都会被看作一个矩形的盒子，这个盒子由内容区（Content）、
+内边距（Padding）、边框（Border）和外边距（Margin）这几个部分组成。</p>
 <hr>
 <h3 id="盒模型的组成部分" tabindex="-1"><a class="header-anchor" href="#盒模型的组成部分"><span>盒模型的组成部分</span></a></h3>
 <ul>
@@ -20,13 +21,14 @@
 <h4 id="标准盒模型-content-box" tabindex="-1"><a class="header-anchor" href="#标准盒模型-content-box"><span>标准盒模型（content-box）</span></a></h4>
 <img src="/assets/interview_boxmodel_01.png" style="height: 300px">
 <ul>
-<li><strong>计算方式</strong>：元素的宽度（<code v-pre>width</code>）和高度（<code v-pre>height</code>）只包含内容区的宽度和高度，不包含内边距、边框和外边距。也就是说，如果设置一个元素的 <code v-pre>width</code> 为 200px，那么这个 200px 仅仅是内容区的宽度，元素实际占用的宽度还需要加上左右内边距和左右边框的宽度。</li>
-<li><strong>示例代码及效果</strong></li>
+<li><strong>计算方式</strong>：元素的宽度（<code v-pre>width</code>）和高度（<code v-pre>height</code>）只包含内容区的宽度和高度，不包含内边距、边框和外边距。也就是说，</li>
+<li>如果设置一个元素的 <code v-pre>width</code> 为 200px，那么这个 200px 仅仅是内容区的宽度，元素实际占用的宽度还需要加上左右内边距和左右边框的宽度。</li>
 </ul>
 <h4 id="怪异盒模型-border-box" tabindex="-1"><a class="header-anchor" href="#怪异盒模型-border-box"><span>怪异盒模型（border-box）</span></a></h4>
 <img src="/assets/interview_boxmodel_02.png" style="height: 300px">
 <ul>
-<li><strong>计算方式</strong>：元素的宽度（<code v-pre>width</code>）和高度（<code v-pre>height</code>）包含了内容区、内边距和边框的大小，但不包含外边距。当设置元素的 <code v-pre>width</code> 为 200px 时，这 200px 是内容区、内边距和边框的总宽度。如果内边距和边框占用了一定的宽度，那么内容区的宽度就会相应减少。</li>
+<li><strong>计算方式</strong>：元素的宽度（<code v-pre>width</code>）和高度（<code v-pre>height</code>）包含了内容区、内边距和边框的大小，</li>
+<li>但不包含外边距。当设置元素的 <code v-pre>width</code> 为 200px 时，这 200px 是内容区、内边距和边框的总宽度。如果内边距和边框占用了一定的宽度，那么内容区的宽度就会相应减少。</li>
 </ul>
 </div></template>
 
