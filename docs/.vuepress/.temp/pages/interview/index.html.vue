@@ -1,4 +1,4 @@
-<template><div><h1 id="面试题目" tabindex="-1"><a class="header-anchor" href="#面试题目"><span>面试题目</span></a></h1>
+<template><div><p><img src="/assets/interview_readme.png" alt="interview_readme.png"></p>
 </div></template>
 
 
