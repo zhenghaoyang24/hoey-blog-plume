@@ -5,7 +5,7 @@
 </div>
 <hr>
 <h3 id="作用域-scope" tabindex="-1"><a class="header-anchor" href="#作用域-scope"><span>作用域（Scope）</span></a></h3>
-<p><strong>作用域</strong>是变量、函数或对象的可访问范围，决定了代码中哪些部分可以访问这些标识符。JavaScript 中有以下作用域类型：</p>
+<p><strong>作用域</strong>是变量、函数或对象的可访问范围，决定了代码中哪些部分可以访问这些标识符。<code v-pre>JavaScript</code> 中有以下作用域类型：</p>
 <hr>
 <h4 id="_1-全局作用域" tabindex="-1"><a class="header-anchor" href="#_1-全局作用域"><span>1. <strong>全局作用域</strong></span></a></h4>
 <ul>
