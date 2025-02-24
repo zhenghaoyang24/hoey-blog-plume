@@ -1,5 +1,5 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/interview/20d108zg/index.html.vue"
-const data = JSON.parse("{\"path\":\"/interview/20d108zg/\",\"title\":\"闭包\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"闭包\",\"createTime\":\"2025/02/14 21:50:02\",\"permalink\":\"/interview/20d108zg/\",\"gitInclude\":[]},\"headers\":[],\"readingTime\":{\"minutes\":1.54,\"words\":461},\"filePathRelative\":\"notes/interview/3.JavaScript/5.闭包.md\",\"bulletin\":false}")
+const data = JSON.parse("{\"path\":\"/interview/20d108zg/\",\"title\":\"闭包\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"闭包\",\"createTime\":\"2025/02/14 21:50:02\",\"permalink\":\"/interview/20d108zg/\",\"gitInclude\":[]},\"headers\":[],\"readingTime\":{\"minutes\":1.54,\"words\":461},\"filePathRelative\":\"notes/interview/3.JavaScript/5.闭包.md\"}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

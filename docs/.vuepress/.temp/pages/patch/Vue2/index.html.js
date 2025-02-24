@@ -1,5 +1,5 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/patch/vue2/index.html.vue"
-const data = JSON.parse("{\"path\":\"/patch/vue2/\",\"title\":\"Vue2 快速上手\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"Vue2 快速上手\",\"createTime\":\"2024/4/21 15:41:27\",\"permalink\":\"/patch/vue2/\",\"gitInclude\":[]},\"headers\":[],\"readingTime\":{\"minutes\":19.8,\"words\":5940},\"filePathRelative\":\"notes/patch/2.Vue/vue2.md\",\"bulletin\":false}")
+const data = JSON.parse("{\"path\":\"/patch/vue2/\",\"title\":\"Vue2 快速上手\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"Vue2 快速上手\",\"createTime\":\"2024/4/21 15:41:27\",\"permalink\":\"/patch/vue2/\",\"gitInclude\":[]},\"headers\":[],\"readingTime\":{\"minutes\":19.8,\"words\":5940},\"filePathRelative\":\"notes/patch/2.Vue/vue2.md\"}")
 export { comp, data }
 
 if (import.meta.webpackHot) {
