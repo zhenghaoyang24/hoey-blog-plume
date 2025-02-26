@@ -10,18 +10,26 @@
 
 
 .vp-doc-container {
-    --vp-doc-blog-bg: rgba(100, 190, 190, 0.15);
+    --vp-doc-blog-bg: rgba(100, 190, 190, 0.13);
 
-    background-image:
-            linear-gradient(90deg, var(--vp-doc-blog-bg) 3%, transparent 0),
-            linear-gradient(1turn, var(--vp-doc-blog-bg) 3%, transparent 0);
-    background-position: 90%;
-    background-size: 20px 20px;
+    /*background-image:*/
+    /*        linear-gradient(90deg, var(--vp-doc-blog-bg) 3%, transparent 0),*/
+    /*        linear-gradient(1turn, var(--vp-doc-blog-bg) 3%, transparent 0);*/
+    /*background-position: 90%;*/
+    /*background-size: 20px 20px;*/
+
+
+    background: radial-gradient(farthest-side at -33.33% 50%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%) 0
+    calc(100px / 2),
+    radial-gradient(farthest-side at 50% 133.33%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%) calc(100px / 2) 0,
+    radial-gradient(farthest-side at 133.33% 50%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%),
+    radial-gradient(farthest-side at 50% -33.33%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%), rgba(103, 145, 122, 0);
+    background-size: calc(100px / 4.667) 100px, 100px calc(100px / 4.667);
 
 }
 
 [data-theme="dark"] .vp-doc-container {
-    --vp-doc-blog-bg: rgba(30, 120, 120, 0.15);
+    --vp-doc-blog-bg: rgba(30, 120, 120, 0.07);
 }
 
 
