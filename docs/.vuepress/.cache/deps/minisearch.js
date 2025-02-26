@@ -1,3 +1,5 @@
+import "./chunk-G3PMV62Z.js";
+
 // node_modules/minisearch/dist/es/index.js
 function __awaiter(thisArg, _arguments, P, generator) {
   function adopt(value) {

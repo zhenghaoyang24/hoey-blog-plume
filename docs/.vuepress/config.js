@@ -24,23 +24,32 @@ export default defineUserConfig({
     hostname: 'https://hoeyzheng.top',
     plugins: {
       markdownPower: {  //图片优化
-        imageSize: true, // 'local' | 'all'
-        demo:true
+        // imageSize: true, // 'local' | 'all'
+        demo:true,
+        markmap: true,  // 导图插件
       },
       /**
        * Shiki 代码高亮
        * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
        */
-      // shiki: {
+      shiki: {
+        twoslash: true,
+        lineNumbers: 10,
            // 强烈建议预设代码块高亮语言，插件默认加载所有语言会产生不必要的时间开销
-      //   languages: ['shell', 'bash', 'typescript', 'javascript'],
-      // },
+        languages:['sh','ts','md', 'html', 'js','go', 'kotlin',
+          'rust','vue','css','json',
+          'scss', 'yaml', 'bash', 'c++', 'java', 'py', 'ruby', 'make', 'objc', 'swift', 'php', 'rs',
+          'astro','svelte','wasm',
+          'sql','xml','zig','pug','http','less','styl','jsx','tsx',
+          'vb','bat','cs','cpp','mermaid'],
+      },
 
       /**
        * markdown enhance
        * @see https://theme-plume.vuejs.press/config/plugins/markdown-enhance/
        */
       markdownEnhance: {
+        markmap: true,
         demo: true,
       //   include: true,
       //   chart: true,
