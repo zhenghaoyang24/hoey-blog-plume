@@ -24,9 +24,8 @@ export default defineUserConfig({
     hostname: 'https://hoeyzheng.top',
     plugins: {
       markdownPower: {  //图片优化
-        // imageSize: true, // 'local' | 'all'
+        imageSize: true, // 'local' | 'all'
         demo:true,
-        markmap: true,  // 导图插件
       },
       /**
        * Shiki 代码高亮
