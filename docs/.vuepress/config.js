@@ -23,9 +23,9 @@ export default defineUserConfig({
     // 添加您的部署域名
     hostname: 'https://hoeyzheng.top',
     plugins: {
-      markdownPower: {  //图片优化
-        imageSize: true, // 'local' | 'all'
-        demo:true,
+      markdownPower: {
+        imageSize: true, // 图片优化 'local（本地图片）' | 'all（所有图片）'
+        demo: true, // 启用新的代码演示功能
       },
       /**
        * Shiki 代码高亮
@@ -48,8 +48,8 @@ export default defineUserConfig({
        * @see https://theme-plume.vuejs.press/config/plugins/markdown-enhance/
        */
       markdownEnhance: {
-        markmap: true,
-        demo: true,
+        markmap: true, // 启用思维导图功能
+        demo: true, // 启用旧的代码演示功能
       //   include: true,
       //   chart: true,
       //   echarts: true,
