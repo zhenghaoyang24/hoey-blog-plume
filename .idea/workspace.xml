@@ -35,25 +35,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;G:/200-Project/hoey-blog-plume&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.docs:build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.docs:dev.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;E:\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "G:/200-Project/hoey-blog-plume",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.docs:build.executor": "Run",
+    "npm.docs:dev.executor": "Run",
+    "settings.editor.selected.configurable": "fileTemplates",
+    "ts.external.directory.path": "E:\\WebStorm 2024.2.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="G:\200-Project\hoey-blog-plume" />
@@ -70,7 +70,7 @@
       <recent name="G:\200-Project\hoey-blog-plume\docs\notes\patch\Vue" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.docs:dev">
+  <component name="RunManager" selected="npm.vp-update">
     <configuration name="docs:build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -94,12 +94,24 @@
       </EXTENSION>
       <method v="2" />
     </configuration>
+    <configuration name="vp-update" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="vp-update" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="npm.vp-update" />
       <item itemvalue="npm.docs:build" />
       <item itemvalue="npm.docs:dev" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.vp-update" />
         <item itemvalue="npm.docs:dev" />
         <item itemvalue="npm.docs:build" />
       </list>
@@ -301,6 +313,8 @@
       <workItem from="1741088063117" duration="17000" />
       <workItem from="1741088510007" duration="61000" />
       <workItem from="1741088586215" duration="123000" />
+      <workItem from="1741088880997" duration="99000" />
+      <workItem from="1741090073844" duration="1067000" />
     </task>
     <servers />
   </component>
