@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "description": "Hoey's blog.",
-  "author": "zhenghaoyang24 <2463193508@qq.ocm>",
+  "author": "zhenghaoyang24 <zhenghaoyang24@foxmail.com>",
   "license": "MIT",
   "engines": {
     "node": "^18.20.0 || >=20.0.0"
