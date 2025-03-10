@@ -1,4 +1,4 @@
-<template><div><p><img src="/assets/interview_readme.png" alt="interview_readme.png"></p>
+<template><div><p><img src="/assets/interview_readme.jpg" alt="interview_readme.png"></p>
 </div></template>
 
 
