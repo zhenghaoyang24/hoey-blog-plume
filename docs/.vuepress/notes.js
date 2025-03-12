@@ -14,8 +14,14 @@ const noteInterview = defineNoteConfig({
     },
 )
 
+const noteMore = defineNoteConfig({
+        dir: 'more',
+        link: '/more/',
+    },
+)
+
 export const notes = defineNotesConfig({
     dir: 'notes',
     link: '/',
-    notes: [notePatch,noteInterview],
+    notes: [notePatch,noteInterview,noteMore],
 })
