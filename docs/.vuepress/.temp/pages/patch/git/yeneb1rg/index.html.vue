@@ -1,6 +1,4 @@
-<template><div><h2 id="引言" tabindex="-1"><a class="header-anchor" href="#引言"><span>引言</span></a></h2>
-<p>在软件开发领域，版本控制是保障项目顺利进行的关键因素之一。Git 作为一款功能强大且广泛使用的分布式版本控制系统，为开发者提供了高效、灵活的代码管理方案。本文将详细介绍如何使用 Git 创建版本库，从初始化版本库开始，逐步讲解添加文件、暂存更改、提交版本等一系列操作及其相关命令的用法。</p>
-<h2 id="_1-初始化版本库-git-init" tabindex="-1"><a class="header-anchor" href="#_1-初始化版本库-git-init"><span>1. 初始化版本库（git init）</span></a></h2>
+<template><div><h2 id="_1-初始化版本库" tabindex="-1"><a class="header-anchor" href="#_1-初始化版本库"><span>1. 初始化版本库</span></a></h2>
 <h3 id="功能概述" tabindex="-1"><a class="header-anchor" href="#功能概述"><span>功能概述</span></a></h3>
 <p><code v-pre>git init</code> 命令用于在本地目录中创建一个新的 Git 版本库。当你开始一个新的项目或者想要对现有的项目进行版本控制时，就可以使用该命令来初始化一个 Git 仓库。</p>
 <h3 id="操作步骤" tabindex="-1"><a class="header-anchor" href="#操作步骤"><span>操作步骤</span></a></h3>
@@ -8,14 +6,14 @@
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#998418;--shiki-dark:#B8A965">cd</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> ~/Projects/my-project</span></span>
 <span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> init</span></span></code></pre>
 
-</div><p>执行 <code v-pre>git init</code> 命令后，Git 会在当前目录下创建一个名为 <code v-pre>.git</code> 的隐藏目录，该目录包含了 Git 版本库的所有元数据和配置信息。</p>
+</div><p>执行 <code v-pre>git init</code> 命令后，Git 会在当前目录下创建一个名为 <code v-pre>.git</code> 的<strong>隐藏目录</strong>，该目录包含了 Git 版本库的所有元数据和配置信息。</p>
 <h3 id="查看初始化结果" tabindex="-1"><a class="header-anchor" href="#查看初始化结果"><span>查看初始化结果</span></a></h3>
 <p>你可以使用 <code v-pre>ls -a</code> 命令查看当前目录下的所有文件和文件夹，确认 <code v-pre>.git</code> 目录是否已经创建：</p>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">ls</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -a</span></span></code></pre>
 
-</div><h2 id="_2-添加文件到暂存区-git-add" tabindex="-1"><a class="header-anchor" href="#_2-添加文件到暂存区-git-add"><span>2. 添加文件到暂存区（git add）</span></a></h2>
+</div><h2 id="_2-添加文件到暂存区" tabindex="-1"><a class="header-anchor" href="#_2-添加文件到暂存区"><span>2. 添加文件到暂存区</span></a></h2>
 <h3 id="功能概述-1" tabindex="-1"><a class="header-anchor" href="#功能概述-1"><span>功能概述</span></a></h3>
-<p>在 Git 中，文件的修改需要先添加到暂存区（staging area），然后才能提交到版本库。<code v-pre>git add</code> 命令用于将文件的修改添加到暂存区。</p>
+<p>在 Git 中，文件的修改需要先添加到暂存区，然后才能提交到版本库。<code v-pre>git add</code> 命令用于将文件的修改添加到暂存区。</p>
 <h3 id="常用用法" tabindex="-1"><a class="header-anchor" href="#常用用法"><span>常用用法</span></a></h3>
 <ul>
 <li><strong>添加单个文件</strong>：如果你只需要添加一个文件到暂存区，可以使用以下命令：</li>
@@ -24,7 +22,7 @@
 
 </div><p>这里的 <code v-pre>filename.txt</code> 是你要添加的文件的名称。</p>
 <ul>
-<li><strong>添加多个文件</strong>：如果要添加多个文件，可以在 <code v-pre>git add</code> 命令后面依次列出这些文件的名称，用空格分隔：</li>
+<li><strong>添加多个文件</strong>：如果要添加多个文件，可以在 <code v-pre>git add</code> 命令后面依次列出这些文件的名称，用<strong>空格分隔</strong>：</li>
 </ul>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> add</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> file1.txt</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> file2.txt</span></span></code></pre>
 
@@ -45,7 +43,7 @@
 <p>使用 <code v-pre>git status</code> 命令可以查看当前工作目录和暂存区的状态，确认哪些文件已经添加到暂存区，哪些文件还未添加：</p>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> status</span></span></code></pre>
 
-</div><h2 id="_3-提交暂存区的修改-git-commit" tabindex="-1"><a class="header-anchor" href="#_3-提交暂存区的修改-git-commit"><span>3. 提交暂存区的修改（git commit）</span></a></h2>
+</div><h2 id="_3-提交暂存区的修改" tabindex="-1"><a class="header-anchor" href="#_3-提交暂存区的修改"><span>3. 提交暂存区的修改</span></a></h2>
 <h3 id="功能概述-2" tabindex="-1"><a class="header-anchor" href="#功能概述-2"><span>功能概述</span></a></h3>
 <p><code v-pre>git commit</code> 命令用于将暂存区的修改提交到本地版本库。每次提交都会生成一个新的提交对象，该对象包含了本次提交的元数据（如作者、提交时间、提交信息等）以及指向父提交对象的引用。</p>
 <h3 id="基本用法" tabindex="-1"><a class="header-anchor" href="#基本用法"><span>基本用法</span></a></h3>
@@ -60,27 +58,28 @@
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> commit</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -a</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -m</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77"> "</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">Update some files</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span></span></code></pre>
 
 </div><p>使用 <code v-pre>-a</code> 选项时，Git 会自动将所有已跟踪文件的修改添加到暂存区并提交，但不会处理未跟踪的文件。</p>
-<h2 id="_4-查看提交历史-git-log" tabindex="-1"><a class="header-anchor" href="#_4-查看提交历史-git-log"><span>4. 查看提交历史（git log）</span></a></h2>
+<div class="hint-container tip">
+<p class="hint-container-title">提示</p>
+<p>为提高代码提交信息的可读性、协作效率和版本管理质量，你应该遵循 <RouteLink to="/notes/patch/Git/%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF%E8%A7%84%E8%8C%83.html">commit 的提交规范</RouteLink></p>
+</div>
+<h2 id="_4-查看提交历史" tabindex="-1"><a class="header-anchor" href="#_4-查看提交历史"><span>4. 查看提交历史</span></a></h2>
 <h3 id="功能概述-3" tabindex="-1"><a class="header-anchor" href="#功能概述-3"><span>功能概述</span></a></h3>
 <p><code v-pre>git log</code> 命令用于查看版本库的提交历史，包括每个提交的哈希值、作者、提交时间和提交信息等。</p>
 <h3 id="基本用法-1" tabindex="-1"><a class="header-anchor" href="#基本用法-1"><span>基本用法</span></a></h3>
 <p>执行 <code v-pre>git log</code> 命令可以查看完整的提交历史：</p>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> log</span></span></code></pre>
 
-</div><p>输出结果会按照时间顺序倒序排列，最新的提交在最上面。</p>
+</div><p>输出结果会按照时间顺序倒序排列，<strong>最新的提交在最上面</strong>。</p>
 <h3 id="简化输出" tabindex="-1"><a class="header-anchor" href="#简化输出"><span>简化输出</span></a></h3>
 <p>如果提交历史很长，你可能只需要查看一些关键信息，可以使用 <code v-pre>--oneline</code> 选项简化输出：</p>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> log</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> --oneline</span></span></code></pre>
 
-</div><p>该选项会将每个提交的信息压缩到一行，只显示提交的哈希值和提交信息的前几个字符。</p>
+</div><p>该选项会将每个提交的信息压缩到一行，<strong>只显示提交的哈希值和提交信息的前几个字符</strong>。</p>
 <h3 id="查看指定数量的提交" tabindex="-1"><a class="header-anchor" href="#查看指定数量的提交"><span>查看指定数量的提交</span></a></h3>
 <p>使用 <code v-pre>-n</code> 选项可以指定查看的提交数量，例如查看最近的 3 个提交：</p>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> log</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -n</span><span style="--shiki-light:#2F798A;--shiki-dark:#4C9A91"> 3</span></span></code></pre>
 
-</div><h2 id="总结" tabindex="-1"><a class="header-anchor" href="#总结"><span>总结</span></a></h2>
-<p>通过以上步骤，我们可以使用 Git 完成版本库的创建，从初始化版本库到添加文件、暂存更改、提交版本，并查看提交历史。掌握这些基本操作是使用 Git 进行版本控制的基础，希望本文能帮助你更好地理解和使用 Git。在实际开发中，你还可以结合更多的 Git 命令和功能，如分支管理、远程仓库同步等，来提高开发效率和团队协作能力。</p>
-<hr>
-<p>希望以上内容对你理解如何使用 Git 创建版本库有所帮助。如果你在使用过程中遇到任何问题，欢迎随时留言交流。</p>
+</div><p>通过以上步骤，可以使用 <code v-pre>Git</code> 完成版本库的创建，从初始化版本库到添加文件、暂存更改、提交版本，并查看提交历史。</p>
 </div></template>
 
 

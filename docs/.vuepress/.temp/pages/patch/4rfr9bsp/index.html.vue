@@ -1,8 +1,8 @@
-<template><div><p>在使用 <code v-pre>git commit -m</code> 时，遵循规范的提交信息格式可以提高代码可读性、协作效率和版本管理质量。</p>
+<template><div><p>在使用 <code v-pre>git commit -m</code> 时，遵循规范的提交信息格式可以提高代码提交信息的可读性、协作效率和版本管理质量。</p>
 <!-- more -->
 <div class="hint-container tip">
 <p class="hint-container-title">提示</p>
-<p>本文以收录进 <code v-pre>温故知新 - Git</code> 系列文章中，若要了解 git 的更多信息，请<RouteLink to="/patch/git/introduce/">查看此处</RouteLink>。</p>
+<p>本文以收录进 <code v-pre>温故知新 - Git</code> 系列文章中，若要了解 git 的更多信息，请查看此处。</p>
 </div>
 <p>以下是常见的提交规范建议：</p>
 <h3 id="_1-基础格式" tabindex="-1"><a class="header-anchor" href="#_1-基础格式"><span><strong>1. 基础格式</strong></span></a></h3>
