@@ -1,6 +1,6 @@
 <template><div><h2 id="概述" tabindex="-1"><a class="header-anchor" href="#概述"><span>概述</span></a></h2>
 <p>在软件开发过程中，版本控制是至关重要的一环。Git 作为目前最流行的分布式版本控制系统，为开发者提供了强大而灵活的分支管理功能。通过使用 Git 分支，团队成员可以并行开发不同的功能，同时保持代码库的整洁和可维护性。本文将全面总结 Git 分支的相关知识，包括底层原理、常用用法和命令。</p>
-<h2 id="_1-底层原理" tabindex="-1"><a class="header-anchor" href="#_1-底层原理"><span>1. 底层原理</span></a></h2>
+<h2 id="_1-原理" tabindex="-1"><a class="header-anchor" href="#_1-原理"><span>1. 原理</span></a></h2>
 <h3 id="什么是-git-分支" tabindex="-1"><a class="header-anchor" href="#什么是-git-分支"><span>什么是 Git 分支</span></a></h3>
 <p>在 Git 中，分支本质上是一个指向某个提交对象的可变指针。每次提交时，Git 会创建一个新的提交对象，该对象包含了本次提交的元数据（如作者、提交时间、提交信息等）以及指向父提交对象的引用。而分支就是一个指向这些提交对象的指针，它可以随着新的提交而移动。</p>
 <h3 id="分支的创建与移动" tabindex="-1"><a class="header-anchor" href="#分支的创建与移动"><span>分支的创建与移动</span></a></h3>

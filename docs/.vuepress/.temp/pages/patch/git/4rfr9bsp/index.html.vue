@@ -1,6 +1,6 @@
 <template><div><p>在使用 <code v-pre>git commit -m</code> 时，遵循规范的提交信息格式可以提高代码提交信息的可读性、协作效率和版本管理质量。</p>
-<p>以下是常见的提交规范建议：</p>
-<h3 id="_1-基础格式" tabindex="-1"><a class="header-anchor" href="#_1-基础格式"><span><strong>1. 基础格式</strong></span></a></h3>
+<p>以下是常见的提交规范：</p>
+<h2 id="_1-基础格式" tabindex="-1"><a class="header-anchor" href="#_1-基础格式"><span>1. 基础格式</span></a></h2>
 <div class="language-" data-ext="" data-title=""><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span>&#x3C;类型>(&#x3C;作用域>): &#x3C;主题></span></span></code></pre>
 
 </div><ul>
@@ -8,8 +8,7 @@
 <li><strong>作用域</strong>：可选，说明影响的范围（如模块、组件）</li>
 <li><strong>主题</strong>：简明扼要的提交描述</li>
 </ul>
-<hr>
-<h3 id="_2-常用提交类型-type" tabindex="-1"><a class="header-anchor" href="#_2-常用提交类型-type"><span><strong>2. 常用提交类型（Type）</strong></span></a></h3>
+<h2 id="_2-常用提交类型-type" tabindex="-1"><a class="header-anchor" href="#_2-常用提交类型-type"><span>2. 常用提交类型（Type）</span></a></h2>
 <table>
 <thead>
 <tr>
@@ -56,21 +55,18 @@
 </tr>
 </tbody>
 </table>
-<hr>
-<h3 id="_3-作用域-scope" tabindex="-1"><a class="header-anchor" href="#_3-作用域-scope"><span><strong>3. 作用域（Scope）</strong></span></a></h3>
+<h2 id="_3-作用域-scope" tabindex="-1"><a class="header-anchor" href="#_3-作用域-scope"><span>3. 作用域（Scope）</span></a></h2>
 <ul>
 <li>可选字段，用括号包裹，说明代码影响的范围（如模块、组件）<br>
 例如：<code v-pre>fix(login): 修复登录按钮样式问题</code></li>
 </ul>
-<hr>
-<h3 id="_4-主题-subject" tabindex="-1"><a class="header-anchor" href="#_4-主题-subject"><span><strong>4. 主题（Subject）</strong></span></a></h3>
+<h2 id="_4-主题-subject" tabindex="-1"><a class="header-anchor" href="#_4-主题-subject"><span>4. 主题（Subject）</span></a></h2>
 <ul>
 <li><strong>简明扼要</strong>：控制在 50 字符以内</li>
 <li><strong>首字母小写</strong>：无需大写或句号结尾</li>
 <li><strong>使用祈使语气</strong>：如 &quot;add&quot; 而不是 &quot;added&quot; 或 &quot;adds&quot;</li>
 </ul>
-<hr>
-<h3 id="_5-示例" tabindex="-1"><a class="header-anchor" href="#_5-示例"><span><strong>5. 示例</strong></span></a></h3>
+<h2 id="_5-示例" tabindex="-1"><a class="header-anchor" href="#_5-示例"><span>5. 示例</span></a></h2>
 <div class="language-bash line-numbers-mode" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 标准提交</span></span>
 <span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> commit</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -m</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77"> "</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">feat(user): 新增用户注册功能</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span></span>
 <span class="line"></span>
@@ -83,15 +79,13 @@
 <span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 代码重构</span></span>
 <span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> commit</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -m</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77"> "</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">refactor(utils): 优化日期格式化函数</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span></span></code></pre>
 
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><hr>
-<h3 id="_6-避免的写法" tabindex="-1"><a class="header-anchor" href="#_6-避免的写法"><span><strong>6. 避免的写法</strong></span></a></h3>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_6-避免的写法" tabindex="-1"><a class="header-anchor" href="#_6-避免的写法"><span>6. 避免的写法</span></a></h2>
 <ul>
 <li>❌ <code v-pre>git commit -m &quot;update code&quot;</code> （过于模糊）</li>
 <li>❌ <code v-pre>git commit -m &quot;fix bug&quot;</code> （未说明具体问题）</li>
 <li>❌ <code v-pre>git commit -m &quot;修改了一些东西&quot;</code> （非英文或未遵循类型规范）</li>
 </ul>
-<hr>
-<h3 id="_7-复杂提交建议" tabindex="-1"><a class="header-anchor" href="#_7-复杂提交建议"><span><strong>7. 复杂提交建议</strong></span></a></h3>
+<h2 id="_7-复杂提交建议" tabindex="-1"><a class="header-anchor" href="#_7-复杂提交建议"><span>7. 复杂提交建议</span></a></h2>
 <p>如果提交需要详细说明，建议省略 <code v-pre>-m</code> 直接进入编辑器编写多行信息：</p>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> commit</span></span></code></pre>
 
@@ -104,8 +98,7 @@
 <span class="line"><span></span></span>
 <span class="line"><span>Closes #123</span></span></code></pre>
 
-</div><hr>
-<p>遵循规范能让团队协作更高效，也方便通过 <code v-pre>git log</code> 快速追踪变更历史。</p>
+</div><p>遵循规范能让团队协作更高效，也方便通过 <code v-pre>git log</code> 快速追踪变更历史。</p>
 </div></template>
 
 
