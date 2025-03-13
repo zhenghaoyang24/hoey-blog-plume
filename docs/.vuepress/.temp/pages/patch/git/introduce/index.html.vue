@@ -1,7 +1,7 @@
-<template><div><h2 id="引言" tabindex="-1"><a class="header-anchor" href="#引言"><span>引言</span></a></h2>
+<template><div><h2 id="概述" tabindex="-1"><a class="header-anchor" href="#概述"><span>概述</span></a></h2>
 <p>在软件开发领域，版本控制是保障项目顺利进行的关键因素之。而 Git，作为当前最流行的分布式版本控制系统，以其强大的功能和高效的性能，
 成为了开发者们的首选工具。</p>
-<h2 id="一、git-的发展" tabindex="-1"><a class="header-anchor" href="#一、git-的发展"><span>一、Git 的发展</span></a></h2>
+<h2 id="_1-git-的发展" tabindex="-1"><a class="header-anchor" href="#_1-git-的发展"><span>1. Git 的发展</span></a></h2>
 <h3 id="起源背景" tabindex="-1"><a class="header-anchor" href="#起源背景"><span>起源背景</span></a></h3>
 <p>在 2002 年之前，<code v-pre>Linux</code> 内核开源项目一直使用 <code v-pre>BitKeeper</code> 作为其版本控制系统。<code v-pre>BitKeeper</code> 是一款商业的版本控制系统，
 但它为 <code v-pre>Linux</code> 开源社区提供了免费的使用许可。然而，在 2005 年，<code v-pre>BitKeeper</code> 公司与 <code v-pre>Linux</code> 内核开源社区之间的合作出现了问题，<code v-pre>BitKeeper</code> 公司收回了免费使用许可。</p>
@@ -11,7 +11,7 @@ Linus Torvalds 的目标是设计一个<strong>分布式、高效、灵活</stro
 <h3 id="发展与普及" tabindex="-1"><a class="header-anchor" href="#发展与普及"><span>发展与普及</span></a></h3>
 <p>自 2005 年诞生以来，<code v-pre>Git</code> 迅速发展并得到了广泛的应用。众多开源项目和商业公司纷纷采用 <code v-pre>Git</code> 作为其版本控制系统。
 <code v-pre>GitHub</code>、<code v-pre>GitLab</code> 等基于 <code v-pre>Git</code> 的代码托管平台的出现，进一步推动了 <code v-pre>Git</code> 的普及，使得全球的开发者能够更加方便地进行协作开发。</p>
-<h2 id="二、git-的特点" tabindex="-1"><a class="header-anchor" href="#二、git-的特点"><span>二、Git 的特点</span></a></h2>
+<h2 id="_2-git-的特点" tabindex="-1"><a class="header-anchor" href="#_2-git-的特点"><span>2. Git 的特点</span></a></h2>
 <h3 id="分布式" tabindex="-1"><a class="header-anchor" href="#分布式"><span>分布式</span></a></h3>
 <p>与传统的集中式版本控制系统不同，<code v-pre>Git</code> 是分布式的。在分布式版本控制系统中，每个开发者的本地仓库都是一个完整的版本库，包含了项目的所有历史记录和分支信息。
 这意味着开发者可以在本地进行各种操作，如提交、分支管理等，而不需要与远程服务器进行频繁的交互。即使在没有网络的情况下，开发者也可以继续进行开发工作。</p>
@@ -21,7 +21,7 @@ Linus Torvalds 的目标是设计一个<strong>分布式、高效、灵活</stro
 <h3 id="数据完整性" tabindex="-1"><a class="header-anchor" href="#数据完整性"><span>数据完整性</span></a></h3>
 <p><code v-pre>Git</code> 使用<strong>哈希算法</strong>来确保数据的完整性。每个文件和提交对象都有一个唯一的哈希值，当文件内容发生变化时，其哈希值也会相应改变。
 这使得 <code v-pre>Git</code> 能够很容易地检测到数据的篡改和损坏，保证了项目历史记录的准确性和可靠性。</p>
-<h2 id="三、git-的基本概念" tabindex="-1"><a class="header-anchor" href="#三、git-的基本概念"><span>三、Git 的基本概念</span></a></h2>
+<h2 id="_3-git-的基本概念" tabindex="-1"><a class="header-anchor" href="#_3-git-的基本概念"><span>3. Git 的基本概念</span></a></h2>
 <h3 id="仓库-repository" tabindex="-1"><a class="header-anchor" href="#仓库-repository"><span>仓库（Repository）</span></a></h3>
 <p>仓库是 <code v-pre>Git</code> 中最基本的概念，它是一个包含项目所有文件和历史记录的目录。在 <code v-pre>Git</code> 中，<strong>有本地仓库和远程仓库之分</strong>。
 本地仓库是开发者在自己的计算机上创建的仓库，而远程仓库则是存储在远程服务器上的仓库，通常用于团队协作开发。</p>
@@ -33,7 +33,7 @@ Linus Torvalds 的目标是设计一个<strong>分布式、高效、灵活</stro
 开发完成后再将这些分支合并到主分支上。</p>
 <h3 id="标签-tag" tabindex="-1"><a class="header-anchor" href="#标签-tag"><span>标签（Tag）</span></a></h3>
 <p>标签是 <code v-pre>Git</code> 中用于标记某个特定提交的一种方式。通常，标签用于标记项目的重要版本，如发布版本、里程碑版本等。通过标签，开发者可以方便地找到项目的某个特定版本。</p>
-<h2 id="四、git-的使用场景" tabindex="-1"><a class="header-anchor" href="#四、git-的使用场景"><span>四、Git 的使用场景</span></a></h2>
+<h2 id="_4-git-的使用场景" tabindex="-1"><a class="header-anchor" href="#_4-git-的使用场景"><span>4. Git 的使用场景</span></a></h2>
 <h3 id="开源项目开发" tabindex="-1"><a class="header-anchor" href="#开源项目开发"><span>开源项目开发</span></a></h3>
 <p>在开源项目开发中，<code v-pre>Git</code> 的分布式特性和强大的分支管理功能使得全球的开发者能够方便地进行协作。开发者可以克隆开源项目的仓库到本地，
 创建自己的分支进行开发，然后将自己的修改提交到远程仓库，通过拉取请求 <code v-pre>Pull Request</code> 的方式将自己的代码合并到主项目中。</p>

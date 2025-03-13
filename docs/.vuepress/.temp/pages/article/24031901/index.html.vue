@@ -1,9 +1,9 @@
-<template><div><p>在使用 <code v-pre>git commit -m</code> 时，遵循规范的提交信息格式可以提高代码可读性、协作效率和版本管理质量。</p>
-<!-- more -->
-<div class="hint-container tip">
+<template><div><div class="hint-container tip">
 <p class="hint-container-title">提示</p>
-<p>本文以收录进 <code v-pre>温故知新 - Git</code> 系列文章中，若要了解 git 的更多信息，请<RouteLink to="/patch/git/introduce/">查看此处</RouteLink>。</p>
+<p>本文已归类进系列文章中，若要了解 <strong><code v-pre>git</code></strong> 的更多信息，请查看 <RouteLink to="/patch/git/introduce/">笔记 - 温故知新 - Git</RouteLink>。</p>
 </div>
+<p>在使用 <code v-pre>git commit -m</code> 时，遵循规范的提交信息格式可以提高代码可读性、协作效率和版本管理质量。</p>
+<!-- more -->
 <p>以下是常见的提交规范建议：</p>
 <h3 id="_1-基础格式" tabindex="-1"><a class="header-anchor" href="#_1-基础格式"><span><strong>1. 基础格式</strong></span></a></h3>
 <div class="language-" data-ext="" data-title=""><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span>&#x3C;类型>(&#x3C;作用域>): &#x3C;主题></span></span></code></pre>

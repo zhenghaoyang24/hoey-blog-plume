@@ -2,6 +2,8 @@
 title: HTML5
 createTime: 2023/5/7 18:59:16
 permalink: /patch/HTML5/
+tags:
+  - HTML
 ---
 
 ## 1. 多表单元素-datalist

@@ -60,7 +60,7 @@
 </div><p>使用 <code v-pre>-a</code> 选项时，Git 会自动将所有已跟踪文件的修改添加到暂存区并提交，但不会处理未跟踪的文件。</p>
 <div class="hint-container tip">
 <p class="hint-container-title">提示</p>
-<p>为提高代码提交信息的可读性、协作效率和版本管理质量，你应该遵循 <RouteLink to="/notes/patch/Git/%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF%E8%A7%84%E8%8C%83.html">commit 的提交规范</RouteLink></p>
+<p>为提高代码提交信息的可读性、协作效率和版本管理质量，你应该尽可能遵循 <RouteLink to="/notes/patch/Git/%E6%8F%90%E4%BA%A4%E4%BF%A1%E6%81%AF%E8%A7%84%E8%8C%83.html">commit 的提交规范</RouteLink> 。</p>
 </div>
 <h2 id="_4-查看提交历史" tabindex="-1"><a class="header-anchor" href="#_4-查看提交历史"><span>4. 查看提交历史</span></a></h2>
 <h3 id="功能概述-3" tabindex="-1"><a class="header-anchor" href="#功能概述-3"><span>功能概述</span></a></h3>

@@ -2,6 +2,8 @@
 title: Vue3 快速上手
 createTime: 2024/8/5 10:19:27
 permalink: /patch/vue3/
+tags:
+  - Vue
 ---
 
 ## 1. Vue3简介

@@ -2,6 +2,8 @@
 title: Vue2 快速上手
 createTime: 2024/4/21 15:41:27
 permalink: /patch/vue2/
+tags:
+  - Vue
 ---
 
 ## 1. Vue中的常用指令

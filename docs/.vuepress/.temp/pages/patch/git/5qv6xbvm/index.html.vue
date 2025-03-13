@@ -1,6 +1,6 @@
-<template><div><h2 id="引言" tabindex="-1"><a class="header-anchor" href="#引言"><span>引言</span></a></h2>
+<template><div><h2 id="概述" tabindex="-1"><a class="header-anchor" href="#概述"><span>概述</span></a></h2>
 <p>在软件开发过程中，版本控制是至关重要的一环。Git 作为目前最流行的分布式版本控制系统，为开发者提供了强大而灵活的分支管理功能。通过使用 Git 分支，团队成员可以并行开发不同的功能，同时保持代码库的整洁和可维护性。本文将全面总结 Git 分支的相关知识，包括底层原理、常用用法和命令。</p>
-<h2 id="底层原理" tabindex="-1"><a class="header-anchor" href="#底层原理"><span>底层原理</span></a></h2>
+<h2 id="_1-底层原理" tabindex="-1"><a class="header-anchor" href="#_1-底层原理"><span>1. 底层原理</span></a></h2>
 <h3 id="什么是-git-分支" tabindex="-1"><a class="header-anchor" href="#什么是-git-分支"><span>什么是 Git 分支</span></a></h3>
 <p>在 Git 中，分支本质上是一个指向某个提交对象的可变指针。每次提交时，Git 会创建一个新的提交对象，该对象包含了本次提交的元数据（如作者、提交时间、提交信息等）以及指向父提交对象的引用。而分支就是一个指向这些提交对象的指针，它可以随着新的提交而移动。</p>
 <h3 id="分支的创建与移动" tabindex="-1"><a class="header-anchor" href="#分支的创建与移动"><span>分支的创建与移动</span></a></h3>
@@ -19,7 +19,7 @@
 <li><strong>快进合并</strong>：如果目标分支在创建新分支后没有进行新的提交，那么在合并时，Git 会直接将目标分支的指针向前移动到新分支的位置，这种合并方式称为快进合并。</li>
 <li><strong>三方合并</strong>：如果目标分支在创建新分支后也有了新的提交，那么 Git 会使用三方合并算法。该算法会找到两个分支的共同祖先提交对象，然后将两个分支的修改合并到一起，生成一个新的合并提交对象。</li>
 </ul>
-<h2 id="常用用法" tabindex="-1"><a class="header-anchor" href="#常用用法"><span>常用用法</span></a></h2>
+<h2 id="_2-常用用法" tabindex="-1"><a class="header-anchor" href="#_2-常用用法"><span>2. 常用用法</span></a></h2>
 <h3 id="创建分支" tabindex="-1"><a class="header-anchor" href="#创建分支"><span>创建分支</span></a></h3>
 <p>创建新分支的命令非常简单，使用 <code v-pre>git branch</code> 命令即可：</p>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> branch</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> new-feature</span></span></code></pre>
@@ -57,7 +57,7 @@
 </div><p>如果分支上的修改还没有合并到主分支，使用 <code v-pre>-d</code> 选项会提示删除失败。此时可以使用 <code v-pre>-D</code> 选项强制删除分支：</p>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> branch</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -D</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> new-feature</span></span></code></pre>
 
-</div><h2 id="常用命令总结" tabindex="-1"><a class="header-anchor" href="#常用命令总结"><span>常用命令总结</span></a></h2>
+</div><h2 id="_3-常用命令总结" tabindex="-1"><a class="header-anchor" href="#_3-常用命令总结"><span>3. 常用命令总结</span></a></h2>
 <table>
 <thead>
 <tr>
