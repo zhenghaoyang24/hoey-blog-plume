@@ -34,7 +34,8 @@
 </div><p>从 Git 2.23 版本开始，也可以使用 <code v-pre>git switch</code> 命令来切换分支，它的语法更加直观：</p>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> switch</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> new-feature</span></span></code></pre>
 
-</div><h3 id="查看分支" tabindex="-1"><a class="header-anchor" href="#查看分支"><span>查看分支</span></a></h3>
+</div><p>查看 <RouteLink to="/notes/patch/Git/switch%E4%B8%8Echeckout.html">checkout 与 switch 的一些区别</RouteLink>。</p>
+<h3 id="查看分支" tabindex="-1"><a class="header-anchor" href="#查看分支"><span>查看分支</span></a></h3>
 <p>使用 <code v-pre>git branch</code> 命令可以查看本地仓库中的所有分支：</p>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> branch</span></span></code></pre>
 
@@ -56,6 +57,17 @@
 
 </div><p>如果分支上的修改还没有合并到主分支，使用 <code v-pre>-d</code> 选项会提示删除失败。此时可以使用 <code v-pre>-D</code> 选项强制删除分支：</p>
 <div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> branch</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -D</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> new-feature</span></span></code></pre>
+
+</div><h3 id="同步远程分支" tabindex="-1"><a class="header-anchor" href="#同步远程分支"><span>同步远程分支</span></a></h3>
+<p>若远程仓库拥有一个新分支，可以使用 <code v-pre>git fetch</code> 命令同步到本地。</p>
+<p>首先获取远程所有分支：</p>
+<div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> fetch</span></span></code></pre>
+
+</div><p>查看所有远程分支，找到需要的远程分支，例如 origin/dev：</p>
+<div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> branch</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -r</span></span></code></pre>
+
+</div><p>在本地新建一个同名分支，然后系统会自动与该远程分支关联：</p>
+<div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> checkout</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> dev</span></span></code></pre>
 
 </div><h2 id="_3-常用命令总结" tabindex="-1"><a class="header-anchor" href="#_3-常用命令总结"><span>3. 常用命令总结</span></a></h2>
 <table>
