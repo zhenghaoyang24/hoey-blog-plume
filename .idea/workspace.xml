@@ -17,7 +17,6 @@
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/iconify.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/iconify.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/sidebar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22032301/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22032301/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22041901/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22041901/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.js" afterDir="false" />
@@ -39,8 +38,8 @@
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24123101/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24123101/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/lifetime/record/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/lifetime/record/index.html.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/styles/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/styles/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/components/HomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/components/HomePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +75,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "G:/200-Project/hoey-blog-plume",
+    "last_opened_file_path": "G:/200-Project/webgames",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -384,7 +383,8 @@
       <workItem from="1742134908016" duration="142000" />
       <workItem from="1742187343166" duration="1287000" />
       <workItem from="1742191867135" duration="8000" />
-      <workItem from="1742265132059" duration="3726000" />
+      <workItem from="1742265132059" duration="3886000" />
+      <workItem from="1742278534324" duration="4765000" />
     </task>
     <servers />
   </component>

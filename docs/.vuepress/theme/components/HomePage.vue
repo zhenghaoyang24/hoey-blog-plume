@@ -1,12 +1,27 @@
 <template>
   <div class="container">
     <canvas ref="canvasRef"></canvas>
-    <h1 class="title">老师我太想进步了。</h1>
+    <div class="home-title">
+      <div class="home-title-name" v-if="name">{{name}}</div>
+      <div class="home-title-tagline" v-if="tagline">{{tagline}}</div>
+      <div class="home-title-text" v-if="text">{{text}}</div>
+      <div class="home-action">
+        <a class="vp-button brand medium btn-center" href="/blog/"><Blog />&nbsp;博客</a>
+        <a class="vp-button medium alt btn-center"href="https://github.com/zhenghaoyang24" target="_blank">
+          <GitHub />&nbsp;GitHub</a>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import GitHub from "./icon/GitHub.vue";
+import Blog from "./icon/Blog.vue";
+
+const name = ref<string | null>('老师，我太想进步了.')
+const tagline = ref<string | null>()
+const text = ref<string | null>('Teacher, I\'m on fire to improve!')
 
 interface Comet {
   direction: 'horizontal' | 'vertical'
@@ -130,8 +145,8 @@ const drawComet = (comet: Comet) => {
 
     const gradient = context.createLinearGradient(x - length, y, x, y)
     gradient.addColorStop(0, 'rgba(80, 134, 161, 0)')
-    gradient.addColorStop(0.4, '#5086a1')
-    gradient.addColorStop(1, 'rgba(80, 134, 161, 0)')
+    gradient.addColorStop(0.4, 'rgba(80,134,161,0.3)')
+    gradient.addColorStop(1, '#4483a2')
 
     context.strokeStyle = gradient
     context.beginPath()
@@ -144,8 +159,8 @@ const drawComet = (comet: Comet) => {
 
     const gradient = context.createLinearGradient(x, y - length, x, y)
     gradient.addColorStop(0, 'rgba(80, 134, 161, 0)')
-    gradient.addColorStop(0.4, '#5086a1')
-    gradient.addColorStop(1, 'rgba(80, 134, 161, 0)')
+    gradient.addColorStop(0.4, 'rgba(80,134,161,0.3)')
+    gradient.addColorStop(1, '#4483a2')
 
     context.strokeStyle = gradient
     context.beginPath()
@@ -190,28 +205,110 @@ onUnmounted(() => {
   display: flex;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-x:hidden;
+  overflow-y:hidden;
 }
 
 canvas {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -1px;
+  left: -1px;
   pointer-events: none; /* 允许鼠标事件穿透 */
+  overflow: hidden;
 }
 
-.title {
+.home-title {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 4em;
-  font-weight: 900;
-  line-height: 1.25;
-  background: var(--vp-bg-home-hero-name, linear-gradient(315deg, var(--vp-c-purple-1) 15%, var(--vp-c-brand-2) 65%, var(--vp-c-brand-2) 100%));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .home-title-name{
+    font-size: 5em;
+    font-weight: 900;
+    line-height: 1.25;
+    background: var(--vp-bg-home-hero-name, linear-gradient(315deg, var(--vp-c-purple-1) 15%, var(--vp-c-brand-2) 65%, var(--vp-c-brand-2) 100%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    @media (max-width: 960px) {
+      font-size: 4em;
+    }
+    @media (max-width: 768px) {
+        font-size: 3em;
+    }
+  }
+  .home-title-tagline{
+    color: var(--vp-c-home-hero-tagline, var(--vp-c-text-2));
+    transition: color var(--vp-t-color);
+    font-weight: 900;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    font-size: 4em;
+    @media (max-width: 960px) {
+      font-size: 3em;
+    }
+  }
+  .home-title-text{
+    font-size: 1.5em;
+    margin: 18px 0 0;
+    font-weight: 500;
+    color: var(--vp-c-home-hero-text, var(--vp-c-text-3));
+    white-space: pre-wrap;
+    transition: color var(--vp-t-color);
+  }
+
+}
+.home-action{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 30px 0 0;
+  gap: 16px 24px;
+  align-items: center;
+}
+.vp-button{
+  display: inline-block;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition: var(--vp-t-color);
+  transition-property: border, color, background-color;
+}
+.medium{
+  padding: 0 20px;
+  font-size: 14px;
+  line-height: 38px;
+  border-radius: 20px;
+}
+.brand{
+  color: var(--vp-button-brand-text);
+  background-color: var(--vp-button-brand-bg);
+  border-color: var(--vp-button-brand-border);
+  &:hover{
+    color: var(--vp-button-brand-hover-text);
+    background-color: var(--vp-button-brand-hover-bg);
+    border-color: var(--vp-button-brand-hover-border);
+  }
+}
+.alt{
+  color: var(--vp-button-alt-text);
+  background-color: var(--vp-button-alt-bg);
+  border-color: var(--vp-button-alt-border);
+  &:hover{
+    color: var(--vp-button-alt-hover-text);
+    background-color: var(--vp-button-alt-hover-bg);
+    border-color: var(--vp-button-alt-hover-border);
+  }
+}
+.btn-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 @keyframes glow {
