@@ -2,12 +2,12 @@
 pageLayout: home
 externalLinkIcon: false
 config:
-  - type: HomePage
+  - type: hero
     full: true
     background: tint-plate
     hero: 
       name: 老师，我太想进步了。
-      tagline: Hoey
+      tagline: 
       text: Teacher, I'm on fire to improve!
       actions:
         -
