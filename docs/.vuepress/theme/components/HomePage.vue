@@ -6,7 +6,7 @@
       <div class="home-title-tagline" v-if="tagline">{{tagline}}</div>
       <div class="home-title-text" v-if="text">{{text}}</div>
       <div class="home-action">
-        <a class="vp-button brand medium btn-center" href="/blog/"><Blog />&nbsp;博客</a>
+        <router-link to="/blog/" class="vp-button brand medium btn-center"><Blog />&nbsp;博客</router-link>
         <a class="vp-button medium alt btn-center"href="https://github.com/zhenghaoyang24" target="_blank">
           <GitHub />&nbsp;GitHub</a>
       </div>
