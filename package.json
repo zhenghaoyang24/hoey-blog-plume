@@ -1,10 +1,8 @@
 {
-  "name": "hoey-blog",
+  "name": "hoey-blog-plume",
   "type": "module",
-  "version": "1.0.0",
   "description": "Hoey's blog.",
   "author": "zhenghaoyang24 <zhenghaoyang24@foxmail.com>",
-  "license": "MIT",
   "engines": {
     "node": "^18.20.0 || >=20.0.0"
   },
@@ -21,12 +19,12 @@
     "markmap-lib": "^0.18.11",
     "markmap-toolbar": "^0.18.10",
     "markmap-view": "^0.18.10",
-    "sass-embedded": "^1.85.1",
+    "sass-embedded": "^1.86.0",
     "vue": "^3.5.13",
     "vuepress": "2.0.0-rc.20",
-    "vuepress-theme-plume": "1.0.0-rc.135"
+    "vuepress-theme-plume": "1.0.0-rc.137"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.313"
+    "@iconify/json": "^2.2.320"
   }
 }
