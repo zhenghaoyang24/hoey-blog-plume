@@ -1,6 +1,6 @@
 import "./chunk-G3PMV62Z.js";
 
-// node_modules/markmap-toolbar/dist/index.mjs
+// node_modules/.pnpm/markmap-toolbar@0.18.10_markmap-common@0.18.9/node_modules/markmap-toolbar/dist/index.mjs
 var VTYPE_ELEMENT = 1;
 var VTYPE_FUNCTION = 2;
 var SVG_NS = "http://www.w3.org/2000/svg";

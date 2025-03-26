@@ -9,11 +9,31 @@
     <div class="about-me">
       <div class="about-me-asymmetric-row">
         <AboutMeName/>
-        <AboutMeMotto/>
+        <AboutMeText>
+          <template #motto>
+            <slot name="motto">
+              <p class="about-me-card-title-normal">座右铭</p>
+              <p class="about-me-card-text-big">老师，</p>
+              <p class="about-me-card-text-big about-me-card-text-color">我太想进步了。</p>
+            </slot>
+          </template>
+        </AboutMeText>
       </div>
       <div class="about-me-asymmetric-row">
         <AboutMeSkill/>
+        <AboutMeLife/>
+      </div>
+      <div class="about-me-symmetric-row">
         <AboutMeCharacter/>
+        <AboutMeText>
+          <template #motto>
+            <slot name="motto">
+              <p class="about-me-card-title-normal">追求</p>
+              <p class="about-me-card-text-big about-me-card-text-soft">用心去<span style="color: #3a5ccc">感受</span></p>
+              <p class="about-me-card-text-big">用热爱去<span style="color: #d53737">创造</span></p>
+            </slot>
+          </template>
+        </AboutMeText>
       </div>
     </div>
   </div>
@@ -56,7 +76,7 @@ canvas {
     cursor: pointer;
     font-size: 30px;
     margin: 20px;
-    transition: transform 0.2s;
+    transition: transform 0.2s,color 0.3s;
     color: var(--vp-c-text-2);
     &:hover{
       color: var(--vp-c-brand-1);
@@ -66,6 +86,7 @@ canvas {
 }
 
 .about-me{
+  max-width: 1380px;
   margin: 0 auto;
   width: 90%;
 }
@@ -81,42 +102,29 @@ canvas {
   }
 }
 
+.about-me-symmetric-row{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  @media screen and (max-width: 770px) {
+    display: flex;
+    flex-direction: column;
 
-
-
-.home-title-name {
-  font-size: 5em;
-  font-weight: 900;
-  line-height: 1.25;
-  background: var(--vp-bg-home-hero-name, linear-gradient(315deg, var(--vp-c-purple-1) 15%, var(--vp-c-brand-2) 65%, var(--vp-c-brand-2) 100%));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  @media (max-width: 960px) {
-    font-size: 4em;
-  }
-  @media (max-width: 768px) {
-    font-size: 3em;
   }
 }
 
-@keyframes glow {
-  0%, 100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.7); }
-  50% { text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 50px rgba(255, 255, 255, 0.7); }
-}
+
 </style>
 
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import AboutMeName from "./AboutMeName.vue";
-import AboutMeMotto from "./AboutMeMotto.vue";
+import AboutMeText from "./AboutMeText.vue";
 import AboutMeSkill from "./AboutMeSkill.vue";
 import AboutMeCharacter from "./AboutMeCharacter.vue";
-
-const name = ref<string | null>('老师，我太想进步了.')
-const tagline = ref<string | null>()
-const text = ref<string | null>('Teacher, I\'m on fire to improve!')
+import AboutMeLife from "./AboutMeLife.vue";
 
 interface Comet {
   direction: 'horizontal' | 'vertical'
@@ -140,18 +148,6 @@ const initCanvas = () => {
   ctx.value = canvas.getContext('2d')
   resizeCanvas()
   window.addEventListener('resize', resizeCanvas)
-
-  // 鼠标移动监听
-  canvas.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect()
-    mouseX.value = e.clientX - rect.left
-    mouseY.value = e.clientY - rect.top
-  })
-
-  canvas.addEventListener('mouseleave', () => {
-    mouseX.value = -1
-    mouseY.value = -1
-  })
 }
 
 const resizeCanvas = () => {
@@ -209,7 +205,7 @@ const drawGrid = () => {
   }
 }
 
-// 保持原有彗星相关函数不变
+// 彗星函数
 const createComet = () => {
   const direction = Math.random() > 0.5 ? 'horizontal' : 'vertical'
   const maxPosition = direction === 'horizontal'
@@ -285,7 +281,7 @@ const animate = () => {
 onMounted(() => {
   initCanvas()
   animate()
-  setInterval(createComet, 1300)
+  setInterval(createComet, 1000)
 })
 
 onUnmounted(() => {

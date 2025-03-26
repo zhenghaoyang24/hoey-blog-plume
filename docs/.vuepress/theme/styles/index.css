@@ -12,7 +12,8 @@
     --main-border-shadow: #2c2d300c;
     /*主页 卡片 hover 颜色*/
     --about-card-hover-bg: rgba(100, 190, 190, 0.8);
-
+    /*主页 按钮 背景*/
+    --home-action-bnt-bg:rgb(235, 235, 239);
 
 
     /*文章背景线条颜色*/
@@ -30,6 +31,7 @@
     --main-card-border: #3d3d3f;
     --main-border-shadow: #00000050;
     --about-card-hover-bg: rgba(100, 190, 190, 0.8);
+    --home-action-bnt-bg:rgb(50, 54, 63);
     --vp-doc-blog-bg: rgba(30, 120, 120, 0.05);
     --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.4);
     --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.15);
@@ -94,13 +96,17 @@
     font-size: 36px;
     font-weight: 700;
     line-height: 1.1;
+    @media screen and (max-width: 770px) {
+        font-size: 24px;
+        margin: 7px 0;
+    }
 }
 /*卡片 暗色 text*/
 .about-me-card-text-soft{
     color: var(--vp-c-text-2);
 }
 .about-me-card-text-color{
-    background: var(--vp-bg-home-hero-name, linear-gradient(315deg, var(--vp-c-purple-1) 15%, var(--vp-c-brand-2) 65%, var(--vp-c-brand-2) 100%));
+    background: var(--vp-bg-home-hero-name, linear-gradient(315deg, var(--vp-c-purple-1) 10%, var(--vp-c-brand-2) 75%, var(--vp-c-brand-2) 100%));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

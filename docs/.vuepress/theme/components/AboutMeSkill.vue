@@ -7,17 +7,21 @@
     <!-- 第一行向左移动 -->
     <div class="marquee-row first-row">
       <div class="marquee-content">
-        <span v-for="(item, index) in technology" :key="index"> <icon :name="item" /> </span>
-        <span v-for="(item, index) in technology" :key="index + technology.length"><icon :name="item" /></span>
+        <span v-for="(item, index) in technology" :key="index"> <icon :name="item.icon" /> </span>
+        <span v-for="(item, index) in technology" :key="index + technology.length"><icon :name="item.icon" /></span>
       </div>
     </div>
-
     <!-- 第二行向右移动 -->
     <div class="marquee-row second-row">
       <div class="marquee-content">
-        <span v-for="(item, index) in tools" :key="index"><icon :name="item" /></span>
-        <span v-for="(item, index) in tools" :key="index + tools.length"><icon :name="item" /></span>
+        <span v-for="(item, index) in tools" :key="index"><icon :name="item.icon" /></span>
+        <span v-for="(item, index) in tools" :key="index + tools.length"><icon :name="item.icon" /></span>
       </div>
+    </div>
+
+    <div class="about-me-skill-detail">
+      <span v-for="(item, index) in technology" :key="index"> <icon :name="item.icon" /> <span>{{item.type}}</span>  </span>
+      <span v-for="(item, index) in tools" :key="index"> <icon :name="item.icon" /> <span>{{item.type}}</span>  </span>
     </div>
   </div>
 </template>
@@ -25,27 +29,77 @@
 <script setup>
 import { ref } from 'vue';
 
-const technology = ref(['logos:vue', 'logos:pinia', 'vscode-icons:file-type-js', 'vscode-icons:file-type-typescriptdef',
-'logos:less','logos:css-3','logos:html-5','devicon:spring','devicon:mysql']);
-const tools = ref(['devicon:webstorm', 'devicon:maven','logos:intellij-idea', 'vscode-icons:file-type-vscode', 'devicon:vitejs',
-'devicon:netlify','logos:npm','vscode-icons:file-type-light-pnpm','material-symbols:markdown']);
+const technology = ref([
+  { type: 'Vue', icon: 'logos:vue' },
+  { type: 'Pinia', icon: 'logos:pinia' },
+  { type: 'JavaScript', icon: 'vscode-icons:file-type-js' },
+  { type: 'TypeScript', icon: 'vscode-icons:file-type-typescriptdef' },
+  { type: 'Less', icon: 'logos:less' },
+  { type: 'CSS3', icon: 'logos:css-3' },
+  { type: 'HTML5', icon: 'logos:html-5' },
+  { type: 'Spring', icon: 'devicon:spring' },
+  { type: 'MySQL', icon: 'devicon:mysql' }
+]);
+
+const tools = ref([
+  { type: 'WebStorm', icon: 'devicon:webstorm' },
+  { type: 'VSCode', icon: 'vscode-icons:file-type-vscode' },
+  { type: 'pnpm', icon: 'vscode-icons:file-type-light-pnpm' },
+  { type: 'npm', icon: 'logos:npm' },
+  { type: 'Vite', icon: 'devicon:vitejs' },
+  { type: 'IDEA', icon: 'logos:intellij-idea' },
+  { type: 'Netlify', icon: 'devicon:netlify' },
+]);
 </script>
 
 <style scoped>
 .about-me-skill{
+  position: relative;
+  min-height: 316px;
   padding: 20px 0;
+  z-index: 1;
+  &:hover .marquee-row{
+    opacity: 0;
+  }
+  &:hover .about-me-skill-detail{
+    opacity: 1;
+  }
 }
 
+.about-me-skill-detail{
+  position: absolute;
+  top: 100px;
+  opacity: 0;
+  z-index: 2;
+  display: flex;
+  padding: 0 20px;
+  transition: opacity 0.5s;
+  flex-wrap: wrap;
+  >span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 6px 6px 0;
+    border-radius: 8px;
+    padding: 7px;
+    font-size: 16px;
+    color: var(--vp-c-text-2);
+    background-color: var(--home-action-bnt-bg);
+  }
+}
 
 .marquee-row {
+  transition: opacity 0.6s 0.1s;
+  width: 105%;
+  margin-left: -6px;
   overflow: hidden;
   white-space: nowrap;
-  transform: rotateZ(-8deg);
+  transform: rotateZ(-6deg);
 }
 
 .marquee-content {
   display: inline-flex;
-  animation: marquee-left 45s linear infinite;
+  animation: marquee-left 30s linear infinite;
   >span{
     border-radius: 20%;
     align-content: center;
@@ -65,7 +119,7 @@ const tools = ref(['devicon:webstorm', 'devicon:maven','logos:intellij-idea', 'v
   margin-top: 20px;
 }
 .second-row .marquee-content {
-  animation: marquee-right 30s linear infinite;
+  animation: marquee-right 50s linear infinite;
 }
 
 @keyframes marquee-left {
@@ -77,5 +131,4 @@ const tools = ref(['devicon:webstorm', 'devicon:maven','logos:intellij-idea', 'v
   0% { transform: translateX(-50%); }
   100% { transform: translateX(0%); }
 }
-
 </style>
