@@ -7,7 +7,7 @@
       <div class="home-title-text" v-if="text">{{text}}</div>
       <div class="home-action">
         <router-link to="/blog/" class="vp-button brand medium btn-center"><Blog />&nbsp;博客</router-link>
-        <a class="vp-button medium alt btn-center"href="https://github.com/zhenghaoyang24" target="_blank">
+        <a class="vp-button medium alt btn-center" href="https://github.com/zhenghaoyang24" target="_blank">
           <GitHub />&nbsp;GitHub</a>
       </div>
     </div>
@@ -190,7 +190,7 @@ const animate = () => {
 onMounted(() => {
   initCanvas()
   animate()
-  setInterval(createComet, 1500)
+  setInterval(createComet, 1300)
 })
 
 onUnmounted(() => {

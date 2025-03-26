@@ -2,7 +2,7 @@
 pageLayout: home
 externalLinkIcon: false
 config:
-  - type: hero
+  - type: Custom
     full: true
     background: tint-plate
     hero: 

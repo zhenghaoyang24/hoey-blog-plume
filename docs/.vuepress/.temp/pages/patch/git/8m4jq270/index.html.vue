@@ -7,24 +7,20 @@
 <h3 id="分支切换" tabindex="-1"><a class="header-anchor" href="#分支切换"><span>分支切换</span></a></h3>
 <h4 id="切换到已存在的分支" tabindex="-1"><a class="header-anchor" href="#切换到已存在的分支"><span>切换到已存在的分支</span></a></h4>
 <ul>
-<li><strong>git checkout</strong>：使用该命令切换到已存在的分支，语法为 <code v-pre>git checkout &lt;branch-name&gt;</code>。<div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 切换到名为 feature-branch 的分支</span></span>
+<li><strong>git checkout</strong>：使用该命令切换到已存在的分支，语法为 <code v-pre>git checkout &lt;branch-name&gt;</code>。<div class="language-bash" data-highlighter="shiki" data-ext="bash" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 切换到名为 feature-branch 的分支</span></span>
 <span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> checkout</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> feature-branch</span></span></code></pre>
-
 </div></li>
-<li><strong>git switch</strong>：语法更加简洁易懂，同样是切换到已存在的分支，使用 <code v-pre>git switch &lt;branch-name&gt;</code>。<div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 切换到名为 feature-branch 的分支</span></span>
+<li><strong>git switch</strong>：语法更加简洁易懂，同样是切换到已存在的分支，使用 <code v-pre>git switch &lt;branch-name&gt;</code>。<div class="language-bash" data-highlighter="shiki" data-ext="bash" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 切换到名为 feature-branch 的分支</span></span>
 <span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> switch</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> feature-branch</span></span></code></pre>
-
 </div></li>
 </ul>
 <h4 id="创建并切换" tabindex="-1"><a class="header-anchor" href="#创建并切换"><span>创建并切换</span></a></h4>
 <ul>
-<li><strong>git checkout</strong>：使用 <code v-pre>-b</code> 选项来创建并切换到新分支，语法为 <code v-pre>git checkout -b &lt;new-branch-name&gt;</code>。<div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 创建并切换到名为 new-feature 的分支</span></span>
+<li><strong>git checkout</strong>：使用 <code v-pre>-b</code> 选项来创建并切换到新分支，语法为 <code v-pre>git checkout -b &lt;new-branch-name&gt;</code>。<div class="language-bash" data-highlighter="shiki" data-ext="bash" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 创建并切换到名为 new-feature 的分支</span></span>
 <span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> checkout</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -b</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> new-feature</span></span></code></pre>
-
 </div></li>
-<li><strong>git switch</strong>：使用 <code v-pre>-c</code> 选项实现相同功能，语法为 <code v-pre>git switch -c &lt;new-branch-name&gt;</code>。<div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 创建并切换到名为 new-feature 的分支</span></span>
+<li><strong>git switch</strong>：使用 <code v-pre>-c</code> 选项实现相同功能，语法为 <code v-pre>git switch -c &lt;new-branch-name&gt;</code>。<div class="language-bash" data-highlighter="shiki" data-ext="bash" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 创建并切换到名为 new-feature 的分支</span></span>
 <span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> switch</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -c</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> new-feature</span></span></code></pre>
-
 </div></li>
 </ul>
 <h3 id="处理工作区" tabindex="-1"><a class="header-anchor" href="#处理工作区"><span>处理工作区</span></a></h3>
@@ -34,13 +30,11 @@
 <ul>
 <li><code v-pre>--discard-changes</code>：丢弃工作区的未提交更改并切换分支。</li>
 </ul>
-<div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> switch</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> --discard-changes</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> feature-branch</span></span></code></pre>
-
+<div class="language-bash" data-highlighter="shiki" data-ext="bash" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> switch</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> --discard-changes</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> feature-branch</span></span></code></pre>
 </div><ul>
 <li><code v-pre>--merge</code>：尝试将工作区的更改合并到目标分支后再切换。</li>
 </ul>
-<div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> switch</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> --merge</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> feature-branch</span></span></code></pre>
-
+<div class="language-bash" data-highlighter="shiki" data-ext="bash" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> switch</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> --merge</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> feature-branch</span></span></code></pre>
 </div></li>
 </ul>
 <h3 id="其他差异" tabindex="-1"><a class="header-anchor" href="#其他差异"><span>其他差异</span></a></h3>

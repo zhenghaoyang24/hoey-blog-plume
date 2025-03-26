@@ -1,115 +1,124 @@
 {
-  "hash": "06e36a94",
-  "configHash": "18d7f43f",
-  "lockfileHash": "937d97d9",
-  "browserHash": "d0f81191",
+  "hash": "1cd6363d",
+  "configHash": "a2bac937",
+  "lockfileHash": "2f0ca868",
+  "browserHash": "ca17b258",
   "optimized": {
+    "markmap-lib": {
+      "src": "../../../../node_modules/markmap-lib/dist/browser/index.mjs",
+      "file": "markmap-lib.js",
+      "fileHash": "f6e95e5b",
+      "needsInterop": false
+    },
+    "markmap-toolbar": {
+      "src": "../../../../node_modules/markmap-toolbar/dist/index.mjs",
+      "file": "markmap-toolbar.js",
+      "fileHash": "56514a9b",
+      "needsInterop": false
+    },
+    "markmap-view": {
+      "src": "../../../../node_modules/markmap-view/dist/index.js",
+      "file": "markmap-view.js",
+      "fileHash": "fb05d246",
+      "needsInterop": false
+    },
     "mark.js/src/vanilla.js": {
       "src": "../../../../node_modules/mark.js/src/vanilla.js",
       "file": "mark__js_src_vanilla__js.js",
-      "fileHash": "5461a917",
+      "fileHash": "6f944ef0",
       "needsInterop": false
     },
     "@vueuse/integrations/useFocusTrap": {
       "src": "../../../../node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "6990324f",
+      "fileHash": "4cb1ea6f",
       "needsInterop": false
     },
     "minisearch": {
       "src": "../../../../node_modules/minisearch/dist/es/index.js",
       "file": "minisearch.js",
-      "fileHash": "4e5ea412",
-      "needsInterop": false
-    },
-    "floating-vue": {
-      "src": "../../../../node_modules/floating-vue/dist/floating-vue.mjs",
-      "file": "floating-vue.js",
-      "fileHash": "99ee5581",
-      "needsInterop": false
-    },
-    "markmap-lib": {
-      "src": "../../../../node_modules/.pnpm/markmap-lib@0.18.11_markmap-common@0.18.9/node_modules/markmap-lib/dist/browser/index.mjs",
-      "file": "markmap-lib.js",
-      "fileHash": "335c4e83",
-      "needsInterop": false
-    },
-    "markmap-toolbar": {
-      "src": "../../../../node_modules/.pnpm/markmap-toolbar@0.18.10_markmap-common@0.18.9/node_modules/markmap-toolbar/dist/index.mjs",
-      "file": "markmap-toolbar.js",
-      "fileHash": "59211b23",
-      "needsInterop": false
-    },
-    "markmap-view": {
-      "src": "../../../../node_modules/.pnpm/markmap-view@0.18.10_markmap-common@0.18.9/node_modules/markmap-view/dist/index.js",
-      "file": "markmap-view.js",
-      "fileHash": "228ee362",
+      "fileHash": "d27f0426",
       "needsInterop": false
     },
     "@vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "f8622104",
+      "fileHash": "3c9a1527",
       "needsInterop": false
     },
     "bcrypt-ts/browser": {
       "src": "../../../../node_modules/bcrypt-ts/dist/browser.mjs",
       "file": "bcrypt-ts_browser.js",
-      "fileHash": "8d4eba67",
+      "fileHash": "787e74b6",
       "needsInterop": false
     },
     "@vuepress/helper/client": {
       "src": "../../../../node_modules/@vuepress/helper/lib/client/index.js",
       "file": "@vuepress_helper_client.js",
-      "fileHash": "3fdc000c",
+      "fileHash": "b6bdb0c3",
       "needsInterop": false
     },
     "@iconify/vue": {
       "src": "../../../../node_modules/@iconify/vue/dist/iconify.mjs",
       "file": "@iconify_vue.js",
-      "fileHash": "ab693e10",
+      "fileHash": "7b3b5aa2",
       "needsInterop": false
     },
     "@iconify/vue/offline": {
       "src": "../../../../node_modules/@iconify/vue/dist/offline.mjs",
       "file": "@iconify_vue_offline.js",
-      "fileHash": "2bf1b8ba",
+      "fileHash": "050c035e",
+      "needsInterop": false
+    },
+    "@vuepress/plugin-git/client": {
+      "src": "../../../../node_modules/@vuepress/plugin-git/lib/client/index.js",
+      "file": "@vuepress_plugin-git_client.js",
+      "fileHash": "11f9a6eb",
       "needsInterop": false
     },
     "@vue/devtools-api": {
-      "src": "../../../../node_modules/.pnpm/@vue+devtools-api@7.7.2/node_modules/@vue/devtools-api/dist/index.js",
+      "src": "../../../../node_modules/@vue/devtools-api/dist/index.js",
       "file": "@vue_devtools-api.js",
-      "fileHash": "bec780f4",
+      "fileHash": "a673fec5",
       "needsInterop": false
     },
     "@vuepress/shared": {
-      "src": "../../../../node_modules/.pnpm/@vuepress+shared@2.0.0-rc.20/node_modules/@vuepress/shared/dist/index.js",
+      "src": "../../../../node_modules/@vuepress/shared/dist/index.js",
       "file": "@vuepress_shared.js",
-      "fileHash": "ad887ba6",
+      "fileHash": "71b80b19",
       "needsInterop": false
     },
     "vue": {
-      "src": "../../../../node_modules/.pnpm/vue@3.5.13_typescript@5.7.3/node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "49bb5920",
+      "fileHash": "1fe0360f",
       "needsInterop": false
     },
     "vue-router": {
-      "src": "../../../../node_modules/.pnpm/vue-router@4.5.0_vue@3.5.13_typescript@5.7.3_/node_modules/vue-router/dist/vue-router.esm-bundler.js",
+      "src": "../../../../node_modules/vue-router/dist/vue-router.esm-bundler.js",
       "file": "vue-router.js",
-      "fileHash": "50e0720b",
+      "fileHash": "245807b2",
+      "needsInterop": false
+    },
+    "echarts": {
+      "src": "../../../../node_modules/echarts/index.js",
+      "file": "echarts.js",
+      "fileHash": "f34d2f2d",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-DU4VMAI5": {
-      "file": "chunk-DU4VMAI5.js"
+    "chunk-IPDLDM6K": {
+      "file": "chunk-IPDLDM6K.js"
     },
-    "chunk-SVJYGBVH": {
-      "file": "chunk-SVJYGBVH.js"
+    "chunk-U6ZKZ7PY": {
+      "file": "chunk-U6ZKZ7PY.js"
     },
-    "chunk-3MB4FZ2E": {
-      "file": "chunk-3MB4FZ2E.js"
+    "chunk-2TW2Q2U4": {
+      "file": "chunk-2TW2Q2U4.js"
+    },
+    "chunk-LW4I4DCF": {
+      "file": "chunk-LW4I4DCF.js"
     },
     "chunk-G3PMV62Z": {
       "file": "chunk-G3PMV62Z.js"

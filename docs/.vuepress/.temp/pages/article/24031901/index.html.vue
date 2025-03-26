@@ -6,8 +6,7 @@
 <!-- more -->
 <p>以下是常见的提交规范建议：</p>
 <h3 id="_1-基础格式" tabindex="-1"><a class="header-anchor" href="#_1-基础格式"><span><strong>1. 基础格式</strong></span></a></h3>
-<div class="language-" data-ext="" data-title=""><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span>&#x3C;类型>(&#x3C;作用域>): &#x3C;主题></span></span></code></pre>
-
+<div class="language-" data-highlighter="shiki" data-ext="" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span>&#x3C;类型>(&#x3C;作用域>): &#x3C;主题></span></span></code></pre>
 </div><ul>
 <li><strong>类型</strong>：说明提交的类别（必填）</li>
 <li><strong>作用域</strong>：可选，说明影响的范围（如模块、组件）</li>
@@ -76,7 +75,7 @@
 </ul>
 <hr>
 <h3 id="_5-示例" tabindex="-1"><a class="header-anchor" href="#_5-示例"><span><strong>5. 示例</strong></span></a></h3>
-<div class="language-bash line-numbers-mode" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 标准提交</span></span>
+<div class="language-bash line-numbers-mode" data-highlighter="shiki" data-ext="bash" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 标准提交</span></span>
 <span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> commit</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -m</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77"> "</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">feat(user): 新增用户注册功能</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 带作用域的修复</span></span>
@@ -87,7 +86,6 @@
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD"># 代码重构</span></span>
 <span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> commit</span><span style="--shiki-light:#A65E2B;--shiki-dark:#C99076"> -m</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77"> "</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D">refactor(utils): 优化日期格式化函数</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77">"</span></span></code></pre>
-
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><hr>
 <h3 id="_6-避免的写法" tabindex="-1"><a class="header-anchor" href="#_6-避免的写法"><span><strong>6. 避免的写法</strong></span></a></h3>
 <ul>
@@ -98,17 +96,15 @@
 <hr>
 <h3 id="_7-复杂提交建议" tabindex="-1"><a class="header-anchor" href="#_7-复杂提交建议"><span><strong>7. 复杂提交建议</strong></span></a></h3>
 <p>如果提交需要详细说明，建议省略 <code v-pre>-m</code> 直接进入编辑器编写多行信息：</p>
-<div class="language-bash" data-ext="bash" data-title="bash"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> commit</span></span></code></pre>
-
+<div class="language-bash" data-highlighter="shiki" data-ext="bash" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">git</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> commit</span></span></code></pre>
 </div><p>格式示例：</p>
-<div class="language-" data-ext="" data-title=""><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span>feat(dashboard): 新增数据统计面板</span></span>
+<div class="language-" data-highlighter="shiki" data-ext="" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span>feat(dashboard): 新增数据统计面板</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>- 添加用户活跃度图表</span></span>
 <span class="line"><span>- 集成实时数据 API</span></span>
 <span class="line"><span>- 优化图表响应式布局</span></span>
 <span class="line"><span></span></span>
 <span class="line"><span>Closes #123</span></span></code></pre>
-
 </div><hr>
 <p>遵循规范能让团队协作更高效，也方便通过 <code v-pre>git log</code> 快速追踪变更历史。</p>
 </div></template>

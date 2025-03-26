@@ -16,10 +16,10 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-3MB4FZ2E.js";
+} from "./chunk-LW4I4DCF.js";
 import "./chunk-G3PMV62Z.js";
 
-// node_modules/.pnpm/@vue+devtools-api@6.6.4/node_modules/@vue/devtools-api/lib/esm/env.js
+// node_modules/vue-router/node_modules/@vue/devtools-api/lib/esm/env.js
 function getDevtoolsGlobalHook() {
   return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
 }
@@ -28,11 +28,11 @@ function getTarget() {
 }
 var isProxyAvailable = typeof Proxy === "function";
 
-// node_modules/.pnpm/@vue+devtools-api@6.6.4/node_modules/@vue/devtools-api/lib/esm/const.js
+// node_modules/vue-router/node_modules/@vue/devtools-api/lib/esm/const.js
 var HOOK_SETUP = "devtools-plugin:setup";
 var HOOK_PLUGIN_SETTINGS_SET = "plugin:settings:set";
 
-// node_modules/.pnpm/@vue+devtools-api@6.6.4/node_modules/@vue/devtools-api/lib/esm/time.js
+// node_modules/vue-router/node_modules/@vue/devtools-api/lib/esm/time.js
 var supported;
 var perf;
 function isPerformanceSupported() {
@@ -55,7 +55,7 @@ function now() {
   return isPerformanceSupported() ? perf.now() : Date.now();
 }
 
-// node_modules/.pnpm/@vue+devtools-api@6.6.4/node_modules/@vue/devtools-api/lib/esm/proxy.js
+// node_modules/vue-router/node_modules/@vue/devtools-api/lib/esm/proxy.js
 var ApiProxy = class {
   constructor(plugin, hook) {
     this.target = null;
@@ -155,7 +155,7 @@ var ApiProxy = class {
   }
 };
 
-// node_modules/.pnpm/@vue+devtools-api@6.6.4/node_modules/@vue/devtools-api/lib/esm/index.js
+// node_modules/vue-router/node_modules/@vue/devtools-api/lib/esm/index.js
 function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
   const descriptor = pluginDescriptor;
   const target = getTarget();
@@ -177,7 +177,7 @@ function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
   }
 }
 
-// node_modules/.pnpm/vue-router@4.5.0_vue@3.5.13_typescript@5.7.3_/node_modules/vue-router/dist/vue-router.mjs
+// node_modules/vue-router/dist/vue-router.mjs
 var isBrowser = typeof document !== "undefined";
 function isRouteComponent(component) {
   return typeof component === "object" || "displayName" in component || "props" in component || "__vccOpts" in component;

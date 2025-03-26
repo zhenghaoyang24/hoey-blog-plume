@@ -6,14 +6,6 @@ import { JSXInternal } from '../../src/jsx';
 import * as _Suspense from './suspense';
 import * as _SuspenseList from './suspense-list';
 
-interface SignalLike<T> {
-	value: T;
-	peek(): T;
-	subscribe(fn: (value: T) => void): () => void;
-}
-
-type Signalish<T> = T | SignalLike<T>;
-
 // export default React;
 export = React;
 export as namespace React;
@@ -84,7 +76,7 @@ declare namespace React {
 	export interface HTMLAttributes<T extends EventTarget>
 		extends JSXInternal.HTMLAttributes<T> {}
 	export interface HTMLProps<T extends EventTarget>
-		extends JSXInternal.HTMLAttributes<T>,
+		extends JSXInternal.AllHTMLAttributes<T>,
 			preact.ClassAttributes<T> {}
 	export interface AllHTMLAttributes<T extends EventTarget>
 		extends JSXInternal.AllHTMLAttributes<T> {}
@@ -98,6 +90,8 @@ declare namespace React {
 	interface SVGAttributes extends JSXInternal.SVGAttributes {}
 
 	interface ReactSVG extends JSXInternal.IntrinsicSVGElements {}
+
+	export import AriaAttributes = JSXInternal.AriaAttributes;
 
 	export import HTMLAttributeReferrerPolicy = JSXInternal.HTMLAttributeReferrerPolicy;
 	export import HTMLAttributeAnchorTarget = JSXInternal.HTMLAttributeAnchorTarget;
@@ -172,6 +166,7 @@ declare namespace React {
 	export import TransitionEvent = JSXInternal.TargetedTransitionEvent;
 
 	// Event Handler Types
+	export import EventHandler = JSXInternal.EventHandler;
 	export import ChangeEventHandler = JSXInternal.GenericEventHandler;
 	export import ClipboardEventHandler = JSXInternal.ClipboardEventHandler;
 	export import CompositionEventHandler = JSXInternal.CompositionEventHandler;
@@ -250,7 +245,15 @@ declare namespace React {
 		ref?: preact.Ref<R> | undefined;
 	}
 
+	/**
+	 * @deprecated Please use `ForwardRefRenderFunction` instead.
+	 */
 	export interface ForwardFn<P = {}, T = any> {
+		(props: P, ref: ForwardedRef<T>): preact.ComponentChild;
+		displayName?: string;
+	}
+
+	export interface ForwardRefRenderFunction<T = any, P = {}> {
 		(props: P, ref: ForwardedRef<T>): preact.ComponentChild;
 		displayName?: string;
 	}
@@ -261,7 +264,7 @@ declare namespace React {
 	}
 
 	export function forwardRef<R, P = {}>(
-		fn: ForwardFn<P, R>
+		fn: ForwardRefRenderFunction<R, P>
 	): preact.FunctionalComponent<PropsWithoutRef<P> & { ref?: preact.Ref<R> }>;
 
 	export type PropsWithoutRef<P> = Omit<P, 'ref'>;

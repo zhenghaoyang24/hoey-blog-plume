@@ -21,8 +21,7 @@
 <h2 id="html5的doctype声明" tabindex="-1"><a class="header-anchor" href="#html5的doctype声明"><span>HTML5的DOCTYPE声明</span></a></h2>
 <p>HTML5的 不需要对 DTD 进行引用。但是需要 DOCTYPE 来规范浏览器的行为。
 所以HTML的DOCTYPE 声明为</p>
-<div class="language-html" data-ext="html" data-title="html"><button class="copy" title="复制代码" data-copied="已复制"></button><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;!</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">doctype</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A"> html</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span></code></pre>
-
+<div class="language-html" data-highlighter="shiki" data-ext="html" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;!</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">doctype</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A"> html</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span></code></pre>
 </div><h2 id="什么是-dtd" tabindex="-1"><a class="header-anchor" href="#什么是-dtd"><span>什么是 DTD？</span></a></h2>
 <p>DTD 全称： <code v-pre>Document Type Definition (文档类型定义)</code>，是一组机器可读的规则。</p>
 <p>DTD 定义了 XML 或者 HTML 的特定版本中所有允许元素和它们的属性和层级关系的定义。
