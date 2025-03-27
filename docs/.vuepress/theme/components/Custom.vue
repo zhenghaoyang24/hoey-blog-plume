@@ -89,6 +89,9 @@ canvas {
   max-width: 1380px;
   margin: 0 auto;
   width: 90%;
+  @media screen and (max-width: 770px) {
+    width: 95%;
+  }
 }
 .about-me-asymmetric-row{
   margin-top: 20px;

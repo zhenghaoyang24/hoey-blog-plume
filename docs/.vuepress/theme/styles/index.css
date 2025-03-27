@@ -45,29 +45,25 @@
 }
 /*文章背景*/
 .vp-doc-container {
-    background-image:
-            linear-gradient(90deg, var(--vp-doc-blog-bg) 5%, transparent 0),
-            linear-gradient(1turn, var(--vp-doc-blog-bg) 5%, transparent 0);
-    background-position: 90%;
-    background-size: 20px 20px;
-}
-/*博客页面 单个卡片效果*/
-.vp-blog-post-item{
-    transition: box-shadow 0.2s ease-out,border-color 0.2s ease-out!important;
-    border: 1px rgba(255, 0, 0, 0) solid;
-    &:hover{
-        box-shadow: 0 0 7px 2px var(--vp-blog-post-item-hover-shadow)!important;
-        border: 1px var(--vp-blog-post-item-hover-border) solid;
-    }
-}
-/*博客页面背景*/
-.vp-blog{
     background: radial-gradient(farthest-side at -33.33% 50%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%) 0
     calc(100px / 2),
     radial-gradient(farthest-side at 50% 133.33%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%) calc(100px / 2) 0,
     radial-gradient(farthest-side at 133.33% 50%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%),
     radial-gradient(farthest-side at 50% -33.33%, #0000 52%, var(--vp-doc-blog-bg) 54% 57%, #0000 59%), rgba(103, 145, 122, 0);
     background-size: calc(100px / 4.667) 100px, 100px calc(100px / 4.667);
+}
+/*博客页面 单个卡片效果*/
+.vp-blog-post-item{
+    @media screen and (max-width: 770px) {
+        margin: 0 0!important;
+        border-radius: 10px;
+    }
+    transition: box-shadow 0.2s ease-out,border-color 0.2s ease-out!important;
+    border: 1px rgba(255, 0, 0, 0) solid;
+    &:hover{
+        box-shadow: 0 0 7px 2px var(--vp-blog-post-item-hover-shadow)!important;
+        border: 1px var(--vp-blog-post-item-hover-border) solid;
+    }
 }
 
 /*
