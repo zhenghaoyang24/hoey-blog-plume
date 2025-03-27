@@ -7,7 +7,7 @@
       <a href="mailto:zhenghaoyang24@foxmail.com" target="_blank" class="head-social-btn"><icon class="head-social-btn" name="ic:baseline-email"></icon></a>
     </div>
     <div class="about-me">
-      <div class="about-me-asymmetric-row">
+      <div class="about-me-3-2-row">
         <AboutMeName/>
         <AboutMeText>
           <template #motto>
@@ -19,11 +19,11 @@
           </template>
         </AboutMeText>
       </div>
-      <div class="about-me-asymmetric-row">
+      <div class="about-me-3-2-row">
         <AboutMeSkill/>
         <AboutMeLife/>
       </div>
-      <div class="about-me-symmetric-row">
+      <div class="about-me-1-1-row">
         <AboutMeText>
           <template #motto>
             <slot name="motto">
@@ -34,6 +34,9 @@
           </template>
         </AboutMeText>
         <AboutMeCharacter/>
+      </div>
+      <div class="about-me-1-row">
+        <AboutMeFriendLink/>
       </div>
     </div>
   </div>
@@ -93,7 +96,7 @@ canvas {
     width: 94%;
   }
 }
-.about-me-asymmetric-row{
+.about-me-3-2-row{
   margin-top: 20px;
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -105,7 +108,7 @@ canvas {
   }
 }
 
-.about-me-symmetric-row{
+.about-me-1-1-row{
   margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -113,7 +116,16 @@ canvas {
   @media screen and (max-width: 770px) {
     display: flex;
     flex-direction: column;
-
+  }
+}
+.about-me-1-row{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  @media screen and (max-width: 770px) {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -128,6 +140,7 @@ import AboutMeText from "./AboutMeText.vue";
 import AboutMeSkill from "./AboutMeSkill.vue";
 import AboutMeCharacter from "./AboutMeCharacter.vue";
 import AboutMeLife from "./AboutMeLife.vue";
+import AboutMeFriendLink from "./AboutMeFriendLink.vue";
 
 interface Comet {
   direction: 'horizontal' | 'vertical'

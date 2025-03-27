@@ -23,6 +23,7 @@ export const navbar = defineNavbarConfig([
     {
         text: '更多',
         items: [
+            {text:'友情链接', link: '/notes/more/friends.md',icon:'game-icons:three-friends'},
             {text:'我的项目', link: '/notes/more/projects.md',icon:'codicon:github-project'},
             {text:'网址导航', link: '/notes/more/site.md',icon:'dashicons:admin-site-alt3'},
         ],
