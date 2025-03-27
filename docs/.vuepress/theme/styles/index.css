@@ -105,6 +105,7 @@
 .about-me-card-text-soft{
     color: var(--vp-c-text-2);
 }
+/*卡片 彩色 text*/
 .about-me-card-text-color{
     background: var(--vp-bg-home-hero-name, linear-gradient(315deg, var(--vp-c-purple-1) 10%, var(--vp-c-brand-2) 75%, var(--vp-c-brand-2) 100%));
     -webkit-background-clip: text;

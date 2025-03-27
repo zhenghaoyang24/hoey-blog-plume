@@ -35,7 +35,7 @@ onMounted(() => {
       {
         name: '我的日常',
         type: 'pie',
-        radius: ['50%', '90%'],
+        radius: ['50%', '80%'],
         center: ['50%', '60%'],
         startAngle: 180,
         endAngle: 360,

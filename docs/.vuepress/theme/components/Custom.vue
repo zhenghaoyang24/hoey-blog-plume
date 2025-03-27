@@ -24,7 +24,6 @@
         <AboutMeLife/>
       </div>
       <div class="about-me-symmetric-row">
-        <AboutMeCharacter/>
         <AboutMeText>
           <template #motto>
             <slot name="motto">
@@ -34,6 +33,7 @@
             </slot>
           </template>
         </AboutMeText>
+        <AboutMeCharacter/>
       </div>
     </div>
   </div>

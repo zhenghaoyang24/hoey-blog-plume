@@ -21,7 +21,6 @@
 
     <div class="about-me-skill-detail">
       <span v-for="(item, index) in technology" :key="index"> <icon :name="item.icon" /> <span>{{item.type}}</span>  </span>
-      <span v-for="(item, index) in tools" :key="index"> <icon :name="item.icon" /> <span>{{item.type}}</span>  </span>
     </div>
   </div>
 </template>
@@ -37,7 +36,10 @@ const technology = ref([
   { type: 'Less', icon: 'logos:less' },
   { type: 'CSS3', icon: 'logos:css-3' },
   { type: 'HTML5', icon: 'logos:html-5' },
+  { type: 'Java', icon: 'vscode-icons:file-type-java' },
+  { type: 'C/C++', icon: 'vscode-icons:file-type-cpp2' },
   { type: 'Spring', icon: 'devicon:spring' },
+  { type: 'Python', icon: 'material-icon-theme:python' },
   { type: 'MySQL', icon: 'devicon:mysql' }
 ]);
 

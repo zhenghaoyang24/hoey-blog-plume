@@ -5,46 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bb704c9-5977-48db-a438-c6066c945fcd" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/.vuepress/theme/components/AboutMeText.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@iconify_vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@iconify_vue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@iconify_vue_offline.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@iconify_vue_offline.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vue_devtools-api.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vue_devtools-api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vue_devtools-api.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vue_devtools-api.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vuepress_helper_client.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vuepress_helper_client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vuepress_plugin-git_client.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vuepress_plugin-git_client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vuepress_shared.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vuepress_shared.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vuepress_shared.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vuepress_shared.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vueuse_core.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vueuse_core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vueuse_integrations_useFocusTrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/@vueuse_integrations_useFocusTrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/chunk-2TW2Q2U4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/chunk-2TW2Q2U4.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/chunk-IPDLDM6K.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/chunk-IPDLDM6K.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/chunk-LW4I4DCF.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/chunk-LW4I4DCF.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/echarts.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/echarts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/echarts.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/echarts.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-lib.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-lib.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-lib.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-lib.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-toolbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-toolbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-toolbar.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-toolbar.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-view.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/markmap-view.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/vue-router.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/vue-router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/vue-router.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/vue-router.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/deps/vue.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/auto-frontmatter.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/auto-frontmatter.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/iconify.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/iconify.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/0290eea1" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/0290eea1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/rendered/_metadata.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/blogData.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/blogData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/clientConfigs.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/clientConfigs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/iconify.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/iconify.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/iconify.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/iconify.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/markdown-math/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/markdown-math/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/md-enhance/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/md-enhance/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/md-power/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/md-power/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/themePlumeData.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/themePlumeData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22032301/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22032301/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22041901/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22041901/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/22092701/index.html.js" afterDir="false" />
@@ -64,144 +37,19 @@
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24121401/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24121401/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24122701/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24122701/index.html.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24123101/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/article/24123101/index.html.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/sass-palette/hope-config.scss" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/sass-palette/hope-config.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/sass-palette/hope-palette.scss" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/sass-palette/hope-palette.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/shiki/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/shiki/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/index.html.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/lifetime/record/index.html.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/pages/lifetime/record/index.html.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/components/AboutMeCharacter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/components/AboutMeCharacter.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/components/AboutMeLife.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/components/AboutMeLife.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/components/AboutMeMotto.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/components/AboutMeSkill.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/components/AboutMeSkill.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/components/AboutMeText.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/components/AboutMeText.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/components/Custom.vue" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/components/Custom.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/components/HomePage.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/components/icon/Blog.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/components/icon/GitHub.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.vuepress/theme/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/theme/styles/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/acorn" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/acorn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/acorn.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/acorn.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/acorn.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/acorn.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/autoprefixer" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/autoprefixer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/autoprefixer.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/autoprefixer.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/autoprefixer.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/autoprefixer.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/browserslist" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/browserslist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/browserslist.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/browserslist.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/browserslist.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/browserslist.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/detect-libc" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/detect-libc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/detect-libc.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/detect-libc.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/detect-libc.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/detect-libc.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/envinfo" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/envinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/envinfo.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/envinfo.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/envinfo.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/envinfo.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/errno" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/errno" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/errno.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/errno.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/errno.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/errno.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/esbuild" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/esbuild" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/esbuild.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/esbuild.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/esbuild.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/esbuild.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/esparse" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/esparse" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/esparse.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/esparse.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/esparse.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/esparse.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/esvalidate" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/esvalidate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/esvalidate.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/esvalidate.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/esvalidate.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/esvalidate.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/glob" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/glob" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/glob.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/glob.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/glob.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/glob.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/he" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/he" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/he.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/he.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/he.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/he.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/http-server" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/http-server" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/http-server.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/http-server.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/http-server.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/http-server.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/image-size" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/image-size" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/image-size.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/image-size.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/image-size.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/image-size.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/js-yaml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/js-yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/js-yaml.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/js-yaml.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/js-yaml.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/js-yaml.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json2yaml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/json2yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json2yaml.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/json2yaml.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json2yaml.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/json2yaml.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json2yml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/json2yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json2yml.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/json2yml.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/json2yml.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/json2yml.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/jsontoyaml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/jsontoyaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/jsontoyaml.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/jsontoyaml.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/jsontoyaml.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/jsontoyaml.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/jsontoyml" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/jsontoyml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/jsontoyml.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/jsontoyml.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/jsontoyml.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/jsontoyml.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/katex" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/katex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/katex.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/katex.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/katex.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/katex.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/lessc" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/lessc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/lessc.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/lessc.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/lessc.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/lessc.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/markdown-it" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/markdown-it" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/markdown-it.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/markdown-it.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/markdown-it.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/markdown-it.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/mime" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mime.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/mime.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mime.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/mime.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mkdirp" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/mkdirp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mkdirp.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/mkdirp.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/mkdirp.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/mkdirp.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/nanoid" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/nanoid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/nanoid.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/nanoid.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/nanoid.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/nanoid.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/needle" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/needle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/needle.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/needle.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/needle.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/needle.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/node-which" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/node-which" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/node-which.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/node-which.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/node-which.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/node-which.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/opener" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/opener" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/opener.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/opener.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/opener.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/opener.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/parser" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/parser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/parser.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/parser.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/parser.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/parser.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/rollup" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/rollup" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/rollup.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/rollup.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/rollup.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/rollup.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/sass" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/sass.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/sass.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/sass.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/sass.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/semver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/semver.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/semver.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/semver.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/semver.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/sitemap" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/sitemap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/sitemap.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/sitemap.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/sitemap.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/sitemap.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/stylus" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/stylus" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/stylus.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/stylus.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/stylus.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/stylus.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/tsc" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/tsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/tsc.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/tsc.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/tsc.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/tsc.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/tsserver" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/tsserver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/tsserver.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/tsserver.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/tsserver.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/tsserver.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/update-browserslist-db" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/update-browserslist-db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/update-browserslist-db.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/update-browserslist-db.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/update-browserslist-db.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/update-browserslist-db.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vite" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vite.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vite.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vite.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vite.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress-cli" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress-cli" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress-cli.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress-cli.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress-cli.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress-cli.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress-vite" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress-vite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress-vite.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress-vite.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress-vite.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress-vite.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress-webpack" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress-webpack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress-webpack.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress-webpack.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress-webpack.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress-webpack.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/vuepress.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.bin/vuepress.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/vuepress-theme-plume/node_modules/.bin/nanoid" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/vuepress-theme-plume/node_modules/.bin/nanoid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/vuepress-theme-plume/node_modules/.bin/nanoid.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/vuepress-theme-plume/node_modules/.bin/nanoid.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/vuepress-theme-plume/node_modules/.bin/nanoid.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/vuepress-theme-plume/node_modules/.bin/nanoid.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,8 +60,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Markdown 文件" />
         <option value="Vue Composition API Component" />
+        <option value="Markdown 文件" />
       </list>
     </option>
   </component>
@@ -578,6 +426,7 @@
       <workItem from="1742956158571" duration="11717000" />
       <workItem from="1742978977511" duration="2572000" />
       <workItem from="1742982019330" duration="14247000" />
+      <workItem from="1743039762971" duration="2458000" />
     </task>
     <servers />
   </component>

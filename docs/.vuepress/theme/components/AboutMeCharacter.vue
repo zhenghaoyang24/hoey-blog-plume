@@ -40,7 +40,7 @@
   flex: 1;
   transition: transform 1s;
   width: fit-content;
-  min-height: 130px;
+  min-height: 110px;
   background-image: url("https://www.16personalities.com/static/images/personality-types/avatars/email/large/INFJ_male.png?v=1");
   background-position: right bottom;
   background-size: contain;
