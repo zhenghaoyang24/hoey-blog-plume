@@ -90,7 +90,7 @@ canvas {
   margin: 0 auto;
   width: 90%;
   @media screen and (max-width: 770px) {
-    width: 95%;
+    width: 94%;
   }
 }
 .about-me-asymmetric-row{
