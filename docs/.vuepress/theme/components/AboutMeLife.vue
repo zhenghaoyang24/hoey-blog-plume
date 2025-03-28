@@ -15,15 +15,14 @@ import * as echarts from 'echarts';
 const chartRef = ref(null);
 
 // 示例数据
-const chartData = [
-  { name: '学习', value: 300 },
-  { name: '游戏', value: 100 },
-  { name: '阅读', value: 60 },
-  { name: '动漫', value: 180 },
-  { name: '生活', value: 275 },
-  { name: '工作', value: 105 }
+const lifeData = [
+  { name: '学习', value: (300/1020).toFixed(2) },
+  { name: '游戏', value: (100/1020).toFixed(2) },
+  { name: '阅读', value: (60/1020).toFixed(2) },
+  { name: '动漫', value: (180/1020).toFixed(2) },
+  { name: '生活', value: (275/1020).toFixed(2) },
+  { name: '工作', value: (105/1020).toFixed(2) }
 ];
-
 onMounted(() => {
   const myChart = echarts.init(chartRef.value);
 
@@ -39,7 +38,7 @@ onMounted(() => {
         center: ['50%', '60%'],
         startAngle: 180,
         endAngle: 360,
-        data: chartData
+        data: lifeData
       }
     ]
   };
