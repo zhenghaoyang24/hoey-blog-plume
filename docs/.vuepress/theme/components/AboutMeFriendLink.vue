@@ -28,7 +28,7 @@ import FRIENDS from '../data/friends.json'
   overflow: hidden;
   margin: 10px;
   &:hover >img{
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
   @media screen and (max-width: 770px) {
     margin: 5px;
@@ -38,7 +38,7 @@ import FRIENDS from '../data/friends.json'
   >img{
     width: 100%;
     height: 100%;
-    transition: transform 0.2s;
+    transition: transform 0.3s ease;
   }
 }
 
@@ -47,6 +47,7 @@ import FRIENDS from '../data/friends.json'
   display: flex;
   flex-wrap: wrap;
   max-height: 300px;
+  line-height: 45px;
   overflow: hidden;
   text-overflow: ellipsis;
   @media screen and (max-width: 770px) {
@@ -63,21 +64,23 @@ import FRIENDS from '../data/friends.json'
   justify-content: space-between;
   >a{
     font-size: 16px;
-    height: 45px;
     color: var(--vp-c-text-1);
     display: inline-flex;
     align-items: center;
     font-weight: 600;
     border-radius: 10px;
     padding: 10px;
+    height: 40px;
     transition: background-color 0.2s;
     background: var(--vp-c-brand-2);
     &:hover{
       background: var(--vp-c-brand-1);
     }
     @media screen and (max-width: 770px) {
+      padding: 7px;
       font-size: 14px;
-      height: 35px;
+      height: 30px;
+      border-radius: 5px;
     }
   }
   >p{
