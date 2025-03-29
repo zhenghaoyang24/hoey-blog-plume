@@ -7,8 +7,7 @@ import { notes } from './notes'
  */
 export default defineThemeConfig({
   logo: '',
-  // your git repo url
-  docsRepo: '',
+  docsRepo: 'https://github.com/zhenghaoyang24/hoey-blog-plume',
   docsDir: 'docs',
   appearance: 'true',
   profile: {
