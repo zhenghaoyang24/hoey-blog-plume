@@ -1,4 +1,4 @@
-<template><div><p>在 JavaScript 开发中，处理多个异步操作是家常便饭，但稍有不慎就会陷入回调地狱或逻辑混乱。本文总结处理多异步任务的方法大，涵盖 <strong>Promise API</strong>、<strong>async/await</strong> 及常见陷阱解决方案。</p>
+<template><div><p>在 JavaScript 开发中，经常会遇到需要处理多个异步操作的需要，为避免陷入回调地狱或逻辑混乱，总结了处理多异步任务的方法，包含 <code v-pre>Promise</code>、<code v-pre>async/await</code> 及常见陷阱解决方案。</p>
 <!-- more -->
 <h2 id="_1、传统异步问题-回调地狱" tabindex="-1"><a class="header-anchor" href="#_1、传统异步问题-回调地狱"><span>1、传统异步问题：回调地狱</span></a></h2>
 <div class="language-javascript line-numbers-mode" data-highlighter="shiki" data-ext="javascript" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD">// 嵌套地狱示例</span></span>
