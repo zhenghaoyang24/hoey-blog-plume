@@ -5,7 +5,7 @@ import FRIENDS from '../data/friends.json'
 <template>
   <div class="friends-content">
     <a :href="item.link" target="_blank" class="vp-blog-post-item friend-item" v-for="(item, index) in FRIENDS"
-         :key="index">
+       :key="index">
       <img :src="item.avatar" alt="头像">
       <div>
         <p class="friend-item-name">{{ item.name }}</p>
@@ -23,6 +23,7 @@ import FRIENDS from '../data/friends.json'
   @media screen and (max-width: 770px) {
     grid-template-columns: 1fr;
   }
+
   > a {
     text-decoration: none;
   }
@@ -49,12 +50,14 @@ import FRIENDS from '../data/friends.json'
     display: block;
   }
 }
-.friend-item-name{
+
+.friend-item-name {
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--vp-c-text-1);
 }
-.friend-item-desc{
+
+.friend-item-desc {
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--vp-c-text-2);

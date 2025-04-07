@@ -2,9 +2,13 @@
   <div class="container">
     <canvas ref="canvasRef"></canvas>
     <div class="head-social">
-      <a href="https://github.com/zhenghaoyang24" target="_blank" class="head-social-btn"> <icon name="mdi:github"/> </a>
+      <a href="https://github.com/zhenghaoyang24" target="_blank" class="head-social-btn">
+        <icon name="mdi:github"/>
+      </a>
       <router-link to="/blog/" class="head-social-avatar"><img src="/avatar.jpg" alt="avatar"></router-link>
-      <a href="mailto:zhenghaoyang24@foxmail.com" target="_blank" class="head-social-btn"><icon class="head-social-btn" name="ic:baseline-email"></icon></a>
+      <a href="mailto:zhenghaoyang24@foxmail.com" target="_blank" class="head-social-btn">
+        <icon class="head-social-btn" name="ic:baseline-email"></icon>
+      </a>
     </div>
     <div class="about-me">
       <div class="about-me-3-2-row">
@@ -28,7 +32,8 @@
           <template #motto>
             <slot name="motto">
               <p class="about-me-card-title-normal">追求</p>
-              <p class="about-me-card-text-big about-me-card-text-soft">用心去<span style="color: #3a5ccc">感受</span></p>
+              <p class="about-me-card-text-big about-me-card-text-soft">用心去<span style="color: #3a5ccc">感受</span>
+              </p>
               <p class="about-me-card-text-big">用热爱去<span style="color: #d53737">创造</span></p>
             </slot>
           </template>
@@ -47,8 +52,8 @@
   z-index: 1;
   width: 100%;
   height: 100%;
-  overflow-x:hidden!important;
-  overflow-y:hidden!important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
 }
 
 canvas {
@@ -60,35 +65,39 @@ canvas {
   overflow: hidden;
 }
 
-.head-social{
+.head-social {
   display: flex;
   width: fit-content;
   margin: 0 auto;
   align-items: center;
-  .head-social-avatar{
+
+  .head-social-avatar {
     margin: 20px;
     border-radius: 30%;
     overflow: hidden;
     width: 60px;
     transition: transform 0.2s;
-    &:hover{
+
+    &:hover {
       transform: scale(1.1);
     }
   }
-  .head-social-btn{
+
+  .head-social-btn {
     cursor: pointer;
     font-size: 30px;
-    margin: 20px;
-    transition: transform 0.2s,color 0.3s;
+    margin: 0px;
+    transition: transform 0.2s, color 0.3s;
     color: var(--vp-c-text-2);
-    &:hover{
+
+    &:hover {
       color: var(--vp-c-brand-1);
       transform: scale(1.2);
     }
   }
 }
 
-.about-me{
+.about-me {
   max-width: 1380px;
   margin: 0 auto;
   width: 90%;
@@ -96,7 +105,8 @@ canvas {
     width: 94%;
   }
 }
-.about-me-3-2-row{
+
+.about-me-3-2-row {
   margin-top: 20px;
   display: grid;
   grid-template-columns: 3fr 2fr;
@@ -108,7 +118,7 @@ canvas {
   }
 }
 
-.about-me-1-1-row{
+.about-me-1-1-row {
   margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -118,7 +128,8 @@ canvas {
     flex-direction: column;
   }
 }
-.about-me-1-row{
+
+.about-me-1-row {
   margin-top: 20px;
   display: grid;
   grid-template-columns: 1fr;
@@ -134,7 +145,7 @@ canvas {
 
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import {ref, onMounted, onUnmounted} from 'vue'
 import AboutMeName from "./AboutMeName.vue";
 import AboutMeText from "./AboutMeText.vue";
 import AboutMeSkill from "./AboutMeSkill.vue";
@@ -244,7 +255,7 @@ const drawComet = (comet: Comet) => {
   if (!context || !canvas) return
 
   const length = 80
-  const { direction, position, progress } = comet
+  const {direction, position, progress} = comet
 
   if (direction === 'horizontal') {
     const x = progress * canvas.width
