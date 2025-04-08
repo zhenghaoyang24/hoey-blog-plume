@@ -26767,7 +26767,7 @@ function sup_plugin(md) {
   md.inline.ruler.after("emphasis", "sup", superscript);
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/nodes/identity.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/nodes/identity.js
 var ALIAS = Symbol.for("yaml.alias");
 var DOC = Symbol.for("yaml.document");
 var MAP = Symbol.for("yaml.map");
@@ -26803,7 +26803,7 @@ function isNode2(node) {
 }
 var hasAnchor = (node) => (isScalar(node) || isCollection(node)) && !!node.anchor;
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/visit.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/visit.js
 var BREAK = Symbol("break visit");
 var SKIP = Symbol("skip children");
 var REMOVE = Symbol("remove node");
@@ -26954,7 +26954,7 @@ function replaceNode(key, path, node) {
   }
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/doc/directives.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/doc/directives.js
 var escapeChars = {
   "!": "%21",
   ",": "%2C",
@@ -27117,7 +27117,7 @@ var Directives = class _Directives {
 Directives.defaultYaml = { explicit: false, version: "1.2" };
 Directives.defaultTags = { "!!": "tag:yaml.org,2002:" };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/doc/anchors.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/doc/anchors.js
 function anchorIsValid(anchor) {
   if (/[\x00-\x19\s,[\]{}]/.test(anchor)) {
     const sa = JSON.stringify(anchor);
@@ -27177,7 +27177,7 @@ function createNodeAnchors(doc, prefix) {
   };
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/doc/applyReviver.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/doc/applyReviver.js
 function applyReviver(reviver, obj, key, val2) {
   if (val2 && typeof val2 === "object") {
     if (Array.isArray(val2)) {
@@ -27221,7 +27221,7 @@ function applyReviver(reviver, obj, key, val2) {
   return reviver.call(obj, key, val2);
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/nodes/toJS.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/nodes/toJS.js
 function toJS(value, arg, ctx) {
   if (Array.isArray(value))
     return value.map((v, i) => toJS(v, String(i), ctx));
@@ -27244,7 +27244,7 @@ function toJS(value, arg, ctx) {
   return value;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/nodes/Node.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/nodes/Node.js
 var NodeBase = class {
   constructor(type) {
     Object.defineProperty(this, NODE_TYPE, { value: type });
@@ -27276,7 +27276,7 @@ var NodeBase = class {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/nodes/Alias.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/nodes/Alias.js
 var Alias = class extends NodeBase {
   constructor(source) {
     super(ALIAS);
@@ -27367,7 +27367,7 @@ function getAliasCount(doc, node, anchors) {
   return 1;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/nodes/Scalar.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/nodes/Scalar.js
 var isScalarValue = (value) => !value || typeof value !== "function" && typeof value !== "object";
 var Scalar = class extends NodeBase {
   constructor(value) {
@@ -27387,7 +27387,7 @@ Scalar.PLAIN = "PLAIN";
 Scalar.QUOTE_DOUBLE = "QUOTE_DOUBLE";
 Scalar.QUOTE_SINGLE = "QUOTE_SINGLE";
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/doc/createNode.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/doc/createNode.js
 var defaultTagPrefix = "tag:yaml.org,2002:";
 function findTagObject(value, tagName, tags) {
   if (tagName) {
@@ -27458,7 +27458,7 @@ function createNode(value, tagName, ctx) {
   return node;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/nodes/Collection.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/nodes/Collection.js
 function collectionFromPath(schema4, path, value) {
   let v = value;
   for (let i = path.length - 1; i >= 0; --i) {
@@ -27590,7 +27590,7 @@ var Collection = class extends NodeBase {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/stringify/stringifyComment.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/stringify/stringifyComment.js
 var stringifyComment = (str) => str.replace(/^(?!$)(?: $)?/gm, "#");
 function indentComment(comment2, indent) {
   if (/^\n+$/.test(comment2))
@@ -27599,7 +27599,7 @@ function indentComment(comment2, indent) {
 }
 var lineComment = (str, indent, comment2) => str.endsWith("\n") ? indentComment(comment2, indent) : comment2.includes("\n") ? "\n" + indentComment(comment2, indent) : (str.endsWith(" ") ? "" : " ") + comment2;
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/stringify/foldFlowLines.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/stringify/foldFlowLines.js
 var FOLD_FLOW = "flow";
 var FOLD_BLOCK = "block";
 var FOLD_QUOTED = "quoted";
@@ -27726,7 +27726,7 @@ function consumeMoreIndentedLines(text3, i, indent) {
   return end2;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/stringify/stringifyString.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/stringify/stringifyString.js
 var getFoldOptions = (ctx, isBlock2) => ({
   indentAtStart: isBlock2 ? ctx.indent.length : ctx.indentAtStart,
   lineWidth: ctx.options.lineWidth,
@@ -28004,7 +28004,7 @@ function stringifyString(item, ctx, onComment, onChompKeep) {
   return res;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/stringify/stringify.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/stringify/stringify.js
 function createStringifyContext(doc, options) {
   const opt = Object.assign({
     blockQuote: true,
@@ -28122,7 +28122,7 @@ function stringify2(item, ctx, onComment, onChompKeep) {
 ${ctx.indent}${str}`;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/stringify/stringifyPair.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/stringify/stringifyPair.js
 function stringifyPair({ key, value }, ctx, onComment, onChompKeep) {
   const { allNullValues, doc, indent, indentStep, options: { commentString, indentSeq, simpleKeys } } = ctx;
   let keyComment = isNode2(key) && key.comment || null;
@@ -28245,14 +28245,14 @@ ${ctx.indent}`;
   return str;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/log.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/log.js
 function warn(logLevel, warning) {
   if (logLevel === "debug" || logLevel === "warn") {
     console.warn(warning);
   }
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/yaml-1.1/merge.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/yaml-1.1/merge.js
 var MERGE_KEY = "<<";
 var merge2 = {
   identify: (value) => value === MERGE_KEY || typeof value === "symbol" && value.description === MERGE_KEY,
@@ -28299,7 +28299,7 @@ function mergeValue(ctx, map4, value) {
   return map4;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/nodes/addPairToJSMap.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/nodes/addPairToJSMap.js
 function addPairToJSMap(ctx, map4, { key, value }) {
   if (isNode2(key) && key.addToJSMap)
     key.addToJSMap(ctx, map4, value);
@@ -28352,7 +28352,7 @@ function stringifyKey(key, jsKey, ctx) {
   return JSON.stringify(jsKey);
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/nodes/Pair.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/nodes/Pair.js
 function createPair(key, value, ctx) {
   const k = createNode(key, void 0, ctx);
   const v = createNode(value, void 0, ctx);
@@ -28381,7 +28381,7 @@ var Pair = class _Pair {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/stringify/stringifyCollection.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/stringify/stringifyCollection.js
 function stringifyCollection(collection, ctx, options) {
   const flow = ctx.inFlow ?? collection.flow;
   const stringify5 = flow ? stringifyFlowCollection : stringifyBlockCollection;
@@ -28516,7 +28516,7 @@ function addCommentBefore({ indent, options: { commentString } }, lines, comment
   }
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/nodes/YAMLMap.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/nodes/YAMLMap.js
 function findPair(items, key) {
   const k = isScalar(key) ? key.value : key;
   for (const it of items) {
@@ -28648,7 +28648,7 @@ var YAMLMap = class extends Collection {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/common/map.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/common/map.js
 var map3 = {
   collection: "map",
   default: true,
@@ -28662,7 +28662,7 @@ var map3 = {
   createNode: (schema4, obj, ctx) => YAMLMap.from(schema4, obj, ctx)
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/nodes/YAMLSeq.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/nodes/YAMLSeq.js
 var YAMLSeq = class extends Collection {
   static get tagName() {
     return "tag:yaml.org,2002:seq";
@@ -28766,7 +28766,7 @@ function asItemIndex(key) {
   return typeof idx === "number" && Number.isInteger(idx) && idx >= 0 ? idx : null;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/common/seq.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/common/seq.js
 var seq = {
   collection: "seq",
   default: true,
@@ -28780,7 +28780,7 @@ var seq = {
   createNode: (schema4, obj, ctx) => YAMLSeq.from(schema4, obj, ctx)
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/common/string.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/common/string.js
 var string = {
   identify: (value) => typeof value === "string",
   default: true,
@@ -28792,7 +28792,7 @@ var string = {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/common/null.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/common/null.js
 var nullTag = {
   identify: (value) => value == null,
   createNode: () => new Scalar(null),
@@ -28803,7 +28803,7 @@ var nullTag = {
   stringify: ({ source }, ctx) => typeof source === "string" && nullTag.test.test(source) ? source : ctx.options.nullStr
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/core/bool.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/core/bool.js
 var boolTag = {
   identify: (value) => typeof value === "boolean",
   default: true,
@@ -28820,7 +28820,7 @@ var boolTag = {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/stringify/stringifyNumber.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/stringify/stringifyNumber.js
 function stringifyNumber({ format: format2, minFractionDigits, tag, value }) {
   if (typeof value === "bigint")
     return String(value);
@@ -28841,7 +28841,7 @@ function stringifyNumber({ format: format2, minFractionDigits, tag, value }) {
   return n;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/core/float.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/core/float.js
 var floatNaN = {
   identify: (value) => typeof value === "number",
   default: true,
@@ -28877,7 +28877,7 @@ var float = {
   stringify: stringifyNumber
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/core/int.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/core/int.js
 var intIdentify = (value) => typeof value === "bigint" || Number.isInteger(value);
 var intResolve = (str, offset, radix, { intAsBigInt }) => intAsBigInt ? BigInt(str) : parseInt(str.substring(offset), radix);
 function intStringify(node, radix, prefix) {
@@ -28913,7 +28913,7 @@ var intHex = {
   stringify: (node) => intStringify(node, 16, "0x")
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/core/schema.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/core/schema.js
 var schema = [
   map3,
   seq,
@@ -28928,7 +28928,7 @@ var schema = [
   float
 ];
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/json/schema.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/json/schema.js
 function intIdentify2(value) {
   return typeof value === "bigint" || Number.isInteger(value);
 }
@@ -28986,7 +28986,7 @@ var jsonError = {
 };
 var schema2 = [map3, seq].concat(jsonScalars, jsonError);
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/yaml-1.1/binary.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/yaml-1.1/binary.js
 var binary = {
   identify: (value) => value instanceof Uint8Array,
   // Buffer inherits from Uint8Array
@@ -29013,6 +29013,8 @@ var binary = {
     }
   },
   stringify({ comment: comment2, type, value }, ctx, onComment, onChompKeep) {
+    if (!value)
+      return "";
     const buf = value;
     let str;
     if (typeof btoa === "function") {
@@ -29038,7 +29040,7 @@ var binary = {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/yaml-1.1/pairs.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/yaml-1.1/pairs.js
 function resolvePairs(seq2, onError) {
   if (isSeq(seq2)) {
     for (let i = 0; i < seq2.items.length; ++i) {
@@ -29104,7 +29106,7 @@ var pairs = {
   createNode: createPairs
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/yaml-1.1/omap.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/yaml-1.1/omap.js
 var YAMLOMap = class _YAMLOMap extends YAMLSeq {
   constructor() {
     super();
@@ -29170,7 +29172,7 @@ var omap = {
   createNode: (schema4, iterable, ctx) => YAMLOMap.from(schema4, iterable, ctx)
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/yaml-1.1/bool.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/yaml-1.1/bool.js
 function boolStringify({ value, source }, ctx) {
   const boolObj = value ? trueTag : falseTag;
   if (source && boolObj.test.test(source))
@@ -29194,7 +29196,7 @@ var falseTag = {
   stringify: boolStringify
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/yaml-1.1/float.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/yaml-1.1/float.js
 var floatNaN2 = {
   identify: (value) => typeof value === "number",
   default: true,
@@ -29233,7 +29235,7 @@ var float2 = {
   stringify: stringifyNumber
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/yaml-1.1/int.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/yaml-1.1/int.js
 var intIdentify3 = (value) => typeof value === "bigint" || Number.isInteger(value);
 function intResolve2(str, offset, radix, { intAsBigInt }) {
   const sign = str[0];
@@ -29302,7 +29304,7 @@ var intHex2 = {
   stringify: (node) => intStringify2(node, 16, "0x")
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/yaml-1.1/set.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/yaml-1.1/set.js
 var YAMLSet = class _YAMLSet extends YAMLMap {
   constructor(schema4) {
     super(schema4);
@@ -29381,7 +29383,7 @@ var set2 = {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/yaml-1.1/timestamp.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/yaml-1.1/timestamp.js
 function parseSexagesimal(str, asBigInt) {
   const sign = str[0];
   const parts = sign === "-" || sign === "+" ? str.substring(1) : str;
@@ -29457,10 +29459,10 @@ var timestamp = {
     }
     return new Date(date);
   },
-  stringify: ({ value }) => value.toISOString().replace(/(T00:00:00)?\.000Z$/, "")
+  stringify: ({ value }) => (value == null ? void 0 : value.toISOString().replace(/(T00:00:00)?\.000Z$/, "")) ?? ""
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/yaml-1.1/schema.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/yaml-1.1/schema.js
 var schema3 = [
   map3,
   seq,
@@ -29485,7 +29487,7 @@ var schema3 = [
   timestamp
 ];
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/tags.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/tags.js
 var schemas = /* @__PURE__ */ new Map([
   ["core", schema],
   ["failsafe", [map3, seq, string]],
@@ -29556,7 +29558,7 @@ function getTags(customTags, schemaName, addMergeTag) {
   }, []);
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/schema/Schema.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/schema/Schema.js
 var sortMapEntriesByKey = (a, b) => a.key < b.key ? -1 : a.key > b.key ? 1 : 0;
 var Schema = class _Schema {
   constructor({ compat, customTags, merge: merge3, resolveKnownTags, schema: schema4, sortMapEntries, toStringDefaults }) {
@@ -29577,7 +29579,7 @@ var Schema = class _Schema {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/stringify/stringifyDocument.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/stringify/stringifyDocument.js
 function stringifyDocument(doc, options) {
   var _a3;
   const lines = [];
@@ -29649,7 +29651,7 @@ function stringifyDocument(doc, options) {
   return lines.join("\n") + "\n";
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/doc/Document.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/doc/Document.js
 var Document2 = class _Document {
   constructor(value, replacer, options) {
     this.commentBefore = null;
@@ -29941,7 +29943,7 @@ function assertCollection(contents2) {
   throw new Error("Expected a YAML collection as document contents");
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/errors.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/errors.js
 var YAMLError = class extends Error {
   constructor(name2, pos, code2, message) {
     super();
@@ -29997,7 +29999,7 @@ ${pointer}
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/resolve-props.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/resolve-props.js
 function resolveProps(tokens, { flow, indicator, next: next2, offset, onError, parentIndent, startOnNewline }) {
   let spaceBefore = false;
   let atNewline = startOnNewline;
@@ -30127,7 +30129,7 @@ function resolveProps(tokens, { flow, indicator, next: next2, offset, onError, p
   };
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/util-contains-newline.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/util-contains-newline.js
 function containsNewline(key) {
   if (!key)
     return null;
@@ -30163,7 +30165,7 @@ function containsNewline(key) {
   }
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/util-flow-indent-check.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/util-flow-indent-check.js
 function flowIndentCheck(indent, fc, onError) {
   if ((fc == null ? void 0 : fc.type) === "flow-collection") {
     const end2 = fc.end[0];
@@ -30174,7 +30176,7 @@ function flowIndentCheck(indent, fc, onError) {
   }
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/util-map-includes.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/util-map-includes.js
 function mapIncludes(ctx, items, search) {
   const { uniqueKeys } = ctx.options;
   if (uniqueKeys === false)
@@ -30183,7 +30185,7 @@ function mapIncludes(ctx, items, search) {
   return items.some((pair) => isEqual(pair.key, search));
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/resolve-block-map.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/resolve-block-map.js
 var startColMsg = "All mapping items must start at the same column";
 function resolveBlockMap({ composeNode: composeNode2, composeEmptyNode: composeEmptyNode2 }, ctx, bm, onError, tag) {
   var _a3;
@@ -30280,7 +30282,7 @@ function resolveBlockMap({ composeNode: composeNode2, composeEmptyNode: composeE
   return map4;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/resolve-block-seq.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/resolve-block-seq.js
 function resolveBlockSeq({ composeNode: composeNode2, composeEmptyNode: composeEmptyNode2 }, ctx, bs, onError, tag) {
   const NodeClass = (tag == null ? void 0 : tag.nodeClass) ?? YAMLSeq;
   const seq2 = new NodeClass(ctx.schema);
@@ -30322,7 +30324,7 @@ function resolveBlockSeq({ composeNode: composeNode2, composeEmptyNode: composeE
   return seq2;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/resolve-end.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/resolve-end.js
 function resolveEnd(end2, offset, reqSpace, onError) {
   let comment2 = "";
   if (end2) {
@@ -30359,7 +30361,7 @@ function resolveEnd(end2, offset, reqSpace, onError) {
   return { comment: comment2, offset };
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/resolve-flow-collection.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/resolve-flow-collection.js
 var blockMsg = "Block collections are not allowed within flow collections";
 var isBlock = (token) => token && (token.type === "block-map" || token.type === "block-seq");
 function resolveFlowCollection({ composeNode: composeNode2, composeEmptyNode: composeEmptyNode2 }, ctx, fc, onError, tag) {
@@ -30539,7 +30541,7 @@ function resolveFlowCollection({ composeNode: composeNode2, composeEmptyNode: co
   return coll;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/compose-collection.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/compose-collection.js
 function resolveCollection(CN2, ctx, token, onError, tagName, tag) {
   const coll = token.type === "block-map" ? resolveBlockMap(CN2, ctx, token, onError, tag) : token.type === "block-seq" ? resolveBlockSeq(CN2, ctx, token, onError, tag) : resolveFlowCollection(CN2, ctx, token, onError, tag);
   const Coll = coll.constructor;
@@ -30574,8 +30576,8 @@ function composeCollection(CN2, ctx, token, props, onError) {
       ctx.schema.tags.push(Object.assign({}, kt, { default: false }));
       tag = kt;
     } else {
-      if (kt == null ? void 0 : kt.collection) {
-        onError(tagToken, "BAD_COLLECTION_TYPE", `${kt.tag} used for ${expType} collection, but expects ${kt.collection}`, true);
+      if (kt) {
+        onError(tagToken, "BAD_COLLECTION_TYPE", `${kt.tag} used for ${expType} collection, but expects ${kt.collection ?? "scalar"}`, true);
       } else {
         onError(tagToken, "TAG_RESOLVE_FAILED", `Unresolved tag: ${tagName}`, true);
       }
@@ -30592,7 +30594,7 @@ function composeCollection(CN2, ctx, token, props, onError) {
   return node;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/resolve-block-scalar.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/resolve-block-scalar.js
 function resolveBlockScalar(ctx, scalar, onError) {
   const start = scalar.offset;
   const header = parseBlockScalarHeader(scalar, ctx.options.strict, onError);
@@ -30768,7 +30770,7 @@ function splitLines(source) {
   return lines;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/resolve-flow-scalar.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/resolve-flow-scalar.js
 function resolveFlowScalar(scalar, strict, onError) {
   const { offset, type, source, end: end2 } = scalar;
   let _type;
@@ -30979,7 +30981,7 @@ function parseCharCode(source, offset, length, onError) {
   return String.fromCodePoint(code2);
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/compose-scalar.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/compose-scalar.js
 function composeScalar(ctx, token, tagToken, onError) {
   const { value, type, comment: comment2, range } = token.type === "block-scalar" ? resolveBlockScalar(ctx, token, onError) : resolveFlowScalar(token, ctx.options.strict, onError);
   const tagName = tagToken ? ctx.directives.tagName(tagToken.source, (msg) => onError(tagToken, "TAG_RESOLVE_FAILED", msg)) : null;
@@ -31057,7 +31059,7 @@ function findScalarTagByTest({ atKey, directives, schema: schema4 }, value, toke
   return tag;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/util-empty-scalar-position.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/util-empty-scalar-position.js
 function emptyScalarPosition(offset, before2, pos) {
   if (before2) {
     if (pos === null)
@@ -31082,7 +31084,7 @@ function emptyScalarPosition(offset, before2, pos) {
   return offset;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/compose-node.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/compose-node.js
 var CN = { composeNode, composeEmptyNode };
 function composeNode(ctx, token, props, onError) {
   const atKey = ctx.atKey;
@@ -31170,7 +31172,7 @@ function composeAlias({ options }, { offset, source, end: end2 }, onError) {
   return alias;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/compose-doc.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/compose-doc.js
 function composeDoc(options, directives, { offset, start, value, end: end2 }, onError) {
   const opts = Object.assign({ _directives: directives }, options);
   const doc = new Document2(void 0, opts);
@@ -31203,7 +31205,7 @@ function composeDoc(options, directives, { offset, start, value, end: end2 }, on
   return doc;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/compose/composer.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/compose/composer.js
 function getErrorPos(src) {
   if (typeof src === "number")
     return [src, src + 1];
@@ -31395,7 +31397,7 @@ ${end2.comment}` : end2.comment;
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/parse/cst-visit.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/parse/cst-visit.js
 var BREAK2 = Symbol("break visit");
 var SKIP2 = Symbol("skip children");
 var REMOVE2 = Symbol("remove item");
@@ -31451,7 +31453,7 @@ function _visit(path, item, visitor) {
   return typeof ctrl === "function" ? ctrl(item, path) : ctrl;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/parse/cst.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/parse/cst.js
 var BOM = "\uFEFF";
 var DOCUMENT = "";
 var FLOW_END = "";
@@ -31516,7 +31518,7 @@ function tokenType(source) {
   return null;
 }
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/parse/lexer.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/parse/lexer.js
 function isEmpty2(ch) {
   switch (ch) {
     case void 0:
@@ -32088,7 +32090,7 @@ var Lexer = class {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/parse/line-counter.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/parse/line-counter.js
 var LineCounter = class {
   constructor() {
     this.lineStarts = [];
@@ -32113,7 +32115,7 @@ var LineCounter = class {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/parse/parser.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/parse/parser.js
 function includesToken(list2, type) {
   for (let i = 0; i < list2.length; ++i)
     if (list2[i].type === type)
@@ -32689,7 +32691,17 @@ var Parser2 = class {
         default: {
           const bv = this.startBlockValue(map4);
           if (bv) {
-            if (atMapIndent && bv.type !== "block-seq") {
+            if (bv.type === "block-seq") {
+              if (!it.explicitKey && it.sep && !includesToken(it.sep, "newline")) {
+                yield* this.pop({
+                  type: "error",
+                  offset: this.offset,
+                  message: "Unexpected block-seq-ind on same line with key",
+                  source: this.source
+                });
+                return;
+              }
+            } else if (atMapIndent) {
               map4.items.push({ start });
             }
             this.stack.push(bv);
@@ -32962,7 +32974,7 @@ var Parser2 = class {
   }
 };
 
-// node_modules/.pnpm/yaml@2.7.0/node_modules/yaml/browser/dist/public-api.js
+// node_modules/.pnpm/yaml@2.7.1/node_modules/yaml/browser/dist/public-api.js
 function parseOptions(options) {
   const prettyErrors = options.prettyErrors !== false;
   const lineCounter = options.lineCounter || prettyErrors && new LineCounter() || null;

@@ -29,6 +29,4 @@ export default defineThemeConfig({
   footer:{
     message: '🥼 <a target="_blank" href="https://theme-plume.vuejs.press/">vuepress-theme-plume</a> & ✒️ Hoey'
   },
-  outline:[2,3]
-
 })

@@ -28,71 +28,22 @@ export default defineUserConfig({
         demo: true, // 启用新的代码演示功能
       },
       /**
-       * Shiki 代码高亮
-       * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
-       */
-      shiki: {
-        twoslash: true,
-        lineNumbers: 10,
-           // 强烈建议预设代码块高亮语言，插件默认加载所有语言会产生不必要的时间开销
-        languages:['sh','ts','md', 'html', 'js','go', 'kotlin',
-          'rust','vue','css','json',
-          'scss', 'yaml', 'bash', 'c++', 'java', 'py', 'ruby', 'make', 'objc', 'swift', 'php', 'rs',
-          'astro','svelte','wasm',
-          'sql','xml','zig','pug','http','less','styl','jsx','tsx',
-          'vb','bat','cs','cpp','mermaid'],
-      },
-
-      /**
        * markdown enhance
        * @see https://theme-plume.vuejs.press/config/plugins/markdown-enhance/
        */
       markdownEnhance: {
         markmap: true, // 启用思维导图功能
         demo: true, // 启用旧的代码演示功能
-      //   include: true,
-      //   chart: true,
-      //   echarts: true,
-      //   mermaid: true,
-      //   flowchart: true,
       },
-
       /**
-       *  markdown power
-       * @see https://theme-plume.vuejs.press/config/plugin/markdown-power/
+       * Shiki 代码高亮
+       * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
        */
-      // markdownPower: {
-      //   pdf: true,
-      //   caniuse: true,
-      //   plot: true,
-      //   bilibili: true,
-      //   youtube: true,
-      //   icons: true,
-      //   codepen: true,
-      //   replit: true,
-      //   codeSandbox: true,
-      //   jsfiddle: true,
-      //   repl: {
-      //     go: true,
-      //     rust: true,
-      //     kotlin: true,
-      //   },
-      // },
-
-      /**
-       * 评论 comments
-       * @see https://theme-plume.vuejs.press/guide/features/comments/
-       */
-      // comment: {
-      //   provider: '', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
-      //   comment: true,
-      //   repo: '',
-      //   repoId: '',
-      //   categoryId: '',
-      //   mapping: 'pathname',
-      //   reactionsEnabled: true,
-      //   inputPosition: 'top',
-      // },
+      shiki: {
+        twoslash: true,
+        lineNumbers: 10,
+        languages: ['sh','css','html','jsx','javascript','js','ts','stylus','json','yaml','tsx','dockerfile','bash','groovy','yml','md','nginx','toml','rust','vue'],
+      },
     },
   }),
 })
