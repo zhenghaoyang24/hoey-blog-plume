@@ -21,13 +21,13 @@
 <span class="line"><span>avatar: 头像地址</span></span></code></pre>
 </div></li>
 <li>
-<p>本站<mark class="important">只添加个人博客站</mark>，不添加 <code v-pre>论坛站</code>、<code v-pre>采集站</code>、<code v-pre>说明文档类</code> 等 <strong>非个人博客的站点</strong>。</p>
+<p>本站<mark class="important">只添加个人博客站</mark>，不添加 <code v-pre>论坛站</code>、<code v-pre>采集站</code>、<code v-pre>说明文档类</code> 等 <strong>非个人博客的站点</strong>，若收到以上类别站点的友链请求，会直接忽略。</p>
 </li>
 <li>
 <p>网站内容<strong>必须符合</strong> <code v-pre>中国大陆法律法规</code>。</p>
 </li>
 <li>
-<p>若站点处于<strong>长期不可访问状态</strong> 或 <strong>违反上述规定</strong>，本站将会在无告知的情况下删除该站点。</p>
+<p>若站点处于<strong>长期不可访问状态</strong> 或 <strong>违反上述规定</strong>，本站将会在无告知的情况下删除。</p>
 </li>
 </ul>
 </div></template>
