@@ -1,4 +1,4 @@
-import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/patch/index.html.vue"
+import comp from "D:/zhy-git/hoey-blog-plume/docs/.vuepress/.temp/pages/patch/index.html.vue"
 const data = JSON.parse("{\"path\":\"/patch/\",\"title\":\"温故知新\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"温故知新\",\"createTime\":\"2024/10/31 15:40:23\",\"permalink\":\"/patch/\",\"gitInclude\":[]},\"headers\":[],\"readingTime\":{\"minutes\":0.09,\"words\":26},\"filePathRelative\":\"notes/patch/README.md\"}")
 export { comp, data }
 

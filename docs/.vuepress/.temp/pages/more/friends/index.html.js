@@ -1,4 +1,4 @@
-import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/more/friends/index.html.vue"
+import comp from "D:/zhy-git/hoey-blog-plume/docs/.vuepress/.temp/pages/more/friends/index.html.vue"
 const data = JSON.parse("{\"path\":\"/more/friends/\",\"title\":\"友情链接\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"友情链接\",\"createTime\":\"2025/03/27 14:27:56\",\"description\":\"我的好友们\",\"permalink\":\"/more/friends/\",\"gitInclude\":[]},\"headers\":[],\"readingTime\":{\"minutes\":1.03,\"words\":310},\"filePathRelative\":\"notes/more/friends.md\"}")
 export { comp, data }
 

@@ -1,4 +1,4 @@
-import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/patch/git/introduce/index.html.vue"
+import comp from "D:/zhy-git/hoey-blog-plume/docs/.vuepress/.temp/pages/patch/git/introduce/index.html.vue"
 const data = JSON.parse("{\"path\":\"/patch/git/introduce/\",\"title\":\"介绍\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"介绍\",\"createTime\":\"2025/03/12 22:36:02\",\"permalink\":\"/patch/git/introduce/\",\"tags\":[\"Git\"],\"gitInclude\":[]},\"headers\":[],\"readingTime\":{\"minutes\":4.76,\"words\":1427},\"filePathRelative\":\"notes/patch/Git/1.介绍.md\"}")
 export { comp, data }
 

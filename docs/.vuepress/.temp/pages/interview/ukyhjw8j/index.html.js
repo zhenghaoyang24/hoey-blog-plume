@@ -1,4 +1,4 @@
-import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/interview/ukyhjw8j/index.html.vue"
+import comp from "D:/zhy-git/hoey-blog-plume/docs/.vuepress/.temp/pages/interview/ukyhjw8j/index.html.vue"
 const data = JSON.parse("{\"path\":\"/interview/ukyhjw8j/\",\"title\":\"变量声明\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"变量声明\",\"createTime\":\"2025/02/03 20:40:59\",\"permalink\":\"/interview/ukyhjw8j/\",\"gitInclude\":[]},\"headers\":[],\"readingTime\":{\"minutes\":2.53,\"words\":759},\"filePathRelative\":\"notes/interview/3.JavaScript/1.变量声明.md\"}")
 export { comp, data }
 
