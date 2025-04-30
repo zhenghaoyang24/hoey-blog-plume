@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2bb704c9-5977-48db-a438-c6066c945fcd" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/技文/25042201.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/技文/25042201.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/auto-frontmatter.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.cache/markdown/auto-frontmatter.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/articleTagColors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/minisearchIndex/searchBox-default.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/.temp/internal/routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,11 +78,11 @@
       <recent name="G:\200-Project\hoey-blog-plume\docs\notes\patch\Vue\去玩儿\123\12333" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\zhy-git\hoey-blog-plume\docs\技文" />
       <recent name="G:\200-Project\hoey-blog-plume\docs\.vuepress\public\assets" />
       <recent name="G:\200-Project\hoey-blog-plume\docs\技文" />
       <recent name="G:\200-Project\hoey-blog-plume\docs\.vuepress\theme\components" />
       <recent name="G:\200-Project\hoey-blog-plume\docs\notes\more" />
-      <recent name="G:\200-Project\hoey-blog-plume\docs\notes\patch" />
     </key>
   </component>
   <component name="RunManager" selected="npm.docs:dev">
@@ -427,7 +431,12 @@
       <workItem from="1745240081279" duration="2000" />
       <workItem from="1745326791245" duration="3783000" />
       <workItem from="1745370007787" duration="3533000" />
-      <workItem from="1745456661397" duration="1106000" />
+      <workItem from="1745456661397" duration="1310000" />
+      <workItem from="1745463349795" duration="462000" />
+      <workItem from="1745470705866" duration="2720000" />
+      <workItem from="1745571262878" duration="148000" />
+      <workItem from="1745718957112" duration="56000" />
+      <workItem from="1745974531978" duration="345000" />
     </task>
     <servers />
   </component>
