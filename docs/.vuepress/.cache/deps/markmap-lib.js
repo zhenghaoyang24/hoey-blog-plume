@@ -14,9 +14,9 @@ import {
   __toESM
 } from "./chunk-G3PMV62Z.js";
 
-// node_modules/.pnpm/katex@0.16.21/node_modules/katex/dist/katex.js
+// node_modules/.pnpm/katex@0.16.22/node_modules/katex/dist/katex.js
 var require_katex = __commonJS({
-  "node_modules/.pnpm/katex@0.16.21/node_modules/katex/dist/katex.js"(exports, module) {
+  "node_modules/.pnpm/katex@0.16.22/node_modules/katex/dist/katex.js"(exports, module) {
     (function webpackUniversalModuleDefinition(root2, factory) {
       if (typeof exports === "object" && typeof module === "object")
         module.exports = factory();
@@ -11105,7 +11105,8 @@ var require_katex = __commonJS({
             names: ["\\relax"],
             props: {
               numArgs: 0,
-              allowedInText: true
+              allowedInText: true,
+              allowedInArgument: true
             },
             handler(_ref) {
               let {
@@ -13882,7 +13883,11 @@ var require_katex = __commonJS({
               const symbol = symbolToken.text;
               this.consume();
               this.consumeSpaces();
-              const group = this.parseGroup(name2);
+              let group;
+              do {
+                var _group;
+                group = this.parseGroup(name2);
+              } while (((_group = group) == null ? void 0 : _group.type) === "internal");
               if (!group) {
                 throw new src_ParseError("Expected group after '" + symbol + "'", symbolToken);
               }
@@ -13919,6 +13924,9 @@ var require_katex = __commonJS({
              */
             parseAtom(breakOnTokenText) {
               const base2 = this.parseGroup("atom", breakOnTokenText);
+              if ((base2 == null ? void 0 : base2.type) === "internal") {
+                return base2;
+              }
               if (this.mode === "text") {
                 return base2;
               }
@@ -14565,7 +14573,7 @@ var require_katex = __commonJS({
               return renderError(error2, expression, settings);
             }
           };
-          const version = "0.16.21";
+          const version = "0.16.22";
           const __domTree = {
             Span,
             Anchor,

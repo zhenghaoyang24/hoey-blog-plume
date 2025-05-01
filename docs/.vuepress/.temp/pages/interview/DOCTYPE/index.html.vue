@@ -1,5 +1,4 @@
-<template><div><h1 id="title" tabindex="-1"><a class="header-anchor" href="#title"><span>title</span></a></h1>
-<div class="hint-container tip">
+<template><div><div class="hint-container tip">
 <p class="hint-container-title">提问</p>
 <ol>
 <li>什么是DOCTYPE？</li>

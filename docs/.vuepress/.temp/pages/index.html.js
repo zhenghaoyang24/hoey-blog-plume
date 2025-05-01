@@ -1,5 +1,5 @@
-import comp from "D:/zhy-git/hoey-blog-plume/docs/.vuepress/.temp/pages/index.html.vue"
-const data = JSON.parse("{\"path\":\"/\",\"title\":\"\",\"lang\":\"zh-CN\",\"frontmatter\":{\"pageLayout\":\"home\",\"externalLinkIcon\":false,\"config\":[{\"type\":\"Custom\"}],\"gitInclude\":[]},\"headers\":[],\"readingTime\":{\"minutes\":0.02,\"words\":7},\"filePathRelative\":\"README.md\",\"categoryList\":[]}")
+import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/index.html.vue"
+const data = JSON.parse("{\"path\":\"/\",\"title\":\"\",\"lang\":\"zh-CN\",\"frontmatter\":{\"pageLayout\":\"home\",\"externalLinkIcon\":false,\"config\":[{\"type\":\"Custom\"}],\"gitInclude\":[]},\"readingTime\":{\"minutes\":0.02,\"words\":7},\"filePathRelative\":\"README.md\",\"headers\":[],\"categoryList\":[]}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

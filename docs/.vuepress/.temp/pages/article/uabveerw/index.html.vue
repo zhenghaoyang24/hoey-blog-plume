@@ -1,4 +1,5 @@
-<template><div><p>本文主要介绍如何使用 node 完成一些后端业务的开发，例如 数据库连接，发送邮件验证码。</p>
+<template><div><div style="text-align:center"><p><img src="/assets/25042201_cover.png" alt="wechat node" style="width:100%;max-width:200px;"></p>
+</div><p>本文主要介绍如何使用 node 完成一些后端业务的开发，例如 数据库连接，发送邮件验证码。</p>
 <!-- more -->  
 <h2 id="使用-node-连接本地数据库" tabindex="-1"><a class="header-anchor" href="#使用-node-连接本地数据库"><span>使用 node 连接本地数据库</span></a></h2>
 <ol>
