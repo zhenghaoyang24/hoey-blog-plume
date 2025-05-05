@@ -1,5 +1,5 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/24031901/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/24031901/\",\"title\":\"git commit -m 提交规范建议\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"git commit -m 提交规范建议\",\"createTime\":\"2024/3/19\",\"tags\":[\"Git\"],\"permalink\":\"/article/24031901/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":1.93,\"words\":578},\"filePathRelative\":\"学文/24031901.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10000,\"name\":\"学文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/24031901/\",\"title\":\"git commit -m 提交规范建议\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"git commit -m 提交规范建议\",\"createTime\":\"2024/3/19\",\"tags\":[\"Git\"],\"permalink\":\"/article/24031901/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":1.93,\"words\":578},\"filePathRelative\":\"学文/24031901.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10003,\"name\":\"学文\"}]}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

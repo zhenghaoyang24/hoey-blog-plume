@@ -1,5 +1,5 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/24123101/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/24123101/\",\"title\":\"Vue3+Ts 模仿一个 IDE 中的文件树\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"Vue3+Ts 模仿一个 IDE 中的文件树\",\"createTime\":\"2024/12/31\",\"tags\":[\"Vue\",\"TypeScript\"],\"permalink\":\"/article/24123101/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":3.31,\"words\":992},\"filePathRelative\":\"技文/24123101.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10001,\"name\":\"技文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/24123101/\",\"title\":\"Vue3+Ts 模仿一个 IDE 中的文件树\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"Vue3+Ts 模仿一个 IDE 中的文件树\",\"createTime\":\"2024/12/31\",\"tags\":[\"Vue\",\"TypeScript\"],\"permalink\":\"/article/24123101/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":3.31,\"words\":992},\"filePathRelative\":\"技文/24123101.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10002,\"name\":\"技文\"}]}")
 export { comp, data }
 
 if (import.meta.webpackHot) {
