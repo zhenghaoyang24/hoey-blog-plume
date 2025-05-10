@@ -28,6 +28,7 @@
 <script setup>
 import { ref } from 'vue';
 
+// 技能
 const technology = ref([
   { type: 'Vue', icon: 'logos:vue' },
   { type: 'Pinia', icon: 'logos:pinia' },
@@ -47,6 +48,7 @@ const technology = ref([
   { type: 'MySQL', icon: 'devicon:mysql' }
 ]);
 
+// 工具
 const tools = ref([
   { type: 'WebStorm', icon: 'devicon:webstorm' },
   { type: 'VSCode', icon: 'vscode-icons:file-type-vscode' },

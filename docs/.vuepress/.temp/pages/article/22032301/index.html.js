@@ -1,5 +1,5 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/22032301/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/22032301/\",\"title\":\"掌握CSS网格布局\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"掌握CSS网格布局\",\"createTime\":\"2022/3/23\",\"tags\":[\"CSS\",\"HTML\"],\"permalink\":\"/article/22032301/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":2.35,\"words\":705},\"filePathRelative\":\"学文/22032301.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10003,\"name\":\"学文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/22032301/\",\"title\":\"掌握CSS网格布局\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"掌握CSS网格布局\",\"createTime\":\"2022/3/23\",\"tags\":[\"CSS\",\"HTML\"],\"permalink\":\"/article/22032301/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":2.35,\"words\":705},\"filePathRelative\":\"学文/22032301.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10002,\"name\":\"学文\"}]}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

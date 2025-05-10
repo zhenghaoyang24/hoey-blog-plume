@@ -11,7 +11,7 @@
       </a>
     </div>
     <div class="about-me">
-      <div class="about-me-3-2-row">
+      <div class="card-content grid-row-3-2">
         <AboutMeName/>
         <AboutMeText>
           <template #motto>
@@ -23,11 +23,11 @@
           </template>
         </AboutMeText>
       </div>
-      <div class="about-me-3-2-row">
+      <div class="card-content grid-row-3-2">
         <AboutMeSkill/>
         <AboutMeLife/>
       </div>
-      <div class="about-me-1-1-row">
+      <div class="card-content grid-row-1-1">
         <AboutMeText>
           <template #motto>
             <slot name="motto">
@@ -40,7 +40,7 @@
         </AboutMeText>
         <AboutMeCharacter/>
       </div>
-      <div class="about-me-1-row">
+      <div class="card-content grid-row-1">
         <AboutMeFriendLink/>
       </div>
     </div>
@@ -106,38 +106,25 @@ canvas {
   }
 }
 
-.about-me-3-2-row {
+.card-content{
   margin-top: 20px;
   display: grid;
+  gap: 20px;
+  @media screen and (max-width: 770px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.grid-row-3-2 {
   grid-template-columns: 3fr 2fr;
-  gap: 20px;
-  @media screen and (max-width: 770px) {
-    display: flex;
-    flex-direction: column;
-
-  }
 }
 
-.about-me-1-1-row {
-  margin-top: 20px;
-  display: grid;
+.grid-row-1-1 {
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  @media screen and (max-width: 770px) {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
-.about-me-1-row {
-  margin-top: 20px;
-  display: grid;
+.grid-row-1 {
   grid-template-columns: 1fr;
-  gap: 20px;
-  @media screen and (max-width: 770px) {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 
