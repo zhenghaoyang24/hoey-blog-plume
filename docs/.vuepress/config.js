@@ -29,7 +29,7 @@ export default defineUserConfig({
   theme: plumeTheme({
 
     // 添加您的部署域名
-    hostname: 'https://zhenghaoyang.cn',
+    hostname: 'https://www.zhenghaoyang.cn',
     plugins: {
       markdownPower: {
         imageSize: true, // 图片优化 'local（本地图片）' | 'all（所有图片）'
