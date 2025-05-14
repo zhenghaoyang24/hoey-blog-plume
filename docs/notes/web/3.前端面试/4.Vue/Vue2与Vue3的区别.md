@@ -1,7 +1,7 @@
 ---
 title: Vue2与Vue3的区别
 createTime: 2025/02/05 13:21:37
-permalink: /interview/lrdm06i5/
+permalink: /web/interview/lrdm06i5/
 ---
 
 ::: tip 问题

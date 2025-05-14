@@ -1,7 +1,7 @@
 ---
 title: DOCTYPE
 createTime: 2025/02/02 13:35:20
-permalink: /interview/DOCTYPE/
+permalink: /web/interview/DOCTYPE/
 ---
 
 # title

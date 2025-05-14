@@ -1,7 +1,7 @@
 ---
 title: v-if 与 v-show 的区别
 createTime: 2025/02/05 13:40:53
-permalink: /interview/dykkuon7/
+permalink: /web/interview/dykkuon7/
 ---
 
 ::: tip 问题

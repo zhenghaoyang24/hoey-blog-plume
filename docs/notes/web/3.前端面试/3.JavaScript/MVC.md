@@ -1,7 +1,7 @@
 ---
 title: MVC/MVVM/MVP
 createTime: 2025/02/09 21:58:44
-permalink: /interview/zmjqknax/
+permalink: /web/interview/zmjqknax/
 ---
 
 ::: tip 问题

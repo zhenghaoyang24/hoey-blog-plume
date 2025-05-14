@@ -1,2 +1,0 @@
-import './articleTagColors.css'
-export const articleTagColors = {"CSS":"krle","HTML":"krle","JavaScript":"tlzc","Vue":"v8ax","Git":"ir4r","DeBug":"xwfq","微信小程序":"v8ax","Node":"1ss7","npm":"8t8q","pnpm":"ye8n","TypeScript":"9ayl","Node.js":"krle","数据结构":"9ayl"}
