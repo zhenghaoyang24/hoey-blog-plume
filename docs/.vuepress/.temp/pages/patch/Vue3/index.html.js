@@ -1,5 +1,5 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/patch/vue3/index.html.vue"
-const data = JSON.parse("{\"path\":\"/patch/vue3/\",\"title\":\"Vue3 快速上手\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"Vue3 快速上手\",\"createTime\":\"2024/8/5 10:19:27\",\"permalink\":\"/patch/vue3/\",\"tags\":[\"Vue\"],\"gitInclude\":[]},\"readingTime\":{\"minutes\":30.17,\"words\":9052},\"filePathRelative\":\"notes/patch/2.Vue/vue3.md\",\"headers\":[]}")
+const data = JSON.parse("{\"path\":\"/patch/vue3/\",\"title\":\"Vue3 快速上手\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"Vue3 快速上手\",\"createTime\":\"2024/8/5 10:19:27\",\"permalink\":\"/patch/vue3/\",\"tags\":[\"Vue\"],\"gitInclude\":[]},\"readingTime\":{\"minutes\":30.17,\"words\":9052},\"filePathRelative\":\"notes/patch/2.Vue/vue3.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10003,\"name\":\"notes\"},{\"id\":\"7edf29\",\"sort\":10005,\"name\":\"patch\"},{\"id\":\"b9bc66\",\"sort\":2,\"name\":\"Vue\"}]}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

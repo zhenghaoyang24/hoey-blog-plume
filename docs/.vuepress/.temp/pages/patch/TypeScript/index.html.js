@@ -1,5 +1,5 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/patch/TypeScript/index.html.vue"
-const data = JSON.parse("{\"path\":\"/patch/TypeScript/\",\"title\":\"TypeScript\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"TypeScript\",\"createTime\":\"2025/04/04 20:07:57\",\"permalink\":\"/patch/TypeScript/\",\"tags\":[\"TypeScript\"],\"gitInclude\":[]},\"readingTime\":{\"minutes\":2.47,\"words\":742},\"filePathRelative\":\"notes/patch/1.前端基础/TypeScript.md\",\"headers\":[]}")
+const data = JSON.parse("{\"path\":\"/patch/TypeScript/\",\"title\":\"TypeScript\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"TypeScript\",\"createTime\":\"2025/04/04 20:07:57\",\"permalink\":\"/patch/TypeScript/\",\"tags\":[\"TypeScript\"],\"gitInclude\":[]},\"readingTime\":{\"minutes\":2.47,\"words\":742},\"filePathRelative\":\"notes/patch/1.前端基础/TypeScript.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10003,\"name\":\"notes\"},{\"id\":\"7edf29\",\"sort\":10005,\"name\":\"patch\"},{\"id\":\"8a5d19\",\"sort\":1,\"name\":\"前端基础\"}]}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

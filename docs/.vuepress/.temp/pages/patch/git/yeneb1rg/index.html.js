@@ -1,5 +1,5 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/patch/git/yeneb1rg/index.html.vue"
-const data = JSON.parse("{\"path\":\"/patch/git/yeneb1rg/\",\"title\":\"创建版本库\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"创建版本库\",\"createTime\":\"2025/03/12 17:13:47\",\"permalink\":\"/patch/git/yeneb1rg/\",\"tags\":[\"Git\"],\"gitInclude\":[]},\"readingTime\":{\"minutes\":4.18,\"words\":1255},\"filePathRelative\":\"notes/patch/Git/2.创建版本库.md\",\"headers\":[]}")
+const data = JSON.parse("{\"path\":\"/patch/git/yeneb1rg/\",\"title\":\"创建版本库\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"创建版本库\",\"createTime\":\"2025/03/12 17:13:47\",\"permalink\":\"/patch/git/yeneb1rg/\",\"tags\":[\"Git\"],\"gitInclude\":[]},\"readingTime\":{\"minutes\":4.18,\"words\":1255},\"filePathRelative\":\"notes/memo/Git/2.创建版本库.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10002,\"name\":\"notes\"},{\"id\":\"5edc2c\",\"sort\":10009,\"name\":\"memo\"},{\"id\":\"3143fa\",\"sort\":10008,\"name\":\"Git\"}]}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

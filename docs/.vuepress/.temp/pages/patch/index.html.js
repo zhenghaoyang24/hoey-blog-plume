@@ -1,5 +1,5 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/patch/index.html.vue"
-const data = JSON.parse("{\"path\":\"/patch/\",\"title\":\"温故知新\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"温故知新\",\"createTime\":\"2024/10/31 15:40:23\",\"permalink\":\"/patch/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":0.09,\"words\":26},\"filePathRelative\":\"notes/patch/README.md\",\"headers\":[]}")
+const data = JSON.parse("{\"path\":\"/patch/\",\"title\":\"温故知新\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"温故知新\",\"createTime\":\"2024/10/31 15:40:23\",\"permalink\":\"/patch/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":0.08,\"words\":24},\"filePathRelative\":\"notes/patch/README.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10003,\"name\":\"notes\"},{\"id\":\"7edf29\",\"sort\":10005,\"name\":\"patch\"}]}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

@@ -1,5 +1,5 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/patch/CSS3/index.html.vue"
-const data = JSON.parse("{\"path\":\"/patch/CSS3/\",\"title\":\"CSS3\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"CSS3\",\"createTime\":\"2024/10/31 15:41:27\",\"permalink\":\"/patch/CSS3/\",\"tags\":[\"CSS\"],\"gitInclude\":[]},\"readingTime\":{\"minutes\":0.38,\"words\":113},\"filePathRelative\":\"notes/patch/1.前端基础/CSS3.md\",\"headers\":[]}")
+const data = JSON.parse("{\"path\":\"/patch/CSS3/\",\"title\":\"CSS3\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"CSS3\",\"createTime\":\"2024/10/31 15:41:27\",\"permalink\":\"/patch/CSS3/\",\"tags\":[\"CSS\"],\"gitInclude\":[]},\"readingTime\":{\"minutes\":0.38,\"words\":113},\"filePathRelative\":\"notes/patch/1.前端基础/CSS3.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10002,\"name\":\"notes\"},{\"id\":\"7edf29\",\"sort\":10006,\"name\":\"patch\"},{\"id\":\"8a5d19\",\"sort\":1,\"name\":\"前端基础\"}]}")
 export { comp, data }
 
 if (import.meta.webpackHot) {

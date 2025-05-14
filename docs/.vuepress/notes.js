@@ -1,15 +1,20 @@
 import {defineNoteConfig, defineNotesConfig} from 'vuepress-theme-plume'
 
-const notePatch = defineNoteConfig({
-        dir: 'patch',
-        link: '/patch/',
+const noteWeb = defineNoteConfig({
+        dir: 'web',
+        link: '/web/',
         sidebar: 'auto',
     },
 )
-
-const noteInterview = defineNoteConfig({
-        dir: 'interview',
-        link: '/interview/',
+const noteAndroid = defineNoteConfig({
+        dir: 'android',
+        link: '/android/',
+        sidebar: 'auto',
+    },
+)
+const noteMemo = defineNoteConfig({
+        dir: 'memo',
+        link: '/memo/',
         sidebar: 'auto',
     },
 )
@@ -23,5 +28,5 @@ const noteMore = defineNoteConfig({
 export const notes = defineNotesConfig({
     dir: 'notes',
     link: '/',
-    notes: [notePatch,noteInterview,noteMore],
+    notes: [noteWeb, noteAndroid, noteMemo, noteMore],
 })
