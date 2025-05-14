@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/23042001/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/23042001/\",\"title\":\"JS中的事件循环机制与异步处理\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"JS中的事件循环机制与异步处理\",\"createTime\":\"2023/4/20\",\"tags\":[\"JavaScript\"],\"permalink\":\"/article/23042001/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":6.97,\"words\":2092},\"filePathRelative\":\"学文/23042001.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10000,\"name\":\"学文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/23042001/\",\"title\":\"JS中的事件循环机制与异步处理\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"JS中的事件循环机制与异步处理\",\"createTime\":\"2023/4/20\",\"tags\":[\"JavaScript\"],\"permalink\":\"/article/23042001/\",\"description\":\"JavaScript是单线程的，这意味着它一次只能执行一个任务。为了处理异步操作，JavaScript依赖于事件循环(Event Loop)机制。事件循环允许JavaScript在等待异步操作完成时继续执行其他任务，从而实现非阻塞的异步编程。 1.事件循环机制(Event Loop) 事件循环机制依靠调用栈和任务队列完成事件循环，从而实现JS的异步编程...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"JS中的事件循环机制与异步处理\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2024-10-31T08:33:15.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/article/23042001/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"JS中的事件循环机制与异步处理\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"JavaScript是单线程的，这意味着它一次只能执行一个任务。为了处理异步操作，JavaScript依赖于事件循环(Event Loop)机制。事件循环允许JavaScript在等待异步操作完成时继续执行其他任务，从而实现非阻塞的异步编程。 1.事件循环机制(Event Loop) 事件循环机制依靠调用栈和任务队列完成事件循环，从而实现JS的异步编程...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2024-10-31T08:33:15.000Z\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"JavaScript\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2024-10-31T08:33:15.000Z\"}]]},\"readingTime\":{\"minutes\":6.97,\"words\":2092},\"git\":{\"updatedTime\":1730363595000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"2463193508@qq.ocm\",\"commits\":1,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"学文/23042001.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10001,\"name\":\"学文\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

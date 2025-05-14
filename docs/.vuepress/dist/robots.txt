@@ -1,3 +1,4 @@
+Sitemap: https://www.zhenghaoyang.cn/sitemap.xml
 
 User-agent:*
 Disallow:

@@ -1,6 +1,6 @@
 <template><div><p>使用 <code v-pre>Vue3</code> 做一个能够通过选定的本地文件夹生成一个类似 <code v-pre>IDE</code> 左侧的文件树，同时点击文件可显示基本信息的功能。</p>
 <!-- more -->  
-<p><img src="/assets/24123101_01.png" alt="24123101_01.png"></p>
+<p><img src="/assets/24123101_01.png" alt="24123101_01.png" width="725" height="329"></p>
 <p>本项目已发布到开源仓库 <a href="https://github.com/zhenghaoyang24/filetree" target="_blank" rel="noopener noreferrer">filetree</a>，代码对应文件为 <code v-pre>App.vue</code> 与 <code v-pre>TreeNode.vue</code>。也可以通过
 <a href="https://files-tree.netlify.app/" target="_blank" rel="noopener noreferrer">这个链接</a>快速访问本项目。</p>
 <p>以下是对核心代码的讲解。</p>

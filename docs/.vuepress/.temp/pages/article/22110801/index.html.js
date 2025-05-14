@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/22110801/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/22110801/\",\"title\":\"回调函数理解\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"回调函数理解\",\"createTime\":\"2022/11/8\",\"tags\":[\"JavaScript\"],\"permalink\":\"/article/22110801/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":1.38,\"words\":414},\"filePathRelative\":\"学文/22110801.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10000,\"name\":\"学文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/22110801/\",\"title\":\"回调函数理解\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"回调函数理解\",\"createTime\":\"2022/11/8\",\"tags\":[\"JavaScript\"],\"permalink\":\"/article/22110801/\",\"description\":\"最近经常遇到回调函数这个概念,查看相关资料后记录一下。 回调是什么? 回调(callback) 是对某段代码的引用,它被作为参数传递给另一段代码,并在某个时刻被调用。通俗点讲就是主函数中的某个参数是一个外部函数,当符合某个条件时,这个函数将会被调用. 为什么要使用回调函数? 使用回调可以将主函数与回调函数两者分开,主函数不需要关心被调函数叫什么、有什么...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"回调函数理解\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2024-10-31T08:33:15.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/article/22110801/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"回调函数理解\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"最近经常遇到回调函数这个概念,查看相关资料后记录一下。 回调是什么? 回调(callback) 是对某段代码的引用,它被作为参数传递给另一段代码,并在某个时刻被调用。通俗点讲就是主函数中的某个参数是一个外部函数,当符合某个条件时,这个函数将会被调用. 为什么要使用回调函数? 使用回调可以将主函数与回调函数两者分开,主函数不需要关心被调函数叫什么、有什么...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2024-10-31T08:33:15.000Z\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"JavaScript\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2024-10-31T08:33:15.000Z\"}]]},\"readingTime\":{\"minutes\":1.38,\"words\":414},\"git\":{\"updatedTime\":1730363595000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"2463193508@qq.ocm\",\"commits\":1,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"学文/22110801.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10001,\"name\":\"学文\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

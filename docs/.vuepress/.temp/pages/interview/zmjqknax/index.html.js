@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/interview/zmjqknax/index.html.vue"
-const data = JSON.parse("{\"path\":\"/interview/zmjqknax/\",\"title\":\"MVC/MVVM/MVP\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"MVC/MVVM/MVP\",\"createTime\":\"2025/02/09 21:58:44\",\"permalink\":\"/interview/zmjqknax/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":3.96,\"words\":1187},\"filePathRelative\":\"notes/web/3.前端面试/3.JavaScript/MVC.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10003,\"name\":\"notes\"},{\"id\":\"c4f15b\",\"sort\":10004,\"name\":\"web\"},{\"id\":\"8b0eee\",\"sort\":3,\"name\":\"前端面试\"},{\"id\":\"84b072\",\"sort\":3,\"name\":\"JavaScript\"}]}")
+const data = JSON.parse("{\"path\":\"/interview/zmjqknax/\",\"title\":\"MVC/MVVM/MVP\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"MVC/MVVM/MVP\",\"createTime\":\"2025/02/09 21:58:44\",\"permalink\":\"/interview/zmjqknax/\",\"description\":\"问题 什么是MVC模式？ 什么是MVVM模式？ 什么是MVP模式？ 在前端开发中，MVC、MVVM 和 MVP 是三种常见的软件设计模式，它们帮助开发者更高效地组织代码，提升代码的可维护性、可扩展性和可测试性。 MVC 概念 MVC 模式将应用程序分为三个主要部分：模型（Model）、视图（View）和控制器（Controller），各部分之间的职责明...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"MVC/MVVM/MVP\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2025-05-14T10:49:48.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/interview/zmjqknax/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"MVC/MVVM/MVP\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"问题 什么是MVC模式？ 什么是MVVM模式？ 什么是MVP模式？ 在前端开发中，MVC、MVVM 和 MVP 是三种常见的软件设计模式，它们帮助开发者更高效地组织代码，提升代码的可维护性、可扩展性和可测试性。 MVC 概念 MVC 模式将应用程序分为三个主要部分：模型（Model）、视图（View）和控制器（Controller），各部分之间的职责明...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2025-05-14T10:49:48.000Z\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2025-05-14T10:49:48.000Z\"}]]},\"readingTime\":{\"minutes\":3.96,\"words\":1187},\"git\":{\"updatedTime\":1747219788000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"zhenghaoyang24@foxmail.com\",\"commits\":2,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"notes/web/3.前端面试/3.JavaScript/MVC.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10003,\"name\":\"notes\"},{\"id\":\"c4f15b\",\"sort\":10004,\"name\":\"web\"},{\"id\":\"8b0eee\",\"sort\":3,\"name\":\"前端面试\"},{\"id\":\"84b072\",\"sort\":3,\"name\":\"JavaScript\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

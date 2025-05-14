@@ -1,17 +1,19 @@
 <template><div><p>发布 <code v-pre>npm</code> 包的详细流程以及可能会遇到的问题。</p>
 <!-- more -->  
 <h2 id="_1-初始化文件" tabindex="-1"><a class="header-anchor" href="#_1-初始化文件"><span>1. 初始化文件</span></a></h2>
-<p>创建一个空文件夹 <code v-pre>npm-demo</code> ，并创建以下文件：</p>
-<div class="vp-file-tree"><ul>
-<FileTreeItem type="folder" :expanded="true" :empty="false"><span class="tree-node folder"><VPIcon name="vscode-icons:default-folder"></VPIcon><span class="name">npm-demo</span></span>
+<p>创建一个空文件夹 <code v-pre>npm-demo</code> ，并创建以下文件：
+::: file-tree</p>
 <ul>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:file-type-node"></VPIcon><span class="name">package.json</span><span class="comment">配置文件</span></span></FileTreeItem>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="vscode-icons:file-type-js"></VPIcon><span class="name">index.js</span><span class="comment">文件入口</span></span></FileTreeItem>
-<FileTreeItem type="file" :expanded="false" :empty="true"><span class="tree-node file"><VPIcon name="flat-color-icons:info"></VPIcon><span class="name">README.md</span><span class="comment">包说明文档</span></span></FileTreeItem>
+<li>npm-demo
+<ul>
+<li>package.json 配置文件</li>
+<li>index.js 文件入口</li>
+<li>README.md 包说明文档
+:::</li>
 </ul>
-</FileTreeItem>
+</li>
 </ul>
-</div><h3 id="_1-1-package-json" tabindex="-1"><a class="header-anchor" href="#_1-1-package-json"><span>1.1 package.json</span></a></h3>
+<h3 id="_1-1-package-json" tabindex="-1"><a class="header-anchor" href="#_1-1-package-json"><span>1.1 package.json</span></a></h3>
 <p>你可以使用命令根据 <code v-pre>配置向导</code> 来创建这个文件：</p>
 <div class="language-shell" data-highlighter="shiki" data-ext="shell" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212"><pre class="shiki shiki-themes vitesse-light vitesse-dark vp-code" v-pre=""><code><span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665">npm</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D"> init</span></span></code></pre>
 </div><p>若觉得过程太繁琐你可以自己创建这个文件，并在文件里写写好以下基本配置：</p>

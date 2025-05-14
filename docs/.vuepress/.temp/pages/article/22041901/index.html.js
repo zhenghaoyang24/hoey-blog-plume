@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/22041901/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/22041901/\",\"title\":\"利用keyframes实现加载动画\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"利用keyframes实现加载动画\",\"createTime\":\"2022/4/19\",\"tags\":[\"CSS\",\"HTML\"],\"permalink\":\"/article/22041901/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":0.89,\"words\":266},\"filePathRelative\":\"技文/22041901.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10001,\"name\":\"技文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/22041901/\",\"title\":\"利用keyframes实现加载动画\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"利用keyframes实现加载动画\",\"createTime\":\"2022/4/19\",\"tags\":[\"CSS\",\"HTML\"],\"permalink\":\"/article/22041901/\",\"description\":\"CSS动画是CSS3的新特性，想用动画做一个简单的页面加载动画。 首先建一个盒子用于装四个小正方形，并用Grid布局让正方形2x2排列。因为要让四个正方形绕中心旋转，则给父元素加上旋转动画，为了让旋转之间有停顿，因此旋转从20再开始。 为了让四个正方形从中间分散，直接改变父元素grid-gap则可实现。最后给正方形在加上border-radius看起来...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"利用keyframes实现加载动画\\\",\\\"image\\\":[\\\"https://www.zhenghaoyang.cn/assets/22041901_01.gif\\\"],\\\"dateModified\\\":\\\"2024-11-05T15:14:23.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/article/22041901/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"利用keyframes实现加载动画\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"CSS动画是CSS3的新特性，想用动画做一个简单的页面加载动画。 首先建一个盒子用于装四个小正方形，并用Grid布局让正方形2x2排列。因为要让四个正方形绕中心旋转，则给父元素加上旋转动画，为了让旋转之间有停顿，因此旋转从20再开始。 为了让四个正方形从中间分散，直接改变父元素grid-gap则可实现。最后给正方形在加上border-radius看起来...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:image\",\"content\":\"https://www.zhenghaoyang.cn/assets/22041901_01.gif\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2024-11-05T15:14:23.000Z\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"HTML\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"CSS\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2024-11-05T15:14:23.000Z\"}]]},\"readingTime\":{\"minutes\":0.89,\"words\":266},\"git\":{\"updatedTime\":1730819663000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"2463193508@qq.ocm\",\"commits\":5,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"技文/22041901.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10000,\"name\":\"技文\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

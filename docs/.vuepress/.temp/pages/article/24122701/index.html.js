@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/24122701/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/24122701/\",\"title\":\"发布自己的npm包\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"发布自己的npm包\",\"createTime\":\"2024/12/27\",\"tags\":[\"npm\"],\"permalink\":\"/article/24122701/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":2.36,\"words\":709},\"filePathRelative\":\"技文/24122701.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10001,\"name\":\"技文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/24122701/\",\"title\":\"发布自己的npm包\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"发布自己的npm包\",\"createTime\":\"2024/12/27\",\"tags\":[\"npm\"],\"permalink\":\"/article/24122701/\",\"description\":\"发布 npm 包的详细流程以及可能会遇到的问题。 1. 初始化文件 创建一个空文件夹 npm-demo ，并创建以下文件： ::: file-tree npm-demo package.json 配置文件 index.js 文件入口 README.md 包说明文档 ::: 1.1 package.json 你可以使用命令根据 配置向导 来创建这个文件：...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"发布自己的npm包\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2024-12-28T06:36:08.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/article/24122701/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"发布自己的npm包\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"发布 npm 包的详细流程以及可能会遇到的问题。 1. 初始化文件 创建一个空文件夹 npm-demo ，并创建以下文件： ::: file-tree npm-demo package.json 配置文件 index.js 文件入口 README.md 包说明文档 ::: 1.1 package.json 你可以使用命令根据 配置向导 来创建这个文件：...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2024-12-28T06:36:08.000Z\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"npm\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2024-12-28T06:36:08.000Z\"}]]},\"readingTime\":{\"minutes\":2.36,\"words\":709},\"git\":{\"updatedTime\":1735367768000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"zhenghaoyang24@foxmail.com\",\"commits\":1,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"技文/24122701.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10000,\"name\":\"技文\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

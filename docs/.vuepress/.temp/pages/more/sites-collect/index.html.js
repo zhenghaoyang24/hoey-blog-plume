@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/more/sites-collect/index.html.vue"
-const data = JSON.parse("{\"path\":\"/more/sites-collect/\",\"title\":\"网址导航\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"网址导航\",\"createTime\":\"2024/11/21 19:16:45\",\"permalink\":\"/more/sites-collect/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":1.73,\"words\":519},\"filePathRelative\":\"notes/more/site.md\",\"headers\":[]}")
+const data = JSON.parse("{\"path\":\"/more/sites-collect/\",\"title\":\"网址导航\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"网址导航\",\"createTime\":\"2024/11/21 19:16:45\",\"permalink\":\"/more/sites-collect/\",\"description\":\"趋势 库/框架 Vue相关 CSS相关 JavaScript 小程序 图标 构建工具 站点生成工具 其他\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"网址导航\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2025-03-12T09:28:51.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/more/sites-collect/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"网址导航\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"趋势 库/框架 Vue相关 CSS相关 JavaScript 小程序 图标 构建工具 站点生成工具 其他\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2025-03-12T09:28:51.000Z\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2025-03-12T09:28:51.000Z\"}]]},\"readingTime\":{\"minutes\":1.73,\"words\":519},\"git\":{\"updatedTime\":1741771731000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"zhenghaoyang24@foxmail.com\",\"commits\":3,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"notes/more/site.md\",\"headers\":[]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

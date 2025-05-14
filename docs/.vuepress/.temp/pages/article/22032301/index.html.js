@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/22032301/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/22032301/\",\"title\":\"掌握CSS网格布局\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"掌握CSS网格布局\",\"createTime\":\"2022/3/23\",\"tags\":[\"CSS\",\"HTML\"],\"permalink\":\"/article/22032301/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":2.35,\"words\":705},\"filePathRelative\":\"学文/22032301.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10000,\"name\":\"学文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/22032301/\",\"title\":\"掌握CSS网格布局\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"掌握CSS网格布局\",\"createTime\":\"2022/3/23\",\"tags\":[\"CSS\",\"HTML\"],\"permalink\":\"/article/22032301/\",\"description\":\"1. 什么是CSS网格布局？ 网格是一组相交的水平线和垂直线，它定义了网格的列和行。CSS 提供了一个基于网格的布局系统，带有行和列， 与 flexbox 的一维布局不同 网格布局允许我们员创建复杂的网页布局，更轻松地设计网页，而无需使用浮动和定位，且代码更简洁直观。 核心概念： 网格容器 (Grid Container) 网格项 (Grid Item...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"掌握CSS网格布局\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2025-04-09T08:17:29.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/article/22032301/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"掌握CSS网格布局\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"1. 什么是CSS网格布局？ 网格是一组相交的水平线和垂直线，它定义了网格的列和行。CSS 提供了一个基于网格的布局系统，带有行和列， 与 flexbox 的一维布局不同 网格布局允许我们员创建复杂的网页布局，更轻松地设计网页，而无需使用浮动和定位，且代码更简洁直观。 核心概念： 网格容器 (Grid Container) 网格项 (Grid Item...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2025-04-09T08:17:29.000Z\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"HTML\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"CSS\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2025-04-09T08:17:29.000Z\"}]]},\"readingTime\":{\"minutes\":2.35,\"words\":705},\"git\":{\"updatedTime\":1744186649000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"2463193508@qq.ocm\",\"commits\":6,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"学文/22032301.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10001,\"name\":\"学文\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

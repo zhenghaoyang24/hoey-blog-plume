@@ -1,15 +1,2 @@
 import './articleTagColors.css'
-export const articleTagColors = {"CSS":"rmy1","HTML":"rmy1","JavaScript":"aegn","Vue":"h7ys","Git":"s9ye","DeBug":"qdc2","微信小程序":"h7ys","Node":"bxcr","npm":"2bmm","pnpm":"p7xn","TypeScript":"7n37","Node.js":"rmy1","数据结构":"7n37"}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updateArticleTagColors) {
-    __VUE_HMR_RUNTIME__.updateArticleTagColors(articleTagColors)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ articleTagColors }) => {
-    __VUE_HMR_RUNTIME__.updateArticleTagColors(articleTagColors)
-  })
-}
+export const articleTagColors = {"CSS":"krle","HTML":"krle","JavaScript":"tlzc","Vue":"v8ax","Git":"ir4r","DeBug":"xwfq","微信小程序":"v8ax","Node":"1ss7","npm":"8t8q","pnpm":"ye8n","TypeScript":"9ayl","Node.js":"krle","数据结构":"9ayl"}

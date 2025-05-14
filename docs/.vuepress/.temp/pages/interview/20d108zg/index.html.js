@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/interview/20d108zg/index.html.vue"
-const data = JSON.parse("{\"path\":\"/interview/20d108zg/\",\"title\":\"闭包\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"闭包\",\"createTime\":\"2025/02/14 21:50:02\",\"permalink\":\"/interview/20d108zg/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":1.54,\"words\":461},\"filePathRelative\":\"notes/web/3.前端面试/3.JavaScript/5.闭包.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10003,\"name\":\"notes\"},{\"id\":\"c4f15b\",\"sort\":10004,\"name\":\"web\"},{\"id\":\"8b0eee\",\"sort\":3,\"name\":\"前端面试\"},{\"id\":\"84b072\",\"sort\":3,\"name\":\"JavaScript\"}]}")
+const data = JSON.parse("{\"path\":\"/interview/20d108zg/\",\"title\":\"闭包\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"闭包\",\"createTime\":\"2025/02/14 21:50:02\",\"permalink\":\"/interview/20d108zg/\",\"description\":\"问题 什么是闭包？ 闭包有什么用途？ 闭包是指一个函数能够记住并访问它的词法作用域，即使这个函数在其词法作用域之外被调用。 什么是闭包？ 闭包是 JavaScript 中的一个重要概念，它发生在当一个函数嵌套在另一个函数内部时，内部函数可以访问外部函数的变量和参数，即使外部函数已经执行完毕并返回。 简单来说，闭包就是“函数 + 函数声明时的词法作用域”...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"闭包\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2025-05-14T10:49:48.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/interview/20d108zg/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"闭包\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"问题 什么是闭包？ 闭包有什么用途？ 闭包是指一个函数能够记住并访问它的词法作用域，即使这个函数在其词法作用域之外被调用。 什么是闭包？ 闭包是 JavaScript 中的一个重要概念，它发生在当一个函数嵌套在另一个函数内部时，内部函数可以访问外部函数的变量和参数，即使外部函数已经执行完毕并返回。 简单来说，闭包就是“函数 + 函数声明时的词法作用域”...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2025-05-14T10:49:48.000Z\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2025-05-14T10:49:48.000Z\"}]]},\"readingTime\":{\"minutes\":1.54,\"words\":461},\"git\":{\"updatedTime\":1747219788000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"zhenghaoyang24@foxmail.com\",\"commits\":3,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"notes/web/3.前端面试/3.JavaScript/5.闭包.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10003,\"name\":\"notes\"},{\"id\":\"c4f15b\",\"sort\":10004,\"name\":\"web\"},{\"id\":\"8b0eee\",\"sort\":3,\"name\":\"前端面试\"},{\"id\":\"84b072\",\"sort\":3,\"name\":\"JavaScript\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

@@ -1,15 +1,2 @@
 import './iconify.css'
-export const icons = {"vscode-icons:default-folder":"vpi-ipi3m95o bg","vscode-icons:file-type-node":"vpi-np3ezfk9 bg","vscode-icons:file-type-js":"vpi-y4rtru34 bg","flat-color-icons:info":"vpi-l9qc4xrm bg","logos:vue":"vpi-9aaufu1f bg","logos:react":"vpi-zqp6gkpu bg","logos:angular-icon":"vpi-efkjkuda bg","logos:flutter":"vpi-5a48rhns bg","logos:nativescript":"vpi-cfbkfmnc bg","logos:electron":"vpi-l4jbsdwm bg","logos:tauri":"vpi-ssdscq5a bg","logos:element":"vpi-cv4y9qw8 bg","logos:naiveui":"vpi-6qz615yy bg","logos:vuetifyjs":"vpi-cwhld202 bg","skill-icons:bootstrap":"vpi-gorwvd6q bg","logos:pinia":"vpi-elpk78g9 bg","logos:vueuse":"vpi-044fjypx bg","logos:less":"vpi-0z1mfvlt bg","logos:sass":"vpi-q9yoak8e bg","logos:stylus":"vpi-zs09a8c6 bg","logos:javascript":"vpi-lhuljnpa bg","logos:vitejs":"vpi-wm7n789r bg","logos:webpack":"vpi-0o0pbdfv bg","logos:hexo":"vpi-7y8w4pv5 bg","vscode-icons:folder-type-src":"vpi-irihgq5r bg","vscode-icons:folder-type-component":"vpi-n47zw3ct bg","vscode-icons:file-type-vue":"vpi-khe8pk5i bg","vscode-icons:folder-type-tools":"vpi-it11yli6 bg","material-symbols:home":"vpi-oagspsjb","material-symbols:article-outline":"vpi-d28wb1q0","ic:outline-note-alt":"vpi-zeba1ivu","logos:web-dev-icon":"vpi-tuen7e8l bg","material-icon-theme:android":"vpi-ehphy3wh bg","emojione:memo":"vpi-ryzfze2g bg","mingcute:more-3-fill":"vpi-17f2gwss","icon-park:friends-circle":"vpi-sjmzxiu6 bg","material-icon-theme:folder-project-open":"vpi-rij13vs4 bg","logos:sitepoint":"vpi-lqov72jb bg"}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updateIcons) {
-    __VUE_HMR_RUNTIME__.updateIcons(icons)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ icons }) => {
-    __VUE_HMR_RUNTIME__.updateIcons(icons)
-  })
-}
+export const icons = {"material-icon-theme:android":"vpi-9ogms463 bg","material-icon-theme:folder-project-open":"vpi-8jaj6vp5 bg","skill-icons:bootstrap":"vpi-tsiuuwox bg","icon-park:friends-circle":"vpi-ogfffus5 bg","emojione:memo":"vpi-69phs1k2 bg","vscode-icons:folder-type-src":"vpi-xxb5qlvo bg","vscode-icons:folder-type-component":"vpi-u0o43kl9 bg","vscode-icons:file-type-vue":"vpi-d7xybqyg bg","vscode-icons:folder-type-tools":"vpi-75hbianp bg","vscode-icons:file-type-js":"vpi-s0d365s5 bg","mingcute:more-3-fill":"vpi-4l78jtte","ic:outline-note-alt":"vpi-i71elwbv","logos:vue":"vpi-8zc90wlu bg","logos:react":"vpi-2vsk8p51 bg","logos:angular-icon":"vpi-i035k4pj bg","logos:flutter":"vpi-hynw554p bg","logos:nativescript":"vpi-xia0s0g5 bg","logos:electron":"vpi-xps06yc5 bg","logos:tauri":"vpi-qjz3cnob bg","logos:element":"vpi-9gkpuet3 bg","logos:naiveui":"vpi-qdwcc0p9 bg","logos:vuetifyjs":"vpi-8a004npq bg","logos:pinia":"vpi-bu981oqr bg","logos:vueuse":"vpi-d7c3oo00 bg","logos:less":"vpi-pis375m8 bg","logos:sass":"vpi-c3gzpj76 bg","logos:stylus":"vpi-8hes1qun bg","logos:javascript":"vpi-1j3px1kc bg","logos:vitejs":"vpi-54ya53jq bg","logos:webpack":"vpi-ikd3eox9 bg","logos:hexo":"vpi-yik57mns bg","logos:web-dev-icon":"vpi-nowa1wuj bg","logos:sitepoint":"vpi-l2txjb4a bg","material-symbols:home":"vpi-38jp705v","material-symbols:article-outline":"vpi-rsth3vx3"}

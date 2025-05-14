@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/23072701/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/23072701/\",\"title\":\"让div标签支持focus/blur事件\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"让div标签支持focus/blur事件\",\"createTime\":\"2023/7/27\",\"tags\":[\"Vue\"],\"permalink\":\"/article/23072701/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":1.16,\"words\":349},\"filePathRelative\":\"技文/23072701.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10001,\"name\":\"技文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/23072701/\",\"title\":\"让div标签支持focus/blur事件\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"让div标签支持focus/blur事件\",\"createTime\":\"2023/7/27\",\"tags\":[\"Vue\"],\"permalink\":\"/article/23072701/\",\"description\":\"为实现一个类似 select 下拉选择框效果，想到用 click 与 blur 事件来处理，但在实践过程中发现 div 正常情况下是无法获得焦点的。 后来知道了需要添加 tabindex 属性。 tabindex 全局属性指示其元素是否可以聚焦，以及它是否/在何处参与顺序键盘导航（通常使用Tab键，因此得名）。 下面是MDN社区对 tabindex 属...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"让div标签支持focus/blur事件\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2024-11-10T14:11:58.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/article/23072701/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"让div标签支持focus/blur事件\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"为实现一个类似 select 下拉选择框效果，想到用 click 与 blur 事件来处理，但在实践过程中发现 div 正常情况下是无法获得焦点的。 后来知道了需要添加 tabindex 属性。 tabindex 全局属性指示其元素是否可以聚焦，以及它是否/在何处参与顺序键盘导航（通常使用Tab键，因此得名）。 下面是MDN社区对 tabindex 属...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2024-11-10T14:11:58.000Z\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Vue\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2024-11-10T14:11:58.000Z\"}]]},\"readingTime\":{\"minutes\":1.16,\"words\":349},\"git\":{\"updatedTime\":1731247918000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"2463193508@qq.ocm\",\"commits\":1,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"技文/23072701.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10000,\"name\":\"技文\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

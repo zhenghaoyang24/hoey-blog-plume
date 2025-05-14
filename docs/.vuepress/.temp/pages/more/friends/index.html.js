@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/more/friends/index.html.vue"
-const data = JSON.parse("{\"path\":\"/more/friends/\",\"title\":\"友情链接\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"友情链接\",\"createTime\":\"2025/03/27 14:27:56\",\"description\":\"我的好友们\",\"permalink\":\"/more/friends/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":1.03,\"words\":310},\"filePathRelative\":\"notes/more/friends.md\",\"headers\":[]}")
+const data = JSON.parse("{\"path\":\"/more/friends/\",\"title\":\"友情链接\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"友情链接\",\"createTime\":\"2025/03/27 14:27:56\",\"description\":\"我的好友们\",\"permalink\":\"/more/friends/\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"友情链接\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2025-04-21T11:08:21.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/more/friends/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"友情链接\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"我的好友们\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2025-04-21T11:08:21.000Z\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2025-04-21T11:08:21.000Z\"}]]},\"readingTime\":{\"minutes\":1.03,\"words\":310},\"git\":{\"updatedTime\":1745233701000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"zhenghaoyang24@foxmail.com\",\"commits\":3,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"filePathRelative\":\"notes/more/friends.md\",\"headers\":[]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

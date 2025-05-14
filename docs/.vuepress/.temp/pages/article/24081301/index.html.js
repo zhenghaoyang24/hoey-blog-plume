@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/24081301/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/24081301/\",\"title\":\"为VuePress文档添加右侧导航栏\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"为VuePress文档添加右侧导航栏\",\"createTime\":\"2024/8/13\",\"tags\":[\"Vue\"],\"permalink\":\"/article/24081301/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":0.29,\"words\":86},\"filePathRelative\":\"技文/24081301.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10001,\"name\":\"技文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/24081301/\",\"title\":\"为VuePress文档添加右侧导航栏\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"为VuePress文档添加右侧导航栏\",\"createTime\":\"2024/8/13\",\"tags\":[\"Vue\"],\"permalink\":\"/article/24081301/\",\"description\":\"1.下载插件 2.使用 在 .vuepress/config.js添加以下配置 3.样式更改 在.vuepress/styles/index.styl更改样式\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"为VuePress文档添加右侧导航栏\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2024-10-31T08:33:15.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/article/24081301/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"为VuePress文档添加右侧导航栏\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"1.下载插件 2.使用 在 .vuepress/config.js添加以下配置 3.样式更改 在.vuepress/styles/index.styl更改样式\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2024-10-31T08:33:15.000Z\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Vue\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2024-10-31T08:33:15.000Z\"}]]},\"readingTime\":{\"minutes\":0.29,\"words\":86},\"git\":{\"updatedTime\":1730363595000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"2463193508@qq.ocm\",\"commits\":1,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"技文/24081301.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10000,\"name\":\"技文\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

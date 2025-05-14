@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/interview/ukyhjw8j/index.html.vue"
-const data = JSON.parse("{\"path\":\"/interview/ukyhjw8j/\",\"title\":\"变量声明\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"变量声明\",\"createTime\":\"2025/02/03 20:40:59\",\"permalink\":\"/interview/ukyhjw8j/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":2.53,\"words\":759},\"filePathRelative\":\"notes/web/3.前端面试/3.JavaScript/1.变量声明.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10003,\"name\":\"notes\"},{\"id\":\"c4f15b\",\"sort\":10004,\"name\":\"web\"},{\"id\":\"8b0eee\",\"sort\":3,\"name\":\"前端面试\"},{\"id\":\"84b072\",\"sort\":3,\"name\":\"JavaScript\"}]}")
+const data = JSON.parse("{\"path\":\"/interview/ukyhjw8j/\",\"title\":\"变量声明\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"变量声明\",\"createTime\":\"2025/02/03 20:40:59\",\"permalink\":\"/interview/ukyhjw8j/\",\"description\":\"问题 变量声明的方式与它们的区别？ 在 JavaScript 中，有多种变量声明方式，主要包括使用 var、let、const 关键字，下面详细介绍它们及其区别。 1. var 特点 函数作用域：var 声明的变量具有函数作用域，意味着在函数内部任何位置声明的 var 变量，在整个函数内部都是可见的。 变量提升：使用 var 声明的变量会被提升到当前作...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"变量声明\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2025-05-14T10:49:48.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/interview/ukyhjw8j/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"变量声明\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"问题 变量声明的方式与它们的区别？ 在 JavaScript 中，有多种变量声明方式，主要包括使用 var、let、const 关键字，下面详细介绍它们及其区别。 1. var 特点 函数作用域：var 声明的变量具有函数作用域，意味着在函数内部任何位置声明的 var 变量，在整个函数内部都是可见的。 变量提升：使用 var 声明的变量会被提升到当前作...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2025-05-14T10:49:48.000Z\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2025-05-14T10:49:48.000Z\"}]]},\"readingTime\":{\"minutes\":2.53,\"words\":759},\"git\":{\"updatedTime\":1747219788000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"zhenghaoyang24@foxmail.com\",\"commits\":3,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"notes/web/3.前端面试/3.JavaScript/1.变量声明.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10003,\"name\":\"notes\"},{\"id\":\"c4f15b\",\"sort\":10004,\"name\":\"web\"},{\"id\":\"8b0eee\",\"sort\":3,\"name\":\"前端面试\"},{\"id\":\"84b072\",\"sort\":3,\"name\":\"JavaScript\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

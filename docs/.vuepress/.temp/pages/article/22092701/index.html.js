@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/22092701/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/22092701/\",\"title\":\"静态页面实现答题功能\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"静态页面实现答题功能\",\"createTime\":\"2022/9/27\",\"tags\":[\"Vue\",\"HTML\"],\"permalink\":\"/article/22092701/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":2.57,\"words\":770},\"filePathRelative\":\"技文/22092701.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10001,\"name\":\"技文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/22092701/\",\"title\":\"静态页面实现答题功能\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"静态页面实现答题功能\",\"createTime\":\"2022/9/27\",\"tags\":[\"Vue\",\"HTML\"],\"permalink\":\"/article/22092701/\",\"description\":\"最近在做一个答题静态页面，页面需要有题目及其选项，右边需要有答题卡，当左边选择选项后，右边答题卡相应题目号需要有反馈。在初步了解Vue中 v-if、v-for后便开始了。 1.设置JSON格式的题目 将所有题目创建为数组，数组里有不同的题目对象，每个对象含有题目ID、问题描述、正确选项、题目解析，每个选项含有选择选项ID、选择状态、选项描述，同时创建一...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"静态页面实现答题功能\\\",\\\"image\\\":[\\\"https://www.zhenghaoyang.cn/assets/22092701_01.gif\\\"],\\\"dateModified\\\":\\\"2024-11-05T15:14:23.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/article/22092701/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"静态页面实现答题功能\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"最近在做一个答题静态页面，页面需要有题目及其选项，右边需要有答题卡，当左边选择选项后，右边答题卡相应题目号需要有反馈。在初步了解Vue中 v-if、v-for后便开始了。 1.设置JSON格式的题目 将所有题目创建为数组，数组里有不同的题目对象，每个对象含有题目ID、问题描述、正确选项、题目解析，每个选项含有选择选项ID、选择状态、选项描述，同时创建一...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:image\",\"content\":\"https://www.zhenghaoyang.cn/assets/22092701_01.gif\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2024-11-05T15:14:23.000Z\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"HTML\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Vue\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2024-11-05T15:14:23.000Z\"}]]},\"readingTime\":{\"minutes\":2.57,\"words\":770},\"git\":{\"updatedTime\":1730819663000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"2463193508@qq.ocm\",\"commits\":5,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"技文/22092701.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10000,\"name\":\"技文\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

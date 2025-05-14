@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/qlui3f11/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/qlui3f11/\",\"title\":\"关于 Promise 的结果处理\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"关于 Promise 的结果处理\",\"createTime\":\"2024/05/8 22:19:32\",\"permalink\":\"/article/qlui3f11/\",\"tags\":[\"JavaScript\"],\"gitInclude\":[]},\"readingTime\":{\"minutes\":2.12,\"words\":636},\"filePathRelative\":\"学文/24050801.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10000,\"name\":\"学文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/qlui3f11/\",\"title\":\"关于 Promise 的结果处理\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"关于 Promise 的结果处理\",\"createTime\":\"2024/05/8 22:19:32\",\"permalink\":\"/article/qlui3f11/\",\"tags\":[\"JavaScript\"],\"description\":\"在使用 Promise 的时候，遇到一些误区，同时总结处理 Promise 结果的方法。 对与Promise 的结果处理，需要从 JavaScript 的事件循环和 Promise 状态机角度来理解。 1. const p1 = new Promise(...) 正确用法： resolve 错误用法 原因： Promise 的 resolve 参数必须...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"关于 Promise 的结果处理\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2025-04-01T02:41:19.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/article/qlui3f11/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"关于 Promise 的结果处理\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"在使用 Promise 的时候，遇到一些误区，同时总结处理 Promise 结果的方法。 对与Promise 的结果处理，需要从 JavaScript 的事件循环和 Promise 状态机角度来理解。 1. const p1 = new Promise(...) 正确用法： resolve 错误用法 原因： Promise 的 resolve 参数必须...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2025-04-01T02:41:19.000Z\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"JavaScript\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2025-04-01T02:41:19.000Z\"}]]},\"readingTime\":{\"minutes\":2.12,\"words\":636},\"git\":{\"updatedTime\":1743475279000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"zhenghaoyang24@foxmail.com\",\"commits\":1,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"学文/24050801.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10001,\"name\":\"学文\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

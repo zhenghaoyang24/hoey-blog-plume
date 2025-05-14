@@ -73,7 +73,7 @@
 <span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666">&#x3C;/</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375">div</span><span style="--shiki-light:#999999;--shiki-dark:#666666">></span></span></code></pre>
 <div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>根据上面代码则可在提交后判断选项正误，且显示题目解析。选项卡答题状态则只需根据选项卡数组来判断对应位置是否有值，并提交显示答题正误。<br>
 根据这种方式实现答题功能不难，但是<strong>非常非常非常麻烦</strong>，不仅要写大量JSON数据，还有很多复杂的判断与循环，所以写这篇博文的目的是什么呢？？因为我做都做了，总要写点什么吧。🤢</p>
-<p><img src="/assets/22092701_01.gif" alt="img.png"></p>
+<p><img src="/assets/22092701_01.gif" alt="img.png" width="1642" height="706"></p>
 </div></template>
 
 

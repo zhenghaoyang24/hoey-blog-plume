@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/g0pubxs5/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/g0pubxs5/\",\"title\":\"关于 await\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"关于 await\",\"createTime\":\"2025/03/31 22:59:08\",\"permalink\":\"/article/g0pubxs5/\",\"tags\":[\"JavaScript\"],\"gitInclude\":[]},\"readingTime\":{\"minutes\":3.06,\"words\":917},\"filePathRelative\":\"学文/25033101.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10000,\"name\":\"学文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/g0pubxs5/\",\"title\":\"关于 await\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"关于 await\",\"createTime\":\"2025/03/31 22:59:08\",\"permalink\":\"/article/g0pubxs5/\",\"tags\":[\"JavaScript\"],\"description\":\"我们在处理 Promise 结果时通常会用 .then() 获取结果，有时为了简化会用 await ，那么 await 是什么？为什么 await 能够简化这个步骤？ await 是基于 Promise 和生成器函数（Generator）的语法糖。它简化了异步代码的编写方式，但底层仍然依赖于 Promise 的机制。 1. await 的本质 1.1 ...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"关于 await\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2025-04-01T02:41:19.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/article/g0pubxs5/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"关于 await\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"我们在处理 Promise 结果时通常会用 .then() 获取结果，有时为了简化会用 await ，那么 await 是什么？为什么 await 能够简化这个步骤？ await 是基于 Promise 和生成器函数（Generator）的语法糖。它简化了异步代码的编写方式，但底层仍然依赖于 Promise 的机制。 1. await 的本质 1.1 ...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2025-04-01T02:41:19.000Z\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"JavaScript\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2025-04-01T02:41:19.000Z\"}]]},\"readingTime\":{\"minutes\":3.06,\"words\":917},\"git\":{\"updatedTime\":1743475279000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"zhenghaoyang24@foxmail.com\",\"commits\":1,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"学文/25033101.md\",\"headers\":[],\"categoryList\":[{\"id\":\"9c32e1\",\"sort\":10001,\"name\":\"学文\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

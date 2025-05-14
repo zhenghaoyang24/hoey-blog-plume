@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/interview/DOCTYPE/index.html.vue"
-const data = JSON.parse("{\"path\":\"/interview/DOCTYPE/\",\"title\":\"DOCTYPE\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"DOCTYPE\",\"createTime\":\"2025/02/02 13:35:20\",\"permalink\":\"/interview/DOCTYPE/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":1.22,\"words\":367},\"filePathRelative\":\"notes/web/3.前端面试/1.HTML/DOCTYPE.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10003,\"name\":\"notes\"},{\"id\":\"c4f15b\",\"sort\":10004,\"name\":\"web\"},{\"id\":\"8b0eee\",\"sort\":3,\"name\":\"前端面试\"},{\"id\":\"de42b9\",\"sort\":1,\"name\":\"HTML\"}]}")
+const data = JSON.parse("{\"path\":\"/interview/DOCTYPE/\",\"title\":\"DOCTYPE\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"DOCTYPE\",\"createTime\":\"2025/02/02 13:35:20\",\"permalink\":\"/interview/DOCTYPE/\",\"description\":\"提问 什么是DOCTYPE？ DOCTYPE的作用是什么？ 标准模式和兼容模式 HTML5 <!DOCTYPE HTML> 什么是 DTD？ 什么是DOCTYPE DOCTYPE 是 文档类型， 用于声明当前文档使用哪种文档模式进行解析和渲染。 DOCTYPE的作用是什么？ <!DOCTYPE> 声明一般位于文档的第一行，它的作用是告知浏览器以哪种模式...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"DOCTYPE\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2025-05-14T10:49:48.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/interview/DOCTYPE/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"DOCTYPE\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"提问 什么是DOCTYPE？ DOCTYPE的作用是什么？ 标准模式和兼容模式 HTML5 <!DOCTYPE HTML> 什么是 DTD？ 什么是DOCTYPE DOCTYPE 是 文档类型， 用于声明当前文档使用哪种文档模式进行解析和渲染。 DOCTYPE的作用是什么？ <!DOCTYPE> 声明一般位于文档的第一行，它的作用是告知浏览器以哪种模式...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2025-05-14T10:49:48.000Z\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2025-05-14T10:49:48.000Z\"}]]},\"readingTime\":{\"minutes\":1.22,\"words\":367},\"git\":{\"updatedTime\":1747219788000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"zhenghaoyang24@foxmail.com\",\"commits\":3,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"notes/web/3.前端面试/1.HTML/DOCTYPE.md\",\"headers\":[],\"categoryList\":[{\"id\":\"4358b5\",\"sort\":10003,\"name\":\"notes\"},{\"id\":\"c4f15b\",\"sort\":10004,\"name\":\"web\"},{\"id\":\"8b0eee\",\"sort\":3,\"name\":\"前端面试\"},{\"id\":\"de42b9\",\"sort\":1,\"name\":\"HTML\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

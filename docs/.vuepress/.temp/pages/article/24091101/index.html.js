@@ -1,16 +1,3 @@
 import comp from "G:/200-Project/hoey-blog-plume/docs/.vuepress/.temp/pages/article/24091101/index.html.vue"
-const data = JSON.parse("{\"path\":\"/article/24091101/\",\"title\":\"corepack管理包管理器\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"corepack管理包管理器\",\"tags\":[\"Node\",\"npm\",\"pnpm\"],\"createTime\":\"2024/09/11 22:01:50\",\"permalink\":\"/article/24091101/\",\"gitInclude\":[]},\"readingTime\":{\"minutes\":0.61,\"words\":183},\"filePathRelative\":\"技文/24091101.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10001,\"name\":\"技文\"}]}")
+const data = JSON.parse("{\"path\":\"/article/24091101/\",\"title\":\"corepack管理包管理器\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"corepack管理包管理器\",\"tags\":[\"Node\",\"npm\",\"pnpm\"],\"createTime\":\"2024/09/11 22:01:50\",\"permalink\":\"/article/24091101/\",\"description\":\"corepack是一个nodejs自带的包管理器的管理工具，主要是用来管理诸多的包管理器的。当在多人开发环境中，不同开发者用的包管理器不同、版本不同，这时候就可以 用到 corepack 了。 现在corepack已经随 node 一起安装的，就如同npm一样，但如何使用 corepack 安装 pnpm，并在之后可以更换包管理器呢？ 在 packag...\",\"head\":[[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"corepack管理包管理器\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2024-11-07T12:57:29.000Z\\\",\\\"author\\\":[]}\"],[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.zhenghaoyang.cn/article/24091101/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Hoey\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"corepack管理包管理器\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"corepack是一个nodejs自带的包管理器的管理工具，主要是用来管理诸多的包管理器的。当在多人开发环境中，不同开发者用的包管理器不同、版本不同，这时候就可以 用到 corepack 了。 现在corepack已经随 node 一起安装的，就如同npm一样，但如何使用 corepack 安装 pnpm，并在之后可以更换包管理器呢？ 在 packag...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2024-11-07T12:57:29.000Z\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"pnpm\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"npm\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"Node\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2024-11-07T12:57:29.000Z\"}]]},\"readingTime\":{\"minutes\":0.61,\"words\":183},\"git\":{\"updatedTime\":1730984249000,\"contributors\":[{\"name\":\"zhenghaoyang24\",\"username\":\"zhenghaoyang24\",\"email\":\"2463193508@qq.ocm\",\"commits\":2,\"avatar\":\"https://avatars.githubusercontent.com/zhenghaoyang24?v=4\",\"url\":\"https://github.com/zhenghaoyang24\"}]},\"autoDesc\":true,\"filePathRelative\":\"技文/24091101.md\",\"headers\":[],\"categoryList\":[{\"id\":\"59ac2d\",\"sort\":10000,\"name\":\"技文\"}]}")
 export { comp, data }
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}

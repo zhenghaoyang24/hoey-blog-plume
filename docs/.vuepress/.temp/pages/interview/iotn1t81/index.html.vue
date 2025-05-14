@@ -19,13 +19,13 @@
 <h3 id="盒模型的类型及区别" tabindex="-1"><a class="header-anchor" href="#盒模型的类型及区别"><span>盒模型的类型及区别</span></a></h3>
 <p>在 <code v-pre>CSS</code> 中，盒模型主要分为标准盒模型（ <code v-pre>W3C</code> 规定）和怪异盒模型（<code v-pre>IE</code> 盒模型），它们的主要区别在于元素宽度和高度的计算方式不同。</p>
 <h4 id="标准盒模型-content-box" tabindex="-1"><a class="header-anchor" href="#标准盒模型-content-box"><span>标准盒模型（content-box）</span></a></h4>
-<img src="/assets/interview_boxmodel_01.png" style="height: 300px">
+<img src="/assets/interview_boxmodel_01.png" style="height: 300px" width="636" height="506">
 <ul>
 <li><strong>计算方式</strong>：元素的宽度（<code v-pre>width</code>）和高度（<code v-pre>height</code>）只包含内容区的宽度和高度，不包含内边距、边框和外边距。也就是说，</li>
 <li>如果设置一个元素的 <code v-pre>width</code> 为 200px，那么这个 200px 仅仅是内容区的宽度，元素实际占用的宽度还需要加上左右内边距和左右边框的宽度。</li>
 </ul>
 <h4 id="怪异盒模型-border-box" tabindex="-1"><a class="header-anchor" href="#怪异盒模型-border-box"><span>怪异盒模型（border-box）</span></a></h4>
-<img src="/assets/interview_boxmodel_02.png" style="height: 300px">
+<img src="/assets/interview_boxmodel_02.png" style="height: 300px" width="598" height="381">
 <ul>
 <li><strong>计算方式</strong>：元素的宽度（<code v-pre>width</code>）和高度（<code v-pre>height</code>）包含了内容区、内边距和边框的大小，</li>
 <li>但不包含外边距。当设置元素的 <code v-pre>width</code> 为 200px 时，这 200px 是内容区、内边距和边框的总宽度。如果内边距和边框占用了一定的宽度，那么内容区的宽度就会相应减少。</li>
