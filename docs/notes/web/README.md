@@ -4,5 +4,5 @@ createTime: 2024/10/31 15:40:23
 permalink: /web/
 ---
 
-Web前端
+一些学习 Web 前端的笔记。
 
