@@ -36,6 +36,7 @@ export default defineUserConfig({
       demo: true, // 启用新的代码演示功能
       // oldDemo:true,
       markmap:true, // 启用 Markmap 图表嵌入语法
+      codeTree: true, // 启用代码树
     },
 
     /**

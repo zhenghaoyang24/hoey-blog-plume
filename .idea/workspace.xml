@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2bb704c9-5977-48db-a438-c6066c945fcd" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/技文/25042201.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/技文/25042201.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,8 +149,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.docs:dev" />
-        <item itemvalue="npm.docs:build" />
         <item itemvalue="npm.docs:dev-clean" />
+        <item itemvalue="npm.docs:build" />
         <item itemvalue="npm.vp-update" />
         <item itemvalue="npm.docs:preview" />
       </list>
@@ -464,6 +467,11 @@
       <workItem from="1747703311237" duration="11545000" />
       <workItem from="1747723286515" duration="1979000" />
       <workItem from="1747790574482" duration="3274000" />
+      <workItem from="1747794365431" duration="85000" />
+      <workItem from="1747796793168" duration="2237000" />
+      <workItem from="1747900028825" duration="833000" />
+      <workItem from="1748395249433" duration="4607000" />
+      <workItem from="1748411294747" duration="1048000" />
     </task>
     <servers />
   </component>
