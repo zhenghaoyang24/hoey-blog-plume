@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2bb704c9-5977-48db-a438-c6066c945fcd" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.vuepress/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.vuepress/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/notes/web/2.前端基础/TypeScript.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/notes/web/2.前端基础/TypeScript.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -471,6 +474,9 @@
       <workItem from="1748411294747" duration="1143000" />
       <workItem from="1748412717794" duration="458000" />
       <workItem from="1748415334785" duration="2479000" />
+      <workItem from="1748417896540" duration="54000" />
+      <workItem from="1748422949038" duration="606000" />
+      <workItem from="1748506140697" duration="6176000" />
     </task>
     <servers />
   </component>
