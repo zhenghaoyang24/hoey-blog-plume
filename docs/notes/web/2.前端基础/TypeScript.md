@@ -1,5 +1,5 @@
 ---
-title: TypeScript
+title: TypeScript 快速入门
 createTime: 2025/04/04 20:07:57
 permalink: /web/TypeScript/
 tags:
@@ -56,6 +56,7 @@ let tuple: [string, number] = ["Alice", 30];
 let anyValue: any = "可以赋任何值";
 let unknownValue: unknown = "需要类型检查后才能使用";
 let nullable: string | null = null; // 联合类型
+
 ```
 对象的类型定义有两个语法支持： type 和 interface，两者非常接近，但是在特殊的时候也有一定的区别。
 
@@ -116,7 +117,37 @@ const admin: Admin = {
 }
 ```
 
+## 类型断言
+
+当一个变量应用了 **联合类型** 时，在某些时候如果不显式的指明其中的一种类型，可能会导致后续的代码运行报错。
+
+这个时候就可以 **通过类型断言强制指定其中一种类型**，以便程序顺利运行下去。
+
+```ts :collapsed-lines=20
+// 对单人或者多人打招呼
+function greet(name: string | string[]): string | string[] {
+  if (Array.isArray(name)) {
+    return name.map((n) => `Welcome, ${n}!`)
+  }
+  return `Welcome, ${name}!`
+}
+
+// 不使用断言将会报错
+const greetings = greet(['Petter', 'Tom', 'Jimmy']) // [!code error]
+const greetingSentence = greetings.join(' ') // [!code error]
+// error - 'join' does not exist on type 'string'
+
+// 用类型断言将其指定为 string[]
+const greetings = greet(['Petter', 'Tom', 'Jimmy']) as string[] // [!code highlight]
+
+// 现在可以正常使用 join 方法
+const greetingSentence = greetings.join(' ')
+console.log(greetingSentence)
+
+```
+
 ## 类 
+
 ```typescript :collapsed-lines=20
 class Animal {
   // 访问修饰符
@@ -211,12 +242,30 @@ function queryData(): Promise<string> { // [!code word:Promise<string>]
     }, 3000)
   })
 }
+```
+当一个函数需要接收不同类型的入参，且有不同类型的返回值时，则可利用 TypeScript 的函数重载。
 
+```ts {1,2,3}
+function greet(name: string): string
+function greet(name: string[]): string[]
+function greet(name: string | string[]) {
+  if (Array.isArray(name)) {
+    return name.map((n) => `Welcome, ${n}!`)
+  }
+  return `Welcome, ${name}!`
+}
+
+// 单个问候语，此时只有一个类型 string
+const greeting = greet('Petter')
+console.log(greeting) // Welcome, Petter!
+
+// 多个问候语，此时只有一个类型 string[]
+const greetings = greet(['Petter', 'Tom', 'Jimmy'])
+console.log(greetings)
+// [ 'Welcome, Petter!', 'Welcome, Tom!', 'Welcome, Jimmy!' ]
 
 ```
-
-
-
+  
 
 ## 泛型
 ```typescript
@@ -247,31 +296,6 @@ function loggingIdentity<T extends Lengthwise>(arg: T): T {
 }
 ```
 
-## 高级类型
-```typescript
-// 联合类型
-let value: string | number;
-
-// 交叉类型
-type Named = { name: string };
-type Aged = { age: number };
-type Person = Named & Aged;
-
-// 类型断言
-const input = document.getElementById("input") as HTMLInputElement;
-
-// 类型保护
-function isString(test: any): test is string {
-  return typeof test === "string";
-}
-
-// keyof 和 in
-type Keys = keyof Person;  // "name" | "age"
-type OptionalPerson = {
-  [K in keyof Person]?: Person[K];
-};
-```
-
 ## 模块化
 ```typescript
 // 导出
@@ -288,7 +312,8 @@ import myFunction from './module';
 
 ---
 
-## 配置（tsconfig.json 核心配置）
+## tsconfig.json
+
 ```json
 {
   "compilerOptions": {
