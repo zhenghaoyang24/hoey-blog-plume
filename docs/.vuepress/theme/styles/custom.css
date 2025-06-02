@@ -1,51 +1,66 @@
+/*颜色*/
 :root {
-  /** 主题颜色 */
-
-
-
-  --vp-c-brand-1: #5086a1;
-  --vp-c-brand-2: #6aa1b7;
-  --vp-c-brand-3: #8cccd5;
-  --vp-c-brand-soft: rgba(131, 208, 218, 0.314);
-
-
-  /** 背景颜色 */
-
-  /*
-  --vp-c-bg: #fff;
-  --vp-c-bg-alt: #f6f6f7;
-  --vp-c-bg-elv: #fff;
-  --vp-c-bg-soft: #f6f6f7;
-  */
-
-  /** 文本颜色 */
-
-
-  /*--vp-c-text-1: rgba(60, 60, 67);*/
-  /*--vp-c-text-2: rgba(60, 60, 67, 0.78);*/
-  /*--vp-c-text-3: rgba(60, 60, 67, 0.56);*/
-
+  /*卡片背景*/
+  --main-card-background: rgba(255, 255, 255, 0.85);
+  /*卡片边框*/
+  --main-card-border: #e3e8f7;
+  /*卡片阴影*/
+  --main-border-shadow: #2c2d300c;
+  /*卡片 hover */
+  --about-card-hover-bg: rgba(100, 190, 190, 0.8);
+  /*按钮 背景*/
+  --home-action-bnt-bg:rgb(235, 235, 239);
+  /*语言 span 背景*/
+  --about-me-skill-item-bg: #f4f2ed;
+}
+[data-theme="dark"] {
+  --main-card-background: rgba(27, 28, 32, 0.85);
+  --main-card-border: #3d3d3f;
+  --main-border-shadow: #00000050;
+  --about-card-hover-bg: rgba(100, 190, 190, 0.8);
+  --home-action-bnt-bg:rgb(50, 54, 63);
+  --about-me-skill-item-bg: #15191c;
 }
 
-/** 深色模式 */
-[data-theme="dark"] {
-  /*
-  --vp-c-brand-1: #8cccd5;
-  --vp-c-brand-2: #6aa1b7;
-  --vp-c-brand-3: #5086a1;
-  --vp-c-brand-soft: rgba(131, 208, 218, 0.314);
-  */
+/*卡片背景*/
+.about-me-card-bg{
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: var(--main-card-background);
+  border: 1px solid var(--main-card-border);
+  box-shadow: 0 8px 12px -4px var(--main-border-shadow);
+  overflow: hidden;
+}
 
-  /*
-  --vp-c-bg: #1b1b1f;
-  --vp-c-bg-alt: #161618;
-  --vp-c-bg-elv: #202127;
-  --vp-c-bg-soft: #202127;
-  */
+/*卡片文字 小号*/
+.about-me-card-title-normal{
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
 
-  /*
-  --vp-c-text-1: rgba(255, 255, 245, 0.86);
-  --vp-c-text-2: rgba(235, 235, 245, 0.6);
-  --vp-c-text-3: rgba(235, 235, 245, 0.38);
-  */
+/*卡片文字 大号*/
+.about-me-card-text-big{
+  color: var(--vp-c-text-1);
+  margin: 10px 0;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+  @media screen and (max-width: 770px) {
+    font-size: 24px;
+    margin: 7px 0;
+  }
+}
+
+/*卡片文字 暗色*/
+.about-me-card-text-soft{
+  color: var(--vp-c-text-2);
+}
+
+/*卡片文字 彩色*/
+.about-me-card-text-color{
+  background: var(--vp-bg-home-hero-name, linear-gradient(315deg, var(--vp-c-purple-1) 10%, var(--vp-c-brand-2) 75%, var(--vp-c-brand-2) 100%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

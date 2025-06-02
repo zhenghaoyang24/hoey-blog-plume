@@ -33,16 +33,12 @@ const technology = ref([
   { type: 'Vue', icon: 'logos:vue' },
   { type: 'Pinia', icon: 'logos:pinia' },
   { type: '微信小程序', icon: 'tabler:brand-miniprogram' },
-  { type: 'Jetpack Compose',icon: 'devicon:jetpackcompose'},
   { type: 'JavaScript', icon: 'vscode-icons:file-type-js' },
   { type: 'TypeScript', icon: 'vscode-icons:file-type-typescriptdef' },
   { type: 'Less', icon: 'logos:less' },
   { type: 'CSS3', icon: 'logos:css-3' },
   { type: 'HTML5', icon: 'logos:html-5' },
-  { type: 'Java', icon: 'vscode-icons:file-type-java' },
-  { type: 'C/C++', icon: 'vscode-icons:file-type-cpp2' },
   { type: 'Spring', icon: 'devicon:spring' },
-  { type: 'Python', icon: 'material-icon-theme:python' },
   { type: 'MySQL', icon: 'devicon:mysql' }
 ]);
 
