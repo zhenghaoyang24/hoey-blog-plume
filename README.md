@@ -37,7 +37,7 @@ config:
 ---
 ```
 
-4. AboutMeCharacter.vue 中的图表使用了 echarts.js ,因此 需要安装 [echarts.js](https://echarts.apache.org/zh/index.html)。
+4. AboutMeCharacter.vue 中的图表使用了 [echarts.js](https://echarts.apache.org/zh/index.html) ,因此需要安装此依赖。
 
 ```shell
 npm install echarts
