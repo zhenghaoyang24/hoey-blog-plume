@@ -8,18 +8,20 @@
 
 ### 配置
 
-1. 自定义主页代码位置为：`docs/.vuepress/theme/components` 下的所有除 `AllFriendContent.vue` 的 `.vue` 文件。
-`AllFriendContent.vue` 为自定义友情链接页面所需文件，具体可参考下文 **组件说明**。
+1. 自定义主页 组件代码位置为：`docs/.vuepress/theme/components` 下的所有除 `AllFriendContent.vue` 的 `.vue` 文件。
+`AllFriendContent.vue` 为自定义友情链接页面所需文件，具体可参考下文 [组件说明](#组件说明)。
+样式文件位置为 `docs/.vuepress/theme/styles/custom.css`。
 
-2. 在 `docs/.vuepress/client.js` 中，导入 `Custom.vue`
+2. 在 `docs/.vuepress/client.js` 中，导入 `Custom.vue` 与 `docs/.vuepress/theme/styles/custom.css`：
 
 ``` js
+import './theme/styles/custom.css'
 import Custom from './theme/components/Custom.vue'
-import Custom from './theme/components/AllFriendContent.vue'
+import Custom from './theme/components/AllFriendContent.vue'  // 友情链接页面所需组件
   export default defineClientConfig({
     enhance({ app }) {
     app.component('Custom', Custom)
-    app.component('AllFriendContent', AllFriendContent)  // 友情链接页面所需组件
+    app.component('AllFriendContent', AllFriendContent)  
   },
 })
 ```
@@ -35,7 +37,13 @@ config:
 ---
 ```
 
-### 文件说明
+4. AboutMeCharacter.vue 中的图表使用了 [echarts.js](https://echarts.apache.org/zh/index.html) ,因此需要安装此依赖。
+
+```shell
+npm install echarts
+```
+
+### 组件说明
 
 #### `Custom.vue` 为主页组件，主页内容即为以下卡片组件的组合。
 
@@ -77,6 +85,6 @@ config:
 
 ![image](https://github.com/user-attachments/assets/615c4be7-dc1d-4c16-84b4-2b87e8a9b2d9)
 
-### 卡片宽度
+### 自定义卡片宽度
 
 卡片宽度在卡片组件的父 `div` 中使用 `class` 进行更改，`grid-row-1` 为一个卡片铺满一行，`grid-row-1-1` 为两个卡片 1:1 行排, `grid-row-3-2` 为两个卡片 3:2 行排,你可以在 `Custom.vue` 的 `style` 中写更多的布局方式，随意组合卡片。

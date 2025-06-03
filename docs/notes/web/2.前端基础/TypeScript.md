@@ -317,7 +317,7 @@ import myFunction from './module';
 ```json
 {
   "compilerOptions": {
-    指定编译后的 ECMAScript 目标版本（ES3/ES5/ES6/ES2020 等）
+    // 指定编译后的 ECMAScript 目标版本（ES3/ES5/ES6/ES2020 等）
     "target": "ES6",
 
     // 定义模块系统类型（CommonJS/ES6/AMD/UMD 等）
