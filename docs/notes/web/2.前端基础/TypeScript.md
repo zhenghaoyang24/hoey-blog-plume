@@ -58,7 +58,7 @@ let unknownValue: unknown = "需要类型检查后才能使用";
 let nullable: string | null = null; // 联合类型
 
 ```
-对象的类型定义有两个语法支持： type 和 interface，两者非常接近，但是在特殊的时候也有一定的区别。
+对象的类型定义有两个语法支持： type 和 interface，两者非常接近，但也有一定的 [区别](#type-和-interface-的区别)。
 
 ```typescript
 /**
@@ -216,7 +216,7 @@ const obj = {
 }
 ```
 
-它们有区别，也有共同点：“入参” 和 “返回值”。
+它们有 [区别](#函数定义的三种方式区别)，也有共同点：“入参” 和 “返回值”。
 
 ```typescript
 // 参数和返回值类型
@@ -344,3 +344,80 @@ import myFunction from './module';
   }
 }
 ```
+
+## Type 和 Interface 的区别
+
+在 TypeScript 中，`type` 和 `interface` 都可以用来定义类型，但它们有一些关键区别：
+
+1. **语法不同**：
+   ```typescript
+   type Point = { x: number; y: number };
+   interface Point { x: number; y: number }
+   ```
+
+2. **扩展方式**：
+   - interface 使用 `extends`：
+     ```typescript
+     interface Animal { name: string }
+     interface Bear extends Animal { honey: boolean }
+     ```
+   - type 使用交叉类型 `&`：
+     ```typescript
+     type Animal = { name: string }
+     type Bear = Animal & { honey: boolean }
+     ```
+
+3. **合并声明**：
+   - interface 可以重复声明并自动合并：
+     ```typescript
+     interface Window { title: string }
+     interface Window { ts: any }
+     // 合并为 { title: string; ts: any }
+     ```
+   - type 不能重复声明
+
+4. **能力差异**：
+   - type 可以定义联合类型、元组等：
+     ```typescript
+     type ID = string | number;
+     type Point = [number, number];
+     ```
+   - interface 更适合对象类型
+
+
+
+## 函数定义的三种方式区别
+
+这三种写法在功能上是等价的，都能正确实现数字相加功能，但有以下区别：
+
+1. 函数声明（写法一）
+```typescript
+function sum1(x: number, y: number): number {
+  return x + y
+}
+```
+**特点**：
+- 存在函数提升（hoisting），可以在定义前调用
+- 有独立的函数作用域
+- 适合定义较复杂的函数逻辑
+
+2. 函数表达式（写法二）
+```typescript
+const sum2 = function(x: number, y: number): number {
+  return x + y
+}
+```
+**特点**：
+- 不存在函数提升，必须先定义后使用
+- 赋值给变量，可以作为参数传递
+- 适合需要将函数作为值使用的场景
+
+3. 箭头函数（写法三）
+```typescript
+const sum3 = (x: number, y: number): number => x + y
+```
+**特点**：
+- 语法最简洁
+- 没有自己的 `this`，继承自外层作用域
+- 不能用作构造函数（不能用 `new` 调用）
+- 适合简单的回调函数或需要保持 `this` 上下文的场景
