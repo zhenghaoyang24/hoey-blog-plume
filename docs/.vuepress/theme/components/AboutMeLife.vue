@@ -16,12 +16,12 @@ const chartRef = ref(null);
 
 // 示例数据
 const lifeData = [
-  { name: '学习', value: (300/1020).toFixed(2) },
-  { name: '游戏', value: (100/1020).toFixed(2) },
-  { name: '阅读', value: (60/1020).toFixed(2) },
-  { name: '动漫', value: (180/1020).toFixed(2) },
-  { name: '生活', value: (275/1020).toFixed(2) },
-  { name: '工作', value: (105/1020).toFixed(2) }
+  { name: '学习', value: (0.1).toFixed(2) },
+  { name: '游戏', value: (0.1).toFixed(2) },
+  { name: '阅读', value: (0.15).toFixed(2) },
+  { name: '动漫', value: (0.05).toFixed(2) },
+  { name: '生活', value: (0.3).toFixed(2) },
+  { name: '工作', value: (0.2).toFixed(2) }
 ];
 onMounted(() => {
   const myChart = echarts.init(chartRef.value);
