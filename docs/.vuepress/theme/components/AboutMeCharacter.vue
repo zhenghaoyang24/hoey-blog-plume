@@ -3,37 +3,38 @@
 </script>
 
 <template>
-<div class="about-me-card-bg vp-blog-post-item about-me-character">
-  <p class="about-me-card-title-normal">性格</p>
-  <div class="about-me-character-content">
-    <div class="about-me-character-type">
-      <p class="about-me-card-text-big about-me-card-text-color">提倡者</p>
-      <p class="about-me-card-text-big">INFJ-A</p>
+  <div class="about-me-card-bg vp-blog-post-item about-me-character">
+    <p class="about-me-card-title-normal">性格</p>
+    <div class="about-me-character-content">
+      <div class="about-me-character-type">
+        <p class="about-me-card-text-big about-me-card-text-color">提倡者</p>
+        <p class="about-me-card-text-big">INFJ-A</p>
+      </div>
+      <div class="about-me-character-img">
+      </div>
     </div>
-    <div class="about-me-character-img">
-    </div>
-  </div>
 
-</div>
+  </div>
 </template>
 
 <style scoped>
-.about-me-character{
+.about-me-character {
   padding: 20px;
-  &:hover .about-me-character-img{
+
+  &:hover .about-me-character-img {
     transform: scale(1.1);
   }
 }
 
-.about-me-character-content{
+.about-me-character-content {
   display: flex;
 }
 
-.about-me-character-type{
+.about-me-character-type {
   width: fit-content;
 }
 
-.about-me-character-img{
+.about-me-character-img {
   display: flex;
   align-items: end;
   position: relative;

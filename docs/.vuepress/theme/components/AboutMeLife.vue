@@ -1,27 +1,27 @@
 <template>
   <div class="about-me-card-bg vp-blog-post-item about-me-life">
     <div style="margin-left: 20px">
-    <p class="about-me-card-title-normal">生活</p>
-    <p class="about-me-card-text-big">我的日常</p>
+      <p class="about-me-card-title-normal">生活</p>
+      <p class="about-me-card-text-big">我的日常</p>
     </div>
-  <div ref="chartRef" class="chart-container"></div>
+    <div ref="chartRef" class="chart-container"></div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import {ref, onMounted} from 'vue';
 import * as echarts from 'echarts';
 
 const chartRef = ref(null);
 
 // 示例数据
 const lifeData = [
-  { name: '学习', value: (0.1).toFixed(2) },
-  { name: '游戏', value: (0.1).toFixed(2) },
-  { name: '阅读', value: (0.15).toFixed(2) },
-  { name: '动漫', value: (0.05).toFixed(2) },
-  { name: '生活', value: (0.3).toFixed(2) },
-  { name: '工作', value: (0.2).toFixed(2) }
+  {name: '学习', value: 1},
+  {name: '游戏', value: 1},
+  {name: '阅读', value: 2},
+  {name: '动漫', value: 4},
+  {name: '生活', value: 8},
+  {name: '工作', value: 8}
 ];
 onMounted(() => {
   const myChart = echarts.init(chartRef.value);
@@ -54,11 +54,12 @@ onMounted(() => {
 
 <style scoped>
 
-.about-me-life{
+.about-me-life {
   height: 316px;
   padding: 20px 0;
   overflow: inherit;
 }
+
 .chart-container {
   height: 100%;
 }

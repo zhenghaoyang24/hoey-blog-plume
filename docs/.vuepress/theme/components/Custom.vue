@@ -3,11 +3,17 @@
     <canvas ref="canvasRef"></canvas>
     <div class="head-social">
       <a href="https://github.com/zhenghaoyang24" target="_blank" class="head-social-btn">
-        <icon name="mdi:github"/>
+        <icon name="akar-icons:github-fill"/>
+      </a>
+      <a href="https://gitee.com/zhenghaoyang24" target="_blank" class="head-social-btn">
+        <icon name="simple-icons:gitee"/>
       </a>
       <router-link to="/blog/" class="head-social-avatar"><img src="/avatar.jpg" alt="avatar"></router-link>
+      <a href="https://codepen.io/zhenghaoyang24" target="_blank" class="head-social-btn">
+        <icon class="head-social-btn" name="simple-icons:codepen"></icon>
+      </a>
       <a href="mailto:zhenghaoyang24@foxmail.com" target="_blank" class="head-social-btn">
-        <icon class="head-social-btn" name="ic:baseline-email"></icon>
+        <icon class="head-social-btn" name="garden:email-fill-12"></icon>
       </a>
     </div>
     <div class="about-me">
@@ -106,7 +112,7 @@ canvas {
   }
 }
 
-.card-content{
+.card-content {
   margin-top: 20px;
   display: grid;
   gap: 20px;
@@ -115,6 +121,7 @@ canvas {
     flex-direction: column;
   }
 }
+
 .grid-row-3-2 {
   grid-template-columns: 3fr 2fr;
 }
