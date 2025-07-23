@@ -37,13 +37,18 @@ tags:
 | 不存在   | Null       | null       |
 | 未定义   | Undefined  | undefined  |
 
-类型定义：
+## 类型定义
+
+### 一般类型定义
 
 ```typescript
 // 显式类型声明（隐式时自动推断类型）
 let name: string = "Alice";
 let age: number = 30;
 let isActive: boolean = true;
+let anyValue: any = "可以赋任何值";
+let unknownValue: unknown = "需要类型检查后才能使用";
+let nullable: string | null = null; // 联合类型
 
 // 数组
 let numbers: number[] = [1, 2, 3];
@@ -61,24 +66,23 @@ enum Color {
 }
 console.log(Color.Red);
 console.log(Color[0]);
-
-// 特殊类型
-let anyValue: any = "可以赋任何值";
-let unknownValue: unknown = "需要类型检查后才能使用";
-let nullable: string | null = null; // 联合类型
 ```
 
-对象的类型定义有两个语法支持： type 和 interface，两者非常接近，但也有一定的 [区别](#type-和-interface-的区别)。
+### 复杂类型定义
+
+#### 类型别名 type
 
 ```typescript
 /**
  * 类型别名
  */
-type Point = {
-  x: number;
-  y: number;
-};
+type MyUserName = number | string;
+let me: MyUserName = "Alice";
+```
 
+#### 接口 interface
+
+```ts
 /**
  * 接口
  */
@@ -126,6 +130,59 @@ const admin: Admin = {
 };
 ```
 
+#### Type 和 Interface 的区别
+
+在 TypeScript 中，`type` 和 `interface` 都可以用来定义对象，但它们有一些关键区别：
+
+1. **语法不同**：
+
+   ```typescript
+   type Point = { x: number; y: number };
+   interface Point {
+     x: number;
+     y: number;
+   }
+   ```
+
+2. **扩展方式**：
+
+   - interface 使用 `extends`：
+     ```typescript
+     interface Animal {
+       name: string;
+     }
+     interface Bear extends Animal {
+       honey: boolean;
+     }
+     ```
+   - type 使用交叉类型 `&`：
+     ```typescript
+     type Animal = { name: string };
+     type Bear = Animal & { honey: boolean };
+     ```
+
+3. **合并声明**：
+
+   - interface 可以重复声明并自动合并：
+     ```typescript
+     interface Window {
+       title: string;
+     }
+     interface Window {
+       ts: any;
+     }
+     // 合并为 { title: string; ts: any }
+     ```
+   - type 不能重复声明
+
+4. **能力差异**：
+   - type 可以定义联合类型、元组等：
+     ```typescript
+     type ID = string | number;
+     type Point = [number, number];
+     ```
+   - interface 更适合对象类型
+
 ## 类型断言
 
 当一个变量应用了 **联合类型** 时，在某些时候如果不显式的指明其中的一种类型，可能会导致后续的代码运行报错。
@@ -162,6 +219,8 @@ class Animal {
   public name: string;
   private age: number;
   protected species: string;
+  // 可选属性
+  master?: string;
 
   constructor(name: string, age: number) {
     this.name = name;
@@ -173,7 +232,12 @@ class Animal {
   }
 }
 
-// 类与类继承 // [!code highlight]
+```
+
+### 类与类继承
+
+```ts
+// 类与类继承
 class Dog extends Animal {
   constructor(name: string, age: number) {
     super(name, age);
@@ -184,14 +248,31 @@ class Dog extends Animal {
   }
 }
 
-// 接口继承类 且 去掉类上面的方法 // [!code highlight]
+// 接口继承类 且 去掉类上面的方法
 interface Rooster extends Omit<Animal, "getName"> {
   legs: number;
 }
+```
 
+### 抽象类
+
+抽象类不能被直接实例化，只能被继承，主要用于定义一些基础结构，让子类去实现具体的细节。子类必须实现所有抽象方法。
+
+```ts
 // 抽象类
-abstract class Shape {
-  abstract getArea(): number;
+abstract class Animal {
+  abstract makeSound(): void;  // 抽象方法
+  
+  move(): void {  // 普通方法
+    console.log("Moving...");
+  }
+}
+
+// 继承抽象类并实现抽象方法
+class Dog extends Animal {
+  makeSound(): void {
+    console.log("Bark!");
+  }
 }
 ```
 
@@ -226,25 +307,22 @@ const obj = {
 ```typescript
 // 参数和返回值类型
 function add(a: number, b: number): number {
-  // [!code word:number:3]
   return a + b;
 }
 
 // 可选参数
 function greet(name: string, age?: number): void {
   // [!code word:age?]
-  console.log(`Hello ${name}${age ? `, ${age} years old` : ""}`);
+  console.log(`Hello ${name},I am ${age} years old.`);
 }
 
 // 默认参数
 function multiply(a: number, b: number = 1): number {
-  // [!code word:b: number = 1]
   return a * b;
 }
 
 // 剩余参数
 function order(desc: string, ...price: number[]): number {
-  // [!code word:...nums: number[]]
   console.log(`desc: ${desc}`);
 }
 order("description", 1, 2, 3);
@@ -252,6 +330,7 @@ order("description", 1, 2, 3);
 // 异步函数的返回值：Promise<string>，若没有resolve数据，返回值则为 Promise<void>
 function queryData(): Promise<string> {
   // [!code word:Promise<string>]
+
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve("Hello World");
@@ -260,7 +339,7 @@ function queryData(): Promise<string> {
 }
 ```
 
-当一个函数需要接收不同类型的入参，且有不同类型的返回值时，则可利用 TypeScript 的函数重载。
+当一个函数需要接收不同类型的入参，且有不同类型的返回值时，则可利用 TypeScript 的 ==函数重载==。
 
 ```ts {1,2,3}
 function greet(name: string): string;
@@ -289,6 +368,8 @@ console.log(greetings);
 function identity<T>(arg: T): T {
   return arg;
 }
+console.log(identity<string>("Petter"));
+console.log(identity<number>(123));
 
 // 泛型接口
 interface GenericArray<T> {
@@ -305,7 +386,6 @@ class GenericNumber<T> {
 interface Lengthwise {
   length: number;
 }
-
 function loggingIdentity<T extends Lengthwise>(arg: T): T {
   console.log(arg.length);
   return arg;
@@ -367,59 +447,6 @@ import myFunction from "./module";
   }
 }
 ```
-
-## Type 和 Interface 的区别
-
-在 TypeScript 中，`type` 和 `interface` 都可以用来定义类型，但它们有一些关键区别：
-
-1. **语法不同**：
-
-   ```typescript
-   type Point = { x: number; y: number };
-   interface Point {
-     x: number;
-     y: number;
-   }
-   ```
-
-2. **扩展方式**：
-
-   - interface 使用 `extends`：
-     ```typescript
-     interface Animal {
-       name: string;
-     }
-     interface Bear extends Animal {
-       honey: boolean;
-     }
-     ```
-   - type 使用交叉类型 `&`：
-     ```typescript
-     type Animal = { name: string };
-     type Bear = Animal & { honey: boolean };
-     ```
-
-3. **合并声明**：
-
-   - interface 可以重复声明并自动合并：
-     ```typescript
-     interface Window {
-       title: string;
-     }
-     interface Window {
-       ts: any;
-     }
-     // 合并为 { title: string; ts: any }
-     ```
-   - type 不能重复声明
-
-4. **能力差异**：
-   - type 可以定义联合类型、元组等：
-     ```typescript
-     type ID = string | number;
-     type Point = [number, number];
-     ```
-   - interface 更适合对象类型
 
 ## 函数定义的三种方式区别
 
