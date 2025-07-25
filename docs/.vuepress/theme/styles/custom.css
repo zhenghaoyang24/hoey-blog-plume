@@ -12,6 +12,8 @@
   --home-action-bnt-bg:rgb(235, 235, 239);
   /*语言 span 背景*/
   --about-me-skill-item-bg: #f4f2ed;
+  /* ai 摘要 */
+  --ai-summary-shadow-color: rgba(109, 196, 196, 0.35);
 }
 [data-theme="dark"] {
   --main-card-background: rgba(27, 28, 32, 0.85);
@@ -20,6 +22,7 @@
   --about-card-hover-bg: rgba(100, 190, 190, 0.8);
   --home-action-bnt-bg:rgb(50, 54, 63);
   --about-me-skill-item-bg: #15191c;
+  --ai-summary-shadow-color: rgba(100, 190, 190, 0.2);
 }
 
 /*卡片背景*/
