@@ -82,10 +82,11 @@ canvas {
     border-radius: 30%;
     overflow: hidden;
     width: 60px;
-    transition: transform 0.2s;
-
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px var(--avatartar-shadow-color, rgba(0,0,0,0.1)); /* 更柔和的阴影 */
     &:hover {
-      transform: scale(1.1);
+        transform: translateY(-2px); /* 轻微上浮效果替代缩放 */
+        box-shadow: 0 6px 12px var(--avatartar-shadow-color, rgba(0,0,0,0.2)); /* 悬停时阴影扩散 */
     }
   }
 
