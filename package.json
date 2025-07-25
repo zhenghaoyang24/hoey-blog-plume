@@ -29,6 +29,7 @@
     "@vuepress/shiki-twoslash": "2.0.0-rc.105",
     "echarts": "^5.6.0",
     "highlighter": "^0.1.0",
+    "lenis": "^1.3.8",
     "typescript": "^5.8.3"
   }
 }
