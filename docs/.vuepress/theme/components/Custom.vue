@@ -3,7 +3,7 @@
     <canvas ref="canvasRef"></canvas>
     <div class="head-social">
       <a href="https://github.com/zhenghaoyang24" target="_blank" class="head-social-btn">
-        <icon name="akar-icons:github-fill"/>
+        <icon name="grommet-icons:github"/>
       </a>
       <a href="https://gitee.com/zhenghaoyang24" target="_blank" class="head-social-btn">
         <icon name="simple-icons:gitee"/>
@@ -13,7 +13,7 @@
         <icon class="head-social-btn" name="simple-icons:codepen"></icon>
       </a>
       <a href="mailto:zhenghaoyang24@foxmail.com" target="_blank" class="head-social-btn">
-        <icon class="head-social-btn" name="garden:email-fill-12"></icon>
+        <icon class="head-social-btn" name="streamline-flex:mail-send-email-message-circle-solid"></icon>
       </a>
     </div>
     <div class="about-me">
