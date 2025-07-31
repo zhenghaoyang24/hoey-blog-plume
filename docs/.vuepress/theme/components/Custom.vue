@@ -3,10 +3,10 @@
     <canvas ref="canvasRef"></canvas>
     <div class="head-social">
       <a href="https://github.com/zhenghaoyang24" target="_blank" class="head-social-btn">
-        <icon name="grommet-icons:github"/>
+        <icon name="grommet-icons:github" />
       </a>
       <a href="https://gitee.com/zhenghaoyang24" target="_blank" class="head-social-btn">
-        <icon name="simple-icons:gitee"/>
+        <icon name="simple-icons:gitee" />
       </a>
       <router-link to="/blog/" class="head-social-avatar"><img src="/avatar.jpg" alt="avatar"></router-link>
       <a href="https://codepen.io/zhenghaoyang24" target="_blank" class="head-social-btn">
@@ -18,7 +18,7 @@
     </div>
     <div class="about-me">
       <div class="card-content grid-row-3-2">
-        <AboutMeName/>
+        <AboutMeName />
         <AboutMeText>
           <template #motto>
             <slot name="motto">
@@ -30,8 +30,8 @@
         </AboutMeText>
       </div>
       <div class="card-content grid-row-3-2">
-        <AboutMeSkill/>
-        <AboutMeLife/>
+        <AboutMeSkill />
+        <AboutMeLife />
       </div>
       <div class="card-content grid-row-1-1">
         <AboutMeText>
@@ -44,10 +44,10 @@
             </slot>
           </template>
         </AboutMeText>
-        <AboutMeCharacter/>
+        <AboutMeCharacter />
       </div>
       <div class="card-content grid-row-1">
-        <AboutMeFriendLink/>
+        <AboutMeFriendLink />
       </div>
     </div>
   </div>
@@ -67,7 +67,8 @@ canvas {
   position: fixed;
   top: -1px;
   left: -1px;
-  pointer-events: none; /* 允许鼠标事件穿透 */
+  pointer-events: none;
+  /* 允许鼠标事件穿透 */
   overflow: hidden;
 }
 
@@ -83,10 +84,14 @@ canvas {
     overflow: hidden;
     width: 60px;
     transition: all 0.2s;
-    box-shadow: 0 4px 6px var(--avatartar-shadow-color, rgba(0,0,0,0.1)); /* 更柔和的阴影 */
+    box-shadow: 0 4px 6px var(--avatartar-shadow-color, rgba(0, 0, 0, 0.1));
+
+    /* 更柔和的阴影 */
     &:hover {
-        transform: translateY(-2px); /* 轻微上浮效果替代缩放 */
-        box-shadow: 0 6px 12px var(--avatartar-shadow-color, rgba(0,0,0,0.2)); /* 悬停时阴影扩散 */
+      transform: translateY(-2px);
+      /* 轻微上浮效果替代缩放 */
+      box-shadow: 0 6px 12px var(--avatartar-shadow-color, rgba(0, 0, 0, 0.2));
+      /* 悬停时阴影扩散 */
     }
   }
 
@@ -108,6 +113,7 @@ canvas {
   max-width: 1380px;
   margin: 0 auto;
   width: 90%;
+
   @media screen and (max-width: 770px) {
     width: 94%;
   }
@@ -117,6 +123,7 @@ canvas {
   margin-top: 20px;
   display: grid;
   gap: 20px;
+
   @media screen and (max-width: 770px) {
     display: flex;
     flex-direction: column;
@@ -134,13 +141,11 @@ canvas {
 .grid-row-1 {
   grid-template-columns: 1fr;
 }
-
-
 </style>
 
 
 <script setup lang="ts">
-import {ref, onMounted, onUnmounted} from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import AboutMeName from "./AboutMeName.vue";
 import AboutMeText from "./AboutMeText.vue";
 import AboutMeSkill from "./AboutMeSkill.vue";
@@ -231,8 +236,8 @@ const drawGrid = () => {
 const createComet = () => {
   const direction = Math.random() > 0.5 ? 'horizontal' : 'vertical'
   const maxPosition = direction === 'horizontal'
-      ? Math.floor(window.innerHeight / linesGap)
-      : Math.floor(window.innerWidth / linesGap)
+    ? Math.floor(window.innerHeight / linesGap)
+    : Math.floor(window.innerWidth / linesGap)
 
   const position = Math.floor(Math.random() * maxPosition) * linesGap
 
@@ -250,7 +255,7 @@ const drawComet = (comet: Comet) => {
   if (!context || !canvas) return
 
   const length = 80
-  const {direction, position, progress} = comet
+  const { direction, position, progress } = comet
 
   if (direction === 'horizontal') {
     const x = progress * canvas.width
@@ -311,5 +316,3 @@ onUnmounted(() => {
   cancelAnimationFrame(animationFrameId)
 })
 </script>
-
-
