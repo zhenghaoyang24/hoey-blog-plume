@@ -6,6 +6,491 @@ tags:
   - Vue
 ---
 
+::: tip
+
+本文档本不是 Vue3 上手文档教程，仅是对部分内容进行记录与总结，便于查阅。
+
+:::
+
+------
+
+## Vue 3 的变化
+
+- 相比 Vue2 有更小的包体积、更好的性能、更好的可扩展性和更好的 `TypeScript/IDE` 支持。
+
+- 使用  [Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy) 代替 [Object.defineProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 实现响应式。
+
+- 新的 API 风格 - Composition API 语法（已兼容 Vue2）。
+
+- 新的内置组件 `Fragment`、`Teleport`、`Suspense`。
+
+- 新的生命周期钩子。
+
+...
+
+## API 风格
+
+Vue3 推出了 Composition API（组合式API，目前已兼容 Vue2），相比于 Vue2 的 Options（选项式API）更易维护扩展。
+
+### Options API
+
+Options API 将数据、方法、计算属性等分散在 `data`、`methods`、`computed` 中，看似类别清晰，但当代码量大后，若想新增或者修改一个需求，就需要分别修改不同位置的 `data`、`methods`、`computed`，代码非常分散，不利于后期维护。
+
+<div style="display: grid;grid-template-columns: repeat(auto-fit, minmax(0, 1fr));">
+<img src="/assets/patch_vue3quickStar_3-01.gif"/>
+<img src="/assets/patch_vue3quickStar_3-02.gif"/>
+</div>
+
+### Composition API
+
+通过组合式 API，我们可以使用导入的 API 函数来描述组件逻辑。在单文件组件中，在 script 添加 setup 标识启用组合式API，
+能够让组件中相关功能的代码更加有序的组织在一起，避免代码过于分散。
+
+<div style="display: grid;grid-template-columns: repeat(auto-fit, minmax(0, 1fr));">
+<img src="/assets/patch_vue3quickStar_3-03.gif"/>
+<img src="/assets/patch_vue3quickStar_3-04.gif"/>
+</div>
+
+### Options VS Composition
+
+两种 API 风格大部分的核心概念都是相通的，熟悉一种也能够快速上手两一种。
+
+如果是在低复杂场景或者渐进式增强的应用，使用 选项式API 获取能够快速完成需求。
+除此之外，更加推荐组合式API，因为当代码量较大时，组合式API更易维护易扩展的优势是显而易见的。
+
+下面是相同场景下不同风格的代码：
+
+::: tabs
+@tab Options API
+```vue
+<script>
+export default {
+  // data() 返回的属性将会成为响应式的状态
+  data() {
+    return {
+      count: 0
+    }
+  },
+
+  // methods 是一些用来更改状态与触发更新的函数
+  methods: {
+    increment() {
+      this.count++
+    }
+  },
+
+  // 生命周期钩子会在组件生命周期的各个不同阶段被调用
+  mounted() {
+    console.log(`The initial count is ${this.count}.`)
+  }
+}
+</script>
+
+<template>
+  <button @click="increment">Count is: {{ count }}</button>
+</template>
+```
+
+@tab Composition API
+```vue
+<script setup>
+import { ref, onMounted } from 'vue'
+
+// 响应式状态
+const count = ref(0)
+
+// 用来修改状态、触发更新的函数
+function increment() {
+  count.value++
+}
+
+// 生命周期钩子
+onMounted(() => {
+  console.log(`The initial count is ${count.value}.`)
+})
+</script>
+
+<template>
+  <button @click="increment">Count is: {{ count }}</button>
+</template>
+```
+:::
+
+## 响应式
+
+Vue3 提供了两个响应式 API - `reactive`、`ref`，用于创建响应式数据。
+
+在 Vue 3 中，`ref` 和 `reactive` 是两个核心的响应式 API，用于创建响应式数据。它们是 Vue 3 响应式系统的基础，基于 `Proxy` 实现，相比 Vue 2 的 `Object.defineProperty` 更强大、更灵活。
+
+---
+
+### ref
+
+`ref` 用于创建一个**响应式的基本类型数据**（如 `string`、`number`、`boolean`），也可以用于对象。
+
+```js
+import { ref } from 'vue'
+
+const count = ref(0)
+console.log(count.value) // 0
+
+count.value++
+console.log(count.value) // 1
+```
+
+#### 特点
+
+- 返回一个**响应式引用对象**，内部值通过 `.value` 访问和修改。
+- 在模板中使用时，Vue 会自动解包 `.value`，无需手动写 `.value`。
+- 可以用于任何类型的值，包括深层嵌套的对象、数组或者 JavaScript 内置的数据结构。
+- 在 `reactive` 对象中嵌套 `ref` 时，也会自动解包。
+
+
+### reactive
+
+`reactive` 用于创建一个**响应式的对象或数组**。它对对象的属性进行深层响应式转换，使对象本身具有响应性，但它与原始对象并不想等。
+
+#### 特点
+
+- 只能传入**对象或数组**，不能用于基本类型（如 `reactive(0)` 无效）。
+- 返回的是一个**Proxy 代理对象**，无需 `.value` 直接操作属性即可触发响应。
+- 在模板中直接使用属性，无需 `.value`。
+  ```
+  let state = reactive({ count: 0 })
+  console.log(state.count) // 不需要 .value
+  ```
+- **深层响应式**：嵌套对象也会被转换为响应式。
+- 不同能轻易替换整个响应式对象，否则响应式连接会丢失。
+  ```
+  let state = reactive({ count: 0 })
+  // 上面的 ({ count: 0 }) 引用将不再被追踪
+  state = reactive({ count: 1 }) // (响应性连接已丢失！)
+  ```
+- **注意**：解构会丢失响应性（因为解构后是普通值），需要用 `toRefs` 或 `toRef` 保持响应性。
+
+```js
+import { reactive, toRefs } from 'vue'
+
+const state = reactive({
+  count: 0,
+  name: 'Vue'
+})
+
+// 解构后失去响应性
+const { count, name } = state
+```
+
+由于 `reactive` 的诸多限制，建议使用 `ref()` 作为声明响应式状态的主要 API。
+
+### 解构响应式数据
+
+以下解构会丢失响应性：
+
+```js
+// 解构 ref
+const obj = ref({ name: 'Vue' })
+const { name } = obj.value // 解构出的是 obj 属性值的副本 - 字符串 'Vue'
+obj.value.name = 'Vue 3'
+console.log(name) // 仍然是 'Vue' 但不会更新！
+
+// 解构 reactive
+const state = reactive({ count: 0 })
+// 当解构时，count 已经与 state.count 断开连接
+let { count } = state
+// 不会影响原始的 state
+
+```
+
+以上两种方式并不是正确的解构方式，只是将原本响应式值的数据复制给了另一个新变量，因此丢失了响应性。
+
+要想保持响应式，解构出来的值应该还是原本响应式对象属性的引用。
+
+以下解构不会丢失响应性：
+
+```js
+const obj = ref({ name: 'Vue' })
+
+// 方法1：countValue 将保留响应式
+const { value: countValue } = obj
+// 方法2：创建nameRef响应式引用
+const nameRef = toRef(obj.value, 'name')
+
+
+// reactive 同样使用 toRef 解构，保持响应性
+const obj = reactive({ name: 'Vue' })
+const { nameRef } = toRef( obj , name ) // nameRef 保持响应式
+```
+
+:::: demo vue title="输入内容验证响应式"
+```vue
+<script setup lang="ts">
+import { ref,toRef } from 'vue'
+
+const obj = ref({ name: 'Vue' })
+const nameRef = toRef( obj.value ,'name')
+const { name } = obj.value
+</script>
+
+<template>
+  <div>
+    <input v-model="obj.name" />
+    <div>原对象obj.name: {{ obj.name }}</div>
+    <div>toRef 解构 obj: {{ nameRef }}</div>
+    <div>错误解构 name（失去响应式）: {{ name }}</div>
+  </div>
+</template>
+```
+::::
+
+## Class 与 Style 绑定
+
+我们能够使用 v-bind 与 HTML 标签的 attribute 进行绑定，实现动态修改，因此我们可以使用 v-bind 操纵元素的 CSS class 列表和内联样式。
+
+Vue 专门为 class 和 style 的 v-bind 用法提供了特殊的功能增强，除了字符串外，表达式的值也可以是对象或数组。
+
+### 3.1. 绑定对象
+
+我们可以给 :class 传递一个对象，对象 key 为 class 名称，value 为 true 或 false，从而实现动态修改 标签的 class：
+
+```js
+const classObject = reactive({
+  active: true,
+  'text-danger': false
+})
+```
+
+将上面的 classObject 对象绑定到 class ，为标签更改class列表。同时可以更改 key 的 boolean 值，从而实现动态修改 class。
+
+::: demo vue title="点击按钮动态修改class"
+```vue
+<script setup lang="ts">
+import { reactive } from 'vue'
+
+const classObject = reactive({
+  active: true,
+  'text-danger': false
+})
+
+function changeActive() {
+  classObject.active = !classObject.active
+}
+
+function changeSize() {
+  classObject['text-large'] = !classObject['text-large']
+}
+</script>
+
+<template>
+  <div>
+    <div>
+      <button @click="changeActive">{{classObject.active? '取消':'添加'}}红色字体</button> &nbsp;
+      <button @click="changeSize">{{classObject['text-large']? '取消':'添加'}}大号字体</button>
+      <p :class="classObject">动态绑定 class</p>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+
+.active {
+  color: red;
+}
+
+.text-large {
+  font-size: 1.2em;
+}
+</style>
+```
+:::
+
+同样的，可以使用 v-bind 为 style 绑定一个对象，不过这个对象的 key 为 CSS property 名，value 为对应的样式值。
+
+```vue
+<div :style="{ 'font-size': fontSize + 'px' }"></div>
+```
+
+当我们修改 fontSize 的值时，div 的 font-size 属性就会被更新。
+
+::: demo vue title="滑动滑块动态修改字体大小"
+```vue
+<script setup>
+import { ref } from 'vue'
+
+const fontSize = ref(16)
+
+function changeSize(e) {
+  fontSize.value = e.target.value
+}
+</script>
+
+<template>
+  <input type="range" min="12" max="36" @input="changeSize" />
+  <p :style="{ 'font-size': fontSize + 'px' }">字体大小：{{ fontSize }}px</p>
+</template>
+
+<style scoped>
+
+.active {
+  color: red;
+}
+
+.text-large {
+  font-size: 1.2em;
+}
+</style>
+```
+:::
+
+### 3.2. 绑定数组
+
+:class 可以绑定一个数组来渲染多个 CSS class：
+
+```js
+const activeClass = ref('active')
+const errorClass = ref('text-danger')
+```
+
+```vue
+<div :class="[activeClass, errorClass]"></div>
+```
+
+绑定数组时，数组的每个元素都会被自动去重。在数组中也可以使用三元表达式动态添加 class。
+
+```vue
+<div :class="[isActive ? activeClass : '', errorClass]"></div>
+```
+
+还可以在数组中中嵌套对象，想对象绑定一样更改 class。
+
+```vue
+<div :class="[{ [activeClass]: isActive }, errorClass]"></div>
+```
+
+下面是一个数组中嵌套对象的例子：
+
+::: demo vue title="点击按钮动态修改class"
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const textRedRef = ref(true)
+const textBoldClass = ref('text-bold')
+
+function changeActive() {
+  textRedRef.value = !textRedRef.value
+}
+</script>
+
+<template>
+  <div>
+      <button @click="changeActive">{{textRedRef? '取消':'添加'}}红色字体</button> &nbsp;
+      <p :class="[textBoldClass,{'text-red':textRedRef}]">动态绑定 class</p>
+  </div>
+</template>
+
+<style scoped>
+
+.text-red {
+  color: red;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+</style>
+```
+:::
+
+同样可以在 :style 绑定一个包含多个样式对象的数组，这些对象会被合并后渲染到同一元素上：
+
+```js
+const textBoldRedStyle = ref({
+  'font-weight': 'bold',
+  'color':'red',
+})
+const textFontSize = ref({
+  'font-size': '1.2em',
+})
+```
+```vue
+<p :style="[textBoldRedStyle,textFontSize]">动态绑定 class</p>
+```
+追踪这些样式对象会被合并后渲染到 p 标签上：
+
+```vue
+<p style="font-weight: bold; color: blue; font-size: 2em;">动态绑定 class</p>
+```
+
+
+## 3. 计算属性
+
+计算属性会自动追踪响应式依赖，当响应式依赖发生变化时，计算属性会重新求值。它与在模板中使用函数求值的优势在于
+==计算属性值会基于其响应式依赖被缓存，不会在模板重渲染发生时再次计算=={.important}。
+
+计算属性默认是只读的。在某些场景可能需要用到可读属性，可以通过同时提供 getter 和 setter 来创建：
+
+
+```js
+<script setup>
+import { ref, computed } from 'vue'
+const firstName = ref('John')
+const lastName = ref('Doe')
+const fullName = computed({
+  // getter
+  get() {
+    return firstName.value + ' ' + lastName.value
+  },
+  // setter
+  set(newValue) {
+    // 注意：我们这里使用的是解构赋值语法
+    [firstName.value, lastName.value] = newValue.split(' ')
+  }
+})
+</script>
+```
+
+当运行 fullName.value = 'John Doe' 时，setter 会被调用而 firstName 和 lastName 会随之更新。
+
+可以通过访问 `getter` 的第一个参数 `previous` 来获取计算属性返回的上一个值：
+
+```js
+import { ref, computed } from 'vue'
+const count = ref(10)
+const val = computed((previous) => {
+  // ...
+})
+// 可写的计算属性
+const val = computed({
+  get(previous) {
+    // ...
+  },
+  set(newValue) {
+    // ...
+  }
+})
+```
+
+**计算属性的 getter 职责应该仅为计算和返回该值**，不要改变其他状态，在 getter 中做异步请求或者更改 DOM！
+计算属性的返回结果相当于一个“临时快照”，每当响应依赖发生改变时“快照”就会更新，因此主动更改 “快照”是没有意义的，其返回值
+应该视为只读。
+
+
+
+## 六、总结
+
+- `ref` 和 `reactive` 是 Vue 3 响应式系统的基石。
+- `ref` 适合基本类型和单值，通过 `.value` 操作。
+- `reactive` 适合对象和复杂状态，直接操作属性。
+- 在模板中两者都会自动解包，使用体验一致。
+- 注意解构时的响应性丢失问题，善用 `toRefs` / `toRef`。
+
+合理使用它们，可以让你的 Vue 3 应用更高效、更易维护！ 
+
+--- 
+
+✅ 推荐阅读：Vue 3 官方文档 — [Reactivity Fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)
+
+
 ## 1. Vue3简介
  
 **性能的提升**
