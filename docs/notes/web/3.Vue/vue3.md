@@ -2,6 +2,7 @@
 title: Vue3 快速上手
 createTime: 2024/8/5 10:19:27
 permalink: /web/vue3/
+draft: true
 tags:
   - Vue
 ---
@@ -248,7 +249,7 @@ const { name } = obj.value
 
 Vue 专门为 class 和 style 的 v-bind 用法提供了特殊的功能增强，除了字符串外，表达式的值也可以是对象或数组。
 
-### 3.1. 绑定对象
+### 绑定对象
 
 我们可以给 :class 传递一个对象，对象 key 为 class 名称，value 为 true 或 false，从而实现动态修改 标签的 class：
 
@@ -341,7 +342,7 @@ function changeSize(e) {
 ```
 :::
 
-### 3.2. 绑定数组
+### 绑定数组
 
 :class 可以绑定一个数组来渲染多个 CSS class：
 
@@ -421,14 +422,282 @@ const textFontSize = ref({
 <p style="font-weight: bold; color: blue; font-size: 2em;">动态绑定 class</p>
 ```
 
+## 修饰符
 
-## 3. 计算属性
+Vue 3 在处理事件与监听按键事件时，提供了一些修饰符，来简化开发。
+
+### 事件修饰符
+
+在 Vue 3 中，事件修饰符用于以更简洁、声明式的方式处理常见的 DOM 事件行为，避免在方法中手动调用如 `event.stopPropagation()` 或 `event.preventDefault()` 等代码。其中包含以下修饰符：
+
+- `.stop`：阻止事件冒泡。
+- `.prevent`：阻止事件的默认行为。
+- `.self`：当事件被触发时，只有该元素本身被触发，才会执行回调函数。
+- `.capture`：使用事件捕获模式（即在事件传播的捕获阶段触发处理函数，而非冒泡阶段）。
+- `.once`：事件只会触发一次。
+- `.passive`：事件处理函数中的 `event.preventDefault()` 不会阻止事件的默认行为。
+
+#### 1. `.stop`
+
+**作用**：阻止事件冒泡（等价于 `event.stopPropagation()`）。
+
+```vue
+<button @click.stop="handleClick">点击</button>
+```
+
+点击该按钮时，事件不会向父元素传播。以下面的示例为例：若不添加 `.stop` 修饰符，点击 +1 按钮后由于没有阻止冒泡则会触发父元素中的点击事件，导致父元素中的 +1 按钮也执行，最终值既-1也+1则不会变。
+
+::: demo vue title=".stop示例"
+``` vue
+<script setup>
+import { ref } from 'vue'
+
+const msg1 = ref(100)
+const msg2 = ref(100)
+</script>
+<template>
+  <h3>不使用.stop修饰符</h3>
+  <div @click="msg1--" style="background-color: red;width: fit-content;padding: 10px;user-select:none;">-1
+    <button @click="msg1++" style="background-color: blue;">+1</button>
+  </div>
+  <text>{{msg1}}</text>
+  <h3>使用.stop修饰符</h3>
+  <div @click="msg2--" style="background-color: red;width: fit-content;padding: 10px;user-select:none;">-1
+    <button @click.stop="msg2++" style="background-color: blue;">+1</button>
+  </div>
+  <text>{{msg2}}</text>
+</template>
+```
+:::
+
+#### 2. `.prevent`
+
+**作用**：阻止事件的默认行为（等价于 `event.preventDefault()`）。
+
+```vue
+<a href="https://vuejs.org" @click.prevent="() => console.log('链接点击被阻止')">
+```
+
+以下面 a 标签为例：添加 `.prevent` 修饰符后，点击该链接将不会跳转，而是执行点击事件。
+
+::: demo vue title=".prevent示例"
+``` vue
+<script setup>
+import { ref } from 'vue'
+const msg = ref("")
+function click() {
+  msg.value = "链接点击被阻止"
+}
+</script>
+<template>
+  <a href="https://vuejs.org" @click.prevent="click">
+    点击前往 vue 官网
+  </a>
+  <text style="color:red">{{msg}}</text>
+</template>
+```
+:::
+
+#### 3. `.self`
+
+**作用**：仅当事件在该元素自身上触发时才执行回调（不包括子元素触发的事件）。
+
+```vue
+<div @click.self="handleDivClick">
+  <button>点我</button>
+</div>
+```
+
+与 `.stop` 修饰符类似，但 `.stop` 是让事件不会冒泡到父元素，而 `.self` 是让事件不会溢出到子元素。
+
+在上面 `.stop` 示例中，我们在子元素 button 上添加了 `.stop` 修饰符让加减功能能够正常运行。
+同样，我们也可以在父元素div上添加 `.self` 修饰符，从而让加减功能能够正常运行。
+
+::: demo vue title=".self示例"
+``` vue
+<script setup>
+import { ref } from 'vue'
+
+const msg1 = ref(100)
+const msg2 = ref(100)
+</script>
+<template>
+  <h3>不使用.self修饰符</h3>
+  <div @click="msg1--" style="background-color: red;width: fit-content;padding: 10px;user-select:none;">-1
+    <button @click="msg1++" style="background-color: blue;">+1</button>
+  </div>
+  <text>{{msg1}}</text>
+  <h3>使用.self修饰符</h3>
+  <div @click.self="msg2--" style="background-color: red;width: fit-content;padding: 10px;user-select:none;">-1
+    <button @click="msg2++" style="background-color: blue;">+1</button>
+  </div>
+  <text>{{msg2}}</text>
+</template>
+```
+:::
+
+#### 4. `.capture`
+**作用**：使用事件捕获模式（即在事件传播的捕获阶段触发处理函数，而非冒泡阶段）。
+
+```vue
+<div @click.capture="handleCapture">
+  <button>点我</button>
+</div>
+```
+
+点击按钮时，先执行外层 `div` 的 `handleCapture`，再执行按钮自身的点击处理（如果有的话）。
+
+
+#### 5. `.once`
+**作用**：事件只触发一次。
+
+```vue
+<button @click.once="handleClick">只点一次</button>
+```
+
+第一次点击会执行 `handleClick`，之后再点击无效。
+
+
+#### 6. `.passive`
+**作用**：以 passive 方式监听事件（提升滚动等性能），表示回调中**不会调用 `preventDefault()`**。
+
+```vue
+<div @scroll.passive="onScroll">...</div>
+```
+浏览器可以立即滚动，无需等待 JS 执行完毕，适用于 `touchstart`、`touchmove`、`scroll` 等高频事件。
+
+::: tip
+`.passive` 和 `.prevent` **不能同时使用**，因为 passive 事件明确表示不会阻止默认行为，Vue 会给出警告。
+:::
+
+::: demo vue title=".passive示例"
+```vue
+<template>
+  <div @scroll.passive="onScroll" style="height: 200px; overflow: auto;">
+    <div style="height: 400px;">
+      <li v-for="i in 20" key="i">{{i}}</li>
+    </div>
+  </div>
+  <div>滚动次数：{{scrollVal}}</div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+const scrollVal = ref("")
+const onScroll = () => {
+  scrollVal.val = scrollVal.value++
+};
+</script>
+```
+:::
+
+#### 组合使用
+
+修饰符可以链式组合，顺序很重要（从左到右依次生效）：
+
+```vue
+<a @click.stop.prevent="doSomething">链接</a>
+```
+
+先阻止冒泡，再阻止默认跳转。
+
+::: tip
+使用修饰符时需要注意调用顺序，因为相关代码是以相同的顺序生成的。
+因此使用 `@click.prevent.self` 会阻止元素及其子元素的所有点击事件的默认行为，
+而 `@click.self.prevent` 则只会阻止对元素本身的点击事件的默认行为。
+:::
+
+### 按键修饰符
+
+Vue 3 提供了按键修饰符，用于监听按键事件。
+
+当然！以下是 Vue 3 中**键盘事件修饰符**和**系统修饰键**的完整对照表，清晰简洁，便于查阅：
+
+#### 键盘事件修饰符
+
+| 修饰符        | 触发条件（按键）                     | 说明 |
+|---------------|----------------------------------|------|
+| `.enter`      | Enter 键（回车）                   | 常用于表单提交 |
+| `.tab`        | Tab 键                            | 注意：浏览器默认会切换焦点，可能需配合 `.prevent` |
+| `.delete`     | Delete 或 Backspace 键            | 两者都触发 |
+| `.esc`        | Escape 键（ESC）                  | 常用于关闭弹窗 |
+| `.space`      | 空格键（Space）                   | 注意：空格默认会滚动页面，可能需 `.prevent` |
+| `.up`         | 上方向键（↑）                     | — |
+| `.down`       | 下方向键（↓）                     | — |
+| `.left`       | 左方向键（←）                     | — |
+| `.right`      | 右方向键（→）                     | — |
+
+#### 鼠标按键修饰符
+
+| 修饰符 | 触发条件 | 说明 |
+|---------------|----------|------|
+| `.middle`    | 中键（鼠标滚轮）                   | — |
+| `.right`    | 右键（鼠标右键）                   | — |
+| `.left`    | 左键（鼠标左键）                   | — |
+
+#### 系统修饰键（用于组合键）
+
+| 修饰符     | 触发条件                          | 说明 |
+|------------|---------------------------------|------|
+| `.ctrl`    | Ctrl 键（Windows/Linux）或 Control（Mac） | 如 `Ctrl + S` |
+| `.alt`     | Alt 键（Windows/Linux）或 Option（Mac） | — |
+| `.shift`   | Shift 键                         | — |
+| `.meta`    | Meta 键（Windows: ⊞ Win，Mac: ⌘ Cmd） | 如 `Cmd + C` |
+| `.exact`   | **精确匹配**修饰键组合             | 确保**只有指定修饰键**被按下，其他修饰键未按下 |
+
+---
+
+#### 使用示例
+
+```vue
+<!-- 回车提交 -->
+<input @keyup.enter="submit" />
+
+<!-- Ctrl + S 保存 -->
+<input @keydown.ctrl.s="save" />
+
+<!-- 仅当按下 Ctrl（且没有其他修饰键）时触发 -->
+<button @click.ctrl.exact="onCtrlClick">仅 Ctrl</button>
+
+<!-- 按下 Ctrl + Shift + C 才触发 -->
+<button @click.ctrl.shift.c="onShortcut">Ctrl+Shift+C</button>
+```
+
+::: tip
+系统修饰键（如 `.ctrl`）默认监听 `keydown` 事件。
+`.exact` 用于避免 `Ctrl + A` 误触发仅绑定 `.ctrl` 的事件（因为 `Ctrl + A` 也按下了 Ctrl）。
+:::
+
+### 表单输入修饰符
+
+| 修饰符      | 作用说明 |
+|------------|--------|
+| **`.lazy`** | 将 `v-model` 的更新时机从 **`input` 事件** 改为 **`change` 事件**（即失去焦点或回车时才更新） |
+| **`.number`** | 自动将用户输入的值**转为 `Number` 类型**（若无法转换则返回原字符串） |
+| **`.trim`** | 自动**去除用户输入首尾的空格** |
+
+表单输入修饰符也可以组合使用。下面是一个 组合使用 `.lazy`，`.number`，`.trim` 的简单示例：
+
+:::demo vue title="表单输入修饰符示例"
+```vue
+<template>
+  <input type="text" v-model.lazy.number.trim="msg" />
+  <div>{{ msg }}</div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+const msg = ref("1")
+</script>
+```
+:::
+
+## 计算属性
 
 计算属性会自动追踪响应式依赖，当响应式依赖发生变化时，计算属性会重新求值。它与在模板中使用函数求值的优势在于
 ==计算属性值会基于其响应式依赖被缓存，不会在模板重渲染发生时再次计算=={.important}。
 
 计算属性默认是只读的。在某些场景可能需要用到可读属性，可以通过同时提供 getter 和 setter 来创建：
-
 
 ```js
 <script setup>
@@ -473,7 +742,6 @@ const val = computed({
 **计算属性的 getter 职责应该仅为计算和返回该值**，不要改变其他状态，在 getter 中做异步请求或者更改 DOM！
 计算属性的返回结果相当于一个“临时快照”，每当响应依赖发生改变时“快照”就会更新，因此主动更改 “快照”是没有意义的，其返回值
 应该视为只读。
-
 
 
 ## 六、总结
