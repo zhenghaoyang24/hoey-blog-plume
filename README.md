@@ -17,7 +17,7 @@
 ``` js
 import './theme/styles/custom.css'
 import Custom from './theme/components/Custom.vue'
-import Custom from './theme/components/AllFriendContent.vue'  // 友情链接页面所需组件
+import AllFriendContent from './theme/components/AllFriendContent.vue'  // 友情链接页面所需组件
   export default defineClientConfig({
     enhance({ app }) {
     app.component('Custom', Custom)
