@@ -142,6 +142,7 @@ console.log(count.value) // 1
 #### 特点
 
 - 返回一个**响应式引用对象**，内部值通过 `.value` 访问和修改。
+- 可以被整体替换且保留响应性。
 - 在模板中使用时，Vue 会自动解包 `.value`，无需手动写 `.value`。
 - 可以用于任何类型的值，包括深层嵌套的对象、数组或者 JavaScript 内置的数据结构。
 - 在 `reactive` 对象中嵌套 `ref` 时，也会自动解包。
@@ -154,6 +155,7 @@ console.log(count.value) // 1
 #### 特点
 
 - 只能传入**对象或数组**，不能用于基本类型（如 `reactive(0)` 无效）。
+- 不能被整体替换，将丢失响应性。
 - 返回的是一个**Proxy 代理对象**，无需 `.value` 直接操作属性即可触发响应。
 - 在模板中直接使用属性，无需 `.value`。
   ```
@@ -743,21 +745,241 @@ const val = computed({
 计算属性的返回结果相当于一个“临时快照”，每当响应依赖发生改变时“快照”就会更新，因此主动更改 “快照”是没有意义的，其返回值
 应该视为只读。
 
+## 侦听器
 
-## 六、总结
+### watch
 
-- `ref` 和 `reactive` 是 Vue 3 响应式系统的基石。
-- `ref` 适合基本类型和单值，通过 `.value` 操作。
-- `reactive` 适合对象和复杂状态，直接操作属性。
-- 在模板中两者都会自动解包，使用体验一致。
-- 注意解构时的响应性丢失问题，善用 `toRefs` / `toRef`。
+前面我们提到 在计算属性 `computed` 中不能执行异步请求或者更改 DOM等非计算求值的操作，而 `watch` 则允许我们在响应依赖发生变化时
+执行这些 “副作用” 操作。
 
-合理使用它们，可以让你的 Vue 3 应用更高效、更易维护！ 
+`watch` 的第一个参数可以是不同形式的“数据源”：它可以是一个 ref (包括计算属性)、一个响应式对象、一个 getter 函数、或多个数据源组成的数组。
 
---- 
+在侦听响应式对象时，不能直接侦听响应式对象的属性值，而是需要一个返回响应式对象的 getter 函数：
 
-✅ 推荐阅读：Vue 3 官方文档 — [Reactivity Fundamentals](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)
+```js
+const obj = reactive({ count: 0 })
 
+// 错误，因为 watch() 得到的参数是一个 number
+watch(obj.count, (count) => { //[!code error]
+  console.log(`Count is: ${count}`)
+})
+
+// 提供一个 getter 函数
+watch(
+  () => obj.count,
+  (count) => {
+    console.log(`Count is: ${count}`)
+  }
+)
+```
+
+#### 深层侦听器
+
+直接给 `watch()` 传入一个 `reactive` 对象  ，会隐式地创建一个深层侦听器。
+
+若传入 `ref` 对象时，必须显式地加上 deep 选项，强制转成深层侦听器，才能在属性值发生变化时触发侦听。
+
+若传入的是一个对象属性，只有当该属性值发生变化时才会触发监听。
+
+::: demo vue title="侦听器示例"
+```vue
+<script setup>
+import { reactive,watch ,ref } from 'vue'
+
+const obj = ref({
+  name: 'Vue',
+  age: 18
+})
+
+const msg1 = ref("")
+const msg2 = ref("")
+
+watch(obj,(newVal)=>{
+  msg1.value = "你将name更改为了"+newVal.name
+    msg2.value = "你将age更改为了"+newVal.age
+},{
+  deep:true,
+})
+
+</script>
+
+<template>
+  <label for="name">name:</label>
+  <input autocomplete="off" id="name" v-model="obj.name" />
+  <br/>
+  <label for="name">age:</label>
+  <input autocomplete="off" id="name" v-model="obj.age" />
+  <div>{{msg1}}</div>
+    <div>{{msg2}}</div>
+</template>
+```
+:::
+
+#### 其他选项
+
+`watch` 默认是懒执行的，只有在侦听器创建完成后且在数据源发生变化时才能触发侦听。
+有些是有我们希望在创建侦听器时，立即执行一遍回调。例如在页面加载时初始数据获取完成就执行一次回调，
+则可以通过传入 `immediate: true` 选项来强制侦听器的回调立即执行。
+
+如果希望回调只在源变化时触发一次，则需要使用 `once: true` 选项。
+
+### `watchEffect()`
+
+和计算属性类似，回调会立即执行，不需要指定 `immediate: true`，能够自动跟踪回调的响应式依赖。
+
+#### watch vs. watchEffect​
+
+`watch` 和 `watchEffect` 都能响应式地执行有副作用的回调。它们之间的主要区别是追踪响应式依赖的方式：
+
+- `watch` 只追踪明确侦听的数据源。它不会追踪任何在回调中访问到的东西。另外，仅在数据源确实改变时才会触发回调。
+  `watch` 会避免在发生副作用时追踪依赖，因此，我们能更加精确地控制回调函数的触发时机。
+
+- `watchEffect`则会在副作用发生期间追踪依赖。它会在同步执行过程中，自动追踪所有能访问到的响应式属性。
+  这更方便，而且代码往往更简洁，但有时其响应性依赖关系会不那么明确。
+
+### 副作用清理
+
+有时我们需要在侦听器中执行一些可能比较耗时的异步请求，但在请求完成之前，侦听器的响应依赖可能会发生变化，
+这就会导致每当数据源改变时，异步请求都会执行，性能开销较大。
+
+::: demo vue title="侦听器中的过时请求"
+```vue
+<script setup lang="ts">
+import { ref, watch } from 'vue'
+
+const id = ref<number | null>(null)
+const msg = ref<string>("")
+const result = ref<number | null>(null)
+
+const findById = (id: number) => {
+  return new Promise<number>((resolve) => {
+    msg.value = `正在请求 id 为 ${id} 的数据...`
+    setTimeout(() => {
+      resolve(id)
+    }, 1000)
+  })
+}
+
+// ❌ 没有使用 onCleanup：存在竞态问题
+watch(id, async (newVal) => {
+  if (newVal === null || isNaN(newVal)) {
+    msg.value = "请输入有效的 ID"
+    result.value = null
+    return
+  }
+  const res = await findById(newVal)
+  // ⚠️ 问题：如果 id 已经改变，这里仍会覆盖最新状态！
+  msg.value = `id 为 ${res} 的数据请求成功`
+  result.value = res
+})
+</script>
+
+<template>
+  <div style="padding: 20px; font-family: Arial, sans-serif;">
+    <h3>❌ 无 onCleanup（每次更新异步请求都会执行）</h3>
+    <input 
+      v-model.number="id" 
+      type="number" 
+      placeholder="根据 ID 查找" 
+    />
+    <div>
+      <p>{{ msg }}</p>
+      <p v-if="result !== null">✅ 结果: {{ result }}</p>
+    </div>
+  </div>
+</template>
+```
+:::
+
+在上面的例子中，我们使用 `findById()` 模拟一个耗时的异步请求函数，延迟1秒。用户每当输入一个 ID 时，就会触发侦听，执行异步请求，1秒后在模板打印请求结果。
+
+这样就引发了一个问题，当用户输入一个 ID 时，如果该 ID 的数据请求还没有完成，用户再次输入一个 ID，又会触发新的异步请求，等待1秒后才依次打出响应结果。
+显然，这会带来性能问题，因为每次数据源改变时，都会触发新的异步请求，并等待1秒后才能打印结果。
+
+
+
+在 count 变化后触发侦听，一秒后请求结束并将结果赋值 msg 并打印在模板上。
+
+我们在1秒内连接点击按钮，count 的值会递增，msg 的值也会连续的被改变。也就是说，watch 的数据源改变时，
+上一次改变所触发的请求可能还没有结束，我们希望能够在 count 变为新值时取消过时的请求，只需要 count 最后一次改变所触发的请求结果。
+
+在 **3.5** 版本之前可以使用 `watch` 回调函数的第三个参数 、 `watchEffect` 回调函数的第一个参数 - `onCleanup()` 来实现
+响应依赖变化时取消过时的请求。
+
+::: demo vue title="onCleanup()例子"
+```vue
+<!-- WithOnCleanup.vue -->
+<script setup lang="ts">
+import { ref, watch } from 'vue'
+
+const id = ref<number | null>(null)
+const msg = ref<string>("")
+const result = ref<number | null>(null)
+
+const findById = (id: number) => {
+  return new Promise<number>((resolve) => {
+    msg.value = `正在请求 id 为 ${id} 的数据...`
+    setTimeout(() => {
+      resolve(id)
+    }, 1000)
+  })
+}
+
+// ✅ 使用 onCleanup 避免竞态
+watch(id, async (newVal, oldVal, onCleanup) => {
+  if (newVal === null || isNaN(newVal)) {
+    msg.value = "请输入有效的 ID"
+    result.value = null
+    return
+  }
+
+  let cancelled = false
+
+  // 注册清理函数
+  onCleanup(() => {
+    cancelled = true
+    // 可选：显示清理提示（更直观）
+    if (oldVal !== null && !isNaN(oldVal)) {
+      msg.value = `已取消 id 为 ${oldVal} 的请求`
+      setTimeout(() => {
+        // 如果已被新请求覆盖，不清空；否则恢复提示
+        if (msg.value.includes('已取消')) {
+          msg.value = "请输入 ID 开始查询"
+        }
+      }, 1500)
+    }
+  })
+
+  const res = await findById(newVal)
+  
+  if (!cancelled) {
+    msg.value = `id 为 ${res} 的数据请求成功`
+    result.value = res
+  } else {
+    // 被取消的响应不更新 UI
+    // msg 已在 onCleanup 中更新，此处可不处理
+  }
+})
+</script>
+
+<template>
+  <div style="padding: 20px; font-family: Arial, sans-serif;">
+    <h3>✅ 使用 onCleanup（结果始终正确）</h3>
+    <input 
+      v-model.number="id" 
+      type="number" 
+      placeholder="根据 ID 查找" 
+    />
+    <div>
+      <p>{{ msg }}</p>
+      <p v-if="result !== null">✅ 结果: {{ result }}</p>
+    </div>
+  </div>
+</template>
+```
+:::
+
+// TODO: onCleanup 待编辑
 
 ## 1. Vue3简介
  
