@@ -1179,7 +1179,295 @@ const props = defineProps({
 })
 ```
 
+## 事件
 
+Vue3 中提供的 `$emit` 与 `defineEmits()` 能够让我们自定义事件，从而实现组件间通信。
+
+`$emit` 在模板中使用，`defineEmits()` 在 `<script setup>` 中使用。
+
+模板中：
+
+```vue
+<!-- 子组件定义 -->
+<button @click="$emit('someEvent')">Click Me</button>
+
+<!-- 父组件中使用 -->
+<MyComponent @some-event="callback" />
+```
+
+组件中：
+
+```vue
+<script setup>
+const emit = defineEmits(['inFocus', 'submit'])
+
+function buttonClick() {
+  emit('submit')
+}
+</script>
+```
+
+如果你正在搭配 TypeScript 使用 `<script setup>`，也可以使用纯类型标注来声明触发的事件：
+
+```ts
+<script setup lang="ts">
+const emit = defineEmits<{
+  (e: 'change', id: number): void
+  (e: 'update', value: string): void
+}>()
+</script>
+```
+
+要为事件添加校验，那么事件可以被赋值为一个函数，接受的参数就是抛出事件时传入 emit 的内容，返回一个布尔值来表明事件是否合法。
+
+```js :collapsed-lines=100
+<script setup>
+const emit = defineEmits({
+  change: (id) => true, // 接受参数不做校验
+  submit: ({ email, password }) => {
+    const isValid = email && password && typeof email === 'string'
+    if (!isValid) {
+      console.warn('⚠️ submit 事件参数无效：需包含 email 和 password')
+    }
+    return isValid
+  }
+})
+
+function handleSubmit() {
+  // 有效：会触发事件
+  emit('submit', { email: 'a@example.com', password: '123' })
+
+  // 无效：控制台警告，但事件仍会发出（Vue 不会阻止）
+  emit('submit', { email: '' }) // [!code warning]
+}
+</script>
+```
+
+上面的校验方法是运行时事件校验，具有以下不足：
+- 校验失败不会阻止事件触发，只会打印警告。
+- 校验失败不会阻止事件触发，只会打印警告。
+- 无法在 TypeScript 中提供编译时类型安全。
+- 性能开销：每次 emit 都会执行校验函数。
+
+若需要静态检查，无运行时开销，可以使用 TypeScript 类型校验：
+
+```ts :collapsed-lines=100
+<script setup lang="ts">
+interface Emits {
+  (e: 'submit', payload: { email: string; password: string }): void
+  (e: 'close',value: boolean): void
+}
+
+const emit = defineEmits<Emits>()
+
+function handleSubmit() {
+  // ✅ 正确：类型匹配
+  emit('submit', { email: 'test@example.com', password: '123456' })
+  emit('close', true)
+
+  // ❌ TS 编译错误：缺少 password
+  emit('submit', { email: 'test@example.com' }) // [!code error]
+
+  // ❌ TS 编译错误：password 类型错误
+  emit('submit', { email: 'test@example.com', password: 123 }) // [!code error]
+
+  // ❌ TS 编译错误：类型错误
+  emit('close', 'true') // [!code error]
+}
+</script>
+```
+
+## v-model
+
+### 了解 v-model
+
+v-model指令 是 Vue3 中 modelValue 与 update:modelValue 组合的语法糖。
+
+```vue
+<!-- 使用v-model指令 -->
+<input type="text" v-model="userName">
+
+v-model的本质是下面这行代码
+
+<input 
+  type="text" 
+  :value="userName" 
+  @input="userName =(<HTMLInputElement>$event.target).value"
+>
+```
+
+在组件标签上的v-model的本质：:moldeValue ＋ update:modelValue事件。
+
+```vue
+<!-- 组件标签上使用v-model指令 -->
+<ComInput v-model="userName"/>
+
+<!-- 组件标签上v-model的本质 -->
+<ComInput :modelValue="userName" @update:model-value="userName = $event"/>
+```
+
+### defineModel
+
+因此在 3.4 版本之前，我们通常是在子组件中接受一个 modelValue 属性，并在 update:modelValue 事件中更新 modelValue 值，来实现父子
+组件间通信。
+
+子组件 Child.vue：
+
+```vue
+<script setup>
+const props = defineProps(['modelValue'])
+const emit = defineEmits(['update:modelValue'])
+</script>
+
+<template>
+  <input
+    :value="props.modelValue"
+    @input="emit('update:modelValue', $event.target.value)"
+  />
+</template>
+```
+
+父组件：
+
+```vue
+<script setup>
+import Child from './Child.vue'
+import { ref } from 'vue'
+
+const foo = ref("")
+</script>
+
+<template>
+  <h1>{{foo}}</h1>
+<Child
+  :modelValue="foo"
+  @update:modelValue="$event => (foo = $event)"
+/>
+</template>
+```
+
+这样写有利于了解底层机制，但显然代码较为冗长。从 Vue 3.4 开始，推荐的实现方式是使用 `defineModel()` 宏。
+
+`defineModel` 是一个便利宏。编译器将其展开为以下内容：
+- 一个名为 modelValue 的 prop，本地 ref 的值与其同步；
+- 一个名为 update:modelValue 的事件，当本地 ref 的值发生变更时触发。
+
+它可以像其他 ref 一样被访问以及修改，当它被子组件变更了，会触发父组件绑定的值一起更新。
+因此刚刚复杂的父子组件通信示例可以被简化为以下代码。
+
+子组件 Child.vue（使用 `defineModel`）：
+
+```vue
+<script setup>
+const model = defineModel()
+</script>
+
+<template>
+  <input
+    v-model="model"
+  />
+</template>
+```
+
+ 父组件（使用 `v-model`）：
+
+```vue
+<script setup>
+import Child from './Child.vue'
+import { ref } from 'vue'
+
+const foo = ref("")
+</script>
+
+<template>
+  <h1>{{ foo }}</h1>
+  <Child v-model="foo" />
+</template>
+```
+
+在上面的子组件中，`defineModel()` 将自动声明 `modelValue prop`、
+声明 `update:modelValue` 事件、
+返回一个双向绑定的 ref，修改它会自动触发更新。
+
+`defineModel()`默认绑定的是 modelValue，如果你要用自定义 v-model，可以在组件上接受一个参数：
+
+```vue
+<Child v-model:title="foo" />
+```
+
+在子组件中，我们可以通过将字符串作为第一个参数传递给 `defineModel()` 来支持相应的参数：
+
+```vue
+<script setup>
+const title = defineModel('title')
+</script>
+
+<template>
+  <input type="text" v-model="title" />
+</template>
+```
+
+`defineModel('title')` 会自动声明 `props: { title: String }`、
+声明 `emit('update:title', newValue)`、
+返回一个可双向绑定的 ref 。
+
+### 修饰符
+
+从 Vue 3.4 开始，`defineModel()` 支持通过 { set } 选项 或 modelModifiers 来自定义响应修饰符。
+推荐使用 `defineModel` + `set` 转换函数。
+
+子组件 UppercaseInput.vue：
+
+```vue
+<script setup>
+const [model, modifiers] = defineModel('title',{
+  set(value) {
+    if (modifiers.capitalize) {
+      return value.toUpperCase()
+    }
+    return value
+  }
+})
+</script>
+
+<template>
+  <input type="text" v-model="model" />
+</template>
+```
+
+父组件：
+
+```vue
+<script setup lang="ts">
+import Child from './Child.vue'
+import { ref } from 'vue'
+
+const titleUpperCase = ref('')
+</script>
+
+<template>
+  <h3>标题:{{titleUpperCase}}</h3>
+  <Child v-model:title.capitalize="titleUpperCase" />
+</template>
+```
+
+## 透传 Attributes
+
+“透传 attribute”指的是传递给一个组件，却没有被该组件声明为 props 或 emits 的 attribute 或者 v-on 事件监听器。
+若传递的组件根元素也为组件，则继承在根元素组件的根元素上。
+
+如果传递的组件有下面有多个根节点，由于 Vue 不知道要将 attribute 透传到哪里，所以会抛出一个警告，并不继承 attribute 。
+
+如果不想要一个组件自动地继承 attribute，可以在组件选项中设置 inheritAttrs: false：
+
+```js
+<script setup>
+defineOptions({
+  inheritAttrs: false
+})
+// ...setup 逻辑
+</script>
+```
 
 ## 1. Vue3简介
  
