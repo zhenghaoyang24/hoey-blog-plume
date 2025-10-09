@@ -860,7 +860,7 @@ const findById = (id: number) => {
   })
 }
 
-// ❌ 没有使用 onCleanup：存在竞态问题
+// 没有使用 onCleanup：存在竞态问题
 watch(id, async (newVal) => {
   if (newVal === null || isNaN(newVal)) {
     msg.value = "请输入有效的 ID"
@@ -868,7 +868,6 @@ watch(id, async (newVal) => {
     return
   }
   const res = await findById(newVal)
-  // ⚠️ 问题：如果 id 已经改变，这里仍会覆盖最新状态！
   msg.value = `id 为 ${res} 的数据请求成功`
   result.value = res
 })
@@ -884,31 +883,39 @@ watch(id, async (newVal) => {
     />
     <div>
       <p>{{ msg }}</p>
-      <p v-if="result !== null">✅ 结果: {{ result }}</p>
+      <p v-if="result !== null">结果: {{ result }}</p>
     </div>
   </div>
 </template>
 ```
 :::
 
-在上面的例子中，我们使用 `findById()` 模拟一个耗时的异步请求函数，延迟1秒。用户每当输入一个 ID 时，就会触发侦听，执行异步请求，1秒后在模板打印请求结果。
+在上面的例子中，我们使用 `findById()` 模拟一个耗时的异步请求函数。用户每当输入一个 ID 时，就会触发侦听，执行异步请求，1秒后在模板打印请求结果。
 
 这样就引发了一个问题，当用户输入一个 ID 时，如果该 ID 的数据请求还没有完成，用户再次输入一个 ID，又会触发新的异步请求，等待1秒后才依次打出响应结果。
-显然，这会带来性能问题，因为每次数据源改变时，都会触发新的异步请求，并等待1秒后才能打印结果。
-
-
-
-在 count 变化后触发侦听，一秒后请求结束并将结果赋值 msg 并打印在模板上。
-
-我们在1秒内连接点击按钮，count 的值会递增，msg 的值也会连续的被改变。也就是说，watch 的数据源改变时，
-上一次改变所触发的请求可能还没有结束，我们希望能够在 count 变为新值时取消过时的请求，只需要 count 最后一次改变所触发的请求结果。
+这会带来造成竞态问题，因为每次数据源改变时，都会触发新的异步请求，模板上的结果都会在异步请求结束后更新。
 
 在 **3.5** 版本之前可以使用 `watch` 回调函数的第三个参数 、 `watchEffect` 回调函数的第一个参数 - `onCleanup()` 来实现
-响应依赖变化时取消过时的请求。
+忽略过时请求的结果。
+
+```js
+watch(id, (newId, oldId, onCleanup) => {
+  // ...
+  onCleanup(() => {
+    // 清理逻辑
+  })
+})
+
+watchEffect((onCleanup) => {
+  // ...
+  onCleanup(() => {
+    // 清理逻辑
+  })
+})
+```
 
 ::: demo vue title="onCleanup()例子"
 ```vue
-<!-- WithOnCleanup.vue -->
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
@@ -920,12 +927,13 @@ const findById = (id: number) => {
   return new Promise<number>((resolve) => {
     msg.value = `正在请求 id 为 ${id} 的数据...`
     setTimeout(() => {
+      console.log("请求结束："+id)
       resolve(id)
     }, 1000)
   })
 }
 
-// ✅ 使用 onCleanup 避免竞态
+// 使用 onCleanup 避免竞态
 watch(id, async (newVal, oldVal, onCleanup) => {
   if (newVal === null || isNaN(newVal)) {
     msg.value = "请输入有效的 ID"
@@ -938,16 +946,6 @@ watch(id, async (newVal, oldVal, onCleanup) => {
   // 注册清理函数
   onCleanup(() => {
     cancelled = true
-    // 可选：显示清理提示（更直观）
-    if (oldVal !== null && !isNaN(oldVal)) {
-      msg.value = `已取消 id 为 ${oldVal} 的请求`
-      setTimeout(() => {
-        // 如果已被新请求覆盖，不清空；否则恢复提示
-        if (msg.value.includes('已取消')) {
-          msg.value = "请输入 ID 开始查询"
-        }
-      }, 1500)
-    }
   })
 
   const res = await findById(newVal)
@@ -955,10 +953,7 @@ watch(id, async (newVal, oldVal, onCleanup) => {
   if (!cancelled) {
     msg.value = `id 为 ${res} 的数据请求成功`
     result.value = res
-  } else {
-    // 被取消的响应不更新 UI
-    // msg 已在 onCleanup 中更新，此处可不处理
-  }
+  } else {}
 })
 </script>
 
@@ -979,7 +974,212 @@ watch(id, async (newVal, oldVal, onCleanup) => {
 ```
 :::
 
-// TODO: onCleanup 待编辑
+上面的例子中，添加了 `onCleanup` 函数，用于在侦听器回调中注册一个清理函数。每当 input 输入新的 ID 时，
+会注册一个清理函数。当新的异步请求完成时，并执行上一次注册的清理函数，再执行副作用。这样，每当ID数据源改变时旧的请求结果会被忽略，
+保持模板只打印最新请求的结果。
+
+::: tip
+`onCleanup` 注册的清理函数，会在 **下一次副作用 （watch 回调） 重新运行之前** 或 **组件卸载时** 自动执行。 
+
+在 **3.5** 版本之后，可以使用 onWatcherCleanup()  API 来注册一个清理函数。
+:::
+
+## 模板引用
+
+> ref 是一个特殊的 attribute，和 v-for 章节中提到的 key 类似。它允许我们在一个特定的 DOM 元素或子组件实例被挂载后，获得对它的直接引用。
+> 这可能很有用，比如说在组件挂载时将 焦点设置到一个 input 元素上，或在一个元素上初始化一个第三方库。
+
+
+
+在 3.5 之前的版本尚未引入 `useTemplateRef()`，我们需要声明一个与模板里 ref attribute 匹配的引用：
+
+```js
+<script setup>
+import { ref, onMounted } from 'vue'
+
+// 声明一个 ref 来存放该元素的引用
+// 必须和模板里的 ref 同名
+const input = ref(null)
+
+onMounted(() => {
+  input.value.focus()
+})
+</script>
+
+<template>
+  <input ref="input" />
+</template>
+```
+
+在 3.5 之后，我们可以使用 `useTemplateRef()` 函数来获取模板中的 ref 引用。
+
+```js
+<script setup>
+import { useTemplateRef, onMounted } from 'vue'
+
+// 第一个参数必须与模板中的 ref 值匹配
+const input = useTemplateRef('my-input')
+
+onMounted(() => {
+  input.value.focus()
+})
+</script>
+
+<template>
+  <input ref="my-input" />
+</template>
+```
+
+## 生命周期
+
+Vue 3 的生命周期钩子（Lifecycle Hooks）分为 **选项式 API（Options API）** 和 **组合式 API（Composition API）** 两种写法。
+
+Vue 3 **移除了** `beforeCreate` 和 `created` 钩子（在组合式 API 中，它们的功能由 `setup()` 替代）。
+
+| 选项式 API（Options API） | 组合式 API（Composition API） | 说明 |
+|--------------------------|-------------------------------|------|
+| `beforeCreate`           | —（逻辑放在 `setup()` 开头）   | 实例初始化之后，数据观测 (data observer) 和 event/watcher 配置之前 |
+| `created`                | —（逻辑放在 `setup()` 中）     | 实例创建完成，可访问 data、methods，但 DOM 未挂载 |
+| `beforeMount`            | `onBeforeMount`               | 挂载开始前，render 函数首次被调用前 |
+| `mounted`                | `onMounted`                   | DOM 挂载完成，可访问 `$el`，适合操作 DOM 或启动定时器 |
+| `beforeUpdate`           | `onBeforeUpdate`              | 数据更新时调用，发生在虚拟 DOM 重新渲染前 |
+| `updated`                | `onUpdated`                   | 虚拟 DOM 重新渲染并打补丁后，DOM 已更新 |
+| `beforeUnmount`          | `onBeforeUnmount`             | 实例卸载前调用，此时组件实例依然完好 |
+| `unmounted`              | `onUnmounted`                 | 组件卸载完成，清理定时器、事件监听等 |
+
+Vue 3 **不再支持** `destroyed` 和 `beforeDestroy`（Vue 2 的钩子），改用 `unmounted` / `beforeUnmount`。
+
+下面是组合式 API 使用示例：
+
+```vue
+<script setup lang="ts">
+import {
+  onBeforeMount,
+  onMounted,
+  onBeforeUpdate,
+  onUpdated,
+  onBeforeUnmount,
+  onUnmounted
+} from 'vue'
+
+// 创建阶段：setup() 内部就是 beforeCreate + created 的替代
+console.log('setup: 组件创建中（相当于 created）')
+
+onBeforeMount(() => {
+  console.log('onBeforeMount: DOM 还未挂载')
+})
+
+onMounted(() => {
+  console.log('onMounted: DOM 已挂载，可操作 DOM')
+  // 例如：启动定时器、初始化第三方库
+})
+
+onBeforeUpdate(() => {
+  console.log('onBeforeUpdate: 数据已变，DOM 还未更新')
+})
+
+onUpdated(() => {
+  console.log('onUpdated: DOM 已更新')
+  // 注意：避免在此修改响应式数据，可能引发无限循环
+})
+
+onBeforeUnmount(() => {
+  console.log('onBeforeUnmount: 组件即将卸载')
+})
+
+onUnmounted(() => {
+  console.log('onUnmounted: 组件已卸载')
+  // 清理：移除事件监听、取消订阅、清除定时器等
+})
+</script>
+```
+
+#### 使用建议
+
+| 场景 | 推荐钩子 |
+|------|--------|
+| 初始化数据、调用 API | `onMounted` |
+| 操作 DOM（如第三方图表） | `onMounted` |
+| 监听全局事件（如 `window.resize`） | `onMounted` 添加，`onUnmounted` 移除 |
+| 清理资源（定时器、订阅） | `onUnmounted` |
+| 调试响应式更新原因 | `onRenderTriggered`（开发环境） |
+
+#### 常见错误
+
+- 在 `onUpdated` 中修改响应式数据 → 可能导致无限循环
+- 忘记在 `onUnmounted` 中清理定时器/监听器 → 内存泄漏
+- 在 `setup()` 中直接操作 DOM → 此时 DOM 未挂载！
+
+## props
+
+`props` 是父组件向子组件传递数据的方式。
+
+### 类型与校验
+
+当使用 `<script setup>` 时，`defineProps()` 宏函数支持从它的参数中推导类型：
+
+```js
+<script setup lang="ts">
+const props = defineProps({
+  foo: { type: String, required: true },
+  baz: { type: [ String, Number ], required: true },
+  bar: Number
+})
+</script>
+```
+
+这被称之为“运行时声明”。还有一种通过泛型参数来定义 props 的“基于类型的声明”，这在 TypeScript `<script setup>` 更为适用：
+
+```js
+<script setup lang="ts">
+interface Props {
+  foo: string
+  baz: string | number
+  bar?: number
+}
+</script>
+```
+
+### 默认值
+
+在 3.4+ 版本，可以使用响应式 Props 解构声明默认值：
+
+```js
+interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const { msg = 'hello', labels = ['one', 'two'] } = defineProps<Props>()
+```
+
+在 3.4 及更低版本，响应式 Props 解构不会被默认启用。另一种选择是使用 withDefaults 编译器宏：
+
+```js
+interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  msg: 'hello',
+  labels: () => ['one', 'two']
+})
+```
+
+若使用运行时声明，可以使用 defaults 字段声明默认值：
+
+```js
+const props = defineProps({
+  propA: 'hello',
+  propE: {
+    type: Number,
+    default: 100
+  },
+})
+```
+
+
 
 ## 1. Vue3简介
  
