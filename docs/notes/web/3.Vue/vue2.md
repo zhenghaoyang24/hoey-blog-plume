@@ -2,13 +2,16 @@
 title: Vue2 快速上手
 createTime: 2024/4/21 15:41:27
 permalink: /web/vue2/
+badge:
+  text: 过时
+  type: danger
 tags:
   - Vue
 ---
 
 ::: caution
 
-本文档为 Vue2 的快速上手文档，其中一些内容已经过时，要了解最新 Vue 特性请移步 [vue3复习手册](./vue3) 或 参阅 [官网文档](https://cn.vuejs.org/) 。
+本文档为 Vue2 的快速上手文档，其中一些内容已经过时且不再更新。要了解最新 Vue 特性请移步 [vue3复习手册](./vue3) 或 参阅 [官网文档](https://cn.vuejs.org/) 。
 
 :::
 
