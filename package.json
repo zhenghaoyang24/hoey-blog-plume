@@ -1,8 +1,8 @@
 {
   "name": "hoey-blog-plume",
   "type": "module",
-  "description": "Hoey's blog.",
-  "author": "zhenghaoyang24",
+  "description": "老师，我太想进步了。",
+  "author": "zhenghaoyang",
   "engines": {
     "node": "^18.20.0 || >=20.0.0"
   },
