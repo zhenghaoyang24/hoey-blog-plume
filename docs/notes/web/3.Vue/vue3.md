@@ -1469,6 +1469,173 @@ defineOptions({
 </script>
 ```
 
+## 插槽
+
+### 默认内容
+
+在父组件中，没有给子组件提供任何插槽内容时，子组件中对应 `<slot>` 内容讲作为默认内容。
+
+```vue
+<button type="submit">
+  <slot>
+    Submit <!-- 默认内容 -->
+  </slot>
+</button>
+```
+
+### 具名插槽
+
+`<slot>` 元素可以有一个特殊的 attribute name，用来给各个插槽分配唯一的 ID，以确定每一处要渲染的内容：
+
+```vue
+<div class="container">
+  <header>
+    <slot name="header"></slot>
+  </header>
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
+</div>
+```
+
+没有提供 name 的 `<slot>` 出口会隐式地命名为“default”。
+
+要为具名插槽传入内容，我们需要使用一个含 `v-slot` 指令的 `<template>` 元素，并将目标插槽的名字传给该指令：
+
+```vue
+<BaseLayout>
+  <template v-slot:header>
+    <!-- header 插槽的内容放这里 -->
+  </template>
+  <!-- v-slot:footer 可简写为 #footer -->
+  <template #footer>
+    <!-- footer 插槽的内容放这里 -->
+  </template>
+</BaseLayout>
+```
+
+### 作用域插槽
+
+插槽内容无法访问子组件的状态，但在某些情况下，我们需要在父组件作用域内使用子组件的状态。要做到这一点，我们可以使用作用域插槽，
+像对组件传递 props 那样，将一些子组件的数据传递给插槽。在父组件中，插槽 props 可以作为 `v-slot` 指令的值被访问到：
+`v-slot:name="slotProps"` 或缩写 `#name="slotProps"`。
+
+::: tabs
+@tab Parent.vue
+```vue :collapsed-lines=100
+<script setup>
+import { ref } from 'vue'
+import Comp from './Comp.vue'
+
+</script>
+
+<template>
+  <Comp>
+    <template #message="messageProp">
+      {{messageProp.msg}}
+    </template>
+    <!-- 可以直接解构 msg -->
+    <template #message="{ msg }">
+      {{msg}}
+    </template>
+    <template #default="defaultProp">
+      {{defaultProp.obj}}
+    </template>
+  </Comp>
+</template>
+```
+
+@tab Child.vue
+```vue :collapsed-lines=100
+<script setup>
+import { ref } from 'vue'
+
+const greetingMessage = ref('hello')
+const obj = ref('Vue.js')
+
+</script>
+
+<template>
+  <div>
+    <div>
+      <slot name="message" :msg="greetingMessage">
+        这是具名作用域插槽
+      </slot>
+    </div>
+    <div>
+      <slot :obj="obj">
+        这是默认插槽
+      </slot>
+    </div>
+  </div>
+</template>
+```
+:::
+
+### 插槽控制
+
+我们可以使用 `$slots` 属性与 `v-if` 来实现对插槽的渲染。
+
+::: tabs
+@tab Parent.vue
+```vue
+<script setup>
+import Card from './Card.vue'
+</script>
+
+<template>
+  <Card>
+    <!-- 不传入任何插槽，footer 插槽将不会被渲染 -->
+  </Card>
+</template>
+```
+
+@tab Child.vue
+```vue 
+<template>
+  <div>
+    <div>
+      <slot name="header">
+        这是 header
+      </slot>
+    </div>
+
+    <div v-if="$slots.footer"> // [!code word:v-if="$slots.footer"]
+      <slot name="footer" >
+        这是 footer
+      </slot>
+    </div>
+  </div>
+</template>
+```
+:::
+
+上面的例子中，子组件内的 footer 插槽使用了 `v-if="$slots.footer"` 来控制渲染。
+当父组件没有提供名为 footer 的插槽时，`$slots` 里不存在 footer，所以 footer 插槽将不会被渲染。
+而 header 插槽没有使用 `v-if`，所以 header 插槽将一直被渲染。
+
+::: tip
+`$slots` 是一个对象，包含所有传入的插槽。可以用 `$slots.footer` 判断是否传入了名为 footer 的插槽。
+:::
+
+我们还可以动态控制插槽名，来指定渲染的插槽。
+
+```vue
+<base-layout>
+  <template v-slot:[dynamicSlotName]>
+    ...
+  </template>
+
+  <!-- 缩写为 -->
+  <template #[dynamicSlotName]>
+    ...
+  </template>
+</base-layout>
+```
+
 ## 1. Vue3简介
  
 **性能的提升**
