@@ -9,51 +9,53 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue';
-import * as echarts from 'echarts';
+import { ref, onMounted } from "vue";
+import * as echarts from "echarts";
 
 const chartRef = ref(null);
 
 // 示例数据
 const lifeData = [
-  {name: '学习', value: 1},
-  {name: '游戏', value: 1},
-  {name: '阅读', value: 2},
-  {name: '动漫', value: 4},
-  {name: '生活', value: 8},
-  {name: '工作', value: 8}
+  { name: "学习", value: 3 },
+  { name: "游戏", value: 4 },
+  { name: "阅读", value: 2 },
+  { name: "动漫", value: 1 },
+  { name: "生活", value: 6 },
+  { name: "工作", value: 5 },
 ];
 onMounted(() => {
   const myChart = echarts.init(chartRef.value);
 
   const option = {
     tooltip: {
-      trigger: 'item'
+      trigger: "item",
+      formatter: (params) => {
+        return `${params.name}: ${params.percent}%`;
+      },
     },
     series: [
       {
-        name: '我的日常',
-        type: 'pie',
-        radius: ['50%', '80%'],
-        center: ['50%', '60%'],
+        name: "我的日常",
+        type: "pie",
+        radius: ["50%", "80%"],
+        center: ["50%", "60%"],
         startAngle: 180,
         endAngle: 360,
-        data: lifeData
-      }
-    ]
+        data: lifeData,
+      },
+    ],
   };
 
   myChart.setOption(option);
 
   // 响应式调整
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     myChart.resize();
   });
 });
 </script>
 
 <style scoped>
-
 .about-me-life {
   height: 316px;
   padding: 20px 0;
