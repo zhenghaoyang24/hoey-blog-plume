@@ -1,6 +1,4 @@
 import { defineThemeConfig } from 'vuepress-theme-plume'
-import { navbar } from './navbar'
-import { notes } from './notes'
 
 /**
  * @see https://theme-plume.vuejs.press/config/basic/
@@ -18,8 +16,6 @@ export default defineThemeConfig({
     // location: '',
     // organization: '',
   },
-  navbar,
-  notes,
   social: [
     { icon: 'github', link: 'https://github.com/zhenghaoyang24' },
     { icon: {svg: '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20">\n' +

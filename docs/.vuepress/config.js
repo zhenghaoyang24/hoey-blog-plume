@@ -1,6 +1,7 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import { plumeTheme } from "vuepress-theme-plume";
+import { navbar } from './navbar'
 
 export default defineUserConfig({
   autoFrontmatter: {
@@ -31,12 +32,21 @@ export default defineUserConfig({
 
   theme: plumeTheme({
     /**
+     * 文件路径，导航栏，侧边栏等配置
+     */
+    collections: [
+      { type: 'post', dir: 'blog', title: '博客' },
+      { type: 'doc', dir: 'memo', title: '备忘录',  sidebar: 'auto'},
+      { type: 'doc', dir: 'web', title: 'web开发',  sidebar: 'auto'},
+      { type: 'doc', dir: 'nodejs', title: 'Node.js',  sidebar: 'auto'},
+    ],
+    navbar,
+    /**
      * markdown 曾强
      */
     markdown: {
       imageSize: true, // 图片优化 'local（本地图片）' | 'all（所有图片）'
       demo: true, // 启用新的代码演示功能
-      // oldDemo:true,
       markmap: true, // 启用 Markmap 图表嵌入语法
       codeTree: true, // 启用代码树
     },

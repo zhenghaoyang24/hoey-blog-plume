@@ -13,7 +13,6 @@ export const navbar = defineNavbarConfig([
     items: [
       { text: "Web前端", link: "/web/start/", icon: "logos:web-dev-icon" },
       { text: "Node.js", link: "/nodejs/overview/", icon: "material-icon-theme:nodejs" },
-      // {text: 'Android', link: '/android/start/', icon: 'material-icon-theme:android'},
       { text: "备忘录", link: "/memo/start/", icon: "emojione:memo" },
     ],
     icon: "ic:outline-note-alt",
