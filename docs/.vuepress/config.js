@@ -75,10 +75,10 @@ export default defineUserConfig({
     comment: {
       provider: 'Giscus', // "Artalk“ | "Giscus" | "Twikoo" | "Waline"
       comment: false,
-      repo: 'zhenghaoyang24/giscus', 
-      repoId: 'R_kgDOQCHK4w', 
+      repo: 'zhenghaoyang24/hoey-blog-plume', 
+      repoId: 'R_kgDONIcgog', 
       category: 'Announcements', 
-      categoryId: 'DIC_kwDOQCHK484Cwn0W', 
+      categoryId: 'DIC_kwDONIcgos4Cwn3Q', 
     },
 
     // 部署域名
