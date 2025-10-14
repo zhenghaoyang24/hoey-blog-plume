@@ -41,6 +41,7 @@ export default defineUserConfig({
       { type: 'doc', dir: 'nodejs', title: 'Node.js',  sidebar: 'auto'},
     ],
     navbar,
+
     /**
      * markdown 曾强
      */
@@ -67,7 +68,20 @@ export default defineUserConfig({
       collapsedLines: true, // 全局启用 代码折叠 https://theme-plume.vuejs.press/guide/code/features/#%E6%8A%98%E5%8F%A0%E4%BB%A3%E7%A0%81%E5%9D%97
       lineNumbers: true, // 启用行号 https://theme-plume.vuejs.press/guide/code/features/#%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%B7
     },
-    // 添加您的部署域名
+
+    /**
+     * 评论
+     */
+    comment: {
+      provider: 'Giscus', // "Artalk“ | "Giscus" | "Twikoo" | "Waline"
+      comment: false,
+      repo: 'zhenghaoyang24/giscus', 
+      repoId: 'R_kgDOQCHK4w', 
+      category: 'Announcements', 
+      categoryId: 'DIC_kwDOQCHK484Cwn0W', 
+    },
+
+    // 部署域名
     hostname: "https://zhenghaoyang.cn",
     plugins: {},
   }),
