@@ -64,8 +64,8 @@ hljs.registerLanguage("typescript", typescript);
 import "../../styles/highlight-custom.css";
 const codeEl = ref<HTMLElement | null>(null);
 
-const reactCode = 
-` export default function Profile() {
+const reactCode = `
+  export default function Profile() {
 
   const avatar = 'https://zhenghaoyang.cn/avatar.jpg';
   const name = "Hoey";
