@@ -1,5 +1,5 @@
 ---
-title: React
+title: React 基础
 createTime: 2025/10/16 17:05:16
 permalink: /web/react/
 tags:
@@ -92,9 +92,224 @@ export default function App() {
 }
 ```
 
+### Props
+
+React 组件通过 Props 来传递数据。父组件通过属性向子组件传递数据，子组件通过形参接收数据。
+
+::: tabs
+@tab App.jsx
+```jsx
+export default function App() {
+  let name = 'React';
+  return (
+    <Profile name={name} desc="用于构建 Web 和原生交互界面的库"/> // [!code highlight]
+  )
+}
+```
+
+@tab Profile.jsx
+```jsx
+export default function Profile(props) { // [!code highlight]
+  return (
+    <div>
+      <h1>{props.name}</h1>
+      <p>{props.desc}</p>
+    </div>
+  )
+}
+```
+:::
+
+在子组件中，可以为 Props 设置默认值：
+
+```jsx
+export default function Profile({name = 'React', desc}) { // [!code highlight]
+  return (
+    <div>
+      <h1>{name}</h1>
+      <p>{desc}</p>
+    </div>
+  )
+}
+```
+
+:::  tip
+在子组件中，Props 并不是直接传入形参，而是一个对象。
+:::
+
 ### 条件渲染
 
+在 Vue 中，我们可以在标签上使用 `v-if` 、 `v-else` 和 `v-else-if` 指令来实现条件渲染。而在 React 中，
+我们只能使用 `JavaScript` 中的 `if` 语句、`&&` 和 `? :` 运算符来选择性地渲染 JSX。
 
+```jsx
+export default function App() {
+  const isLoggedIn = true;
+  if (isLoggedIn) {
+    return (
+      <div>今天</div>
+    )
+  }else{
+    return (
+      <div>明天</div>
+    )
+  }
+}
+```
 
+使用三目运算符能够大大减少代码量：
 
+```jsx
+export default function App() {
+  const isLoggedIn = true;
+  return (
+    <div>{isLoggedIn ? '今天':'明天'}</div>
+  )
+}
+```
 
+如果我们想在条件成立时渲染一些 JSX，或者不做任何渲染，可以使用逻辑与运算符 `&&`：
+
+```jsx
+export default function App() {
+  const did = true;
+  return (
+    <div>学习 React{did && '✅'}</div>
+  )
+}
+```
+
+当我们的判断更加复杂，可以 **选择性地将 JSX 赋值给变量**，这种方式代码更冗长，但更加灵活。
+
+::: tabs
+@tab Item.js
+```js
+function Item({ name, isPacked }) {
+  let itemContent = name;
+  if (isPacked) {
+    itemContent = (
+      <del>
+        {name + " ✅"}
+      </del>
+    );
+  }
+  return (
+    <li className="item">
+      {itemContent}
+    </li>
+  );
+}
+```
+
+@tab PackingList.js
+```js
+export default function PackingList() {
+  return (
+    <section>
+      <h1>Sally Ride 的行李清单</h1>
+      <ul>
+        <Item 
+          isPacked={true} 
+          name="宇航服" 
+        />
+        <Item 
+          isPacked={true} 
+          name="带金箔的头盔" 
+        />
+        <Item 
+          isPacked={false} 
+          name="Tam 的照片" 
+        />
+      </ul>
+    </section>
+  );
+}
+```
+:::
+
+### 列表渲染
+
+在 Vue 中，我们可以在标签上使用 `v-for` 指令来实现列表渲染。而在 React 中，
+我们是通过 `JavaScript` 的数组方法来操作数组中的数据。例如使用 `filter()` 筛选需要渲染的组件、使用 `map(`) 把数组转换成组件数组。
+
+::: tabs
+@tab App.jsx
+
+```jsx
+import { people } from './data.js';
+import { getImageUrl } from './utils.js';
+
+export default function List() {
+  const listItems = people.map(person => // [!code highlight]
+    <li key={person.id}>
+      <img
+        src={getImageUrl(person)}
+        alt={person.name}
+      />
+      <p>
+        <b>{person.name}</b>
+          {' ' + person.profession + ' '}
+          因{person.accomplishment}而闻名世界
+      </p>
+    </li>
+  );
+  return <ul>{listItems}</ul>;
+}
+```
+
+@tab data.js
+```
+export const people = [
+  {
+    id: 0, // 在 JSX 中作为 key 使用
+    name: '凯瑟琳·约翰逊',
+    profession: '数学家',
+    accomplishment: '太空飞行相关数值的核算',
+    imageId: 'MK3eW3A',
+  },
+  {
+    id: 1, // 在 JSX 中作为 key 使用
+    name: '马里奥·莫利纳',
+    profession: '化学家',
+    accomplishment: '北极臭氧空洞的发现',
+    imageId: 'mynHUSa',
+  },
+  {
+    id: 2, // 在 JSX 中作为 key 使用
+    name: '穆罕默德·阿卜杜勒·萨拉姆',
+    profession: '物理学家',
+    accomplishment: '关于基本粒子间弱相互作用和电磁相互作用的统一理论',
+    imageId: 'bE7W1ji',
+  },
+  {
+    id: 3, // 在 JSX 中作为 key 使用
+    name: '珀西·莱温·朱利亚',
+    profession: '化学家',
+    accomplishment: '开创性的可的松药物、类固醇和避孕药',
+    imageId: 'IOjWm71',
+  },
+  {
+    id: 4, // 在 JSX 中作为 key 使用
+    name: '苏布拉马尼扬·钱德拉塞卡',
+    profession: '天体物理学家',
+    accomplishment: '白矮星质量计算',
+    imageId: 'lrWQx8l',
+  },
+];
+```
+
+@tab utils.js
+```js
+export function getImageUrl(person) {
+  return (
+    'https://i.imgur.com/' +
+    person.imageId +
+    's.jpg'
+  );
+}
+```
+:::
+
+::: tip
+直接放在 map() 方法里的 JSX 元素一般都需要指定 key 值，`key` 属性应该保持不变。
+:::
