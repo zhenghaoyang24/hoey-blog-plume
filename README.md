@@ -1,27 +1,48 @@
-# 个人博客
+## 个人博客
 
 博客主题为 [vuepress-theme-plume](https://theme-plume.vuejs.press/)
 
 网址：https://zhenghaoyang.cn/
 
-博客主页为自定义页面，若你也在使用这个博客主题并想参考本博客主页，可查看以下详细说明：
+博客主页为自定义页面，若你也在使用这个博客主题并想参考本博客主页，可查看以下详细说明。
 
-### 配置
+## 类别说明
 
-1. 自定义主页 组件代码位置为：`docs/.vuepress/theme/components` 下的所有除 `AllFriendContent.vue` 的 `.vue` 文件。
-`AllFriendContent.vue` 为自定义友情链接页面所需文件，具体可参考下文 [组件说明](#组件说明)。
-样式文件位置为 `docs/.vuepress/theme/styles/custom.css`。
+本博客目前有两种自定义主页 - `CodeHome`、`GridHome`.。
 
-2. 在 `docs/.vuepress/client.js` 中，导入 `Custom.vue` 与 `docs/.vuepress/theme/styles/custom.css`：
+一种是网格类型有各类卡片 的 GridHome，另一种是显示代码的 CodeHome。
+
+- CodeHome:
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/a3b04aee-fc71-493e-890c-d2a204b84003" />
+
+- GridHome:
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/abc4bc54-2e85-48ef-9078-cd51cac2fe1c" />
+
+这两种方式在 `README.md` 切换：
+
+```md
+---
+pageLayout: home
+config:
+  - type: 类别
+---
+```
+
+## 配置
+
+### CodeHome
+
+CodeHome 的配置较简单。
+
+1. 组件代码位置为：`docs/.vuepress/theme/components/codehome` 下的所有 `.vue` 文件。
+
+2. 在 `docs/.vuepress/client.js` 中，导入 `CodeHome.vue`：
 
 ``` js
-import './theme/styles/custom.css'
-import Custom from './theme/components/Custom.vue'
-import AllFriendContent from './theme/components/AllFriendContent.vue'  // 友情链接页面所需组件
+import CodeHome from './theme/components/codehome/CodeHome.vue'
   export default defineClientConfig({
     enhance({ app }) {
-    app.component('Custom', Custom)
-    app.component('AllFriendContent', AllFriendContent)  
+    app.component('CodeHome', CodeHome)
   },
 })
 ```
@@ -33,7 +54,37 @@ import AllFriendContent from './theme/components/AllFriendContent.vue'  // 友�
 pageLayout: home
 externalLinkIcon: false
 config:
-  - type: Custom
+  - type: CodeHome
+---
+```
+
+4. 在组件中 "const reactCode = ``" 更改自己想要显示的代码（个人信息也在里面）。
+
+5. 在 `div` profile-links-box 中更改 profle 的联系方式，对应 icon 在 [iconify](https://icon-sets.iconify.design/) 里查找。
+
+### GridHome
+
+1. 组件代码位置为：`docs/.vuepress/theme/components/gridhome` 下的所有 `.vue` 文件。
+
+2. 在 `docs/.vuepress/client.js` 中，导入 `GridHome.vue`：
+
+``` js
+import GridHome from './theme/components/gridhome/GridHome.vue'
+  export default defineClientConfig({
+    enhance({ app }) {
+    app.component('GridHome', GridHome)
+  },
+})
+```
+
+3. 在 `docs/README.md` 修改主页配置：
+
+```markdown
+---
+pageLayout: home
+externalLinkIcon: false
+config:
+  - type: GridHome
 ---
 ```
 
@@ -45,7 +96,7 @@ npm install echarts
 
 ### 组件说明
 
-#### `Custom.vue` 为主页组件，主页内容即为以下卡片组件的组合。
+#### `GridHome.vue` 为主页组件，主页内容即为以下卡片组件的组合。
 
 #### `AboutMeName.vue` 为主页中 **自我介绍卡片**：
 
@@ -79,7 +130,7 @@ npm install echarts
 
 #### `AboutMeText.vue` 为主页中 **文本卡片**：
 
-文本卡片使用了插槽，可以在 `Custom.vue` 中自定义内容，满足多种文本需求。
+文本卡片使用了插槽，可以在 `GridHome.vue` 中自定义内容，满足多种文本需求。
 
 ![image](https://github.com/user-attachments/assets/d69ec01a-9012-46c4-9f60-5665c5387432)
 
