@@ -66,6 +66,7 @@ const codeEl = ref<HTMLElement | null>(null);
 
 const reactCode = 
 ` export default function Profile() {
+
   const avatar = 'https://zhenghaoyang.cn/avatar.jpg';
   const name = "Hoey";
   const slogan = "Teacher, I'm on fire to improve!";
