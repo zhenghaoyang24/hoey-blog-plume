@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="grid-home-container">
     <canvas ref="canvasRef"></canvas>
     <div class="head-social">
       <a href="https://github.com/zhenghaoyang24" target="_blank" class="head-social-btn">
@@ -53,8 +53,82 @@
   </div>
 </template>
 
-<style scoped>
-.container {
+<style>
+/*颜色*/
+:root {
+  /*卡片背景*/
+  --main-card-background: rgba(255, 255, 255, 0.7);
+  /*卡片边框*/
+  --main-card-border: #e3e8f7;
+  /*卡片阴影*/
+  --main-border-shadow: #1a1a1a15;
+  /*卡片 hover */
+  --about-card-hover-bg: rgba(100, 190, 190, 0.8);
+  /*按钮 背景*/
+  --home-action-bnt-bg:rgb(235, 235, 239);
+  /*语言 span 背景*/
+  --about-me-skill-item-bg: #f4f2ed;
+  /* ai 摘要 */
+  --ai-summary-shadow-color: rgba(109, 196, 196, 0.35);
+  /* 头像阴影 */
+  --avatartar-shadow-color: rgb(70, 70, 70);
+}
+[data-theme="dark"] {
+  --main-card-background: rgba(27, 28, 32, 0.7);
+  --main-card-border: #3d3d3f;
+  --main-border-shadow: #6d6d6d1e;
+  --about-card-hover-bg: rgba(100, 190, 190, 0.8);
+  --home-action-bnt-bg:rgb(50, 54, 63);
+  --about-me-skill-item-bg: #15191c;
+  --ai-summary-shadow-color: rgba(100, 190, 190, 0.2);
+  --avatartar-shadow-color: rgb(0, 0, 0);
+}
+
+/*卡片背景*/
+.about-me-card-bg{
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: var(--main-card-background);
+  border: 1px solid var(--main-card-border);
+  box-shadow: 0 0 7px 2px var(--main-border-shadow);
+  overflow: hidden;
+}
+
+/*卡片文字 小号*/
+.about-me-card-title-normal{
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+/*卡片文字 大号*/
+.about-me-card-text-big{
+  color: var(--vp-c-text-1);
+  margin: 10px 0;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+  @media screen and (max-width: 770px) {
+    font-size: 24px;
+    margin: 7px 0;
+  }
+}
+
+/*卡片文字 暗色*/
+.about-me-card-text-soft{
+  color: var(--vp-c-text-2);
+}
+
+/*卡片文字 彩色*/
+.about-me-card-text-color{
+  background: var(--vp-bg-home-hero-name, linear-gradient(315deg, var(--vp-c-purple-1) 10%, var(--vp-c-brand-2) 75%, var(--vp-c-brand-2) 100%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.grid-home-container {
   z-index: 1;
   width: 100%;
   height: 100%;

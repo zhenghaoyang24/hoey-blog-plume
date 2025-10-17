@@ -1,5 +1,5 @@
 <script setup>
-import FRIENDS from '../data/friends.json'
+import FRIENDS from '../../data/friends.json'
 </script>
 
 <template>

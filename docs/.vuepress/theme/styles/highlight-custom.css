@@ -1,0 +1,157 @@
+/* highlight-custom.css */
+
+/* ========== 默认（浅色）主题 ========== */
+:root {
+  --hljs-bg: #ffffff;
+  --hljs-fg: #374151;
+  --hljs-keyword: #d946ef; /* 粉紫 */
+  --hljs-string: #007067; /* 青绿 */
+  --hljs-title: #2563eb; /* 蓝 */
+  --hljs-comment: #6b7280; /* 灰 */
+  --hljs-attr: #ea580c; /* 橙 */
+  --hljs-punctuation: #4b5563; /* 深灰 */
+  --hljs-number: #a855f7; /* 紫 */
+  --hljs-tag-name: #dc2626; /* 红 */
+  --hljs-tag-attr: #ea580c; /* 橙 */
+}
+
+/* ========== 深色主题 ========== */
+[data-theme="dark"] {
+  --hljs-bg: #0f172a; /* slate-900 */
+  --hljs-fg: #e2e8f0; /* slate-200 */
+  --hljs-keyword: #f472b6; /* pink-400 */
+  --hljs-string: #34d399; /* emerald-400 */
+  --hljs-title: #60a5fa; /* blue-400 */
+  --hljs-comment: #94a3b8; /* slate-400 */
+  --hljs-attr: #fbbf24; /* amber-400 */
+  --hljs-punctuation: #cbd5e1; /* slate-300 */
+  --hljs-number: #a78bfa; /* violet-400 */
+  --hljs-tag-name: #f87171; /* red-400 */
+  --hljs-tag-attr: #fbbf24; /* amber-400 */
+}
+
+[data-theme="dark"] .hljs-keyword {
+  text-shadow: 0 0 6px rgba(244, 114, 182, 0.3); /* 粉红光晕 */
+}
+
+[data-theme="dark"] .hljs-string {
+  text-shadow: 0 0 6px rgba(52, 211, 153, 0.3); /* 青绿光晕 */
+}
+
+/* ========== 通用高亮样式 ========== */
+pre code.hljs {
+  display: block;
+  overflow-x: hidden;
+  padding: 1.4em;
+  background: var(--hljs-bg);
+  color: var(--hljs-fg);
+  font-family: "Fira Code", "Consolas", "Courier New", monospace;
+  font-size: 15px;
+  line-height: 1.5;
+  border-radius: 12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.hljs {
+  color: var(--hljs-fg);
+  background: var(--hljs-bg);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .hljs {
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 关键字：const, let, return, function, export 等 */
+.hljs-keyword {
+  color: var(--hljs-keyword);
+  font-weight: 600;
+  &:hover {
+    /* 使用 filter 实现发光效果 */
+    filter: drop-shadow(0 0 4px var(--hljs-keyword));
+  }
+}
+
+/* 字符串字面量 */
+.hljs-string {
+  color: var(--hljs-string);
+  &:hover {
+    /* 使用 filter 实现发光效果 */
+    filter: drop-shadow(0 0 4px var(--hljs-string));
+  }
+}
+
+/* 函数名、类名 */
+.hljs-title {
+  color: var(--hljs-title);
+  &:hover {
+    /* 使用 filter 实现发光效果 */
+    filter: drop-shadow(0 0 4px var(--hljs-title));
+  }
+}
+
+/* 注释 */
+.hljs-comment {
+  color: var(--hljs-comment);
+  font-style: italic;
+  &:hover {
+    /* 使用 filter 实现发光效果 */
+    filter: drop-shadow(0 0 4px var(--hljs-comment));
+  }
+}
+
+/* 对象属性名、JSX 属性 */
+.hljs-attr {
+  color: var(--hljs-attr);
+  &:hover {
+    /* 使用 filter 实现发光效果 */
+    filter: drop-shadow(0 0 4px var(--hljs-attr));
+  }
+}
+
+/* 标点符号：{ } ( ) => , ; 等 */
+.hljs-punctuation {
+  color: var(--hljs-punctuation);
+  &:hover {
+    /* 使用 filter 实现发光效果 */
+    filter: drop-shadow(0 0 4px var(--hljs-punctuation));
+  }
+}
+
+/* 数字、布尔值（true/false） */
+.hljs-number,
+.hljs-literal {
+  color: var(--hljs-number);
+  &:hover {
+    /* 使用 filter 实现发光效果 */
+    filter: drop-shadow(0 0 4px var(--hljs-number));
+  }
+}
+
+/* JSX 标签名：<div>, <App> */
+.hljs-tag .hljs-name {
+  color: var(--hljs-tag-name);
+  &:hover {
+    /* 使用 filter 实现发光效果 */
+    filter: drop-shadow(0 0 4px var(--hljs-tag-name));
+  }
+}
+
+/* JSX 属性名：src, onClick */
+.hljs-tag .hljs-attr {
+  color: var(--hljs-tag-attr);
+  &:hover {
+    /* 使用 filter 实现发光效果 */
+    filter: drop-shadow(0 0 4px var(--hljs-tag-attr));
+  }
+}
+
+/* 行内代码（可选） */
+code:not(.hljs) {
+  font-family: "Fira Code", monospace;
+  background: var(--hljs-bg);
+  color: var(--hljs-fg);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}

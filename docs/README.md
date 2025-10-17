@@ -2,7 +2,7 @@
 pageLayout: home
 externalLinkIcon: false
 config:
-  - type: Custom
+  - type: CodeHome
 ---
 
 
