@@ -220,8 +220,8 @@ code {
     overflow-y: auto;
     width: 100%;
     border-radius: 12px;
-    opacity: 0.6;
-    filter: blur(2px);
+    opacity: 0.8;
+    filter: blur(1px);
   }
 
   .profile-avatar {
