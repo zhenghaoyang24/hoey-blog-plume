@@ -313,3 +313,6 @@ export function getImageUrl(person) {
 ::: tip
 直接放在 map() 方法里的 JSX 元素一般都需要指定 key 值，`key` 属性应该保持不变。
 :::
+
+## State
+
