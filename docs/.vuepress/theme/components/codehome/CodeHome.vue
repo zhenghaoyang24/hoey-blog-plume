@@ -25,13 +25,6 @@
               <icon class="profile-icon" name="grommet-icons:github" />
             </a>
             <a
-              href="https://gitee.com/zhenghaoyang24"
-              target="_blank"
-              class="profile-links"
-            >
-              <icon class="profile-icon" name="simple-icons:gitee" />
-            </a>
-            <a
               href="https://codepen.io/zhenghaoyang24"
               target="_blank"
               class="profile-links"
@@ -64,13 +57,14 @@ hljs.registerLanguage("typescript", typescript);
 import "../../styles/highlight-custom.css";
 const codeEl = ref<HTMLElement | null>(null);
 
-const reactCode = `
-  export default function Profile() {
+const reactCode = `export default function Profile() {
 
+  // Profile data
   const avatar = 'https://zhenghaoyang.cn/avatar.jpg';
   const name = "Hoey";
   const slogan = "Teacher, I'm on fire to improve!";
 
+  // Social links
   const links = [
     { label: 'GitHub', url: 'https://github.com/zhenghaoyang24' },
     { label: 'Gitee', url: 'https://gitee.com/zhenghaoyang24' },
@@ -78,10 +72,12 @@ const reactCode = `
     { label: 'Email', url: 'mailto:zhenghaoyang24@foxmail.com' }
   ];
 
+  // Open link in new tab
   const open = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
+  // Render profile
   return (
     <>
       <img src={avatar} alt="Hoey" />
@@ -117,17 +113,18 @@ onMounted(() => {
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 40px 0;
+  /* margin: 40px 0; */
 }
 
 .home-container {
+  position: relative;
   margin: 0 auto;
   width: 80%;
   height: auto;
   display: flex;
   justify-content: space-around;
   overflow: hidden;
-  place-items: center; /* 同时水平+垂直居中 */
+  place-items: center;
 }
 
 .code-container {
@@ -136,11 +133,14 @@ onMounted(() => {
   overflow-y: auto;
   overflow-x: hidden;
   border-radius: 12px;
-
   scrollbar-width: none;
+  >pre{
+    margin: 0;
+  }
 }
 
 .language-tsx {
+  padding: 0;
   width: 100%;
   background: none;
   font-size: 16px;
@@ -195,15 +195,38 @@ code {
 
 @media screen and (max-width: 770px) {
   .home-container {
-    width: 90%;
-    display: block;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
+  .profile-container {
+    position: absolute; /* 绝对定位，使其脱离文档流 */
+    top: 50%; /* 垂直居中 */
+    left: 50%; /* 水平居中 */
+    transform: translate(-50%, -50%); /* 精确居中 */
+    z-index: 2; 
+    text-align: center;
+  }
+
   .code-container {
-    display: none;
+    position: relative;
+    z-index: 1; /* 确保 code-container 在下方 */
+    max-height: calc( 100vh - 160px);
+    height: auto;
+    overflow-y: auto;
+    width: 100%;
+    border-radius: 12px;
+    opacity: 0.6;
+    filter: blur(2px);
   }
+
   .profile-avatar {
-    width: 200px;
-    height: 200px;
+    width: 240px;
+    height: 240px;
   }
 }
 </style>
