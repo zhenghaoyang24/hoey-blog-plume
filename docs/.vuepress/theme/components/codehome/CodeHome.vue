@@ -25,13 +25,6 @@
               <icon class="profile-icon" name="grommet-icons:github" />
             </a>
             <a
-              href="https://codepen.io/zhenghaoyang24"
-              target="_blank"
-              class="profile-links"
-            >
-              <icon class="profile-icon" name="simple-icons:codepen" />
-            </a>
-            <a
               href="mailto:zhenghaoyang24@foxmail.com"
               target="_blank"
               class="profile-links"
@@ -134,7 +127,8 @@ onMounted(() => {
   overflow-x: hidden;
   border-radius: 12px;
   scrollbar-width: none;
-  >pre{
+  isolation: isolate; /* 创建层叠上下文 */
+  > pre {
     margin: 0;
   }
 }
@@ -208,20 +202,14 @@ code {
     top: 50%; /* 垂直居中 */
     left: 50%; /* 水平居中 */
     transform: translate(-50%, -50%); /* 精确居中 */
-    z-index: 2; 
+    z-index: 10;
     text-align: center;
   }
 
   .code-container {
-    position: relative;
-    z-index: 1; /* 确保 code-container 在下方 */
-    max-height: calc( 100vh - 160px);
-    height: auto;
-    overflow-y: auto;
-    width: 100%;
-    border-radius: 12px;
     opacity: 0.6;
-    filter: blur(1px);
+    filter: blur(2px);
+    overflow: hidden;
   }
 
   .profile-avatar {
