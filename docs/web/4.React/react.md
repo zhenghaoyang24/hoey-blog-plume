@@ -386,6 +386,8 @@ export default function Signup() {
 
 ## State
 
+### `useState()`
+
 与在 Vue 中一样，在模板中使用普通变量，当变量改变时不会触发渲染。
 
 在 React 中，我们可以使用 `useState` Hook 来创建一个变量，并返回一个数组，数组的第一个元素是变量的值，第二个元素是更新变量的函数。
@@ -408,3 +410,111 @@ export default function App() {
   );
 }
 ```
+
+### state 快照
+
+React 中的 state 本质就是 **组件某一时刻状态的“快照”**，它定格了当前数据，且不能直接修改，只能通过生成新“快照”来触发组件更新。
+
+“快照”的核心是“定格某一时刻的状态”，这一点在 React state 上体现为两个关键规则：
+
+1. **state 不可直接修改（快照不能涂改）**  
+   生成的 state 快照就像拍好的照片，不能直接在原照片上涂改内容。比如你有一个`count`状态，直接写`this.state.count = 1`（类组件）或`count = 1`（函数组件）完全无效，React 不会感知到变化，也不会重新渲染组件。
+
+2. **更新 state = 生成新快照**  
+   要修改状态，必须通过 React 提供的“重拍快照”方法：类组件用`this.setState()`，函数组件用`setState`（useState 返回的修改函数）。调用这些方法时，React 会基于当前快照生成**新的 state 快照**，再用新快照重新渲染组件。
+
+state 的快照特性，最明显的体现是 `setState` 的“异步更新” —— 调用 `setState` 后，当前作用域内的 state 还是旧快照，新快照要等下一次渲染才生效。
+
+#### 示例：计数器中的“快照陷阱”
+
+```jsx
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    // 此时的count是“当前渲染的快照”，值为0
+    setCount(count + 1);
+    // 调用setState后，当前作用域的count依然是旧快照（0），不是1！
+    console.log(count); // 输出：0（而非预期的1）
+  };
+
+  // 组件重新渲染时，会使用setCount生成的“新快照”（count=1）
+  return <button onClick={handleClick}>点击次数：{count}</button>;
+}
+```
+
+- 点击按钮时，`setCount`只是“提交了生成新快照的请求”，但没有立即替换当前的`count`（旧快照）。
+- `console.log(count)` 读取的还是“当前渲染周期的旧快照”，所以输出 0；
+- 只有等 React 处理完更新，进入**下一次渲染**时，才会用新快照（count=1）更新组件，页面上的数字才会变成 1。
+
+React 的渲染逻辑完全基于“快照对比”，流程如下：
+
+1. 组件首次渲染时，React 生成 **初始 state 快照** ，并基于这个快照渲染 DOM。
+2. 当调用 `setState`（或`useState`的修改函数）时，React 会根据传入的新值生成 **新的 state 快照**。
+3. React 对比“旧快照”和“新快照”：如果数据有变化，就基于新快照重新渲染组件；如果没变化，就跳过渲染（性能优化）。
+4. 重新渲染后，组件内读取的 state 都会变成新快照的值，直到下一次更新。
+
+#### 注意事项
+
+- **不要依赖“同步更新”**：永远不要认为调用 `setState` 后，下一行代码就能拿到新 state，因为当前快照还没切换。
+- **函数式更新解决依赖问题**：如果新 state 依赖旧 state（比如`count += 1`），推荐用函数式写法，确保拿到最新的旧快照：
+  ```jsx
+  // 正确：函数参数中的prevCount是“最新的旧快照”
+  setCount((prevCount) => prevCount + 1);
+  ```
+
+- **对象/数组快照的“浅比较”**：如果 state 是对象或数组，生成新快照时必须返回新的引用（ 比如用 `...扩展运算符` ），
+  不能修改原对象/数组，否则 React 会认为快照没变化，不触发更新。
+
+  对象：
+  ```jsx
+  function UserProfile() {
+    // 初始state是一个对象（快照1）
+    const [user, setUser] = useState({
+      name: '张三',
+      age: 20
+    });
+
+    function updateAgeWrong {
+      // 错误：直接修改原对象（相当于在旧快照上涂改），传入的还是旧对象的引用
+      user.age = 21;// [!code --]
+      setUser(user); // [!code --]
+
+      // 正确方法
+      setUser({ // [!code ++]
+        ...user, // 复制旧对象的所有属性 [!code ++]
+        age: 21 // 覆盖需要修改的属性 [!code ++]
+      });
+      // 或者
+      setUser(prevUser => ({ // [!code ++]
+        name: '张三', // [!code ++]
+        age: prevUser + 1 // [!code ++]
+      })) // [!code ++]
+    };
+
+    return (
+       ...
+    );
+  }
+  ```
+  数组：
+  ```jsx
+  function TodoList() {
+    // 初始state是一个数组（快照1）
+    const [todos, setTodos] = useState(['学习React', '写代码']);
+  
+    // 错误：直接修改原数组，传入的还是旧数组引用
+    const addTodoWrong = () => { // [!code --]
+      todos.push('新任务');  // [!code --]
+      setTodos(todos);  // [!code --]
+    }; // [!code --]
+  
+    // 正确：用扩展运算符生成新数组（新引用，快照2）
+    const addTodoCorrect = () => { // [!code ++]
+      setTodos([...todos, '新任务']); // [!code ++]
+    }; // [!code ++]
+  
+    return (
+    );
+  }
+  ```
