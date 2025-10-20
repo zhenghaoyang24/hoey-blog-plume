@@ -314,5 +314,128 @@ export function getImageUrl(person) {
 直接放在 map() 方法里的 JSX 元素一般都需要指定 key 值，`key` 属性应该保持不变。
 :::
 
+## 事件处理函数
+
+### 事件处理函数
+
+在 Vue 中，我们可以使用 `v-on` 指令来监听事件。而在 React 中，我们可以使用 `onClick`、`onChange`、`onSubmit` 等属性来监听事件。
+
+处理函数通常在组件内定义，名称以 handle 开头，后跟事件名称，将其作为 Props 传入。
+
+```js
+export default function Button() {
+  function handleClick() {
+    alert('你点击了我！');
+  }
+
+  return (
+    <button onClick={handleClick}> // [!code highlight]
+      点我
+    </button>
+  );
+}
+```
+
+若事件处理函数需要接收参数，应该使用 `{}` 包起来：
+
+```js
+function AlertButton({ message, children }) { // [!code highlight]
+  return (
+    <button onClick={() => alert(message)}>
+      {children}
+    </button>
+  );
+}
+
+export default function Toolbar() {
+  return (
+    <div>
+      <AlertButton message="正在上传！">
+        上传图片
+      </AlertButton>
+    </div>
+  );
+}
+
+```
+
+::: warning
+传递给事件处理函数的函数应直接传递，而非调用。
+
+| （传递一个函数）正确 | （调用一个函数）错误 |
+| --- | --- |
+| `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
+| `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
+
+事件处理函数作为 Props 传递时，应该直接传递，如果有参数应该使用箭头函数。
+
+若是直接调用，函数会在每次组件渲染时触发，而非用户操作时触发。
+:::
+
+### 阻止传播
+
+事件处理函数会捕获来自任何子组件的事件，也就是事件会向父元素传播。
+
+在 Vue 中，我们使用 `.stop` 修饰符来阻止事件传播，在 React 中，我们可以使用 `event.stopPropagation()` 来阻止事件传播。
+
+```js
+function Button({ onClick, children }) {
+  return (
+    <button onClick={e => {
+      e.stopPropagation(); // [!code highlight]
+      onClick();
+    }}>
+      {children}
+    </button>
+  );
+}
+```
+
+在上面的代码中，定义在 `Button` 组件中的事件处理函数会调用 `e.stopPropagation()` 来阻止事件冒泡，然后执行 `onClick()`。
+
+### 阻止默认行为
+
+在 Vue 中，我们可以使用 `.prevent` 修饰符来阻止默认行为，在 React 中，我们可以使用 `event.preventDefault()` 来阻止默认行为。
+
+```js
+export default function Signup() {
+  return (
+    <form onSubmit={e => {
+      e.preventDefault(); // [!code highlight]
+      alert('提交表单！');
+    }}>
+      <input />
+      <button>发送</button>
+    </form>
+  );
+}
+```
+
 ## State
 
+与在 Vue 中一样，在模板中使用普通变量，当变量改变时不会触发渲染。
+
+在 React 中，我们可以使用 `useState` Hook 来创建一个变量，并返回一个数组，数组的第一个元素是变量的值，第二个元素是更新变量的函数。
+更改 state 时需要使用 `setIndex` 函数来更新变量。
+
+```js
+import { useState } from 'react'; // [!code highlight]
+
+export default function App() {
+  const [index, setIndex] = useState(0); // [!code highlight]
+
+  function handleAdd() {
+    setIndex(index + 1); // [!code highlight]
+  }
+
+  return (
+    <>
+      <button onClick={handleAdd}>
+        {index}
+      </button>
+    </>
+  );
+}
+```
+
+// TODO: 多次更新同一个 state
