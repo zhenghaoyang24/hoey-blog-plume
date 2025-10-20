@@ -8,7 +8,7 @@ permalink: /web/react/Understand/
 
 ## 将 UI 视为树
 
-## state
+## state 快照
 
 ## 渲染和提交
 

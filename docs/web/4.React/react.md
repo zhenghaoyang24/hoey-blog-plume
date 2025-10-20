@@ -16,7 +16,7 @@ JSX 语法可以像 HTML 一样，直接在 JS 中描述标签，但需要遵循
 
 ### 规则
 
-#### 1. 只能返回一个根元素 
+#### 1. 只能返回一个根元素
 
 如果想要在一个组件中包含多个元素，需要用**一个**父标签把它们包裹起来。父标签可以是
 `<div>`、`<button>` 等，也可以用 `<>` 和 `</>` 元素来代替：
@@ -29,7 +29,6 @@ export default function TodoList() {
     </>
   );
 }
-
 ```
 
 #### 2. 标签必须闭合
@@ -38,12 +37,12 @@ JSX 中的标签必须要有开始标签和结束标签，若是自闭和标签�
 
 ```jsx
 export default function Profile() {
-    return (
-        <div>
-            <h1>React</h1>
-            <img src="logo.png" alt="react logo"/>
-        </div>
-    )
+  return (
+    <div>
+      <h1>React</h1>
+      <img src="logo.png" alt="react logo" />
+    </div>
+  );
 }
 ```
 
@@ -52,9 +51,9 @@ export default function Profile() {
 在 React 中，大部分 `HTML` 和 `SVG` 属性都用驼峰式命名法表示：
 
 ```jsx
-<img 
-  src="https://i.imgur.com/yXOvdOSs.jpg" 
-  alt="Hedy Lamarr" 
+<img
+  src="https://i.imgur.com/yXOvdOSs.jpg"
+  alt="Hedy Lamarr"
   className="photo" // [!code highlight]
 />
 ```
@@ -70,25 +69,23 @@ React 应用是由被称为 组件 的独立 UI 片段构建而成。React 组�
 export default function Profile() {
   return (
     <div>
-        <h1>React</h1>
+      <h1>React</h1>
     </div>
-  )
+  );
 }
 ```
 
 ### 导入导出组件
 
-React 中组件的导入和导出方式与 [JavaScript的导入导出方式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/export) 一样：
+React 中组件的导入和导出方式与 [JavaScript 的导入导出方式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/export) 一样：
 
 ```jsx
-import Profile from './Profile.js';
+import Profile from "./Profile.js";
 // 或者
-import Profile from './Profile';
+import Profile from "./Profile";
 
 export default function App() {
-  return (
-    <Profile />
-  );
+  return <Profile />;
 }
 ```
 
@@ -98,42 +95,47 @@ React 组件通过 Props 来传递数据。父组件通过属性向子组件传�
 
 ::: tabs
 @tab App.jsx
+
 ```jsx
 export default function App() {
-  let name = 'React';
+  let name = "React";
   return (
-    <Profile name={name} desc="用于构建 Web 和原生交互界面的库"/> // [!code highlight]
-  )
+    <Profile name={name} desc="用于构建 Web 和原生交互界面的库" /> // [!code highlight]
+  );
 }
 ```
 
 @tab Profile.jsx
+
 ```jsx
-export default function Profile(props) { // [!code highlight]
+export default function Profile(props) {
+  // [!code highlight]
   return (
     <div>
       <h1>{props.name}</h1>
       <p>{props.desc}</p>
     </div>
-  )
+  );
 }
 ```
+
 :::
 
 在子组件中，可以为 Props 设置默认值：
 
 ```jsx
-export default function Profile({name = 'React', desc}) { // [!code highlight]
+export default function Profile({ name = "React", desc }) {
+  // [!code highlight]
   return (
     <div>
       <h1>{name}</h1>
       <p>{desc}</p>
     </div>
-  )
+  );
 }
 ```
 
-:::  tip
+::: tip
 在子组件中，Props 并不是直接传入形参，而是一个对象。
 :::
 
@@ -146,13 +148,9 @@ export default function Profile({name = 'React', desc}) { // [!code highlight]
 export default function App() {
   const isLoggedIn = true;
   if (isLoggedIn) {
-    return (
-      <div>今天</div>
-    )
-  }else{
-    return (
-      <div>明天</div>
-    )
+    return <div>今天</div>;
+  } else {
+    return <div>明天</div>;
   }
 }
 ```
@@ -162,9 +160,7 @@ export default function App() {
 ```jsx
 export default function App() {
   const isLoggedIn = true;
-  return (
-    <div>{isLoggedIn ? '今天':'明天'}</div>
-  )
+  return <div>{isLoggedIn ? "今天" : "明天"}</div>;
 }
 ```
 
@@ -173,9 +169,7 @@ export default function App() {
 ```jsx
 export default function App() {
   const did = true;
-  return (
-    <div>学习 React{did && '✅'}</div>
-  )
+  return <div>学习 React{did && "✅"}</div>;
 }
 ```
 
@@ -183,48 +177,34 @@ export default function App() {
 
 ::: tabs
 @tab Item.js
+
 ```js
 function Item({ name, isPacked }) {
   let itemContent = name;
   if (isPacked) {
-    itemContent = (
-      <del>
-        {name + " ✅"}
-      </del>
-    );
+    itemContent = <del>{name + " ✅"}</del>;
   }
-  return (
-    <li className="item">
-      {itemContent}
-    </li>
-  );
+  return <li className="item">{itemContent}</li>;
 }
 ```
 
 @tab PackingList.js
+
 ```js
 export default function PackingList() {
   return (
     <section>
       <h1>Sally Ride 的行李清单</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="宇航服" 
-        />
-        <Item 
-          isPacked={true} 
-          name="带金箔的头盔" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Tam 的照片" 
-        />
+        <Item isPacked={true} name="宇航服" />
+        <Item isPacked={true} name="带金箔的头盔" />
+        <Item isPacked={false} name="Tam 的照片" />
       </ul>
     </section>
   );
 }
 ```
+
 :::
 
 ### 列表渲染
@@ -236,28 +216,29 @@ export default function PackingList() {
 @tab App.jsx
 
 ```jsx
-import { people } from './data.js';
-import { getImageUrl } from './utils.js';
+import { people } from "./data.js";
+import { getImageUrl } from "./utils.js";
 
 export default function List() {
-  const listItems = people.map(person => // [!code highlight]
-    <li key={person.id}>
-      <img
-        src={getImageUrl(person)}
-        alt={person.name}
-      />
-      <p>
-        <b>{person.name}</b>
-          {' ' + person.profession + ' '}
-          因{person.accomplishment}而闻名世界
-      </p>
-    </li>
+  const listItems = people.map(
+    (
+      person // [!code highlight]
+    ) => (
+      <li key={person.id}>
+        <img src={getImageUrl(person)} alt={person.name} />
+        <p>
+          <b>{person.name}</b>
+          {" " + person.profession + " "}因{person.accomplishment}而闻名世界
+        </p>
+      </li>
+    )
   );
   return <ul>{listItems}</ul>;
 }
 ```
 
 @tab data.js
+
 ```
 export const people = [
   {
@@ -299,15 +280,13 @@ export const people = [
 ```
 
 @tab utils.js
+
 ```js
 export function getImageUrl(person) {
-  return (
-    'https://i.imgur.com/' +
-    person.imageId +
-    's.jpg'
-  );
+  return "https://i.imgur.com/" + person.imageId + "s.jpg";
 }
 ```
+
 :::
 
 ::: tip
@@ -325,47 +304,37 @@ export function getImageUrl(person) {
 ```js
 export default function Button() {
   function handleClick() {
-    alert('你点击了我！');
+    alert("你点击了我！");
   }
 
-  return (
-    <button onClick={handleClick}> // [!code highlight]
-      点我
-    </button>
-  );
+  return <button onClick={handleClick}> // [!code highlight] 点我</button>;
 }
 ```
 
 若事件处理函数需要接收参数，应该使用 `{}` 包起来：
 
 ```js
-function AlertButton({ message, children }) { // [!code highlight]
-  return (
-    <button onClick={() => alert(message)}>
-      {children}
-    </button>
-  );
+function AlertButton({ message, children }) {
+  // [!code highlight]
+  return <button onClick={() => alert(message)}>{children}</button>;
 }
 
 export default function Toolbar() {
   return (
     <div>
-      <AlertButton message="正在上传！">
-        上传图片
-      </AlertButton>
+      <AlertButton message="正在上传！">上传图片</AlertButton>
     </div>
   );
 }
-
 ```
 
 ::: warning
 传递给事件处理函数的函数应直接传递，而非调用。
 
-| （传递一个函数）正确 | （调用一个函数）错误 |
-| --- | --- |
-| `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
-| `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
+| （传递一个函数）正确                    | （调用一个函数）错误               |
+| --------------------------------------- | ---------------------------------- |
+| `<button onClick={handleClick}>`        | `<button onClick={handleClick()}>` |
+| `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>`  |
 
 事件处理函数作为 Props 传递时，应该直接传递，如果有参数应该使用箭头函数。
 
@@ -381,10 +350,12 @@ export default function Toolbar() {
 ```js
 function Button({ onClick, children }) {
   return (
-    <button onClick={e => {
-      e.stopPropagation(); // [!code highlight]
-      onClick();
-    }}>
+    <button
+      onClick={(e) => {
+        e.stopPropagation(); // [!code highlight]
+        onClick();
+      }}
+    >
       {children}
     </button>
   );
@@ -400,10 +371,12 @@ function Button({ onClick, children }) {
 ```js
 export default function Signup() {
   return (
-    <form onSubmit={e => {
-      e.preventDefault(); // [!code highlight]
-      alert('提交表单！');
-    }}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault(); // [!code highlight]
+        alert("提交表单！");
+      }}
+    >
       <input />
       <button>发送</button>
     </form>
@@ -419,7 +392,7 @@ export default function Signup() {
 更改 state 时需要使用 `setIndex` 函数来更新变量。
 
 ```js
-import { useState } from 'react'; // [!code highlight]
+import { useState } from "react"; // [!code highlight]
 
 export default function App() {
   const [index, setIndex] = useState(0); // [!code highlight]
@@ -430,12 +403,8 @@ export default function App() {
 
   return (
     <>
-      <button onClick={handleAdd}>
-        {index}
-      </button>
+      <button onClick={handleAdd}>{index}</button>
     </>
   );
 }
 ```
-
-// TODO: 多次更新同一个 state
