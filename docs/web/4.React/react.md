@@ -8,11 +8,11 @@ tags:
 
 ## JSX
 
-JSX 是 JavaScript 的扩展语法，它与 React 是相互独立的东西，但 JSX 往往与 React 一起使用，用于构建用户页面。
+JSX 是一个看起来很像 XML 的 JavaScript 语法扩展，它与 React 是相互独立的东西，但 React 推荐使用描述用户页面。
 
 同时，在标签的属性或标签内用 `{}` ，则可以在 `{}` 里面添加一些 JavaScript 逻辑或者引用动态的属性。
 
-JSX 语法可以像 HTML 一样，直接在 JS 中描述标签，但需要遵循一些规则：
+JSX 语法可以像 HTML 一样，直接在 JS 中描述标签，但需要遵循一些规则。
 
 ### 规则
 
