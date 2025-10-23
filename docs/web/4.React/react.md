@@ -481,4 +481,164 @@ setUser([
 ]);
 ```
 
-## 共享状态
+### 共享状态
+
+> 有时候，你希望两个组件的状态始终同步更改。要实现这一点，可以将相关 state 从这两个组件上移除，并把 state 放到它们的公共父级，再通过 props 将 state 传递给这两个组件。这被称为“状态提升”，这是编写 React 代码时常做的事。
+
+简而言之，将 state 放在父组件，使用 props 传递给子组件，子组件将会共享父组件的 state。
+
+```js :collapsed-lines=25
+import { useState } from 'react';
+
+export default function Accordion() {
+  const [activeIndex, setActiveIndex] = useState(0); // [!code highlight]
+  return (
+    <>
+      <h2>哈萨克斯坦，阿拉木图</h2>
+      <Panel 
+        title="关于"
+        isActive={activeIndex === 0}
+        onShow={() => setActiveIndex(0)}
+      >
+        阿拉木图人口约200万，是哈萨克斯坦最大的城市。它在 1929 年到 1997 年间都是首都。
+      </Panel>
+      <Panel
+        title="词源"
+        isActive={activeIndex === 1}
+        onShow={() => setActiveIndex(1)}
+      >
+        这个名字来自于 <span lang="kk-KZ">алма</span>，哈萨克语中“苹果”的意思，经常被翻译成“苹果之乡”。事实上，阿拉木图的周边地区被认为是苹果的发源地，<i lang="la">Malus sieversii</i> 被认为是现今苹果的祖先。
+      </Panel>
+    </>
+  );
+}
+
+function Panel({
+  title,
+  children,
+  isActive,
+  onShow
+}) {
+  return (
+    <section className="panel">
+      <h3>{title}</h3>
+      {isActive ? (
+        <p>{children}</p>
+      ) : (
+        <button onClick={onShow}>
+          显示
+        </button>
+      )}
+    </section>
+  );
+}
+
+```
+
+### 保留和重置
+
+各个组件的 state 是相互隔离的，**但状态并不存在组件内**，而是由 React 来保存状态。那 React 如何知道哪个 state 属于哪个组件呢？
+
+React 会为 UI 中的组件结构构建渲染树，通过组件在渲染树中的位置将它保存的每个状态与正确的组件关联起来。
+
+==也就是说 state 是否是保留还是重置，与组件被渲染在 UI 树的位置有关。==
+
+```js
+export default function App() {
+  return (
+    <div>
+      <Counter />
+      <Counter />
+    </div>
+  );
+}
+```
+
+上面的两个 `<Counter />` 组件是在父 div 下的两个不同子节点，因此这两个组件的 state 相互独立，互不影响。
+
+==如果一个组件总是被渲染在 UI 树中的同一位置，那么它的 state 就会被保留。== 如果它被移除，或者其他组件被渲染到这个位置，那么它的 state 就会被重置。
+
+```js :collapsed-lines=15
+import { useState } from 'react';
+
+export default function App() {
+  const [dark, setDark] = useState(false);
+
+  return (
+    <div> // [!code focus]
+      <Counter isDark={dark} /> // [!code focus]
+      <button onClick={() => setDark(!dark)}>切换 {dark ? '浅色' : '深色'} 模式</button> // [!code focus]
+    </div>  // [!code focus]
+  );
+}
+
+function Counter({ isDark }) {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div
+      style={{
+        padding: '10px',
+        color: isDark ? 'white' : 'black',
+        backgroundColor: isDark ? '#333' : '#fff',
+        border: '1px solid #ccc'
+      }}
+    >
+      点击次数: {count}
+      <button onClick={() => setCount(c => c + 1)}>+1</button>
+    </div>
+  );
+}
+```
+
+上面的例子中 ，点击切换按钮，更改了 `<Counter />` 组件的 `isDark` 属性后样式随着发生变化，但它在父组件的位置没有改变，也就是说在UI树中的位置没有改变，
+React 认为它是同一个组件，所有 `<Counter />` 的 state 会被保留。
+
+==从以上的例子我们知道了，状态与渲染树中的位置有关。相同位置的相同组件状态会保留，相同位置的不同组件状态会重置。==
+
+如果我们要使用相同组件进行条件渲染，但是不想要它们的状态被保留，而是不同的组件切换时是有新的状态应该怎么做？
+
+- 1. 将组件渲染在不同位置：
+
+```js
+return (
+  <div>
+    {/* 在相同位置，state 保留 */}
+    {isPlayerA ? ( // [!code --]
+      <Counter person="Taylor" /> // [!code --]
+    ) : ( // [!code --]
+      <Counter person="Sarah" /> // [!code --]
+    )} // [!code --]
+    {/* 在不同位置，state 重置 */}
+    {isPlayerA && // [!code ++]
+      <Counter person="Taylor" /> // [!code ++]
+    } // [!code ++]
+    {!isPlayerA && // [!code ++]
+      <Counter person="Sarah" /> // [!code ++]
+    } // [!code ++]
+  </div>
+);
+```
+
+- 2. 使用 key
+  
+```js
+return (
+  <div>
+    {/* 在相同位置，state 保留 */}
+    {isPlayerA ? ( // [!code --]
+      <Counter person="Taylor" /> // [!code --]
+    ) : ( // [!code --]
+      <Counter person="Sarah" /> // [!code --]
+    )} // [!code --]
+    {/* 使用 key，state 重置 */}
+    {isPlayerA ? ( // [!code ++]
+      <Counter key="Taylor" person="Taylor" /> // [!code ++]
+    ) : ( // [!code ++]
+      <Counter key="Sarah" person="Sarah" /> // [!code ++]
+    )} // [!code ++]
+  </div>
+);
+```
+
+在组件上使用 key 可以告诉 React 这些是不同的组件，在组件切换时 state 也因此不会被保留。
