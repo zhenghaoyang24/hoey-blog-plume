@@ -8,7 +8,38 @@ tags:
 
 ## JSX
 
-JSX 是一个看起来很像 XML 的 JavaScript 语法扩展，它与 React 是相互独立的东西，但 React 推荐使用描述用户页面。
+JSX 是 JavaScript 的语法扩展，它与 React 是相互独立的东西，但 React 推荐使用描述用户页面。它由 babel 转换器编译为 JavaScript 代码。
+可以说，JSX 是 `React.createElement(tag, props, children);` 的语法糖。
+
+```jsx
+return (
+  <header>
+    <h1 style={{ color: 'red' }}>Hello,React!</h1>
+  </header>
+)
+```
+
+上面的 JSX 由 JSX 转换器转换为以下 JS 代码。 
+
+```js
+React.createElement(
+  "header",
+  null,
+  React.createElement(
+    "h1", // 标签名
+    { style: { color: "red" } },
+    "Hello,React!"
+  )
+);
+```
+
+最终在浏览器上编译为：
+
+```jsx
+<header>
+  <h1 style="color: red;">Hello,React!</h1>
+</header>
+```
 
 同时，在标签的属性或标签内用 `{}` ，则可以在 `{}` 里面添加一些 JavaScript 逻辑或者引用动态的属性。
 
@@ -466,7 +497,7 @@ React 的渲染逻辑完全基于 **快照对比**，流程如下：
 ```jsx
 setUser({
   ...position, // 使用扩展运算符传入整个对象
-  y: 1
+  y: 1,
 });
 ```
 
@@ -475,10 +506,7 @@ setUser({
 ```jsx
 const [user, setUser] = useState([]);
 
-setUser([
-  ...user,
-  { id: 100, name: 'React' }
-]);
+setUser([...user, { id: 100, name: "React" }]);
 ```
 
 ### 共享状态
@@ -488,51 +516,42 @@ setUser([
 简而言之，将 state 放在父组件，使用 props 传递给子组件，子组件将会共享父组件的 state。
 
 ```js :collapsed-lines=25
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Accordion() {
   const [activeIndex, setActiveIndex] = useState(0); // [!code highlight]
   return (
     <>
       <h2>哈萨克斯坦，阿拉木图</h2>
-      <Panel 
+      <Panel
         title="关于"
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        阿拉木图人口约200万，是哈萨克斯坦最大的城市。它在 1929 年到 1997 年间都是首都。
+        阿拉木图人口约200万，是哈萨克斯坦最大的城市。它在 1929 年到 1997
+        年间都是首都。
       </Panel>
       <Panel
         title="词源"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        这个名字来自于 <span lang="kk-KZ">алма</span>，哈萨克语中“苹果”的意思，经常被翻译成“苹果之乡”。事实上，阿拉木图的周边地区被认为是苹果的发源地，<i lang="la">Malus sieversii</i> 被认为是现今苹果的祖先。
+        这个名字来自于 <span lang="kk-KZ">алма</span>
+        ，哈萨克语中“苹果”的意思，经常被翻译成“苹果之乡”。事实上，阿拉木图的周边地区被认为是苹果的发源地，
+        <i lang="la">Malus sieversii</i> 被认为是现今苹果的祖先。
       </Panel>
     </>
   );
 }
 
-function Panel({
-  title,
-  children,
-  isActive,
-  onShow
-}) {
+function Panel({ title, children, isActive, onShow }) {
   return (
     <section className="panel">
       <h3>{title}</h3>
-      {isActive ? (
-        <p>{children}</p>
-      ) : (
-        <button onClick={onShow}>
-          显示
-        </button>
-      )}
+      {isActive ? <p>{children}</p> : <button onClick={onShow}>显示</button>}
     </section>
   );
 }
-
 ```
 
 ### 保留和重置
@@ -559,16 +578,20 @@ export default function App() {
 ==如果一个组件总是被渲染在 UI 树中的同一位置，那么它的 state 就会被保留。== 如果它被移除，或者其他组件被渲染到这个位置，那么它的 state 就会被重置。
 
 ```js :collapsed-lines=15
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function App() {
   const [dark, setDark] = useState(false);
 
   return (
-    <div> // [!code focus]
+    <div>
+      {" "}
+      // [!code focus]
       <Counter isDark={dark} /> // [!code focus]
-      <button onClick={() => setDark(!dark)}>切换 {dark ? '浅色' : '深色'} 模式</button> // [!code focus]
-    </div>  // [!code focus]
+      <button onClick={() => setDark(!dark)}>
+        切换 {dark ? "浅色" : "深色"} 模式
+      </button> // [!code focus]
+    </div> // [!code focus]
   );
 }
 
@@ -578,20 +601,20 @@ function Counter({ isDark }) {
   return (
     <div
       style={{
-        padding: '10px',
-        color: isDark ? 'white' : 'black',
-        backgroundColor: isDark ? '#333' : '#fff',
-        border: '1px solid #ccc'
+        padding: "10px",
+        color: isDark ? "white" : "black",
+        backgroundColor: isDark ? "#333" : "#fff",
+        border: "1px solid #ccc",
       }}
     >
       点击次数: {count}
-      <button onClick={() => setCount(c => c + 1)}>+1</button>
+      <button onClick={() => setCount((c) => c + 1)}>+1</button>
     </div>
   );
 }
 ```
 
-上面的例子中 ，点击切换按钮，更改了 `<Counter />` 组件的 `isDark` 属性后样式随着发生变化，但它在父组件的位置没有改变，也就是说在UI树中的位置没有改变，
+上面的例子中 ，点击切换按钮，更改了 `<Counter />` 组件的 `isDark` 属性后样式随着发生变化，但它在父组件的位置没有改变，也就是说在 UI 树中的位置没有改变，
 React 认为它是同一个组件，所有 `<Counter />` 的 state 会被保留。
 
 ==从以上的例子我们知道了，状态与渲染树中的位置有关。相同位置的相同组件状态会保留，相同位置的不同组件状态会重置。==
@@ -606,35 +629,39 @@ return (
     {/* 在相同位置，state 保留 */}
     {isPlayerA ? ( // [!code --]
       <Counter person="Taylor" /> // [!code --]
-    ) : ( // [!code --]
+    ) : (
+      // [!code --]
       <Counter person="Sarah" /> // [!code --]
     )} // [!code --]
     {/* 在不同位置，state 重置 */}
-    {isPlayerA && // [!code ++]
-      <Counter person="Taylor" /> // [!code ++]
+    {
+      isPlayerA && <Counter person="Taylor" /> // [!code ++] // [!code ++]
     } // [!code ++]
-    {!isPlayerA && // [!code ++]
-      <Counter person="Sarah" /> // [!code ++]
-    } // [!code ++]
+    {
+      !isPlayerA && <Counter person="Sarah" /> // [!code ++] // [!code ++]
+    }{" "}
+    // [!code ++]
   </div>
 );
 ```
 
 - 2. 使用 key
-  
+
 ```js
 return (
   <div>
     {/* 在相同位置，state 保留 */}
     {isPlayerA ? ( // [!code --]
       <Counter person="Taylor" /> // [!code --]
-    ) : ( // [!code --]
+    ) : (
+      // [!code --]
       <Counter person="Sarah" /> // [!code --]
     )} // [!code --]
     {/* 使用 key，state 重置 */}
     {isPlayerA ? ( // [!code ++]
       <Counter key="Taylor" person="Taylor" /> // [!code ++]
-    ) : ( // [!code ++]
+    ) : (
+      // [!code ++]
       <Counter key="Sarah" person="Sarah" /> // [!code ++]
     )} // [!code ++]
   </div>
