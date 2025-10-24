@@ -8,44 +8,56 @@ tags:
 
 ## JSX
 
-JSX 是 JavaScript 的语法扩展，它与 React 是相互独立的东西，但 React 推荐使用描述用户页面。它由 babel 转换器编译为 JavaScript 代码。
-可以说，JSX 是 `React.createElement(tag, props, children);` 的语法糖。
+JSX 是 JavaScript 的语法扩展，它与 React 本身是相互独立的——JSX 只是一种书写结构的语法糖，而 React 是一个用于构建用户界面的库。
+不过，React 官方推荐使用 JSX 来描述 UI 结构。
+
+在 React 17 之前，JSX 需要通过 Babel 等构建工具编译为 `React.createElement(...)` 调用，并且组件文件中必须显式导入 `React`。
+但从 **React 17 开始，React 引入了新的 JSX 转换**，不再依赖 `React.createElement`，也不再强制要求导入 `React`。
+
+例如，以下 JSX 代码：
 
 ```jsx
-return (
-  <header>
-    <h1 style={{ color: 'red' }}>Hello,React!</h1>
-  </header>
-)
+// JSX 代码
+export default function App() {
+  return (
+    <header>
+      <h1 style={{ color: "red" }}>Hello, React!</h1>
+    </header>
+  );
+}
 ```
 
-上面的 JSX 由 JSX 转换器转换为以下 JS 代码。 
+在启用了新 JSX 转换后，会被 Babel 编译为类似这样的 JavaScript：
 
 ```js
-React.createElement(
-  "header",
-  null,
-  React.createElement(
-    "h1", // 标签名
-    { style: { color: "red" } },
-    "Hello,React!"
-  )
-);
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+
+export default function App() {
+  return _jsxs("header", {
+    children: _jsx("h1", {
+      style: { color: "red" },
+      children: "Hello, React!",
+    }),
+  });
+}
 ```
 
-最终在浏览器上编译为：
+这里使用的 `_jsx` 和 `_jsxs`（用于带多个子元素的情况）来自 `react/jsx-runtime`，是 React 内部提供的轻量运行时函数。开发者无需手动导入它们——构建工具会自动处理。
 
-```jsx
+这些函数会创建 **React 元素对象**，然后由 ReactDOM（或 React Native 等渲染器）将这些对象转换为真实的 DOM 节点并插入页面。
+最终，用户在浏览器中看到的是标准的 HTML：
+
+```html
 <header>
-  <h1 style="color: red;">Hello,React!</h1>
+  <h1 style="color: red;">Hello, React!</h1>
 </header>
 ```
 
+因此，尽管底层实现发生了变化，JSX 依然是对 React 元素创建过程的一种简洁、直观的语法封装——本质上，它仍然是“语法糖”，只是在 React 17+ 中变得更轻量、更自动化了。
+
 同时，在标签的属性或标签内用 `{}` ，则可以在 `{}` 里面添加一些 JavaScript 逻辑或者引用动态的属性。
 
-JSX 语法可以像 HTML 一样，直接在 JS 中描述标签，但需要遵循一些规则。
-
-### 规则
+JSX 语法可以像 HTML 一样，直接在 JS 中描述标签，**但需要遵循一些规则**。
 
 #### 1. 只能返回一个根元素
 
@@ -669,3 +681,5 @@ return (
 ```
 
 在组件上使用 key 可以告诉 React 这些是不同的组件，在组件切换时 state 也因此不会被保留。
+
+## reducer
