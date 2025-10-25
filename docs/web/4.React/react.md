@@ -712,14 +712,11 @@ const [state, dispatch] = useReducer(reducer, initialState);
 - 返回值：
   - `state`: 当前状态
   - `dispatch`: 用于派发 action 的函数
-  
-1. `dispatch` 函数：用于派发 action 的函数。
-   
-`dispatch` 函数接收一个动作对象作为参数。
 
-1. `reducer` 函数接收一个对象叫作 action 并传递给 reducer 函数，告诉 React 用户做了什么。
+1. `dispatch` 接收一个对象叫作 action 并传递给 reducer 函数，告诉 React 用户做了什么。
 
 ```jsx
+// 根据 id 删除
 function handleDeleteTask(taskId) {
   dispatch({
     type: 'deleted',
@@ -727,6 +724,7 @@ function handleDeleteTask(taskId) {
   });
 }
 
+// 修改
 function handleChangeTask(task) {
   dispatch({
     type: 'changed',
@@ -740,6 +738,8 @@ function handleChangeTask(task) {
 并且尽量选择一个能够清晰描述发生事情的名字！
 :::
 
+2. `reducer` 函数就是放置状态逻辑的地方。它接受两个参数，分别为当前 state 和 action 对象，并且返回的是更新后的 state。
+
 ```jsx
 function yourReducer(state, action) {
   // state 为当前状态
@@ -748,47 +748,103 @@ function yourReducer(state, action) {
 }
 ```
 
-```tsx
-import React, { useReducer } from 'react';
+在 reducer 函数中，通常使用 switch 语句来判断行为。
 
-// 定义 reducer 函数
-function counterReducer(state, action) {
+```jsx
+function tasksReducer(tasks, action) {
   switch (action.type) {
-    case 'increment':
-      return { count: state.count + 1 };
-    case 'decrement':
-      return { count: state.count - 1 };
-    case 'reset':
-      return { count: action.payload };
-    default:
-      throw new Error('Unknown action');
+    case 'changed': {
+      return tasks.map((t) => {
+        if (t.id === action.task.id) {
+          return action.task;
+        } else {
+          return t;
+        }
+      });
+    }
+    case 'deleted': {
+      return tasks.filter((t) => t.id !== action.id);
+    }
+    default: {
+      throw Error('未知 action: ' + action.type);
+    }
   }
-}
-
-export default function Counter() {
-  const [state, dispatch] = useReducer(counterReducer, { count: 0 });
-
-  return (
-    <div>
-      <p>Count: {state.count}</p>
-      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
-      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
-      <button onClick={() => dispatch({ type: 'reset', payload: 0 })}>Reset</button>
-    </div>
-  );
 }
 ```
 
----
+3. 从 React 导入 `useReducer` Hook。
+
+```jsx
+import { useReducer } from 'react';
+```
+
+```jsx
+const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
+```
+
+reducer 函数可以移到一个单独的文件。
+
+::: tabs
+@tab App.jsx
+```jsx
+import { useReducer } from 'react';
+import tasksReducer from './tasksReducer.js'; // [!code highlight]
+
+export default function TaskApp() {
+  // 引入 useReducer
+  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
+
+  // 编写 dispatch
+  function handleAddTask(text) {
+    dispatch({
+      type: 'added',
+      id: nextId++,
+      text: text,
+    });
+  }
+
+  return (
+    ...
+  );
+}
+
+// 初始数据
+const initialTasks = [
+];
+
+```
+
+@tab tasksReducer.js
+```jsx
+export default function tasksReducer(tasks, action) {
+  switch (action.type) {
+    case 'added': {
+      return [
+        ...tasks,
+        {
+          id: action.id,
+          text: action.text,
+          done: false,
+        },
+      ];
+    }
+    default: {
+      throw Error('未知 action：' + action.type);
+    }
+  }
+}
+
+```
+:::
 
 ### 为什么使用 reducer？
 
 | 场景 | `useState` | `useReducer` |
 |------|------------|---------------|
-| 简单状态（如布尔值、字符串） | ✅ 推荐 | ❌ 过重 |
-| 复杂对象状态、多字段联动 | ⚠️ 容易混乱 | ✅ 逻辑集中、清晰 |
-| 状态更新依赖前一状态 | 可用（函数式更新） | ✅ 更自然 |
-| 需要可预测、可测试的状态流 | ❌ | ✅（纯函数 + action） |
+| 简单状态（如布尔值、字符串） | 推荐 | 过重 |
+| 复杂对象状态、多字段联动 | 容易混乱 | 逻辑集中、清晰 |
+| 状态更新依赖前一状态 | 可用（函数式更新） |  更自然 |
+| 需要可预测、可测试的状态流 | ❌ | （纯函数 + action） |
 
 ### 高级用法提示
 
