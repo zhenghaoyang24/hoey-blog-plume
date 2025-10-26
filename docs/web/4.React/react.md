@@ -833,49 +833,228 @@ export default function tasksReducer(tasks, action) {
     }
   }
 }
-
 ```
 :::
 
-### 为什么使用 reducer？
+### 使用 Immer 简化 reducer 
 
-| 场景 | `useState` | `useReducer` |
-|------|------------|---------------|
-| 简单状态（如布尔值、字符串） | 推荐 | 过重 |
-| 复杂对象状态、多字段联动 | 容易混乱 | 逻辑集中、清晰 |
-| 状态更新依赖前一状态 | 可用（函数式更新） |  更自然 |
-| 需要可预测、可测试的状态流 | ❌ | （纯函数 + action） |
+在 React 中，`useImmerReducer` 是一个非常强大的工具，用来简化状态管理逻辑，特别是在处理复杂嵌套状态时。它是基于 Immer 库的一个自定义 Hook，结合了 `useReducer` 和 Immer 的优势，允许开发者以“可变”的方式直接修改状态，而无需手动创建不可变副本。
 
-### 高级用法提示
-
-1. **惰性初始化**  
-   如果初始状态计算开销大，可传入初始化函数：
-   ```js
-   const [state, dispatch] = useReducer(reducer, props, init);
-   // init(props) 返回初始状态
-   ```
-
-2. **与 Context 配合实现全局状态管理**  
-   `useReducer` 常和 `React.createContext` 结合，替代小型 Redux：
-   ```tsx
-   const [state, dispatch] = useReducer(reducer, initialState);
-   return (
-     <AppContext.Provider value={{ state, dispatch }}>
-       {children}
-     </AppContext.Provider>
-   );
-   ```
-
-3. **TypeScript 支持良好**  
-   可为 `action` 和 `state` 定义严格类型，提升开发体验（你对 TS 有深入使用，这点应该很熟悉）。
-
-
-### 🆚 与 Redux 的关系？
-
-- `useReducer` 是 **轻量级的状态管理方案**，适合组件内或中等复杂度应用。
-- Redux 是**完整的状态管理库**，提供 DevTools、中间件、时间旅行等能力。
-- 现代 React 应用中，很多场景已无需 Redux，`useReducer + Context` 足够应对。
+接下来，我会详细介绍如何使用 `useImmerReducer` 来简化 reducer 的编写，并展示它的实际应用。
 
 ---
 
-总结：**`useReducer` 让复杂状态更新变得可预测、可维护，是 React 中实现“单一状态源 + 明确更新意图”的优雅方式。** 尤其当你需要处理表单、购物车、步骤向导等多状态联动场景时，它往往是比 `useState` 更好的选择。
+### **为什么需要 `useImmerReducer`？**
+
+在 React 的 `useReducer` 中，更新状态需要遵循不可变性原则。这意味着你需要手动复制和展开对象或数组，这在处理嵌套状态时会变得非常繁琐。例如：
+
+```javascript
+function reducer(state, action) {
+  switch (action.type) {
+    case 'UPDATE_NAME':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          name: action.payload,
+        },
+      };
+    default:
+      return state;
+  }
+}
+```
+
+这段代码虽然确保了不可变性，但随着状态结构的复杂化（如多层嵌套），代码会变得冗长且难以维护。
+
+**解决方案：使用 `useImmerReducer`！**
+通过 `useImmerReducer`，你可以直接修改状态的“草稿”（draft），而无需手动展开对象或数组。最终生成的新状态仍然是不可变的。
+
+---
+
+### **安装和引入**
+
+要使用 `useImmerReducer`，首先需要安装 `use-immer` 包：
+
+```bash
+npm install use-immer
+```
+
+然后在代码中引入：
+
+```javascript
+import { useImmerReducer } from 'use-immer';
+```
+
+---
+
+### **基本用法**
+
+以下是一个完整的示例，展示了如何使用 `useImmerReducer` 简化状态更新逻辑：
+
+#### **1. 定义初始状态**
+我们定义了一个包含用户信息和帖子列表的初始状态：
+
+```javascript
+const initialState = {
+  user: {
+    name: 'Alice',
+    age: 25,
+  },
+  posts: [],
+};
+```
+
+#### **2. 编写 Reducer**
+使用 `useImmerReducer` 后，reducer 可以直接修改 `draft` 对象，而无需手动创建不可变副本：
+
+```javascript
+function reducer(draft, action) {
+  switch (action.type) {
+    case 'UPDATE_NAME':
+      draft.user.name = action.payload; // 直接修改 draft
+      break;
+    case 'ADD_POST':
+      draft.posts.push(action.payload); // 直接修改数组
+      break;
+    default:
+      break;
+  }
+}
+```
+
+#### **3. 使用 `useImmerReducer`**
+在组件中使用 `useImmerReducer`，它的工作方式与 `useReducer` 类似：
+
+```javascript
+export default function App() {
+  const [state, dispatch] = useImmerReducer(reducer, initialState);
+
+  return (
+    <div>
+      <h1>User: {state.user.name}</h1>
+      <button onClick={() => dispatch({ type: 'UPDATE_NAME', payload: 'Bob' })}>
+        Update Name
+      </button>
+
+      <h2>Posts:</h2>
+      <ul>
+        {state.posts.map((post, index) => (
+          <li key={index}>{post}</li>
+        ))}
+      </ul>
+      <button onClick={() => dispatch({ type: 'ADD_POST', payload: 'New Post' })}>
+        Add Post
+      </button>
+    </div>
+  );
+}
+```
+
+---
+
+### **代码解析**
+
+1. **`useImmerReducer` 的签名**：
+   ```javascript
+   const [state, dispatch] = useImmerReducer(reducer, initialState);
+   ```
+   - `reducer`：接收 `(draft, action)` 参数，返回修改后的状态。
+   - `initialState`：初始状态。
+   - `state`：当前状态。
+   - `dispatch`：用于触发状态更新。
+
+2. **`draft` 的作用**：
+   - `draft` 是一个“草稿”对象，你可以直接对它进行修改。
+   - 修改完成后，`useImmerReducer` 会根据你的操作生成一个新的不可变状态。
+
+3. **状态更新**：
+   - 在普通 `useReducer` 中，你需要手动复制嵌套对象或数组。
+   - 在 `useImmerReducer` 中，你只需要直接修改 `draft`，例如：
+     ```javascript
+     draft.user.name = action.payload;
+     draft.posts.push(action.payload);
+     ```
+
+---
+
+### **与普通 `useReducer` 的对比**
+
+#### **普通 `useReducer`**
+```javascript
+function reducer(state, action) {
+  switch (action.type) {
+    case 'UPDATE_NAME':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          name: action.payload,
+        },
+      };
+    case 'ADD_POST':
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+      };
+    default:
+      return state;
+  }
+}
+```
+
+#### **`useImmerReducer`**
+```javascript
+function reducer(draft, action) {
+  switch (action.type) {
+    case 'UPDATE_NAME':
+      draft.user.name = action.payload; // 直接修改 draft
+      break;
+    case 'ADD_POST':
+      draft.posts.push(action.payload); // 直接修改数组
+      break;
+    default:
+      break;
+  }
+}
+```
+
+可以看到，`useImmerReducer` 的代码更加简洁直观，省去了大量的展开操作。
+
+---
+
+### **优点**
+
+1. **更简洁的代码**：
+   - 不需要手动复制嵌套对象或数组。
+   - 代码更易读、更直观。
+
+2. **减少错误**：
+   - 避免因忘记拷贝某一层而导致的状态突变。
+
+3. **易于维护**：
+   - 复杂嵌套状态的更新逻辑变得更加简单。
+
+4. **无缝集成**：
+   - 可以直接替换现有的 `useReducer`，无需额外配置。
+
+---
+
+### **注意事项**
+
+1. **性能**：
+   - Immer 内部使用了 Proxy 或深拷贝机制，可能会有轻微的性能开销。
+   - 对于非常大的状态树或频繁更新的场景，需要注意性能优化。
+
+2. **调试**：
+   - 调试时需要注意区分原始状态和最终生成的状态。
+
+3. **适用场景**：
+   - 适合复杂嵌套状态的场景。
+   - 如果状态非常简单，直接使用 `useState` 或普通 `useReducer` 可能更合适。
+
+---
+
+### **总结**
+
+`useImmerReducer` 是一个强大的工具，特别适合处理复杂的嵌套状态。它结合了 Immer 的不可变性优势和 React 的状态管理机制，使得代码更加简洁、易读且不易出错。如果你正在使用 `useReducer` 并且觉得状态更新逻辑过于繁琐，不妨试试 `useImmerReducer`！
