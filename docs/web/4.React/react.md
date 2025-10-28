@@ -2,16 +2,14 @@
 title: React 基础
 createTime: 2025/10/16 17:05:16
 permalink: /web/react/
-password: 10246417
+password: 
 tags:
   - React
 ---
 
-## 简洁
+## 简介
 
 React 是一个用于构建用户界面的开源 JavaScript 库。起初由 Facebook 的软件工程师 Jordan Walke 创建，并于 2013 年 5 月宣布开源。
-
-原生 JS 的痛点：
 
 ## JSX
 
@@ -108,22 +106,78 @@ export default function Profile() {
 />
 ```
 
+#### 4. 内联样式使用对象
+
+```jsx
+style={{color:'skyblue',fontSize:'24px'}}
+```
+
 ## 组件
 
 ### 定义组件
 
-React 应用是由被称为 组件 的独立 UI 片段构建而成。React 组件是一段可以 使用标签进行扩展 的 JavaScript 函数。
-当我们把函数名称大写时，React 会将此函数视为组件。
+React 应用是由被称为 组件 的独立 UI 片段构建而成。组件有两种定义方式：类式组件，函数组件。
+
+- **类式组件**
+
+使用 ES6 `class` 继承 `React.Component`：
 
 ```jsx
-export default function Profile() {
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+  }
+
+  increment = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  render() {
+    return (
+      <div>
+        <p>{this.state.count}</p>
+        <button onClick={this.increment}>+</button>
+      </div>
+    );
+  }
+}
+```
+
+- **函数式组件**
+
+函数组件是一个 JavaScript 函数，当我们把函数名称大写时，React 会将此函数视为组件。
+
+```jsx
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
   return (
     <div>
-      <h1>React</h1>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>+</button>
     </div>
   );
 }
 ```
+
+从上面的代码可以看出来函数式组件更简洁，逻辑复用更简单。类式组件是 React 16.8 版本之前创建组件的方式，而在引入 Hooks 以后，函数组件能力全面超越类组件。
+React 团队明确表示：未来不会为类组件添加新功能，函数组件是唯一推荐的编写方式。
+
+==因此创建新项目推荐使用函数式组件。==
+
+:::table title="方式对比"
+| 特性                 | 类式组件        | 函数式组件 |
+|--------------------|-----------------------------------|----------------------------------------|
+| 语法简洁性           | 冗长，需处理 `this` 绑定            | 简洁、直观，无 `this` 问题               |
+| 状态管理             | `this.state` + `this.setState()`   | `useState` / `useReducer`              |
+| 逻辑复用             | 需借助 HOC 或 render props，较复杂    | 自定义 Hooks，组合性强、复用简单         |
+| 性能优化             | `shouldComponentUpdate` 或 `PureComponent` | `React.memo`、`useMemo`、`useCallback` |
+| React 官方推荐       | ❌ 已不再推荐新项目使用               | ✅ **当前及未来唯一推荐方式**             |
+| 新特性支持（React 18+）| 不支持（如并发渲染、新 Hooks）       | 完全支持                                |
+:::
 
 ### 导入导出组件
 

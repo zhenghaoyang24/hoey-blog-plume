@@ -46,6 +46,7 @@ export default defineUserConfig({
      * markdown 曾强
      */
     markdown: {
+      table: true,
       imageSize: true, // 图片优化 'local（本地图片）' | 'all（所有图片）'
       demo: true, // 启用新的代码演示功能
       markmap: true, // 启用 Markmap 图表嵌入语法
