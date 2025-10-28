@@ -2,8 +2,8 @@
 title: React 基础
 createTime: 2025/10/16 17:05:16
 permalink: /web/react/
-password: 
-tags:
+draft: true
+tags: 
   - React
 ---
 
@@ -13,8 +13,10 @@ React 是一个用于构建用户界面的开源 JavaScript 库。起初由 Face
 
 ## JSX
 
-JSX 是 JavaScript 的语法扩展，它与 React 本身是相互独立的——JSX 只是一种书写结构的语法糖，而 React 是一个用于构建用户界面的库。
-不过，React 官方推荐使用 JSX 来描述 UI 结构。
+### 简介
+
+JSX 全称 JavaScript XML， 是一种类似于 XML 的 JavaScript 的语法扩展，本质是 `React.createElement(...)` 的语法糖。
+React 官方推荐使用 JSX 来描述 UI 结构。
 
 在 React 17 之前，JSX 需要通过 Babel 等构建工具编译为 `React.createElement(...)` 调用，并且组件文件中必须显式导入 `React`。
 但从 **React 17 开始，React 引入了新的 JSX 转换**，不再依赖 `React.createElement`，也不再强制要求导入 `React`。
@@ -60,7 +62,7 @@ export default function App() {
 
 因此，尽管底层实现发生了变化，JSX 依然是对 React 元素创建过程的一种简洁、直观的语法封装——本质上，它仍然是“语法糖”，只是在 React 17+ 中变得更轻量、更自动化了。
 
-同时，在标签的属性或标签内用 `{}` ，则可以在 `{}` 里面添加一些 JavaScript 逻辑或者引用动态的属性。
+### 规则
 
 JSX 语法可以像 HTML 一样，直接在 JS 中描述标签，**但需要遵循一些规则**。
 
@@ -111,6 +113,41 @@ export default function Profile() {
 ```jsx
 style={{color:'skyblue',fontSize:'24px'}}
 ```
+
+#### 5. 标签混入 **JS表达式** 时要用 `{}`
+
+```jsx
+<div>
+  <p>{a+b}</p> // [!code highlight]
+</div>
+```
+
+::: warning
+
+格外注意：`{}` 中能够写入的是 JS表达式，而不是 JS语句。
+
+表达式是能计算出一个值的代码片段，例如：
+
+```js
+2 + 3                // 返回 5
+x * y                // 返回 x 和 y 的乘积
+"hello"              // 字符串字面量，返回 "hello"
+myFunction()         // 函数调用表达式，返回函数的返回值
+{ name: "Hoey" }     // 对象字面量表达式
+x > 0 ? "pos" : "neg" // 三元表达式
+```
+
+语句是执行某种操作的完整指令，不直接产生值。例如用于控制程序流程、声明变量、定义函数等。
+
+```js
+let x = 5;           // 变量声明语句
+if (x > 0) { ... }   // 条件语句
+for (let i = 0; i < 10; i++) { ... } // 循环语句
+function foo() {}    // 函数声明语句
+return x;            // return 语句
+```
+
+:::
 
 ## 组件
 
