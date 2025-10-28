@@ -12,7 +12,7 @@ export const navbar = defineNavbarConfig([
     text: "笔记",
     items: [
       { text: "Web前端", link: "/web/start/", icon: "logos:web-dev-icon" },
-      { text: "Node.js", link: "/nodejs/overview/", icon: "material-icon-theme:nodejs" },
+      { text: "Q&A", link: "/qa/overview/", icon: "noto:thinking-face" },
       { text: "备忘录", link: "/memo/start/", icon: "emojione:memo" },
     ],
     icon: "ic:outline-note-alt",

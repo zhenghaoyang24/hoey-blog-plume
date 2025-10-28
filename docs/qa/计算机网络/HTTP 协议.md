@@ -1,7 +1,7 @@
 ---
 title: HTTP 协议
 createTime: 2025/02/04 15:07:40
-permalink: /web/interview/6th9jo3q/
+permalink: /qa/network/6th9jo3q/
 outline: 2
 ---
 

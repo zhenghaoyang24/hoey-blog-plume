@@ -1,7 +1,7 @@
 ---
 title: DOCTYPE
 createTime: 2025/02/02 13:35:20
-permalink: /web/interview/DOCTYPE/
+permalink: /qa/html/dco123r2/
 ---
 
 # title
