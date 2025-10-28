@@ -488,6 +488,123 @@ export default function Signup() {
 }
 ```
 
+## 生命周期
+
+在 Vue 中，我们可以使用 `mounted`、`updated`、`destroyed` 等生命周期函数来监听组件的挂载、更新和销毁，来完成数据加载、销毁计时器等操作，
+在 React 中同样有实现方式。
+
+React 的生命周期在 React 16.3 和 React 16.8（引入 Hooks 之前） 进行了重要更新，主要目的是为了支持 异步渲染（Async Rendering） 和 并发模式（Concurrent Mode）。因此，React 的生命周期方法被分为“旧生命周期”和“新生命周期”。
+
+TODO: 异步渲染,并发模式
+
+**核心变化概览：**
+
+- **废除的生命周期**：`componentWillMount`, `componentWillReceiveProps`, `componentWillUpdate`
+- **新增的生命周期**：`getDerivedStateFromProps`, `getSnapshotBeforeUpdate`
+- **未变动且常用的生命周期**：`componentDidMount`, `shouldComponentUpdate`, `componentDidUpdate`, `componentWillUnmount`, `render`
+
+---
+
+### 旧版生命周期
+
+旧版生命周期可以划分为三个主要阶段：**挂载**、**更新**和**卸载**。
+
+#### 1. 挂载阶段
+当一个组件实例被创建并插入 DOM 中时，其生命周期调用顺序如下：
+
+1.  **`constructor(props)`**
+    *   用途：初始化 state、绑定事件处理函数。
+    *   注意：必须首先调用 `super(props)`。
+
+2.  **`componentWillMount()`** 🚫 **已废弃**
+    *   用途：在组件挂载到 DOM 前调用。
+    *   问题：在此方法中发起网络请求或进行副作用操作是**不安全的**，因为在异步渲染模式下，它可能会被调用多次。推荐将数据请求移至 `componentDidMount`。
+
+3.  **`render()`**
+    *   用途：必须实现的方法，返回需要渲染的 JSX。
+    *   注意：这是一个纯函数，不应在此处修改 state 或与 DOM 交互。
+
+4.  **`componentDidMount()`**
+    *   用途：组件已被挂载到 DOM 后立即调用。
+    *   最佳实践：**这是发起网络请求、设置订阅或直接操作 DOM 的最佳位置。**
+
+#### 2. 更新阶段
+当组件的 props 或 state 发生变化时，会触发更新。调用顺序如下：
+
+1.  **`componentWillReceiveProps(nextProps)`** 🚫 **已废弃**
+    *   用途：在已挂载的组件接收新的 props 前调用。
+    *   问题：此方法常被误用于根据 props 的变化来设置 state（即“派生状态”），逻辑容易出错且难以维护。它可能在 props 未改变的情况下被触发（例如父组件重渲染）。
+
+2.  **`shouldComponentUpdate(nextProps, nextState)`**
+    *   用途：决定组件是否应该重新渲染。返回 `false` 可以阻止 `render` 调用。
+    *   应用：是性能优化的关键方法，通常与 `PureComponent` 或 `React.memo` 相关。
+
+3.  **`componentWillUpdate(nextProps, nextState)`** 🚫 **已废弃**
+    *   用途：在组件即将更新（重新渲染）前调用。
+    *   问题：不能在此处调用 `this.setState`。与 `componentWillMount` 类似，它也可能在不安全的情况下被多次调用。
+
+4.  **`render()`**
+    *   重新渲染。
+
+5.  **`componentDidUpdate(prevProps, prevState, snapshot?)`**
+    *   用途：在组件更新完成后被调用。
+    *   最佳实践：适合执行 DOM 操作或进行网络请求（但需比较当前 props 和上一次 props，避免不必要的请求）。
+
+#### 3. 卸载阶段
+
+1.  **`componentWillUnmount()`**
+    *   用途：在组件即将被卸载和销毁前调用。
+    *   最佳实践：**用于执行必要的清理操作**，如清除定时器、取消网络请求、移除事件监听器、清理订阅等。
+
+---
+
+### 新版生命周期
+
+React 团队引入了两个新的静态生命周期方法，并标记三个旧方法为不安全。
+
+#### 新增的生命周期：
+
+1.  **`static getDerivedStateFromProps(props, state)`**
+    *   **目的**：替代 `componentWillReceiveProps`，用于在 **render 之前**根据 props 的变化来更新 state。
+    *   **特点**：
+        *   它是一个 **静态方法**，无法访问组件实例 (`this`)。
+        *   它应返回一个对象来更新 state，如果不需要更新则返回 `null`。
+    *   **使用场景**：非常罕见，通常用于当 state 在任何时候都取决于 props 时。官方文档建议谨慎使用，因为通常有更好的替代方案。
+
+2.  **`getSnapshotBeforeUpdate(prevProps, prevState)`**
+    *   **目的**：替代 `componentWillUpdate`，在组件 DOM 更新**之前**捕获一些信息（例如滚动位置）。
+    *   **特点**：
+        *   此方法的任何返回值将作为参数传递给 `componentDidUpdate`。
+    *   **使用场景**：在 DOM 发生更改之前从其中获取一些信息（如滚动位置）。
+
+#### 新版生命周期流程图：
+
+1.  **挂载阶段**
+    *   `constructor`
+    *   `static getDerivedStateFromProps()`
+    *   `render()`
+    *   `componentDidMount()`
+
+2.  **更新阶段**
+    *   `static getDerivedStateFromProps()` (当 props 变化或父组件重渲染时)
+    *   `shouldComponentUpdate()`
+    *   `render()`
+    *   `getSnapshotBeforeUpdate()`
+    *   `componentDidUpdate(prevProps, prevState, snapshot)`
+
+3.  **卸载阶段**
+    *   `componentWillUnmount()`
+
+
+### 实践
+
+1.  **数据获取**：在 `componentDidMount` 和 `componentDidUpdate` 中进行。
+2.  **派生状态**：尽量避免使用 `getDerivedStateFromProps`。考虑是否可以用**完全受控组件**（数据在父组件 state）或**完全不可控组件**（使用 `key` 重置内部状态）来替代。
+3.  **在更新前读取 DOM**：使用 `getSnapshotBeforeUpdate` 和 `componentDidUpdate` 的组合。
+4.  **副作用清理**：在 `componentWillUnmount` 中完成。
+5.  **未来方向**：React 官方正逐步推广 **Hooks** 作为编写组件的主要方式。在函数组件中，使用 `useEffect`、`useState` 等 Hook 可以覆盖所有生命周期场景，并且逻辑更清晰、更易于复用。对于新项目，建议优先使用函数组件和 Hooks。
+
+
 ## State
 
 ### `useState()`
