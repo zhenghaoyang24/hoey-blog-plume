@@ -110,6 +110,8 @@ export default function Profile() {
 
 #### 4. 内联样式使用对象
 
+组件样式推荐使用内联样式，能够让每个组件都包含组件的所有代码。
+
 ```jsx
 style={{color:'skyblue',fontSize:'24px'}}
 ```
@@ -239,7 +241,7 @@ export default function App() {
 
 ### Props
 
-React 组件通过 Props 来传递数据。父组件通过属性向子组件传递数据，子组件通过形参接收数据。
+React 组件通过 Props 来传递数据。父组件通过属性向子组件传递数据，子组件通过形参接收数据。在子组件中，不要修改props。
 
 ::: tabs
 @tab App.jsx
@@ -269,7 +271,7 @@ export default function Profile(props) {
 
 :::
 
-在子组件中，可以为 Props 设置默认值：
+在子组件中，可以对 props 进行解构和设置默认值：
 
 ```jsx
 export default function Profile({ name = "React", desc }) {
@@ -283,9 +285,37 @@ export default function Profile({ name = "React", desc }) {
 }
 ```
 
-::: tip
-在子组件中，Props 并不是直接传入形参，而是一个对象。
+props 还可以传递组件的子内容。它与 [Vue中的插槽](https://cn.vuejs.org/guide/components/slots.html) 一样，
+都是用于将父组件的内容“透传”到子组件的指定位置，实现组件的灵活组合。
+
+:::tabs
+
+@tab Parent.jsx
+```jsx
+function Parent() {
+  return (
+    <Children title="This is title">
+      <p>This is the text</p>
+      <button>Click me</button>
+    </Children>
+  );
+}
+```
+
+@tab Children.jsx
+```jsx
+function Children({ children, title }) {
+  return (
+    <div className="card">
+      {title && <h2>{title}</h2>}
+      <div className="card-body">{children}</div>
+    </div>
+  );
+}
+```
 :::
+
+`<Children />` 传入的子内容会通过 `children` 属性传递给子组件。并在子组件中 `{children}` 的位置进行渲染。
 
 ### 条件渲染
 
@@ -537,7 +567,7 @@ export default function Signup() {
 在 Vue 中，我们可以使用 `mounted`、`updated`、`destroyed` 等生命周期函数来监听组件的挂载、更新和销毁，来完成数据加载、销毁计时器等操作，
 在 React 中同样有实现方式。
 
-React 的生命周期在 React 16.3 和 React 16.8（引入 Hooks 之前） 进行了重要更新，主要目的是为了支持 异步渲染（Async Rendering） 和 并发模式（Concurrent Mode）。因此，React 的生命周期方法被分为“旧生命周期”和“新生命周期”。
+React 的生命周期在 React 16.3 和 React 16.8（引入 Hooks 之前） 进行了重要更新，主要目的是为了支持 异步渲染（Async Rendering） 和 并发模式（Concurrent Mode）。因此，React 的生命周期方法被分为“旧生命周期”和“新生命周期”。函数式组件通过 `useEffect` Hook 模拟生命周期行为。
 
 TODO: 异步渲染,并发模式
 
@@ -707,7 +737,7 @@ export default function App() {
     }
   }
   ```
-  
+
 :::
 
 ### state 快照
