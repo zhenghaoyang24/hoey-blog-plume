@@ -9,11 +9,15 @@ import GridHome from './theme/components/gridhome/GridHome.vue'
 // 代码首页
 import CodeHome from './theme/components/codehome/CodeHome.vue'
 
+// 代码 box
+import CodeViewBox from './theme/components/CodeViewBox.vue'
+
 export default defineClientConfig({
   enhance({ app }) {
     app.component('RepoCard', RepoCard)
     app.component('GridHome', GridHome)
     app.component('CodeHome', CodeHome)
+    app.component('CodeViewBox', CodeViewBox)
     app.component('AllFriendContent', AllFriendContent)
   },
 })
