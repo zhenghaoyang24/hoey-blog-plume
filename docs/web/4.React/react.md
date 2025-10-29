@@ -676,6 +676,40 @@ export default function App() {
 }
 ```
 
+::: collapse
+- 类组件中如何更改 state ？
+
+  在类组件中 state 同样不能直接更改，不过是通过 `setState` 来更新。
+  注意：setState 是合并更新，更改对象某一个属性，只需传入该属性，不需要传入所有属性。而 `useState()` 则是覆盖更新，需要传入所有属性。
+  可以阅读 [state陷阱](#state-陷阱)。
+
+  ```jsx
+  import React, { Component } from 'react';
+  
+  export default class App extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        index: 0
+      };
+    }
+  
+    handleAdd = () => {
+      this.setState({ index: this.state.index + 1 }); // [!code highlight]
+    };
+  
+    render() {
+      return (
+        <>
+          <button onClick={this.handleAdd}>{this.state.index}</button>
+        </>
+      );
+    }
+  }
+  ```
+  
+:::
+
 ### state 快照
 
 React 中的 state 本质就是 **组件某一时刻状态的“快照”**，它定格了当前数据，且不能直接修改，只能通过生成新“快照”来触发组件更新。
