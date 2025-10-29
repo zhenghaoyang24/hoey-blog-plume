@@ -193,7 +193,7 @@ class Counter extends React.Component {
 函数组件是一个 JavaScript 函数，当我们把函数名称大写时，React 会将此函数视为组件。
 
 ```jsx
-import { useState } from 'react';
+import { useState } from 'react'; // 引入 useState Hooks
 
 function Counter() {
   const [count, setCount] = useState(0);
