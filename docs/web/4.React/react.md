@@ -1201,3 +1201,6 @@ function reducer(draft, action) {
 ```
 
 ## Context
+
+当我们需要将数据传递给子组件时，通常会使用 `props`，这在组件层级比较少时很奏效。
+但是当数据层级较深时，例如要将数据传递给孙子组件，`props` 的传递会很麻烦。这时，我们可以使用 `Context
