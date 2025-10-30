@@ -1203,9 +1203,9 @@ function reducer(draft, action) {
 ## Context
 
 当我们需要将数据传递给子组件时，通常会使用 `props`，这在组件层级比较少时很奏效。
-但是当数据层级较深时，例如要将数据传递给孙子组件，`props` 的传递会很麻烦：需要将数据通过 props 层层传递。这时，我们可以使用 `Context
+但是当数据层级较深时，例如要将数据传递给孙子组件，`props` 的传递会很麻烦：需要将数据通过 props 层层传递。这时，我们可以使用 `Context` 。
 
-Context 允许父组件向其下层无论多深的任何组件提供信息，而无需通过 props 显式传递。
+Context 提供一种跨层级共享数据的方式，让任意后代组件都能直接访问祖先组件提供的数据，无需手动逐层传递 props。
 
 - 1. 创建一个 Context 并导出。
 
@@ -1218,4 +1218,4 @@ export const LevelContext = createContext(1);
 
 ```
  
-- 2. 在需要提供数据的组件中，使用 `Provider` 组件包裹需要传递的数据。
+- 2. 提供 context。
