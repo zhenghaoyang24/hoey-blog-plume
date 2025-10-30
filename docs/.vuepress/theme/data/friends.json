@@ -22,5 +22,11 @@
     "link": "https://www.ziyis.cn",
     "avatar": "http://doc.ziyis.cn/avatar.jpg",
     "desc": "让美好持续发生."
+  },
+  {
+    "name": "异想之旅",
+    "link": "https://blog.yxzl.dev/",
+    "avatar": "https://blog.yxzl.dev/head.png",
+    "desc": "异想之旅のBlog"
   }
 ]
