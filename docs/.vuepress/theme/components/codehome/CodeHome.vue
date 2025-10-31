@@ -8,7 +8,7 @@
         <div class="profile-card">
           <router-link to="/blog/" class="profile-avatar"
             ><img
-              src="https://zhenghaoyang.cn/avatar.jpg"
+              src="/avatar.jpg"
               alt="Hoey"
               class="profile-avatar"
             />
