@@ -2,7 +2,9 @@
     <div class="home-container">
         <canvas ref="canvasRef" />
         <div class="profile-container">
-            <router-link to="/blog/" class="profile-avatar"><img src="/avatar.jpg" alt="Hoey" class="profile-avatar" />
+            <router-link class="avatar-link" to="/blog/">
+                <img ref="avatarRef" src="/avatar.jpg" alt="Hoey" class="profile-avatar"
+                    @mousemove="handleAvatarMouseMove" @mouseleave="handleAvatarMouseLeave" />
             </router-link>
 
             <div class="profile-name">Hoey</div>
@@ -282,6 +284,35 @@ onUnmounted(() => {
     program = null;
 });
 
+// 按压效果
+
+const avatarRef = ref<HTMLImageElement | null>(null);
+
+const handleAvatarMouseMove = (e: MouseEvent) => {
+    if (!avatarRef.value) return;
+
+    const rect = avatarRef.value.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const offsetX = (e.clientX - centerX) / (rect.width / 2);
+    const offsetY = (e.clientY - centerY) / (rect.height / 2);
+
+    const nx = Math.max(-1, Math.min(1, offsetX));
+    const ny = Math.max(-1, Math.min(1, offsetY));
+
+    const rotateY = -nx * 10;
+    const rotateX = ny * 10;
+
+    avatarRef.value.style.transform = `perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+};
+
+const handleAvatarMouseLeave = () => {
+    if (!avatarRef.value) return;
+    avatarRef.value.style.transition = 'transform 0.2s ease-out';
+    avatarRef.value.style.transform = 'perspective(500px) rotateX(0) rotateY(0)';
+};
+
 </script>
 
 <style scoped>
@@ -313,7 +344,6 @@ canvas {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    /* 允许鼠标事件穿透 */
     overflow: hidden;
 }
 
@@ -330,11 +360,18 @@ canvas {
     backdrop-filter: blur(10px);
 }
 
+.avatar-link {
+    pointer-events: none;
+    display: contents;
+}
+
 .profile-avatar {
     width: 260px;
     height: 260px;
     border-radius: 10px;
     box-shadow: 0 0 10px #00000077;
+    pointer-events: auto;
+    transition: transform 0.2s ease-out;
 }
 
 .profile-name {
