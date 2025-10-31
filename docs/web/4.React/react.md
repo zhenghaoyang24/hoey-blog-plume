@@ -3,7 +3,7 @@ title: React 基础
 createTime: 2025/10/16 17:05:16
 permalink: /web/react/
 draft: true
-tags: 
+tags:
   - React
 ---
 
@@ -116,27 +116,29 @@ export default function Profile() {
 style={{color:'skyblue',fontSize:'24px'}}
 ```
 
-#### 5. 标签混入 **JS表达式** 时要用 `{}`
+#### 5. 标签混入 **JS 表达式** 时要用 `{}`
 
 ```jsx
 <div>
-  <p>{a+b}</p> // [!code highlight]
+  <p>{a + b}</p> // [!code highlight]
 </div>
 ```
 
 ::: warning
 
-格外注意：`{}` 中能够写入的是 JS表达式，而不是 JS语句。
+格外注意：`{}` 中能够写入的是 JS 表达式，而不是 JS 语句。
 
 表达式是能计算出一个值的代码片段，例如：
 
 ```js
-2 + 3                // 返回 5
-x * y                // 返回 x 和 y 的乘积
-"hello"              // 字符串字面量，返回 "hello"
-myFunction()         // 函数调用表达式，返回函数的返回值
-{ name: "Hoey" }     // 对象字面量表达式
-x > 0 ? "pos" : "neg" // 三元表达式
+2 + 3; // 返回 5
+x * y; // 返回 x 和 y 的乘积
+("hello"); // 字符串字面量，返回 "hello"
+myFunction(); // 函数调用表达式，返回函数的返回值
+{
+  name: "Hoey";
+} // 对象字面量表达式
+x > 0 ? "pos" : "neg"; // 三元表达式
 ```
 
 语句是执行某种操作的完整指令，不直接产生值。例如用于控制程序流程、声明变量、定义函数等。
@@ -165,7 +167,6 @@ React 应用是由被称为 组件 的独立 UI 片段构建而成。组件是�
 
 ```jsx
 class Counter extends React.Component {
-
   // 构造器函数
   constructor(props) {
     super(props);
@@ -195,7 +196,7 @@ class Counter extends React.Component {
 函数组件是一个 JavaScript 函数，当我们把函数名称大写时，React 会将此函数视为组件。
 
 ```jsx
-import { useState } from 'react'; // 引入 useState Hooks
+import { useState } from "react"; // 引入 useState Hooks
 
 function Counter() {
   const [count, setCount] = useState(0);
@@ -215,14 +216,14 @@ React 团队明确表示：未来不会为类组件添加新功能，函数组�
 ==因此创建新项目推荐使用函数式组件。==
 
 :::table title="方式对比"
-| 特性                 | 类式组件        | 函数式组件 |
+| 特性 | 类式组件 | 函数式组件 |
 |--------------------|-----------------------------------|----------------------------------------|
-| 语法简洁性           | 冗长，需处理 `this` 绑定            | 简洁、直观，无 `this` 问题               |
-| 状态管理             | `this.state` + `this.setState()`   | `useState` / `useReducer`              |
-| 逻辑复用             | 需借助 HOC 或 render props，较复杂    | 自定义 Hooks，组合性强、复用简单         |
-| 性能优化             | `shouldComponentUpdate` 或 `PureComponent` | `React.memo`、`useMemo`、`useCallback` |
-| React 官方推荐       | ❌ 已不再推荐新项目使用               | ✅ **当前及未来唯一推荐方式**             |
-| 新特性支持（React 18+）| 不支持（如并发渲染、新 Hooks）       | 完全支持                                |
+| 语法简洁性 | 冗长，需处理 `this` 绑定 | 简洁、直观，无 `this` 问题 |
+| 状态管理 | `this.state` + `this.setState()` | `useState` / `useReducer` |
+| 逻辑复用 | 需借助 HOC 或 render props，较复杂 | 自定义 Hooks，组合性强、复用简单 |
+| 性能优化 | `shouldComponentUpdate` 或 `PureComponent` | `React.memo`、`useMemo`、`useCallback` |
+| React 官方推荐 | ❌ 已不再推荐新项目使用 | ✅ **当前及未来唯一推荐方式** |
+| 新特性支持（React 18+）| 不支持（如并发渲染、新 Hooks） | 完全支持 |
 :::
 
 ### 导入导出组件
@@ -241,7 +242,7 @@ export default function App() {
 
 ### Props
 
-React 组件通过 Props 来传递数据。父组件通过属性向子组件传递数据，子组件通过形参接收数据。在子组件中，不要修改props。
+React 组件通过 Props 来传递数据。父组件通过属性向子组件传递数据，子组件通过形参接收数据。在子组件中，不要修改 props。
 
 ::: tabs
 @tab App.jsx
@@ -285,12 +286,13 @@ export default function Profile({ name = "React", desc }) {
 }
 ```
 
-props 还可以传递组件的子内容。它与 [Vue中的插槽](https://cn.vuejs.org/guide/components/slots.html) 一样，
+props 还可以传递组件的子内容。它与 [Vue 中的插槽](https://cn.vuejs.org/guide/components/slots.html) 一样，
 都是用于将父组件的内容“透传”到子组件的指定位置，实现组件的灵活组合。
 
 :::tabs
 
 @tab Parent.jsx
+
 ```jsx
 function Parent() {
   return (
@@ -303,6 +305,7 @@ function Parent() {
 ```
 
 @tab Children.jsx
+
 ```jsx
 function Children({ children, title }) {
   return (
@@ -313,6 +316,7 @@ function Children({ children, title }) {
   );
 }
 ```
+
 :::
 
 `<Children />` 传入的子内容会通过 `children` 属性传递给子组件。并在子组件中 `{children}` 的位置进行渲染。
@@ -584,51 +588,60 @@ TODO: 异步渲染,并发模式
 旧版生命周期可以划分为三个主要阶段：**挂载**、**更新**和**卸载**。
 
 #### 1. 挂载阶段
+
 当一个组件实例被创建并插入 DOM 中时，其生命周期调用顺序如下：
 
 1.  **`constructor(props)`**
-    *   用途：初始化 state、绑定事件处理函数。
-    *   注意：必须首先调用 `super(props)`。
+
+    - 用途：初始化 state、绑定事件处理函数。
+    - 注意：必须首先调用 `super(props)`。
 
 2.  **`componentWillMount()`** 🚫 **已废弃**
-    *   用途：在组件挂载到 DOM 前调用。
-    *   问题：在此方法中发起网络请求或进行副作用操作是**不安全的**，因为在异步渲染模式下，它可能会被调用多次。推荐将数据请求移至 `componentDidMount`。
+
+    - 用途：在组件挂载到 DOM 前调用。
+    - 问题：在此方法中发起网络请求或进行副作用操作是**不安全的**，因为在异步渲染模式下，它可能会被调用多次。推荐将数据请求移至 `componentDidMount`。
 
 3.  **`render()`**
-    *   用途：必须实现的方法，返回需要渲染的 JSX。
-    *   注意：这是一个纯函数，不应在此处修改 state 或与 DOM 交互。
+
+    - 用途：必须实现的方法，返回需要渲染的 JSX。
+    - 注意：这是一个纯函数，不应在此处修改 state 或与 DOM 交互。
 
 4.  **`componentDidMount()`**
-    *   用途：组件已被挂载到 DOM 后立即调用。
-    *   最佳实践：**这是发起网络请求、设置订阅或直接操作 DOM 的最佳位置。**
+    - 用途：组件已被挂载到 DOM 后立即调用。
+    - 最佳实践：**这是发起网络请求、设置订阅或直接操作 DOM 的最佳位置。**
 
 #### 2. 更新阶段
+
 当组件的 props 或 state 发生变化时，会触发更新。调用顺序如下：
 
 1.  **`componentWillReceiveProps(nextProps)`** 🚫 **已废弃**
-    *   用途：在已挂载的组件接收新的 props 前调用。
-    *   问题：此方法常被误用于根据 props 的变化来设置 state（即“派生状态”），逻辑容易出错且难以维护。它可能在 props 未改变的情况下被触发（例如父组件重渲染）。
+
+    - 用途：在已挂载的组件接收新的 props 前调用。
+    - 问题：此方法常被误用于根据 props 的变化来设置 state（即“派生状态”），逻辑容易出错且难以维护。它可能在 props 未改变的情况下被触发（例如父组件重渲染）。
 
 2.  **`shouldComponentUpdate(nextProps, nextState)`**
-    *   用途：决定组件是否应该重新渲染。返回 `false` 可以阻止 `render` 调用。
-    *   应用：是性能优化的关键方法，通常与 `PureComponent` 或 `React.memo` 相关。
+
+    - 用途：决定组件是否应该重新渲染。返回 `false` 可以阻止 `render` 调用。
+    - 应用：是性能优化的关键方法，通常与 `PureComponent` 或 `React.memo` 相关。
 
 3.  **`componentWillUpdate(nextProps, nextState)`** 🚫 **已废弃**
-    *   用途：在组件即将更新（重新渲染）前调用。
-    *   问题：不能在此处调用 `this.setState`。与 `componentWillMount` 类似，它也可能在不安全的情况下被多次调用。
+
+    - 用途：在组件即将更新（重新渲染）前调用。
+    - 问题：不能在此处调用 `this.setState`。与 `componentWillMount` 类似，它也可能在不安全的情况下被多次调用。
 
 4.  **`render()`**
-    *   重新渲染。
+
+    - 重新渲染。
 
 5.  **`componentDidUpdate(prevProps, prevState, snapshot?)`**
-    *   用途：在组件更新完成后被调用。
-    *   最佳实践：适合执行 DOM 操作或进行网络请求（但需比较当前 props 和上一次 props，避免不必要的请求）。
+    - 用途：在组件更新完成后被调用。
+    - 最佳实践：适合执行 DOM 操作或进行网络请求（但需比较当前 props 和上一次 props，避免不必要的请求）。
 
 #### 3. 卸载阶段
 
 1.  **`componentWillUnmount()`**
-    *   用途：在组件即将被卸载和销毁前调用。
-    *   最佳实践：**用于执行必要的清理操作**，如清除定时器、取消网络请求、移除事件监听器、清理订阅等。
+    - 用途：在组件即将被卸载和销毁前调用。
+    - 最佳实践：**用于执行必要的清理操作**，如清除定时器、取消网络请求、移除事件监听器、清理订阅等。
 
 ---
 
@@ -639,36 +652,38 @@ React 团队引入了两个新的静态生命周期方法，并标记三个旧�
 #### 新增的生命周期：
 
 1.  **`static getDerivedStateFromProps(props, state)`**
-    *   **目的**：替代 `componentWillReceiveProps`，用于在 **render 之前**根据 props 的变化来更新 state。
-    *   **特点**：
-        *   它是一个 **静态方法**，无法访问组件实例 (`this`)。
-        *   它应返回一个对象来更新 state，如果不需要更新则返回 `null`。
-    *   **使用场景**：非常罕见，通常用于当 state 在任何时候都取决于 props 时。官方文档建议谨慎使用，因为通常有更好的替代方案。
+
+    - **目的**：替代 `componentWillReceiveProps`，用于在 **render 之前**根据 props 的变化来更新 state。
+    - **特点**：
+      - 它是一个 **静态方法**，无法访问组件实例 (`this`)。
+      - 它应返回一个对象来更新 state，如果不需要更新则返回 `null`。
+    - **使用场景**：非常罕见，通常用于当 state 在任何时候都取决于 props 时。官方文档建议谨慎使用，因为通常有更好的替代方案。
 
 2.  **`getSnapshotBeforeUpdate(prevProps, prevState)`**
-    *   **目的**：替代 `componentWillUpdate`，在组件 DOM 更新**之前**捕获一些信息（例如滚动位置）。
-    *   **特点**：
-        *   此方法的任何返回值将作为参数传递给 `componentDidUpdate`。
-    *   **使用场景**：在 DOM 发生更改之前从其中获取一些信息（如滚动位置）。
+    - **目的**：替代 `componentWillUpdate`，在组件 DOM 更新**之前**捕获一些信息（例如滚动位置）。
+    - **特点**：
+      - 此方法的任何返回值将作为参数传递给 `componentDidUpdate`。
+    - **使用场景**：在 DOM 发生更改之前从其中获取一些信息（如滚动位置）。
 
 #### 新版生命周期流程图：
 
 1.  **挂载阶段**
-    *   `constructor`
-    *   `static getDerivedStateFromProps()`
-    *   `render()`
-    *   `componentDidMount()`
+
+    - `constructor`
+    - `static getDerivedStateFromProps()`
+    - `render()`
+    - `componentDidMount()`
 
 2.  **更新阶段**
-    *   `static getDerivedStateFromProps()` (当 props 变化或父组件重渲染时)
-    *   `shouldComponentUpdate()`
-    *   `render()`
-    *   `getSnapshotBeforeUpdate()`
-    *   `componentDidUpdate(prevProps, prevState, snapshot)`
+
+    - `static getDerivedStateFromProps()` (当 props 变化或父组件重渲染时)
+    - `shouldComponentUpdate()`
+    - `render()`
+    - `getSnapshotBeforeUpdate()`
+    - `componentDidUpdate(prevProps, prevState, snapshot)`
 
 3.  **卸载阶段**
-    *   `componentWillUnmount()`
-
+    - `componentWillUnmount()`
 
 ### 实践
 
@@ -677,7 +692,6 @@ React 团队引入了两个新的静态生命周期方法，并标记三个旧�
 3.  **在更新前读取 DOM**：使用 `getSnapshotBeforeUpdate` 和 `componentDidUpdate` 的组合。
 4.  **副作用清理**：在 `componentWillUnmount` 中完成。
 5.  **未来方向**：React 官方正逐步推广 **Hooks** 作为编写组件的主要方式。在函数组件中，使用 `useEffect`、`useState` 等 Hook 可以覆盖所有生命周期场景，并且逻辑更清晰、更易于复用。对于新项目，建议优先使用函数组件和 Hooks。
-
 
 ## State
 
@@ -707,27 +721,28 @@ export default function App() {
 ```
 
 ::: collapse
+
 - 类组件中如何更改 state ？
 
   在类组件中 state 同样不能直接更改，不过是通过 `setState` 来更新。
   注意：setState 是合并更新，更改对象某一个属性，只需传入该属性，不需要传入所有属性。而 `useState()` 则是覆盖更新，需要传入所有属性。
-  可以阅读 [state陷阱](#state-陷阱)。
+  可以阅读 [state 陷阱](#state-陷阱)。
 
   ```jsx
-  import React, { Component } from 'react';
-  
+  import React, { Component } from "react";
+
   export default class App extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        index: 0
+        index: 0,
       };
     }
-  
+
     handleAdd = () => {
       this.setState({ index: this.state.index + 1 }); // [!code highlight]
     };
-  
+
     render() {
       return (
         <>
@@ -1005,7 +1020,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
 // 根据 id 删除
 function handleDeleteTask(taskId) {
   dispatch({
-    type: 'deleted',
+    type: "deleted",
     id: taskId,
   });
 }
@@ -1013,7 +1028,7 @@ function handleDeleteTask(taskId) {
 // 修改
 function handleChangeTask(task) {
   dispatch({
-    type: 'changed',
+    type: "changed",
     task: task,
   });
 }
@@ -1039,7 +1054,7 @@ function yourReducer(state, action) {
 ```jsx
 function tasksReducer(tasks, action) {
   switch (action.type) {
-    case 'changed': {
+    case "changed": {
       return tasks.map((t) => {
         if (t.id === action.task.id) {
           return action.task;
@@ -1048,11 +1063,11 @@ function tasksReducer(tasks, action) {
         }
       });
     }
-    case 'deleted': {
+    case "deleted": {
       return tasks.filter((t) => t.id !== action.id);
     }
     default: {
-      throw Error('未知 action: ' + action.type);
+      throw Error("未知 action: " + action.type);
     }
   }
 }
@@ -1061,7 +1076,7 @@ function tasksReducer(tasks, action) {
 3. 从 React 导入 `useReducer` Hook。
 
 ```jsx
-import { useReducer } from 'react';
+import { useReducer } from "react";
 ```
 
 ```jsx
@@ -1072,6 +1087,7 @@ reducer 函数可以移到一个单独的文件。
 
 ::: tabs
 @tab App.jsx
+
 ```jsx
 import { useReducer } from 'react';
 import tasksReducer from './tasksReducer.js'; // [!code highlight]
@@ -1101,10 +1117,11 @@ const initialTasks = [
 ```
 
 @tab tasksReducer.js
+
 ```jsx
 export default function tasksReducer(tasks, action) {
   switch (action.type) {
-    case 'added': {
+    case "added": {
       return [
         ...tasks,
         {
@@ -1115,14 +1132,15 @@ export default function tasksReducer(tasks, action) {
       ];
     }
     default: {
-      throw Error('未知 action：' + action.type);
+      throw Error("未知 action：" + action.type);
     }
   }
 }
 ```
+
 :::
 
-### 使用 Immer 简化 reducer 
+### 使用 Immer 简化 reducer
 
 在 React 中，`useImmerReducer` 是一个非常强大的工具，用来简化状态管理逻辑，特别是在处理复杂嵌套状态时。
 它是基于 Immer 库的一个自定义 Hook，结合了 `useReducer` 和 Immer 的优势，允许开发者以“可变”的方式直接修改状态，而无需手动创建不可变副本。
@@ -1132,7 +1150,7 @@ export default function tasksReducer(tasks, action) {
 ```javascript
 function reducer(state, action) {
   switch (action.type) {
-    case 'UPDATE_NAME':
+    case "UPDATE_NAME":
       return {
         ...state,
         user: {
@@ -1159,19 +1177,22 @@ npm install use-immer
 然后在代码中引入 `useImmerReducer` ：
 
 ```javascript
-import { useImmerReducer } from 'use-immer';
+import { useImmerReducer } from "use-immer";
 ```
 
 1. **`useImmerReducer` 的签名**：
+
    ```javascript
    const [state, dispatch] = useImmerReducer(reducer, initialState);
    ```
+
    - `reducer`：接收 `(draft, action)` 参数，返回修改后的状态。
    - `initialState`：初始状态。
    - `state`：当前状态。
    - `dispatch`：用于触发状态更新。
 
 2. **`draft` 的作用**：
+
    - `draft` 是一个“草稿”对象，你可以直接对它进行修改。
    - 修改完成后，`useImmerReducer` 会根据你的操作生成一个新的不可变状态。
 
@@ -1188,10 +1209,10 @@ import { useImmerReducer } from 'use-immer';
 ```javascript
 function reducer(draft, action) {
   switch (action.type) {
-    case 'UPDATE_NAME':
+    case "UPDATE_NAME":
       draft.user.name = action.payload; // 直接修改 draft
       break;
-    case 'ADD_POST':
+    case "ADD_POST":
       draft.posts.push(action.payload); // 直接修改数组
       break;
     default:
@@ -1201,6 +1222,8 @@ function reducer(draft, action) {
 ```
 
 ## Context
+
+### 使用
 
 当我们需要将数据传递给子组件时，通常会使用 `props`，这在组件层级比较少时很奏效。
 但是当数据层级较深时，例如要将数据传递给孙子组件，`props` 的传递会很麻烦：需要将数据通过 props 层层传递。这时，我们可以使用 `Context` 。
@@ -1212,10 +1235,49 @@ Context 提供一种跨层级共享数据的方式，让任意后代组件都能
 Context 使用 `createContext` hook 创建，它只接受一个默认值参数，可以是任何类型。
 
 ```jsx
-import { createContext } from 'react';
+import { createContext } from "react";
 
-export const LevelContext = createContext(1);
-
+export const LevelContext = createContext();
 ```
- 
-- 2. 提供 context。
+
+- 2. 提供 context。用使用 `createContext` 创建的组件将可能需要用到 context 的子组件包裹起来。
+
+```jsx
+import { LevelContext } from "./LevelContext.js";
+
+export default function Add() {
+  return <LevelContext value={需要传递的数据}>...</LevelContext>;
+}
+```
+
+- 3. 使用 context。
+
+引入 `useContext` Hook 以及创建的 context：
+
+```jsx
+import { useContext } from "react";
+import { LevelContext } from "./LevelContext.js";
+```
+
+使用 `useContext` Hook 从 `LevelContext` 获取 context 的值：
+
+```jsx
+export default function NeedContext() {
+  const level = useContext(LevelContext);
+  // ...
+}
+```
+
+`useContext` Hook 可以在任意组件中获取 context 的值，而不需要通过 props 传递。
+
+下面是一个 `contexr` 例子。加入有这样一个场景：我们需要渲染 App 中 `userList` 的每一项，而具体的数据需要传递给 `ProfilelCard` 下的 `ProfileInfo`。
+
+<CodeViewBox url="https://stackblitz.com/edit/vitejs-vite-2vqt2sje?embed=1&file=src%2FApp.jsx&hideNavigation=1" title="Context 示例" />
+
+### 注意事项
+
+==Context 是利器，不是默认选项。==
+
+在 React 中，Context 虽能解决跨层级传参问题，但极易被滥用。
+**优先考虑显式传递 props**（即使经过多层），或**通过抽象组件并用 `children` 传递 JSX** 来减少中间层依赖——这能让数据流更清晰、组件更可维护。
+只有当多个远距离组件确实需要共享**低频、全局性数据**（如主题、用户状态、路由信息）时，才应使用 Context，并注意拆分 Context。
