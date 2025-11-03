@@ -3,34 +3,17 @@
     <canvas ref="canvasRef" />
     <div class="profile-container">
       <router-link class="avatar-link" to="/blog/">
-        <img
-          ref="avatarRef"
-          src="/avatar.jpg"
-          alt="Hoey"
-          class="profile-avatar"
-          @mousemove="handleAvatarMouseMove"
-          @mouseleave="handleAvatarMouseLeave"
-        />
+        <img ref="avatarRef" src="/avatar.jpg" alt="Hoey" class="profile-avatar" @mousemove="handleAvatarMouseMove"
+          @mouseleave="handleAvatarMouseLeave" />
       </router-link>
       <div class="profile-name">Hoey</div>
       <div class="profile-slogan">Teacher, I'm on fire to improve!</div>
       <div class="profile-links-box">
-        <a
-          href="https://github.com/zhenghaoyang24"
-          target="_blank"
-          class="profile-links"
-        >
+        <a href="https://github.com/zhenghaoyang24" target="_blank" class="profile-links">
           <icon class="profile-icon" name="grommet-icons:github" />
         </a>
-        <a
-          href="mailto:zhenghaoyang24@foxmail.com"
-          target="_blank"
-          class="profile-links"
-        >
-          <icon
-            class="profile-icon"
-            name="streamline-flex:mail-send-email-message-circle-solid"
-          />
+        <a href="mailto:zhenghaoyang24@foxmail.com" target="_blank" class="profile-links">
+          <icon class="profile-icon" name="streamline-flex:mail-send-email-message-circle-solid" />
         </a>
       </div>
     </div>
@@ -290,15 +273,15 @@ const handleClick = (e: MouseEvent) => updatePointer(e.clientX, e.clientY);
 
 watch(
   () => props.hue,
-  () => {}
+  () => { }
 );
 watch(
   () => props.saturation,
-  () => {}
+  () => { }
 );
 watch(
   () => props.chroma,
-  () => {}
+  () => { }
 );
 
 onMounted(() => {
