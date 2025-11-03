@@ -573,7 +573,7 @@ export default function Signup() {
 
 React 的生命周期在 React 16.3 和 React 16.8（引入 Hooks 之前） 进行了重要更新，主要目的是为了支持 异步渲染（Async Rendering） 和 并发模式（Concurrent Mode）。因此，React 的生命周期方法被分为“旧生命周期”和“新生命周期”。函数式组件通过 `useEffect` Hook 模拟生命周期行为。
 
-TODO: 异步渲染,并发模式
+<!-- TODO: 异步渲染,并发模式 -->
 
 **核心变化概览：**
 
@@ -1289,8 +1289,6 @@ export default function NeedContext() {
 - 1. **访问真实的 DOM 节点**，如聚焦输入框、测量尺寸、播放视频等。
 - 2. **存储可变值（类似实例变量）**，该值在组件重新渲染时**不会丢失**，且**修改它不会触发重新渲染**
 
----
-
 ### useRef
 
 在函数组件中，使用 `useRef` Hook 创建 ref：
@@ -1369,8 +1367,6 @@ function Timer() {
 | 值是否在渲染间持久化？ | ✅ 是（通过状态） | ✅ 是（通过 `current`） |
 | 适合存储什么？ | 需要 UI 响应的数据（如表单值、计数） | 不需要触发 UI 更新的可变数据（如 timer ID、DOM 引用、上次值） |
 
----
-
 ### `forwardRef` <Badge type="warning" text="< v19" />
 
 在 v19 之前，ref **不能直接传递给函数组件**（因为函数组件没有“实例”）。若希望父组件能访问子组件内部的 DOM，需使用 `forwardRef`：
@@ -1413,3 +1409,130 @@ function App() {
    const inputRef = useRef<HTMLInputElement>(null);
    const countRef = useRef<number>(0);
    ```
+
+## Effect
+
+### `useEffect`
+
+React 组件应尽可能保持**纯函数** —— 给定相同的 props 和 state，总是返回相同的 JSX。  
+而 `useEffect` 正是处理“不纯”逻辑的安全出口。所谓“副作用”，是指 **组件渲染之外的操作**，例如：
+
+- 数据获取
+- 订阅事件
+- 手动 DOM 操作
+- 设置定时器（`setTimeout` / `setInterval`）
+- 日志记录、埋点等
+
+#### 1. 语法
+
+```jsx
+useEffect(setup, dependencies);
+```
+
+- `setup`：一个函数，包含副作用逻辑
+- `dependencies`：依赖数组（`[dep1, dep2, ...]`），决定 `setup` 何时重新执行
+
+#### 2. 三种行为
+
+| 写法 | 行为 | 等效类组件生命周期 |
+|------|------|------------------|
+| `useEffect(() => { ... }, [])` | 仅在**挂载时执行一次** | `componentDidMount` |
+| `useEffect(() => { ... }, [a, b])` | 当 `a` 或 `b` **变化时执行** | `componentDidUpdate`（带条件） |
+| `useEffect(() => { ... })` | **每次渲染后都执行**（无依赖数组） | 无直接对应（慎用！） |
+
+::: warning
+Effect 是逃生舱口（escape hatch），不是默认工具。在大多数场景中,并不需要使用 Effect。参考 [你可能不需要 Effect](https://zh-hans.react.dev/learn/you-might-not-need-an-effect)。
+:::
+
+### 依赖数组
+
+依赖数组可以包含多个依赖项。只有当你指定的 所有 依赖项的值都与上一次渲染时完全相同，React 才会跳过重新运行该 Effect。
+**“依赖数组应包含所有在 effect 中使用的、可能变化的值”**
+
+包括：
+- props（如 `userId`）
+- state（如 `count`）
+- 函数（如 `handleSubmit`）
+- 从 props/state 衍生的值（如 `user.name`）
+
+```jsx
+// 错误：count 不在依赖数组中 → effect 永远读取初始 count=0
+useEffect(() => {
+  const id = setInterval(() => {
+    setCount(count + 1); // 总是 setCount(0 + 1)
+  }, 1000);
+  return () => clearInterval(id);
+}, []);
+```
+
+在 Effect 中直接更新 state 就像是把电源插座的插头插回自身：Effect 运行、更新 state、触发重新渲染、于是又触发 Effect 运行、再次更新 state，继而再次触发重新渲染。如此反复，从而陷入死循环。
+
+### 清理函数
+
+React 中的清理函数与 Vue 中清理函数 设计目的与运行时机很相似：==为了释放资源，解决竞态问题；在副作用执行之前执行上一次的清理函数，在组件卸载时执行最后一次清理函数。==
+
+<!-- TODO: 竞态问题 -->
+
+**在开发环境中**，React 会在组件首次挂载后立即重新挂载一次，所以中间会额外执行一次清理函数。
+之所以会额外的执行一次清理函数，是因为在开发环境下 React 会对逻辑进行压力测试，检测代码中的 bug，帮助找到需要清理的 Effect。
+
+#### 1. **数据获取（Data Fetching）**
+
+如果 Effect 需要获取数据，清理函数应 中止请求 或忽略其结果：
+
+```jsx
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false; // 防止竞态（race condition）
+
+    fetchUser(userId).then(data => {
+      if (!cancelled) setUser(data);
+    });
+
+    return () => {
+      cancelled = true; // 组件卸载时取消
+    };
+  }, [userId]); // userId 变化时重新获取
+
+  return <div>{user?.name}</div>;
+}
+```
+
+#### 2. **事件监听**
+
+如果在 Effect 订阅了某些监听事件，清理函数应退订这些事件：
+
+```jsx
+function WindowSize() {
+  const [size, setSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // 初始化
+
+    return () => window.removeEventListener('resize', handleResize); // [!code highlight]
+  }, []);
+
+  return <p>Window: {size.width} x {size.height}</p>;
+}
+```
+
+#### 3. 触发动画
+
+如果在 Effect 触发了一些动画，清理函数应将动画重置为初始状态：
+
+```jsx
+useEffect(() => {
+  const node = ref.current;
+  node.style.opacity = 1; // 触发动画
+  return () => {
+    node.style.opacity = 0; // 重置为初始值
+  };
+}, []);
+```

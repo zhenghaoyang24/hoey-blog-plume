@@ -119,4 +119,3 @@ App
    此阶段不可中断，是执行 DOM 操作和副作用的安全时机。
 
 [渲染和提交](https://zh-hans.react.dev/learn/render-and-commit)
-
