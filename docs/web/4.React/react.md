@@ -1281,3 +1281,135 @@ export default function NeedContext() {
 在 React 中，Context 虽能解决跨层级传参问题，但极易被滥用。
 **优先考虑显式传递 props**（即使经过多层），或**通过抽象组件并用 `children` 传递 JSX** 来减少中间层依赖——这能让数据流更清晰、组件更可维护。
 只有当多个远距离组件确实需要共享**低频、全局性数据**（如主题、用户状态、路由信息）时，才应使用 Context，并注意拆分 Context。
+
+## Ref
+
+在 React 中，**`ref`** 是一种用于**访问 DOM 元素或在组件多次渲染之间“记住”某个值**的机制。它有两个主要用途：
+
+- 1. **访问真实的 DOM 节点**，如聚焦输入框、测量尺寸、播放视频等。
+- 2. **存储可变值（类似实例变量）**，该值在组件重新渲染时**不会丢失**，且**修改它不会触发重新渲染**
+
+---
+
+### useRef
+
+在函数组件中，使用 `useRef` Hook 创建 ref：
+
+```jsx
+const ref = useRef(initialValue);
+```
+
+- `ref` 是一个**普通 JavaScript 对象**，结构为 `{ current: initialValue }`
+- 修改 `ref.current` **不会触发组件重新渲染**
+- 值在组件整个生命周期内**持久存在**
+
+
+**何时使用？**
+
+- 1. 访问 DOM 元素
+
+```jsx
+import { useRef, useEffect } from 'react';
+
+function TextInput() {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    // 自动聚焦输入框
+    inputRef.current.focus();
+  }, []);
+
+  return <input ref={inputRef} type="text" />;
+}
+```
+
+- 2. 存储可变值
+
+当你需要一个**在渲染之间保持不变的可变值**（如计时器 ID、上次 props 值、手势坐标等），`useRef` 是理想选择：
+
+```jsx
+function Timer() {
+  const intervalRef = useRef(null);
+  const [count, setCount] = useState(0);
+
+  const start = () => {
+    intervalRef.current = setInterval(() => {
+      setCount(c => c + 1);
+    }, 1000);
+  };
+
+  const stop = () => {
+    clearInterval(intervalRef.current);
+  };
+
+  // 清理定时器
+  useEffect(() => {
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={start}>Start</button>
+      <button onClick={stop}>Stop</button>
+    </div>
+  );
+}
+```
+
+::: tip 为什么不用 `useState` 存定时器 ID？  
+因为每次 `setInterval` 都会创建新闭包，旧的 `intervalId` 无法被清理。而 `ref.current` 始终指向最新值。
+:::
+
+### 与 `useState` 的区别
+
+| 特性 | `useState` | `useRef` |
+|------|-----------|---------|
+| 修改值是否触发重渲染？ | ✅ 是 | ❌ 否 |
+| 值是否在渲染间持久化？ | ✅ 是（通过状态） | ✅ 是（通过 `current`） |
+| 适合存储什么？ | 需要 UI 响应的数据（如表单值、计数） | 不需要触发 UI 更新的可变数据（如 timer ID、DOM 引用、上次值） |
+
+---
+
+### `forwardRef` <Badge type="warning" text="< v19" />
+
+在 v19 之前，ref **不能直接传递给函数组件**（因为函数组件没有“实例”）。若希望父组件能访问子组件内部的 DOM，需使用 `forwardRef`：
+
+```jsx
+// 子组件：暴露内部 input 的 ref
+const FancyInput = forwardRef((props, ref) => {
+  return <input ref={ref} className="fancy" {...props} />;
+});
+
+// 父组件：获取子组件内部 input 的 DOM
+function App() {
+  const inputRef = useRef(null);
+
+  const focusInput = () => {
+    inputRef.current.focus(); // ✅ 成功聚焦
+  };
+
+  return (
+    <>
+      <FancyInput ref={inputRef} />
+      <button onClick={focusInput}>Focus Input</button>
+    </>
+  );
+}
+```
+
+### 注意事项
+
+1. **不要滥用 ref**  
+   优先使用 props 和 state 管理数据流。ref 应仅用于：
+   - 必须操作 DOM 的场景（聚焦、动画、媒体控制）
+   - 存储与 UI 无关的可变数据
+
+2. **避免在渲染中读写 ref.current（除非必要）**  
+   因为它会破坏 React 的纯函数特性，可能导致难以调试的问题。
+
+3. **TypeScript 中需指定泛型**  
+   ```ts
+   const inputRef = useRef<HTMLInputElement>(null);
+   const countRef = useRef<number>(0);
+   ```
