@@ -35,7 +35,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   hue: 0,
   saturation: 0,
-  chroma: 0.6,
+  chroma: 0.5,
 });
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
