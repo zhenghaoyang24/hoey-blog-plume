@@ -387,11 +387,15 @@ canvas {
 
 .profile-avatar {
   width: 260px;
-  height: 260px;
+  aspect-ratio: 1 / 1;
   border-radius: 10px;
   box-shadow: 0 0 10px #00000077;
   pointer-events: auto;
   transition: transform 0.2s ease-out;
+
+  @media screen and (max-width: 770px) {
+    width: 200px;
+  }
 }
 
 .profile-name {
