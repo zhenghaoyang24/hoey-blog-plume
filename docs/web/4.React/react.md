@@ -1279,7 +1279,7 @@ export default function NeedContext() {
 
 下面是一个 `contexr` 例子。加入有这样一个场景：我们需要渲染 App 中 `userList` 的每一项，而具体的数据需要传递给 `ProfilelCard` 下的 `ProfileInfo`。
 
-<CodeViewBox url="https://stackblitz.com/edit/vitejs-vite-2vqt2sje?embed=1&file=src%2FApp.jsx&hideNavigation=1" title="Context 示例" />
+<CodeViewBox url="https://stackblitz.com/edit/vitejs-vite-2vqt2sje?ctl=1&embed=1&file=src%2FApp.jsx&hideNavigation=1" title="Context 示例" />
 
 ### 注意事项
 
@@ -1476,9 +1476,7 @@ useEffect(() => {
 
 ### 清理函数
 
-React 中的清理函数与 Vue 中清理函数 设计目的与运行时机很相似：==为了释放资源，解决竞态问题；在副作用执行之前执行上一次的清理函数，在组件卸载时执行最后一次清理函数。==
-
-<!-- TODO: 竞态问题 -->
+React 中的清理函数与 Vue 中清理函数 设计目的与运行时机很相似：==为了释放资源，解决[竞态问题](/qa/javascript/wfthwb8n/)；在副作用执行之前执行上一次的清理函数，在组件卸载时执行最后一次清理函数。==
 
 **在开发环境中**，React 会在组件首次挂载后立即重新挂载一次，所以中间会额外执行一次清理函数。
 之所以会额外的执行一次清理函数，是因为在开发环境下 React 会对逻辑进行压力测试，检测代码中的 bug，帮助找到需要清理的 Effect。
