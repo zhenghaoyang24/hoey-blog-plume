@@ -46,6 +46,7 @@ export default defineUserConfig({
      * markdown 曾强
      */
     markdown: {
+      annotation: true, // 启用注释
       collapse: true, // 启用折叠功能
       table: true,
       imageSize: true, // 图片优化 'local（本地图片）' | 'all（所有图片）'
