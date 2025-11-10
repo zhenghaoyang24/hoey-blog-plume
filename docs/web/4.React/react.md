@@ -578,7 +578,8 @@ export default function Signup() {
 在 Vue 中，我们可以使用 `mounted`、`updated`、`destroyed` 等生命周期函数来监听组件的挂载、更新和销毁，来完成数据加载、销毁计时器等操作，
 在 React 中同样有实现方式。
 
-React 的生命周期在 React 16.3 和 React 16.8（引入 Hooks 之前） 进行了重要更新，主要目的是为了支持 异步渲染（Async Rendering） 和 并发模式（Concurrent Mode）。因此，React 的生命周期方法被分为“旧生命周期”和“新生命周期”。函数式组件通过 `useEffect` Hook 模拟生命周期行为。
+React 的生命周期在 React 16.3 和 React 16.8（引入 Hooks 之前） 进行了重要更新，主要目的是为了支持 异步渲染（Async Rendering） 和 并发模式（Concurrent Mode）。
+因此，React 的生命周期方法被分为“旧生命周期”和“新生命周期”。==函数式组件通过 [useEffect](#effect) Hook 模拟生命周期行为。==
 
 <!-- TODO: 异步渲染,并发模式 -->
 
@@ -691,14 +692,6 @@ React 团队引入了两个新的静态生命周期方法，并标记三个旧�
 
 3.  **卸载阶段**
     - `componentWillUnmount()`
-
-### 实践
-
-1.  **数据获取**：在 `componentDidMount` 和 `componentDidUpdate` 中进行。
-2.  **派生状态**：尽量避免使用 `getDerivedStateFromProps`。考虑是否可以用**完全受控组件**（数据在父组件 state）或**完全不可控组件**（使用 `key` 重置内部状态）来替代。
-3.  **在更新前读取 DOM**：使用 `getSnapshotBeforeUpdate` 和 `componentDidUpdate` 的组合。
-4.  **副作用清理**：在 `componentWillUnmount` 中完成。
-5.  **未来方向**：React 官方正逐步推广 **Hooks** 作为编写组件的主要方式。在函数组件中，使用 `useEffect`、`useState` 等 Hook 可以覆盖所有生命周期场景，并且逻辑更清晰、更易于复用。对于新项目，建议优先使用函数组件和 Hooks。
 
 ## State
 
@@ -997,7 +990,6 @@ return (
 假如我们有一个复杂的数组对象，要对其进行添加、删除、修改、查询等操作，并返回新的数组对象。
 如果使用 `useState`，我们就需要定义多个事件处理函数，并使用多个 `setState` 来更新状态，逻辑将会越来越复杂。
 并且，当我们需要在其他方也对这个复杂的数组对象进行相同操作时，我们就又不得不写很多相同的代码，状态逻辑也越来越混乱。
-
 这时候就可以使用 `useReducer` 来解决这个问题。
 
 在 React 中，**reducer** 是一种用于**集中管理复杂状态逻辑**的模式，接收当前状态（state）和一个动作（action），返回新的状态。
@@ -1308,13 +1300,12 @@ const ref = useRef(initialValue);
 - 修改 `ref.current` **不会触发组件重新渲染**
 - 值在组件整个生命周期内**持久存在**
 
-
 **何时使用？**
 
 - 1. 访问 DOM 元素
 
 ```jsx
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 
 function TextInput() {
   const inputRef = useRef(null);
@@ -1339,7 +1330,7 @@ function Timer() {
 
   const start = () => {
     intervalRef.current = setInterval(() => {
-      setCount(c => c + 1);
+      setCount((c) => c + 1);
     }, 1000);
   };
 
@@ -1368,11 +1359,11 @@ function Timer() {
 
 ### 与 `useState` 的区别
 
-| 特性 | `useState` | `useRef` |
-|------|-----------|---------|
-| 修改值是否触发重渲染？ | ✅ 是 | ❌ 否 |
-| 值是否在渲染间持久化？ | ✅ 是（通过状态） | ✅ 是（通过 `current`） |
-| 适合存储什么？ | 需要 UI 响应的数据（如表单值、计数） | 不需要触发 UI 更新的可变数据（如 timer ID、DOM 引用、上次值） |
+| 特性                   | `useState`                           | `useRef`                                                      |
+| ---------------------- | ------------------------------------ | ------------------------------------------------------------- |
+| 修改值是否触发重渲染？ | ✅ 是                                | ❌ 否                                                         |
+| 值是否在渲染间持久化？ | ✅ 是（通过状态）                    | ✅ 是（通过 `current`）                                       |
+| 适合存储什么？         | 需要 UI 响应的数据（如表单值、计数） | 不需要触发 UI 更新的可变数据（如 timer ID、DOM 引用、上次值） |
 
 ### `forwardRef` <Badge type="warning" text="< v19" />
 
@@ -1405,13 +1396,14 @@ function App() {
 
 1. **不要滥用 ref**  
    优先使用 props 和 state 管理数据流。ref 应仅用于：
+
    - 必须操作 DOM 的场景（聚焦、动画、媒体控制）
    - 存储与 UI 无关的可变数据
 
 2. **避免在渲染中读写 ref.current（除非必要）**  
    因为它会破坏 React 的纯函数特性，可能导致难以调试的问题。
 
-3. **TypeScript 中需指定泛型**  
+3. **TypeScript 中需指定泛型**
    ```ts
    const inputRef = useRef<HTMLInputElement>(null);
    const countRef = useRef<number>(0);
@@ -1441,11 +1433,11 @@ useEffect(setup, dependencies);
 
 #### 2. 三种行为
 
-| 写法 | 行为 | 等效类组件生命周期 |
-|------|------|------------------|
-| `useEffect(() => { ... }, [])` | 仅在**挂载时执行一次** | `componentDidMount` |
-| `useEffect(() => { ... }, [a, b])` | 当 `a` 或 `b` **变化时执行** | `componentDidUpdate`（带条件） |
-| `useEffect(() => { ... })` | **每次渲染后都执行**（无依赖数组） | 无直接对应（慎用！） |
+| 写法                               | 行为                               | 等效类组件生命周期             |
+| ---------------------------------- | ---------------------------------- | ------------------------------ |
+| `useEffect(() => { ... }, [])`     | 仅在**挂载时执行一次**             | `componentDidMount`            |
+| `useEffect(() => { ... }, [a, b])` | 当 `a` 或 `b` **变化时执行**       | `componentDidUpdate`（带条件） |
+| `useEffect(() => { ... })`         | **每次渲染后都执行**（无依赖数组） | 无直接对应（慎用！）           |
 
 ::: warning
 Effect 是逃生舱口（escape hatch），不是默认工具。在大多数场景中,并不需要使用 Effect。参考 [你可能不需要 Effect](https://zh-hans.react.dev/learn/you-might-not-need-an-effect)。
@@ -1457,6 +1449,7 @@ Effect 是逃生舱口（escape hatch），不是默认工具。在大多数场�
 **“依赖数组应包含所有在 effect 中使用的、可能变化的值”**
 
 包括：
+
 - props（如 `userId`）
 - state（如 `count`）
 - 函数（如 `handleSubmit`）
@@ -1492,7 +1485,7 @@ function UserProfile({ userId }) {
   useEffect(() => {
     let cancelled = false; // 防止竞态（race condition）
 
-    fetchUser(userId).then(data => {
+    fetchUser(userId).then((data) => {
       if (!cancelled) setUser(data);
     });
 
@@ -1518,13 +1511,17 @@ function WindowSize() {
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     handleResize(); // 初始化
 
-    return () => window.removeEventListener('resize', handleResize); // [!code highlight]
+    return () => window.removeEventListener("resize", handleResize); // [!code highlight]
   }, []);
 
-  return <p>Window: {size.width} x {size.height}</p>;
+  return (
+    <p>
+      Window: {size.width} x {size.height}
+    </p>
+  );
 }
 ```
 
