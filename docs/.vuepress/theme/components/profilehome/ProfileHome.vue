@@ -386,7 +386,7 @@ canvas {
 }
 
 .profile-avatar {
-  width: 260px;
+  width: 20em;
   aspect-ratio: 1 / 1;
   border-radius: 10px;
   box-shadow: 0 0 10px #00000077;
