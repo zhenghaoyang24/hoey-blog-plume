@@ -1,7 +1,7 @@
 ---
 title: 网址导航
 createTime: 2024/11/21 19:16:45
-permalink: /more/sites-collect/
+permalink: /more/resources/
 ---
 ### 趋势
 <CardGrid>

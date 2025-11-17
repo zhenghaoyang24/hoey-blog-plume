@@ -37,8 +37,8 @@ export const navbar = defineNavbarConfig([
         icon: "material-icon-theme:folder-project-open",
       },
       {
-        text: "网址导航",
-        link: "/more/sites-collect/",
+        text: "资源导航",
+        link: "/more/resources/",
         icon: "logos:sitepoint",
       },
     ],
