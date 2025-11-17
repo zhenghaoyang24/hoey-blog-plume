@@ -1,9 +1,11 @@
 ---
-title: 网址导航
+title: 资源导航
 createTime: 2024/11/21 19:16:45
 permalink: /more/resources/
 ---
-### 趋势
+
+## 热门开源
+
 <CardGrid>
   <LinkCard title="bestofjs" icon="https://bestofjs.org/favicon.ico" href="https://bestofjs.org/" description="前端开源项目最新热点趋势" />
 </CardGrid>
@@ -127,6 +129,14 @@ permalink: /more/resources/
   <LinkCard title="StackBlitz" description="一个在线集成开发环境" href="https://stackblitz.com/" />
   <LinkCard title="Bi.cool" description="一款轻量级在线代码编辑器" href="https://bi.cool/" />
 </CardGrid>
+
+## 图书
+
+<CardGrid>
+  <LinkCard title="Vue.js设计与实现" description="循序渐进讲解Vue的设计原理" href="https://weread.qq.com/web/reader/c5c32170813ab7177g0181ae#outline?noScroll=1" />
+  <LinkCard title="JavaScript高级程序设计" description="JavaScript高级程序设计" href="https://weread.qq.com/web/reader/751326d0720befab7514782#outline?noScroll=1" />
+</CardGrid>
+  
 
 ## 其他
 <CarGrid>
