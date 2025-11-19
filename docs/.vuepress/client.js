@@ -10,7 +10,7 @@ import GridHome from './theme/components/gridhome/GridHome.vue'
 import CodeHome from './theme/components/codehome/CodeHome.vue'
 
 // 代码 box
-import CodeViewBox from './theme/components/CodeViewBox.vue'
+import JSRunner from './theme/components/JSRunner.vue'
 
 // Profile 首页
 import ProfileHome from './theme/components/profilehome/ProfileHome.vue'
@@ -21,7 +21,7 @@ export default defineClientConfig({
     app.component('GridHome', GridHome)
     app.component('CodeHome', CodeHome)
     app.component('ProfileHome', ProfileHome)
-    app.component('CodeViewBox', CodeViewBox)
+    app.component('JSRunner', JSRunner)
     app.component('AllFriendContent', AllFriendContent)
   },
 })
