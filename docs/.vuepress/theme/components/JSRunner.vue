@@ -5,13 +5,6 @@ import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 let monaco: any = null
 let editor: any = null
 
-if (typeof window !== 'undefined') {
-  import('monaco-editor').then((m) => {
-    monaco = m
-    editor = m.editor
-  })
-}
-
 interface Props {
   code?: string
   title?: string
@@ -55,14 +48,16 @@ const isDragging = ref(false)
 
 // 初始化 Monaco Editor
 onMounted(async () => {
-  // 确保只在客户端运行
-  if (typeof window === 'undefined' || !editorContainer.value) return
+  if (!editorContainer.value) return
 
-  // 等待 monaco-editor 加载完成
-  if (!monaco) {
+  // 动态加载 monaco-editor
+  try {
     const m = await import('monaco-editor')
     monaco = m
     editor = m.editor
+  } catch (error) {
+    console.error('Failed to load Monaco Editor:', error)
+    return
   }
 
   // 配置 Monaco Editor Worker 环境（使用简化配置）
