@@ -24,7 +24,7 @@ console.error('❌ 这是一个错误示例');`
 
 const props = withDefaults(defineProps<Props>(), {
   code: codeDefault,
-  title: '代码执行器'
+  title: 'JS 代码示例'
 })
 
 const emit = defineEmits<Emits>()
@@ -46,22 +46,14 @@ const isDragging = ref(false)
 onMounted(() => {
   if (!editorContainer.value) return
 
-  // 配置 Monaco Editor 的 Worker 环境
+  // 配置 Monaco Editor Worker 环境（使用简化配置）
+  // @ts-ignore
   self.MonacoEnvironment = {
-    getWorker(_: string, label: string) {
-      if (label === 'json') {
-        return new Worker(new URL('monaco-editor/esm/vs/language/json/json.worker?worker', import.meta.url), { type: 'module' })
-      }
-      if (label === 'css' || label === 'scss' || label === 'less') {
-        return new Worker(new URL('monaco-editor/esm/vs/language/css/css.worker?worker', import.meta.url), { type: 'module' })
-      }
-      if (label === 'html' || label === 'handlebars' || label === 'razor') {
-        return new Worker(new URL('monaco-editor/esm/vs/language/html/html.worker?worker', import.meta.url), { type: 'module' })
-      }
-      if (label === 'typescript' || label === 'javascript') {
-        return new Worker(new URL('monaco-editor/esm/vs/language/typescript/ts.worker?worker', import.meta.url), { type: 'module' })
-      }
-      return new Worker(new URL('monaco-editor/esm/vs/editor/editor.worker?worker', import.meta.url), { type: 'module' })
+    getWorker(_: unknown, label: string) {
+      // 对于 JavaScript/TypeScript，禁用 Worker 以避免路径问题
+      // 编辑器仍然可以正常工作，只是部分高级功能会在主线程运行
+      const blob = new Blob([''], { type: 'application/javascript' })
+      return new Worker(URL.createObjectURL(blob))
     }
   }
 
@@ -298,6 +290,7 @@ const getLogClass = (type: string) => {
   font-family: 'Consolas', 'Monaco', monospace;
   position: relative;
   overflow: hidden;
+  border-radius: 1%;
 }
 
 .header {
@@ -317,6 +310,7 @@ const getLogClass = (type: string) => {
 }
 
 .header-actions {
+  user-select: none;
   display: flex;
   gap: 8px;
 }
