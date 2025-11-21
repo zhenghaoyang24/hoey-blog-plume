@@ -10,8 +10,6 @@ comment: true
 
 <AllFriendContent/>
 
-
-
 ## 申请友链
 
 ### _我的友链信息_
