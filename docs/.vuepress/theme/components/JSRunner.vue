@@ -13,7 +13,6 @@ interface Emits {
 }
 
 const codeDefault = `// JavaScript 代码执行器示例
-// 支持完整的 console API 和 ES6+ 语法
 
 console.log('=== 欢迎使用代码执行器 ===');
 console.log('当前时间:', new Date().toLocaleString());
@@ -38,6 +37,9 @@ const consoleSize = ref(300) // 高度或宽度
 // Monaco Editor 相关
 const editorContainer = ref<HTMLElement | null>(null)
 let editorInstance: editor.IStandaloneCodeEditor | null = null
+
+// 控制台内容容器引用
+const consoleContentRef = ref<HTMLElement | null>(null)
 
 // 拖拽相关
 const isDragging = ref(false)
@@ -124,11 +126,24 @@ const clearConsole = () => {
 const addLog = (type: string, message: string) => {
   const timestamp = new Date().toLocaleTimeString()
   consoleLogs.value.push({ type, message, timestamp })
+  
+  // 滚动到底部
+  scrollToBottom()
+}
+
+// 滚动到控制台底部
+const scrollToBottom = () => {
+  // 使用 nextTick 确保 DOM 更新后再滚动
+  setTimeout(() => {
+    if (consoleContentRef.value) {
+      consoleContentRef.value.scrollTop = consoleContentRef.value.scrollHeight
+    }
+  }, 0)
 }
 
 // 执行代码
 const executeCode = () => {
-  clearConsole()
+  // clearConsole()
 
   if (!editorInstance) {
     addLog('error', '编辑器未初始化')
@@ -262,7 +277,7 @@ const getLogClass = (type: string) => {
         </div>
 
         <!-- 控制台内容 -->
-        <div class="console-content">
+        <div ref="consoleContentRef" class="console-content">
           <div v-if="consoleLogs.length === 0" class="console-empty">
             点击运行按钮执行代码...
           </div>
