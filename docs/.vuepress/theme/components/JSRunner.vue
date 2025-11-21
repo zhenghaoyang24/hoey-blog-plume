@@ -16,12 +16,22 @@ interface Emits {
 
 const codeDefault = `// JavaScript 代码执行器示例
 
-console.log('=== 欢迎使用代码执行器 ===');
-console.log('当前时间:', new Date().toLocaleString());
+// 正常日志
+console.log('Hello World!');
+console.info('这是提示信息');
+console.warn('这是警告信息');
 
-console.info('ℹ️ 这是一条提示信息');
-console.warn('⚠️ 注意：这是一个警告！');
-console.error('❌ 这是一个错误示例');`
+// 同步错误
+try {
+  undefined.toString();
+} catch(e) {
+  console.error('捕获错误:', e.message);
+}
+
+// 异步错误
+setTimeout(() => {
+  console.logg('拼写错误'); // 会报错
+}, 500);`
 
 const props = withDefaults(defineProps<Props>(), {
   code: codeDefault,
@@ -60,7 +70,7 @@ onMounted(async () => {
     return
   }
 
-  // 配置 Monaco Editor Worker 环境（使用简化配置）
+  // 简化配置配置 Monaco Editor Worker 环境
   // @ts-ignore
   self.MonacoEnvironment = {
     getWorker(_: unknown, label: string) {
@@ -155,7 +165,6 @@ const scrollToBottom = () => {
 
 // 执行代码
 const executeCode = () => {
-  // clearConsole()
 
   if (!editorInstance) {
     addLog('error', '编辑器未初始化')
@@ -165,21 +174,56 @@ const executeCode = () => {
   const code = editorInstance.getValue()
 
   try {
-    // 创建沙箱环境
-    const sandbox = {
-      console: {
-        log: (...args: unknown[]) => addLog('log', args.map(arg =>
+    //  console 和错误处理器
+    const originalConsole = { ...window.console }
+    const originalErrorHandler = window.onerror
+    const originalUnhandledRejection = window.onunhandledrejection
+
+    // 劫持全局 console
+    window.console = {
+      ...window.console,
+      log: (...args: unknown[]) => {
+        addLog('log', args.map(arg =>
           typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
-        ).join(' ')),
-        error: (...args: unknown[]) => addLog('error', args.map(arg => String(arg)).join(' ')),
-        warn: (...args: unknown[]) => addLog('warn', args.map(arg => String(arg)).join(' ')),
-        info: (...args: unknown[]) => addLog('info', args.map(arg => String(arg)).join(' '))
+        ).join(' '))
+      },
+      error: (...args: unknown[]) => {
+        addLog('error', args.map(arg => String(arg)).join(' '))
+      },
+      warn: (...args: unknown[]) => {
+        addLog('warn', args.map(arg => String(arg)).join(' '))
+      },
+      info: (...args: unknown[]) => {
+        addLog('info', args.map(arg => String(arg)).join(' '))
+      },
+      debug: (...args: unknown[]) => {
+        addLog('info', args.map(arg => String(arg)).join(' '))
       }
+    } as Console
+
+    // 劫持全局错误处理
+    window.onerror = (message, source, lineno, colno, error) => {
+      const errorMsg = error ? error.toString() : String(message)
+      addLog('error', `运行时错误: ${errorMsg}`)
+      return true // 阻止默认错误处理
     }
 
-    // 使用 Function 构造器创建隔离环境
-    const func = new Function('console', code)
-    func(sandbox.console)
+    // 劫持 Promise 未捕获错误
+    window.onunhandledrejection = (event) => {
+      addLog('error', `Promise 错误: ${event.reason}`)
+      event.preventDefault()
+    }
+
+    // 执行代码
+    const func = new Function(code)
+    func()
+
+    // 延迟恢复，给异步代码足够的执行时间
+    setTimeout(() => {
+      window.console = originalConsole
+      window.onerror = originalErrorHandler
+      window.onunhandledrejection = originalUnhandledRejection
+    }, 5000) // 5秒后恢复
 
     addLog('success', '代码执行完成')
   } catch (error: unknown) {
