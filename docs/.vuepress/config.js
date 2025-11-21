@@ -28,7 +28,17 @@ export default defineUserConfig({
   title: "Hoey",
   description: "Hoey' blog.",
 
-  bundler: viteBundler(),
+  bundler: viteBundler({
+    viteOptions: {
+      ssr: {
+        noExternal: [],
+        external: ['monaco-editor']
+      },
+      optimizeDeps: {
+        include: ['monaco-editor']
+      }
+    }
+  }),
 
   theme: plumeTheme({
     /**
@@ -87,9 +97,6 @@ export default defineUserConfig({
 
     // 部署域名
     hostname: "https://zhenghaoyang.cn",
-    plugins: {},
-     optimizeDeps: {
-    include: ['monaco-editor']
-  }
+    plugins: {}
   }),
 });

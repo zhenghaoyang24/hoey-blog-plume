@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
-import * as monaco from 'monaco-editor'
-import type { editor } from 'monaco-editor'
+
+// 动态导入 monaco-editor，仅在客户端加载
+let monaco: any = null
+let editor: any = null
+
+if (typeof window !== 'undefined') {
+  import('monaco-editor').then((m) => {
+    monaco = m
+    editor = m.editor
+  })
+}
 
 interface Props {
   code?: string
@@ -36,7 +45,7 @@ const consoleSize = ref(300) // 高度或宽度
 
 // Monaco Editor 相关
 const editorContainer = ref<HTMLElement | null>(null)
-let editorInstance: editor.IStandaloneCodeEditor | null = null
+let editorInstance: any = null
 
 // 控制台内容容器引用
 const consoleContentRef = ref<HTMLElement | null>(null)
@@ -45,8 +54,16 @@ const consoleContentRef = ref<HTMLElement | null>(null)
 const isDragging = ref(false)
 
 // 初始化 Monaco Editor
-onMounted(() => {
-  if (!editorContainer.value) return
+onMounted(async () => {
+  // 确保只在客户端运行
+  if (typeof window === 'undefined' || !editorContainer.value) return
+
+  // 等待 monaco-editor 加载完成
+  if (!monaco) {
+    const m = await import('monaco-editor')
+    monaco = m
+    editor = m.editor
+  }
 
   // 配置 Monaco Editor Worker 环境（使用简化配置）
   // @ts-ignore
