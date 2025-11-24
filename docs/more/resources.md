@@ -10,6 +10,13 @@ permalink: /more/resources/
   <LinkCard title="bestofjs" icon="https://bestofjs.org/favicon.ico" href="https://bestofjs.org/" description="前端开源项目最新热点趋势" />
 </CardGrid>
 
+## AI 相关
+
+<CardGrid>
+  <LinkCard title="Qoder" icon="https://g.alicdn.com/qbase/qoder/0.0.164/logodark.svg" href="https://qoder.com/" />
+  <LinkCard title="Nano Banana" icon="https://nanobanana.io/logo.png" href="https://nanobanana.io/" />
+</CardGrid>
+
 ## 库/框架
 
 <CardGrid>
