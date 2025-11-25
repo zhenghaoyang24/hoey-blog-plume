@@ -8,6 +8,7 @@ let editor: any = null
 interface Props {
   code?: string
   title?: string
+  height?: number
 }
 
 interface Emits {
@@ -35,6 +36,7 @@ setTimeout(() => {
 
 const props = withDefaults(defineProps<Props>(), {
   code: codeDefault,
+  height: 500,
   title: 'JS 代码示例'
 })
 
@@ -44,7 +46,7 @@ const emit = defineEmits<Emits>()
 const consoleVisible = ref(true)
 const consoleLogs = ref<Array<{ type: string; message: string; timestamp: string }>>([])
 const consolePosition = ref<'bottom' | 'right'>('bottom')
-const consoleSize = ref(300) // 高度或宽度
+const consoleSize = ref(50) // 百分比：高度或宽度占容器的百分比
 
 // Monaco Editor 相关
 const editorContainer = ref<HTMLElement | null>(null)
@@ -136,7 +138,7 @@ const toggleConsole = () => {
 // 切换控制台位置
 const toggleConsolePosition = () => {
   consolePosition.value = consolePosition.value === 'bottom' ? 'right' : 'bottom'
-  consoleSize.value = 300 // 重置大小
+  consoleSize.value = 50 // 重置大小为 50%
 }
 
 // 清除控制台
@@ -239,24 +241,27 @@ const startDrag = (e: MouseEvent) => {
   e.stopPropagation()
 
   // 获取容器信息
-  const container = (editorContainer.value?.parentElement?.parentElement) as HTMLElement
+  const container = (editorContainer.value?.parentElement) as HTMLElement
   if (!container) return
-
-  const containerRect = container.getBoundingClientRect()
 
   const onMouseMove = (moveEvent: MouseEvent) => {
     if (!isDragging.value) return
 
+    // 实时获取容器位置信息，避免滚动或窗口变化导致偏移
+    const containerRect = container.getBoundingClientRect()
+
     if (consolePosition.value === 'bottom') {
-      // 底部停靠：计算鼠标相对于容器底部的距离
+      // 底部停靠：计算鼠标相对于容器底部的距离，转换为百分比
       const distanceFromBottom = containerRect.bottom - moveEvent.clientY
-      const newHeight = Math.max(100, Math.min(distanceFromBottom, containerRect.height - 100))
-      consoleSize.value = newHeight
+      const percentage = (distanceFromBottom / containerRect.height) * 100
+      // 限制范围在 10% 到 90%
+      consoleSize.value = Math.max(5, Math.min(percentage, 90))
     } else {
-      // 右侧停靠：计算鼠标相对于容器右边的距离
+      // 右侧停靠：计算鼠标相对于容器右边的距离，转换为百分比
       const distanceFromRight = containerRect.right - moveEvent.clientX
-      const newWidth = Math.max(200, Math.min(distanceFromRight, containerRect.width - 200))
-      consoleSize.value = newWidth
+      const percentage = (distanceFromRight / containerRect.width) * 100
+      // 限制范围在 10% 到 90%
+      consoleSize.value = Math.max(20, Math.min(percentage, 80))
     }
   }
 
@@ -280,9 +285,9 @@ const consoleStyle = computed(() => {
   if (!consoleVisible.value) return { display: 'none' }
 
   if (consolePosition.value === 'bottom') {
-    return { height: `${consoleSize.value}px` }
+    return { height: `${consoleSize.value}%` }
   } else {
-    return { width: `${consoleSize.value}px` }
+    return { width: `${consoleSize.value}%` }
   }
 })
 
@@ -292,7 +297,7 @@ const getLogClass = (type: string) => {
 </script>
 
 <template>
-  <div class="code-executor" :class="containerClass">
+  <div class="code-executor" :class="containerClass" :style="{ height: `${height}px` }">
     <!-- 头部标题栏 -->
     <div class="header">
       <h3 class="title">{{ title }}</h3>
@@ -322,7 +327,7 @@ const getLogClass = (type: string) => {
 
       <!-- 控制台 -->
       <div v-if="consoleVisible" class="console-panel" :style="consoleStyle">
-        <!-- 拖拽手柄 -->
+        <!-- 拖拽 -->
         <div class="resize-handle"
           :class="{ 'handle-horizontal': consolePosition === 'bottom', 'handle-vertical': consolePosition === 'right' }"
           @mousedown="startDrag"></div>
@@ -354,7 +359,6 @@ const getLogClass = (type: string) => {
 .code-executor {
   display: flex;
   flex-direction: column;
-  height: 600px;
   max-height: 600px;
   background: #1e1e1e;
   color: #d4d4d4;
@@ -443,7 +447,7 @@ const getLogClass = (type: string) => {
   flex: 1;
   overflow: hidden;
   background: #1e1e1e;
-  min-height: 200px;
+
 }
 
 .console-panel {
@@ -452,6 +456,8 @@ const getLogClass = (type: string) => {
   border-top: 1px solid #3e3e42;
   display: flex;
   flex-direction: column;
+  min-height: 40px;
+  min-width: 100px;
 }
 
 .console-right .console-panel {
@@ -464,6 +470,7 @@ const getLogClass = (type: string) => {
   background: #3e3e42;
   z-index: 10;
   transition: background 0.2s;
+  user-select: none;
 }
 
 .resize-handle:hover {
@@ -474,7 +481,7 @@ const getLogClass = (type: string) => {
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 6px;
   cursor: ns-resize;
 }
 
@@ -482,7 +489,7 @@ const getLogClass = (type: string) => {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 4px;
+  width: 6px;
   cursor: ew-resize;
 }
 
