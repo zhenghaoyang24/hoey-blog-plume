@@ -422,7 +422,6 @@ onUnmounted(() => {
 .volume-slider {
   flex: 1;
   height: 5px;
-  -webkit-appearance: none;
   background: #444;
   border-radius: 3px;
   outline: none;
