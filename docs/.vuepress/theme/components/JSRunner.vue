@@ -181,25 +181,64 @@ const executeCode = () => {
     const originalErrorHandler = window.onerror
     const originalUnhandledRejection = window.onunhandledrejection
 
+    // 辅助函数：安全地将值转换为字符串，处理循环引用
+    const safeStringify = (value: unknown): string => {
+      if (value === null) {
+        return 'null';
+      }
+      if (value === undefined) {
+        return 'undefined';
+      }
+      if (value === window) {
+        return '[object Window]';
+      }
+      if (value === document) {
+        return '[object Document]';
+      }
+      if (value === document.body) {
+        return '[object HTMLBodyElement]';
+      }
+      
+      // 检查是否为DOM元素
+      if (typeof value === 'object' && 'nodeType' in value) {
+        return `[object ${value.constructor.name}]`;
+      }
+      
+      try {
+        // 使用自定义 replacer 处理循环引用
+        const seen = new Set();
+        return JSON.stringify(value, (key, val) => {
+          if (typeof val === 'object' && val !== null) {
+            if (seen.has(val)) {
+              return '[Circular]';
+            }
+            seen.add(val);
+          }
+          return val;
+        }, 2);
+      } catch (e) {
+        // 如果JSON.stringify失败，使用toString
+        return String(value);
+      }
+    };
+
     // 劫持全局 console
     window.console = {
       ...window.console,
       log: (...args: unknown[]) => {
-        addLog('log', args.map(arg =>
-          typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
-        ).join(' '))
+        addLog('log', args.map(arg => safeStringify(arg)).join(' '))
       },
       error: (...args: unknown[]) => {
-        addLog('error', args.map(arg => String(arg)).join(' '))
+        addLog('error', args.map(arg => safeStringify(arg)).join(' '))
       },
       warn: (...args: unknown[]) => {
-        addLog('warn', args.map(arg => String(arg)).join(' '))
+        addLog('warn', args.map(arg => safeStringify(arg)).join(' '))
       },
       info: (...args: unknown[]) => {
-        addLog('info', args.map(arg => String(arg)).join(' '))
+        addLog('info', args.map(arg => safeStringify(arg)).join(' '))
       },
       debug: (...args: unknown[]) => {
-        addLog('info', args.map(arg => String(arg)).join(' '))
+        addLog('info', args.map(arg => safeStringify(arg)).join(' '))
       }
     } as Console
 
@@ -216,9 +255,15 @@ const executeCode = () => {
       event.preventDefault()
     }
 
-    // 执行代码
-    const func = new Function(code)
-    func()
+    // 执行代码，使用更可靠的方式确保this指向window
+    // 在函数内部添加 'use strict' 移除，确保在非严格模式下执行
+    const codeToExecute = `(function() {
+      // 确保在非严格模式下执行，使this正确指向window
+      return eval(${JSON.stringify(code)});
+    }).call(window)`;
+    
+    const func = new Function(codeToExecute);
+    func();
 
     // 延迟恢复，给异步代码足够的执行时间
     setTimeout(() => {
