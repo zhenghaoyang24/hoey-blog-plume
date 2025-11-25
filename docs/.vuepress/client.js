@@ -1,27 +1,39 @@
-import { defineClientConfig } from 'vuepress/client'
-import './theme/styles/index.css'
-import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
-import AllFriendContent from './theme/components/AllFriendContent.vue'
+import { defineClientConfig } from "vuepress/client";
+import "./theme/styles/index.css";
+import RepoCard from "vuepress-theme-plume/features/RepoCard.vue";
+import AllFriendContent from "./theme/components/AllFriendContent.vue";
 
 // 网格首页
-import GridHome from './theme/components/gridhome/GridHome.vue'
+import GridHome from "./theme/components/gridhome/GridHome.vue";
 
 // 代码首页
-import CodeHome from './theme/components/codehome/CodeHome.vue'
+import CodeHome from "./theme/components/codehome/CodeHome.vue";
 
 // 代码 box
-import JSRunner from './theme/components/JSRunner.vue'
+import JSRunner from "./theme/components/JSRunner.vue";
 
 // Profile 首页
-import ProfileHome from './theme/components/profilehome/ProfileHome.vue'
+import ProfileHome from "./theme/components/profilehome/ProfileHome.vue";
+
+// 音乐挂件
+import MusicWidget from "./theme/components/MusicWidget/MusicWidget.vue";
+import { createApp, h } from "vue";
 
 export default defineClientConfig({
   enhance({ app }) {
-    app.component('RepoCard', RepoCard)
-    app.component('GridHome', GridHome)
-    app.component('CodeHome', CodeHome)
-    app.component('ProfileHome', ProfileHome)
-    app.component('JSRunner', JSRunner)
-    app.component('AllFriendContent', AllFriendContent)
+    app.component("RepoCard", RepoCard);
+    app.component("GridHome", GridHome);
+    app.component("CodeHome", CodeHome);
+    app.component("ProfileHome", ProfileHome);
+    app.component("JSRunner", JSRunner);
+    app.component("AllFriendContent", AllFriendContent);
+
+    const musicContainer = document.createElement("div");
+    musicContainer.id = "music-widget-container";
+    document.body.appendChild(musicContainer);
+
+    // createApp({
+    //   render: () => h(MusicWidget),
+    // }).mount("#music-widget-container");
   },
-})
+});
