@@ -97,6 +97,7 @@ export default defineUserConfig({
 
     // 部署域名
     hostname: "https://zhenghaoyang.cn",
-    plugins: {}
+    plugins: {
+    }
   }),
 });

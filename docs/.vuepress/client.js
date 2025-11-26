@@ -15,10 +15,6 @@ import JSRunner from "./theme/components/JSRunner.vue";
 // Profile 首页
 import ProfileHome from "./theme/components/profilehome/ProfileHome.vue";
 
-// 音乐挂件
-import MusicWidget from "./theme/components/MusicWidget/MusicWidget.vue";
-import { createApp, h } from "vue";
-
 export default defineClientConfig({
   enhance({ app }) {
     app.component("RepoCard", RepoCard);
@@ -27,13 +23,5 @@ export default defineClientConfig({
     app.component("ProfileHome", ProfileHome);
     app.component("JSRunner", JSRunner);
     app.component("AllFriendContent", AllFriendContent);
-
-    const musicContainer = document.createElement("div");
-    musicContainer.id = "music-widget-container";
-    document.body.appendChild(musicContainer);
-
-    // createApp({
-    //   render: () => h(MusicWidget),
-    // }).mount("#music-widget-container");
   },
 });
