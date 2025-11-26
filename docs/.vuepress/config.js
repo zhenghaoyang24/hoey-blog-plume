@@ -91,7 +91,6 @@ export default defineUserConfig({
       comment: false,
       repo: 'zhenghaoyang24/hoey-blog-plume', 
       repoId: 'R_kgDONIcgog', 
-      category: 'Announcements', 
       categoryId: 'DIC_kwDONIcgos4Cwn3Q', 
     },
 

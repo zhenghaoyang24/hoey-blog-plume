@@ -16,7 +16,7 @@ import JSRunner from "./theme/components/JSRunner.vue";
 import ProfileHome from "./theme/components/profilehome/ProfileHome.vue";
 
 export default defineClientConfig({
-  enhance({ app }) {
+  enhance({ app, router, siteData }) {
     app.component("RepoCard", RepoCard);
     app.component("GridHome", GridHome);
     app.component("CodeHome", CodeHome);
