@@ -97,26 +97,5 @@ export default defineUserConfig({
     // 部署域名
     hostname: "https://zhenghaoyang.cn",
   }),
-  plugins: [
-    musicWidget({
-      // 配置选项（去掉 musicWidget() 调用）
-      songs: [
-        {
-          title: "歌曲名称1",
-          artist: "艺术家1",
-          cover: "/path/to/cover1.jpg",
-          url: "/music/1.mp3",
-        },
-        {
-          title: "歌曲名称2",
-          artist: "艺术家2",
-          cover: "/path/to/cover2.jpg",
-          url: "/music/2.mp3",
-        },
-      ],
-      autoPlay: true,
-      defaultVolume: 0.5,
-      defaultIndex: 0,
-    }),
-  ],
+  plugins: [],
 });
