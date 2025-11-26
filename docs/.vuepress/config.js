@@ -1,7 +1,8 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import { plumeTheme } from "vuepress-theme-plume";
-import { navbar } from './navbar'
+import { navbar } from "./navbar";
+import musicWidget from "vuepress-plume-music-widget";
 
 export default defineUserConfig({
   autoFrontmatter: {
@@ -32,12 +33,12 @@ export default defineUserConfig({
     viteOptions: {
       ssr: {
         noExternal: [],
-        external: ['monaco-editor']
+        external: ["monaco-editor"],
       },
       optimizeDeps: {
-        include: ['monaco-editor']
-      }
-    }
+        include: ["monaco-editor"],
+      },
+    },
   }),
 
   theme: plumeTheme({
@@ -45,11 +46,11 @@ export default defineUserConfig({
      * 文件路径，导航栏，侧边栏等配置
      */
     collections: [
-      { type: 'post', dir: 'blog', title: '博客' },
-      { type: 'doc', dir: 'memo', title: '备忘录',  sidebar: 'auto'},
-      { type: 'doc', dir: 'web', title: 'web开发',  sidebar: 'auto'},
-      { type: 'doc', dir: 'qa', title: 'Q&A',  sidebar: 'auto'},
-      { type: 'post', dir: 'more', title: '更多',  sidebar: 'auto'},
+      { type: "post", dir: "blog", title: "博客" },
+      { type: "doc", dir: "memo", title: "备忘录", sidebar: "auto" },
+      { type: "doc", dir: "web", title: "web开发", sidebar: "auto" },
+      { type: "doc", dir: "qa", title: "Q&A", sidebar: "auto" },
+      { type: "post", dir: "more", title: "更多", sidebar: "auto" },
     ],
     navbar,
 
@@ -87,14 +88,35 @@ export default defineUserConfig({
      * 评论
      */
     comment: {
-      provider: 'Giscus', // "Artalk“ | "Giscus" | "Twikoo" | "Waline"
+      provider: "Giscus", // "Artalk“ | "Giscus" | "Twikoo" | "Waline"
       comment: false,
-      repo: 'zhenghaoyang24/hoey-blog-plume', 
-      repoId: 'R_kgDONIcgog', 
-      categoryId: 'DIC_kwDONIcgos4Cwn3Q', 
+      repo: "zhenghaoyang24/hoey-blog-plume",
+      repoId: "R_kgDONIcgog",
+      categoryId: "DIC_kwDONIcgos4Cwn3Q",
     },
-
     // 部署域名
     hostname: "https://zhenghaoyang.cn",
   }),
+  plugins: [
+    musicWidget({
+      // 配置选项（去掉 musicWidget() 调用）
+      songs: [
+        {
+          title: "歌曲名称1",
+          artist: "艺术家1",
+          cover: "/path/to/cover1.jpg",
+          url: "/music/1.mp3",
+        },
+        {
+          title: "歌曲名称2",
+          artist: "艺术家2",
+          cover: "/path/to/cover2.jpg",
+          url: "/music/2.mp3",
+        },
+      ],
+      autoPlay: true,
+      defaultVolume: 0.5,
+      defaultIndex: 0,
+    }),
+  ],
 });
