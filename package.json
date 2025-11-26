@@ -4,7 +4,7 @@
   "description": "老师，我太想进步了。",
   "author": "zhenghaoyang",
   "engines": {
-    "node": ">=20.0.0"
+    "node": "^18.20.0 || >=20.0.0"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
