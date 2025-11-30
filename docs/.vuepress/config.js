@@ -2,7 +2,7 @@ import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import { plumeTheme } from "vuepress-theme-plume";
 import { navbar } from "./navbar";
-import musicWidget from "vuepress-plume-music-widget";
+import musicWidget from "vuepress-plugin-music-widget";
 
 export default defineUserConfig({
   autoFrontmatter: {
@@ -97,5 +97,19 @@ export default defineUserConfig({
     // ²¿ÊðÓòÃû
     hostname: "https://zhenghaoyang.cn",
   }),
-  plugins: [],
+  plugins: [
+    musicWidget({
+      songs: [
+        {
+          name: "Cruel Summer",
+          artist: "Taylor Swift",
+          url: "https://api.zhenghaoyang.cn/api/music/1",
+          cover: "https://zhenghaoyang.cn/avatar.jpg",
+        },
+      ],
+      autoPlay: false,
+      defaultIndex: 0,
+
+    })
+  ],
 });
