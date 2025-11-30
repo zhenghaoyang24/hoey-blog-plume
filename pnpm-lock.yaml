@@ -24,8 +24,8 @@ importers:
         specifier: ^5.9.3
         version: 5.9.3
       vuepress-plugin-music-widget:
-        specifier: ^1.1.10
-        version: 1.1.10(vue@3.5.22(typescript@5.9.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.7.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.93.2)(sass@1.93.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3)))
+        specifier: ^1.1.11
+        version: 1.1.11(vue@3.5.22(typescript@5.9.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.7.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.93.2)(sass@1.93.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3)))
     devDependencies:
       '@vuepress/bundler-vite':
         specifier: 2.0.0-rc.24
@@ -2804,8 +2804,8 @@ packages:
       stylus:
         optional: true
 
-  vuepress-plugin-music-widget@1.1.10:
-    resolution: {integrity: sha512-sx4QtLvQ7/sPjPsUfkSxg+6E4e91/OxO879I5w2Z1C8kU0/4UB2skI0bL/cePgICvn0e/Ve+e5fltG1ePmjO+A==}
+  vuepress-plugin-music-widget@1.1.11:
+    resolution: {integrity: sha512-f4oIxRlIVr0a5wJgiXq1N3XogyBXUXiGdQ1K6x44FSM2+c4l85y1wtkdVQ59dWn+3mFAjgNpWQlev8xD6nbi5g==}
     peerDependencies:
       vue: ^3.2.0
       vuepress: ^2.0.0-rc.14
@@ -5782,7 +5782,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  vuepress-plugin-music-widget@1.1.10(vue@3.5.22(typescript@5.9.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.7.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.93.2)(sass@1.93.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3))):
+  vuepress-plugin-music-widget@1.1.11(vue@3.5.22(typescript@5.9.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.7.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.93.2)(sass@1.93.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3))):
     dependencies:
       vue: 3.5.22(typescript@5.9.3)
       vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.7.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.93.2)(sass@1.93.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3))

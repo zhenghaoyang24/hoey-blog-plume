@@ -103,7 +103,7 @@ export default defineUserConfig({
         {
           name: "Cruel Summer",
           artist: "Taylor Swift",
-          url: "https://api.zhenghaoyang.cn/api/music/1",
+          url: "./public/music/1.mp3",
           cover: "https://zhenghaoyang.cn/avatar.jpg",
         },
       ],
