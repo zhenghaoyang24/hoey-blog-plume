@@ -23,9 +23,6 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
-      vuepress-plugin-music-widget:
-        specifier: ^1.1.18
-        version: 1.1.18(vue@3.5.22(typescript@5.9.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.7.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.93.2)(sass@1.93.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3)))
     devDependencies:
       '@vuepress/bundler-vite':
         specifier: 2.0.0-rc.24
@@ -2803,12 +2800,6 @@ packages:
         optional: true
       stylus:
         optional: true
-
-  vuepress-plugin-music-widget@1.1.18:
-    resolution: {integrity: sha512-4Ma+BjcVa/wr20xV7FpjBANQznGimLp9lHClxtA/0G3YKeIiGdUvxP4I/oV1fcT316C1JVCJwEAdbXhcs2N+dg==}
-    peerDependencies:
-      vue: ^3.2.0
-      vuepress: ^2.0.0-rc.14
 
   vuepress-theme-plume@1.0.0-rc.169:
     resolution: {integrity: sha512-WkX/o6aaFj/wQCMOhFBzTZL4UjZQM+hAt11JMEYxp7l0mAEyoD7GmrT+EPzzcMjqssDB8DQ7BLdDFNfPCHZEHA==}
@@ -5781,11 +5772,6 @@ snapshots:
       stylus: 0.64.0
     transitivePeerDependencies:
       - typescript
-
-  vuepress-plugin-music-widget@1.1.18(vue@3.5.22(typescript@5.9.3))(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.7.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.93.2)(sass@1.93.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3))):
-    dependencies:
-      vue: 3.5.22(typescript@5.9.3)
-      vuepress: 2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.7.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.93.2)(sass@1.93.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3))
 
   vuepress-theme-plume@1.0.0-rc.169(@algolia/client-search@5.40.0)(@iconify/json@2.2.394)(echarts@5.6.0)(markdown-it@14.1.0)(markmap-lib@0.18.12(markmap-common@0.18.9))(markmap-toolbar@0.18.12(markmap-common@0.18.9))(markmap-view@0.18.12(markmap-common@0.18.9))(sass-embedded@1.93.2)(sass@1.93.2)(search-insights@2.17.3)(stylus@0.64.0)(typescript@5.9.3)(vuepress@2.0.0-rc.24(@vuepress/bundler-vite@2.0.0-rc.24(@types/node@24.7.1)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.93.2)(sass@1.93.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.1))(typescript@5.9.3)(vue@3.5.22(typescript@5.9.3))):
     dependencies:
