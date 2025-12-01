@@ -97,19 +97,5 @@ export default defineUserConfig({
     // ²¿ÊðÓòÃû
     hostname: "https://zhenghaoyang.cn",
   }),
-  plugins: [
-    musicWidget({
-      songs: [
-        {
-          name: "Cruel Summer",
-          artist: "Taylor Swift",
-          url: "https://api.zhenghaoyang.cn/music/get/1",
-          cover: "https://zhenghaoyang.cn/avatar.jpg",
-        },
-      ],
-      autoPlay: false,
-      defaultIndex: 0,
-
-    })
-  ],
+  plugins: [],
 });
