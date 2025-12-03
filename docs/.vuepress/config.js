@@ -49,7 +49,6 @@ export default defineUserConfig({
       { type: "post", dir: "blog", title: "博客" },
       { type: "doc", dir: "memo", title: "备忘录", sidebar: "auto" },
       { type: "doc", dir: "web", title: "web开发", sidebar: "auto" },
-      { type: "doc", dir: "qa", title: "Q&A", sidebar: "auto" },
       { type: "post", dir: "more", title: "更多", sidebar: "auto" },
     ],
     navbar,

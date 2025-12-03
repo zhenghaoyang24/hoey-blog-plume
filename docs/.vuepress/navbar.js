@@ -19,9 +19,8 @@ export const navbar = defineNavbarConfig([
   },
   {
     text: "Q&A",
-    link: "/qa/overview/",
-    icon: "noto:thinking-face",
-    activeMatch: "^/qa/",
+    link: "https://interview.zhenghaoyang.cn",
+    icon: "openmoji:interview",
   },
   {
     text: "更多",
