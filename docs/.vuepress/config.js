@@ -6,9 +6,9 @@ import { navbar } from "./navbar";
 
 export default defineUserConfig({
   autoFrontmatter: {
-    permalink: true, // ÊÇ·ñÉú³ÉÓÀ¾ÃÁ´½Ó
-    createTime: true, // ÊÇ·ñÉú³É´´½¨Ê±¼ä
-    title: true, // ÊÇ·ñÉú³É±êÌâ
+    permalink: true, // æ˜¯å¦ç”Ÿæˆæ°¸ä¹…é“¾æ¥
+    createTime: true, // æ˜¯å¦ç”Ÿæˆåˆ›å»ºæ—¶é—´
+    title: true, // æ˜¯å¦ç”Ÿæˆæ ‡é¢˜
   },
   head: [
     ["meta", { name: "referrer", content: "no-referrer" }],
@@ -43,31 +43,32 @@ export default defineUserConfig({
 
   theme: plumeTheme({
     /**
-     * ÎÄ¼şÂ·¾¶£¬µ¼º½À¸£¬²à±ßÀ¸µÈÅäÖÃ
+     * æ–‡ä»¶è·¯å¾„ï¼Œå¯¼èˆªæ ï¼Œä¾§è¾¹æ ç­‰é…ç½®
      */
     collections: [
-      { type: "post", dir: "blog", title: "²©¿Í" },
-      { type: "doc", dir: "memo", title: "±¸ÍüÂ¼", sidebar: "auto" },
-      { type: "doc", dir: "web", title: "web¿ª·¢", sidebar: "auto" },
-      { type: "post", dir: "more", title: "¸ü¶à", sidebar: "auto" },
+      { type: "post", dir: "blog", title: "åšå®¢" },
+      { type: "doc", dir: "qa", title: "Q&A", sidebar: "auto" },
+      { type: "doc", dir: "memo", title: "å¤‡å¿˜å½•", sidebar: "auto" },
+      { type: "doc", dir: "web", title: "webå¼€å‘", sidebar: "auto" },
+      { type: "post", dir: "more", title: "æ›´å¤š" },
     ],
     navbar,
 
     /**
-     * markdown ÔøÇ¿
+     * markdown æ›¾å¼º
      */
     markdown: {
-      annotation: true, // ÆôÓÃ×¢ÊÍ
-      collapse: true, // ÆôÓÃÕÛµş¹¦ÄÜ
+      annotation: true, // å¯ç”¨æ³¨é‡Š
+      collapse: true, // å¯ç”¨æŠ˜å åŠŸèƒ½
       table: true,
-      imageSize: true, // Í¼Æ¬ÓÅ»¯ 'local£¨±¾µØÍ¼Æ¬£©' | 'all£¨ËùÓĞÍ¼Æ¬£©'
-      demo: true, // ÆôÓÃĞÂµÄ´úÂëÑİÊ¾¹¦ÄÜ
-      markmap: true, // ÆôÓÃ Markmap Í¼±íÇ¶ÈëÓï·¨
-      codeTree: true, // ÆôÓÃ´úÂëÊ÷
+      imageSize: true, // å›¾ç‰‡ä¼˜åŒ– 'localï¼ˆæœ¬åœ°å›¾ç‰‡ï¼‰' | 'allï¼ˆæ‰€æœ‰å›¾ç‰‡ï¼‰'
+      demo: true, // å¯ç”¨æ–°çš„ä»£ç æ¼”ç¤ºåŠŸèƒ½
+      markmap: true, // å¯ç”¨ Markmap å›¾è¡¨åµŒå…¥è¯­æ³•
+      codeTree: true, // å¯ç”¨ä»£ç æ ‘
     },
 
     /**
-     * ´úÂë¸ßÁÁ
+     * ä»£ç é«˜äº®
      * https://theme-plume.vuejs.press/config/plugins/code-highlight/
      * */
     // [lang] title="xxxx"  https://theme-plume.vuejs.press/guide/code/features/
@@ -75,25 +76,25 @@ export default defineUserConfig({
       themes: { light: "vitesse-light", dark: "vitesse-dark" },
       notationDiff: true,
       notationErrorLevel: true,
-      notationFocus: true, // ÆôÓÃ´úÂë¿é¾Û½¹ https://theme-plume.vuejs.press/guide/code/features/#%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%AD%E8%81%9A%E7%84%A6
+      notationFocus: true, // å¯ç”¨ä»£ç å—èšç„¦ https://theme-plume.vuejs.press/guide/code/features/#%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%AD%E8%81%9A%E7%84%A6
       notationHighlight: true,
-      notationWordHighlight: true, // ´Ê¸ßÁÁ https://theme-plume.vuejs.press/guide/code/features/#%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%AD-%E8%AF%8D%E9%AB%98%E4%BA%AE
-      highlightLines: true, // ÆôÓÃĞĞ¸ßÁÁ https://theme-plume.vuejs.press/guide/code/features/#%E5%9C%A8%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%AD%E5%AE%9E%E7%8E%B0%E8%A1%8C%E9%AB%98%E4%BA%AE
-      collapsedLines: true, // È«¾ÖÆôÓÃ ´úÂëÕÛµş https://theme-plume.vuejs.press/guide/code/features/#%E6%8A%98%E5%8F%A0%E4%BB%A3%E7%A0%81%E5%9D%97
-      lineNumbers: true, // ÆôÓÃĞĞºÅ https://theme-plume.vuejs.press/guide/code/features/#%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%B7
+      notationWordHighlight: true, // è¯é«˜äº® https://theme-plume.vuejs.press/guide/code/features/#%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%AD-%E8%AF%8D%E9%AB%98%E4%BA%AE
+      highlightLines: true, // å¯ç”¨è¡Œé«˜äº® https://theme-plume.vuejs.press/guide/code/features/#%E5%9C%A8%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%AD%E5%AE%9E%E7%8E%B0%E8%A1%8C%E9%AB%98%E4%BA%AE
+      collapsedLines: true, // å…¨å±€å¯ç”¨ ä»£ç æŠ˜å  https://theme-plume.vuejs.press/guide/code/features/#%E6%8A%98%E5%8F%A0%E4%BB%A3%E7%A0%81%E5%9D%97
+      lineNumbers: true, // å¯ç”¨è¡Œå· https://theme-plume.vuejs.press/guide/code/features/#%E4%BB%A3%E7%A0%81%E8%A1%8C%E5%8F%B7
     },
 
     /**
-     * ÆÀÂÛ
+     * è¯„è®º
      */
     comment: {
-      provider: "Giscus", // "Artalk¡° | "Giscus" | "Twikoo" | "Waline"
+      provider: "Giscus", // "Artalkâ€œ | "Giscus" | "Twikoo" | "Waline"
       comment: false,
       repo: "zhenghaoyang24/hoey-blog-plume",
       repoId: "R_kgDONIcgog",
       categoryId: "DIC_kwDONIcgos4Cwn3Q",
     },
-    // ²¿ÊğÓòÃû
+    // éƒ¨ç½²åŸŸå
     hostname: "https://zhenghaoyang.cn",
   }),
   plugins: [],
