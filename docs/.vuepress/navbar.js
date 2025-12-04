@@ -19,8 +19,8 @@ export const navbar = defineNavbarConfig([
   },
   {
     text: "Q&A",
-    link: "https://interview.zhenghaoyang.cn",
     icon: "openmoji:interview",
+    link: "/qa/guide/",
   },
   {
     text: "更多",
