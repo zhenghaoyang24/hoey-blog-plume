@@ -4,10 +4,7 @@ createTime: 2025/02/02 13:35:20
 permalink: /qa/basic/html/dco123r2/
 ---
 
-# title
-
 ::: tip 提问
-
 1. 什么是DOCTYPE？
 2. DOCTYPE的作用是什么？
 3. 标准模式和兼容模式
