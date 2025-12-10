@@ -1,7 +1,5 @@
 ## 个人博客
 
-博客主题为 [vuepress-theme-plume](https://theme-plume.vuejs.press/)
-
 网址：https://zhenghaoyang.cn/
 
 博客主页为自定义页面，若你也在使用这个博客主题并想参考本博客主页，可查看以下详细说明。
@@ -139,3 +137,9 @@ npm install echarts
 ### 自定义卡片宽度
 
 卡片宽度在卡片组件的父 `div` 中使用 `class` 进行更改，`grid-row-1` 为一个卡片铺满一行，`grid-row-1-1` 为两个卡片 1:1 行排, `grid-row-3-2` 为两个卡片 3:2 行排,你可以在 `Custom.vue` 的 `style` 中写更多的布局方式，随意组合卡片。
+
+## 许可
+
+本博客主题使用开源主题 [vuepress-theme-plume](https://theme-plume.vuejs.press/)，遵循 MIT 协议。
+
+感谢 [pengzhanbo](https://github.com/pengzhanbo) 创建的优秀的开源主题，感谢所有贡献者。

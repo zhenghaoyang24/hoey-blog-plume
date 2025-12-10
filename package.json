@@ -1,8 +1,14 @@
 {
   "name": "hoey-blog-plume",
   "type": "module",
-  "description": "老师，我太想进步了。",
-  "author": "zhenghaoyang",
+  "description": "Teacher, I'm on fire to improve!",
+  "author": {
+    "name": "zhenghaoyang24",
+    "email": "zhenghaoyang24@foxmail.com",
+    "url": "https://github.com/zhenghaoyang24"
+  },
+  "private": true,
+  "license": "MIT",
   "engines": {
     "node": "^18.20.0 || >=20.0.0"
   },
