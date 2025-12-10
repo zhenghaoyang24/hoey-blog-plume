@@ -1,6 +1,6 @@
 node_modules
-dist
+dist/
 .temp
 .cache
-.idea
-.vscode
+.idea/
+.vscode/
