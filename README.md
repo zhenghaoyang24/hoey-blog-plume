@@ -6,7 +6,7 @@
 
 ## 类别说明
 
-本博客目前有两种自定义主页 - `CodeHome`、`GridHome`.。
+本博客目前有两种自定义主页 - `CodeHome`、`GridHome` 。
 
 一种是网格类型有各类卡片 的 GridHome，另一种是显示代码的 CodeHome。
 
