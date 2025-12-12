@@ -1,20 +1,27 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import {
+  ref,
+  computed,
+  watch,
+  onMounted,
+  onBeforeUnmount,
+  reactive,
+} from "vue";
 
 // 动态导入 monaco-editor，仅在客户端加载
-let monaco: any = null
-let editor: any = null
+let monaco: any = null;
+let editor: any = null;
 
+/**
+ * 定义 props 和默认值
+ */
 interface Props {
-  code?: string
-  title?: string
-  height?: number
+  code?: string,
+  title?: string,
+  height?: number,
 }
 
-interface Emits {
-  (e: 'update:code', value: string): void
-}
-
+// 默认代码
 const codeDefault = `// JavaScript 代码执行器示例
 
 // 正常日志
@@ -32,44 +39,55 @@ try {
 // 异步错误
 setTimeout(() => {
   console.logg('拼写错误'); // 会报错
-}, 500);`
+}, 500);`;
 
 const props = withDefaults(defineProps<Props>(), {
   code: codeDefault,
   height: 500,
-  title: 'JS 代码示例'
-})
+  title: "JS code example",
+  consoleTitle: "console",
+});
 
-const emit = defineEmits<Emits>()
+interface Emits {
+  (e: "update:code", value: string): void;
+}
+const emit = defineEmits<Emits>();
 
 // 控制台状态
-const consoleVisible = ref(true)
-const consoleLogs = ref<Array<{ type: string; message: string; timestamp: string }>>([])
-const consolePosition = ref<'bottom' | 'right'>('bottom')
-const consoleSize = ref(50) // 百分比：高度或宽度占容器的百分比
+const consoleState = reactive<{
+  visible: boolean;
+  logs: Array<{ type: string; message: string; timestamp: string }>;
+  position: "bottom" | "right";
+  size: number;
+}>({
+  visible: true,
+  logs: [],
+  position: "bottom",
+  size: 50,
+});
 
 // Monaco Editor 相关
-const editorContainer = ref<HTMLElement | null>(null)
-let editorInstance: any = null
+const editorContainer = ref<HTMLElement | null>(null);
+let editorInstance: any = null;
 
 // 控制台内容容器引用
-const consoleContentRef = ref<HTMLElement | null>(null)
+const consoleContentRef = ref<HTMLElement | null>(null);
 
 // 拖拽相关
-const isDragging = ref(false)
+const isDragging = ref(false);
 
 // 初始化 Monaco Editor
 onMounted(async () => {
-  if (!editorContainer.value) return
+  if (!editorContainer.value) return;
 
   // 动态加载 monaco-editor
   try {
-    const m = await import('monaco-editor')
-    monaco = m
-    editor = m.editor
+    const m = await import("monaco-editor");
+    monaco = m;
+    editor = m.editor;
   } catch (error) {
-    console.error('Failed to load Monaco Editor:', error)
-    return
+    console.error("Failed to load Monaco Editor:", error);
+    return;
   }
 
   // 简化配置配置 Monaco Editor Worker 环境
@@ -78,23 +96,23 @@ onMounted(async () => {
     getWorker(_: unknown, label: string) {
       // 对于 JavaScript/TypeScript，禁用 Worker 以避免路径问题
       // 编辑器仍然可以正常工作，只是部分高级功能会在主线程运行
-      const blob = new Blob([''], { type: 'application/javascript' })
-      return new Worker(URL.createObjectURL(blob))
-    }
-  }
+      const blob = new Blob([""], { type: "application/javascript" });
+      return new Worker(URL.createObjectURL(blob));
+    },
+  };
 
   // 创建编辑器实例
   editorInstance = monaco.editor.create(editorContainer.value, {
     value: props.code,
-    language: 'javascript',
-    theme: 'vs-dark',
+    language: "javascript",
+    theme: "vs-dark",
     automaticLayout: true,
     fontSize: 14,
-    fontFamily: 'Consolas, Monaco, Courier New, monospace',
-    lineNumbers: 'on',
+    fontFamily: "Consolas, Monaco, Courier New, monospace",
+    lineNumbers: "on",
     minimap: { enabled: false },
     scrollBeyondLastLine: false,
-    wordWrap: 'on',
+    wordWrap: "on",
     tabSize: 2,
     insertSpaces: true,
     formatOnPaste: true,
@@ -103,119 +121,126 @@ onMounted(async () => {
     quickSuggestions: true,
     folding: true,
     bracketPairColorization: {
-      enabled: true
-    }
-  })
+      enabled: true,
+    },
+  });
 
   // 监听内容变化
   editorInstance.onDidChangeModelContent(() => {
     if (editorInstance) {
-      const value = editorInstance.getValue()
-      emit('update:code', value)
+      const value = editorInstance.getValue();
+      emit("update:code", value);
     }
-  })
-})
+  });
+});
 
 // 监听 props.code 变化，更新编辑器内容
-watch(() => props.code, (newCode) => {
-  if (editorInstance && editorInstance.getValue() !== newCode) {
-    editorInstance.setValue(newCode)
+watch(
+  () => props.code,
+  (newCode) => {
+    if (editorInstance && editorInstance.getValue() !== newCode) {
+      editorInstance.setValue(newCode);
+    }
   }
-})
+);
 
 // 清理编辑器
 onBeforeUnmount(() => {
   if (editorInstance) {
-    editorInstance.dispose()
+    editorInstance.dispose();
   }
-})
+});
 
 // 切换控制台显示/隐藏
 const toggleConsole = () => {
-  consoleVisible.value = !consoleVisible.value
-}
+  consoleState.visible = !consoleState.visible
+};
 
 // 切换控制台位置
 const toggleConsolePosition = () => {
-  consolePosition.value = consolePosition.value === 'bottom' ? 'right' : 'bottom'
-  consoleSize.value = 50 // 重置大小为 50%
-}
+  consoleState.position =
+    consoleState.position === "bottom" ? "right" : "bottom";
+  consoleState.size = 50; // 重置大小为 50%
+};
 
 // 清除控制台
 const clearConsole = () => {
-  consoleLogs.value = []
-}
+  consoleState.logs = [];
+};
 
 // 添加日志
 const addLog = (type: string, message: string) => {
-  const timestamp = new Date().toLocaleTimeString()
-  consoleLogs.value.push({ type, message, timestamp })
-  
+  const timestamp = new Date().toLocaleTimeString();
+  consoleState.logs.push({ type, message, timestamp });
+
   // 滚动到底部
-  scrollToBottom()
-}
+  scrollToBottom();
+};
 
 // 滚动到控制台底部
 const scrollToBottom = () => {
   // 使用 nextTick 确保 DOM 更新后再滚动
   setTimeout(() => {
     if (consoleContentRef.value) {
-      consoleContentRef.value.scrollTop = consoleContentRef.value.scrollHeight
+      consoleContentRef.value.scrollTop = consoleContentRef.value.scrollHeight;
     }
-  }, 0)
-}
+  }, 0);
+};
 
 // 执行代码
 const executeCode = () => {
-
   if (!editorInstance) {
-    addLog('error', '编辑器未初始化')
-    return
+    addLog("error", "编辑器未初始化");
+    return;
   }
 
-  const code = editorInstance.getValue()
+  const code = editorInstance.getValue();
 
   try {
     //  console 和错误处理器
-    const originalConsole = { ...window.console }
-    const originalErrorHandler = window.onerror
-    const originalUnhandledRejection = window.onunhandledrejection
+    const originalConsole = { ...window.console };
+    const originalErrorHandler = window.onerror;
+    const originalUnhandledRejection = window.onunhandledrejection;
 
     // 辅助函数：安全地将值转换为字符串，处理循环引用
     const safeStringify = (value: unknown): string => {
       if (value === null) {
-        return 'null';
+        return "null";
       }
       if (value === undefined) {
-        return 'undefined';
+        return "undefined";
       }
       if (value === window) {
-        return '[object Window]';
+        return "[object Window]";
       }
       if (value === document) {
-        return '[object Document]';
+        return "[object Document]";
       }
       if (value === document.body) {
-        return '[object HTMLBodyElement]';
+        return "[object HTMLBodyElement]";
       }
-      
+
       // 检查是否为DOM元素
-      if (typeof value === 'object' && 'nodeType' in value) {
+      if (typeof value === "object" && "nodeType" in value) {
         return `[object ${value.constructor.name}]`;
       }
-      
+
       try {
         // 使用自定义 replacer 处理循环引用
         const seen = new Set();
-        return JSON.stringify(value, (key, val) => {
-          if (typeof val === 'object' && val !== null) {
-            if (seen.has(val)) {
-              return '[Circular]';
+        return JSON.stringify(
+          value,
+          (key, val) => {
+            if (typeof val === "object" && val !== null) {
+              if (seen.has(val)) {
+                return "[Circular]";
+              }
+              seen.add(val);
             }
-            seen.add(val);
-          }
-          return val;
-        }, 2);
+            return val;
+          },
+          2
+        );
       } catch (e) {
         // 如果JSON.stringify失败，使用toString
         return String(value);
@@ -226,34 +251,34 @@ const executeCode = () => {
     window.console = {
       ...window.console,
       log: (...args: unknown[]) => {
-        addLog('log', args.map(arg => safeStringify(arg)).join(' '))
+        addLog("log", args.map((arg) => safeStringify(arg)).join(" "));
       },
       error: (...args: unknown[]) => {
-        addLog('error', args.map(arg => safeStringify(arg)).join(' '))
+        addLog("error", args.map((arg) => safeStringify(arg)).join(" "));
       },
       warn: (...args: unknown[]) => {
-        addLog('warn', args.map(arg => safeStringify(arg)).join(' '))
+        addLog("warn", args.map((arg) => safeStringify(arg)).join(" "));
       },
       info: (...args: unknown[]) => {
-        addLog('info', args.map(arg => safeStringify(arg)).join(' '))
+        addLog("info", args.map((arg) => safeStringify(arg)).join(" "));
       },
       debug: (...args: unknown[]) => {
-        addLog('info', args.map(arg => safeStringify(arg)).join(' '))
-      }
-    } as Console
+        addLog("info", args.map((arg) => safeStringify(arg)).join(" "));
+      },
+    } as Console;
 
     // 劫持全局错误处理
     window.onerror = (message, source, lineno, colno, error) => {
-      const errorMsg = error ? error.toString() : String(message)
-      addLog('error', `运行时错误: ${errorMsg}`)
-      return true // 阻止默认错误处理
-    }
+      const errorMsg = error ? error.toString() : String(message);
+      addLog("error", `运行时错误: ${errorMsg}`);
+      return true; // 阻止默认错误处理
+    };
 
     // 劫持 Promise 未捕获错误
     window.onunhandledrejection = (event) => {
-      addLog('error', `Promise 错误: ${event.reason}`)
-      event.preventDefault()
-    }
+      addLog("error", `Promise 错误: ${event.reason}`);
+      event.preventDefault();
+    };
 
     // 执行代码，使用更可靠的方式确保this指向window
     // 在函数内部添加 'use strict' 移除，确保在非严格模式下执行
@@ -261,84 +286,84 @@ const executeCode = () => {
       // 确保在非严格模式下执行，使this正确指向window
       return eval(${JSON.stringify(code)});
     }).call(window)`;
-    
+
     const func = new Function(codeToExecute);
     func();
 
     // 延迟恢复，给异步代码足够的执行时间
     setTimeout(() => {
-      window.console = originalConsole
-      window.onerror = originalErrorHandler
-      window.onunhandledrejection = originalUnhandledRejection
-    }, 5000) // 5秒后恢复
+      window.console = originalConsole;
+      window.onerror = originalErrorHandler;
+      window.onunhandledrejection = originalUnhandledRejection;
+    }, 5000); // 5秒后恢复
 
-    addLog('success', '代码执行完成')
+    addLog("success", "代码执行完成");
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error ? error.message : String(error)
-    addLog('error', `执行错误: ${errorMessage}`)
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    addLog("error", `执行错误: ${errorMessage}`);
   }
-}
+};
 
 // 拖拽开始
 const startDrag = (e: MouseEvent) => {
-  isDragging.value = true
-  e.preventDefault()
-  e.stopPropagation()
+  isDragging.value = true;
+  e.preventDefault();
+  e.stopPropagation();
 
   // 获取容器信息
-  const container = (editorContainer.value?.parentElement) as HTMLElement
-  if (!container) return
+  const container = editorContainer.value?.parentElement as HTMLElement;
+  if (!container) return;
 
   const onMouseMove = (moveEvent: MouseEvent) => {
-    if (!isDragging.value) return
+    if (!isDragging.value) return;
 
     // 实时获取容器位置信息，避免滚动或窗口变化导致偏移
-    const containerRect = container.getBoundingClientRect()
+    const containerRect = container.getBoundingClientRect();
 
-    if (consolePosition.value === 'bottom') {
+    if (consoleState.position === "bottom") {
       // 底部停靠：计算鼠标相对于容器底部的距离，转换为百分比
-      const distanceFromBottom = containerRect.bottom - moveEvent.clientY
-      const percentage = (distanceFromBottom / containerRect.height) * 100
+      const distanceFromBottom = containerRect.bottom - moveEvent.clientY;
+      const percentage = (distanceFromBottom / containerRect.height) * 100;
       // 限制范围在 10% 到 90%
-      consoleSize.value = Math.max(5, Math.min(percentage, 90))
+      consoleState.size = Math.max(5, Math.min(percentage, 90));
     } else {
       // 右侧停靠：计算鼠标相对于容器右边的距离，转换为百分比
-      const distanceFromRight = containerRect.right - moveEvent.clientX
-      const percentage = (distanceFromRight / containerRect.width) * 100
+      const distanceFromRight = containerRect.right - moveEvent.clientX;
+      const percentage = (distanceFromRight / containerRect.width) * 100;
       // 限制范围在 10% 到 90%
-      consoleSize.value = Math.max(20, Math.min(percentage, 80))
+      consoleState.size = Math.max(20, Math.min(percentage, 80));
     }
-  }
+  };
 
   const onMouseUp = () => {
-    isDragging.value = false
-    document.removeEventListener('mousemove', onMouseMove)
-    document.removeEventListener('mouseup', onMouseUp)
-  }
+    isDragging.value = false;
+    document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("mouseup", onMouseUp);
+  };
 
-  document.addEventListener('mousemove', onMouseMove)
-  document.addEventListener('mouseup', onMouseUp)
-}
+  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("mouseup", onMouseUp);
+};
 
 // 计算样式
 const containerClass = computed(() => ({
-  'console-bottom': consolePosition.value === 'bottom',
-  'console-right': consolePosition.value === 'right'
-}))
+  "console-bottom": consoleState.position === "bottom",
+  "console-right": consoleState.position === "right",
+}));
 
 const consoleStyle = computed(() => {
-  if (!consoleVisible.value) return { display: 'none' }
+  if (!consoleState.visible) return { display: "none" };
 
-  if (consolePosition.value === 'bottom') {
-    return { height: `${consoleSize.value}%` }
+  if (consoleState.position === "bottom") {
+    return { height: `${consoleState.size}%` };
   } else {
-    return { width: `${consoleSize.value}%` }
+    return { width: `${consoleState.size}%` };
   }
-})
+});
 
 const getLogClass = (type: string) => {
-  return `log-item log-${type}`
-}
+  return `log-item log-${type}`;
+};
 </script>
 
 <template>
@@ -348,19 +373,19 @@ const getLogClass = (type: string) => {
       <h3 class="title">{{ title }}</h3>
       <div class="header-actions">
         <button @click="toggleConsolePosition" class="btn btn-position"
-          :title="consolePosition === 'bottom' ? '切换到右侧' : '切换到底部'">
-          <span v-if="consolePosition === 'bottom'">⬅️</span>
-          <span v-else>⬇️</span>
+          :title="consoleState.position === 'bottom' ? '切换到右侧' : '切换到底部'">
+          <span v-if="consoleState.position === 'bottom'">⬇️</span>
+          <span v-else>⬅️</span>
         </button>
-        <button @click="toggleConsole" class="btn btn-toggle" :title="consoleVisible ? '隐藏控制台' : '显示控制台'">
-          <span v-if="consoleVisible">👁️</span>
+        <button @click="toggleConsole" class="btn btn-toggle" :title="consoleState.visible ? '隐藏控制台' : '显示控制台'">
+          <span v-if="consoleState.visible">👁️</span>
           <span v-else>👁️‍🗨️</span>
         </button>
         <button @click="executeCode" class="btn btn-run" title="运行代码">
-          ▶️ 运行
+          ▶️ run
         </button>
         <button @click="clearConsole" class="btn btn-clear" title="清除控制台">
-          🗑️ 清除
+          🗑️ clear
         </button>
       </div>
     </div>
@@ -371,24 +396,25 @@ const getLogClass = (type: string) => {
       <div ref="editorContainer" class="monaco-editor-container"></div>
 
       <!-- 控制台 -->
-      <div v-if="consoleVisible" class="console-panel" :style="consoleStyle">
+      <div v-if="consoleState.visible" class="console-panel" :style="consoleStyle">
         <!-- 拖拽 -->
-        <div class="resize-handle"
-          :class="{ 'handle-horizontal': consolePosition === 'bottom', 'handle-vertical': consolePosition === 'right' }"
-          @mousedown="startDrag"></div>
+        <div class="resize-handle" :class="{
+          'handle-horizontal': consoleState.position === 'bottom',
+          'handle-vertical': consoleState.position === 'right',
+        }" @mousedown="startDrag"></div>
 
         <!-- 控制台标题 -->
         <div class="console-header">
-          <span class="console-title">控制台输出</span>
+          <span class="console-title">console</span>
         </div>
 
         <!-- 控制台内容 -->
         <div ref="consoleContentRef" class="console-content">
-          <div v-if="consoleLogs.length === 0" class="console-empty">
-            点击运行按钮执行代码...
+          <div v-if="consoleState.logs.length === 0" class="console-empty">
+            Click the run button to execute the code ...
           </div>
           <div v-else>
-            <div v-for="(log, index) in consoleLogs" :key="index" :class="getLogClass(log.type)">
+            <div v-for="(log, index) in consoleState.logs" :key="index" :class="getLogClass(log.type)">
               <span class="log-time">{{ log.timestamp }}</span>
               <span class="log-type">[{{ log.type.toUpperCase() }}]</span>
               <span class="log-message">{{ log.message }}</span>
@@ -407,7 +433,7 @@ const getLogClass = (type: string) => {
   max-height: 600px;
   background: #1e1e1e;
   color: #d4d4d4;
-  font-family: 'Consolas', 'Monaco', monospace;
+  font-family: "Consolas", "Monaco", monospace;
   position: relative;
   overflow: hidden;
   border-radius: 1%;
@@ -492,7 +518,6 @@ const getLogClass = (type: string) => {
   flex: 1;
   overflow: hidden;
   background: #1e1e1e;
-
 }
 
 .console-panel {
