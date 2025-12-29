@@ -112,6 +112,7 @@ permalink: /more/resources/
 <CardGrid>
   <LinkCard title="iconify" icon="https://icon-sets.iconify.design/favicon.svg" href="https://icon-sets.iconify.design/" />
   <LinkCard title="iconfont" icon="https://img.alicdn.com/imgextra/i2/O1CN01FF1t1g1Q3PDWpSm4b_!!6000000001920-55-tps-508-135.svg" href="https://www.iconfont.cn/" />
+  <LinkCard title="React Icons" icon="" href="https://react-icons.github.io/react-icons/" />
 </CardGrid>
 
 
