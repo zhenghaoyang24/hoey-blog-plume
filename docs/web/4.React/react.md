@@ -144,11 +144,21 @@ style={{color:'skyblue',fontSize:'24px'}}
 表达式是能计算出一个值的代码片段，例如：
 
 ```js
-{ 2 + 3 }; // 返回 5
-{ x * y }; // 返回 x 和 y 的乘积
-{ ("hello") }; // 字符串字面量，返回 "hello"
-{ foo() }; // 函数调用表达式，返回函数的返回值
-{ [1, 2, 3] }; // 数组字面量，返回 123
+{
+  2 + 3;
+} // 返回 5
+{
+  x * y;
+} // 返回 x 和 y 的乘积
+{
+  ("hello");
+} // 字符串字面量，返回 "hello"
+{
+  foo();
+} // 函数调用表达式，返回函数的返回值
+{
+  [1, 2, 3];
+} // 数组字面量，返回 123
 x > 0 ? "pos" : "neg"; // 三元表达式
 ```
 
@@ -170,7 +180,7 @@ React 应用是由被称为 组件 的独立 UI 片段构建而成。组件是�
 
 ### 定义组件
 
-- **类式组件**
+- **类组件**
 
 使用 ES6 `class` 继承 `React.Component`：
 
@@ -183,7 +193,7 @@ class Counter extends React.Component {
     this.state = { count: 0 };
   }
 
-  // 供实力使用的方法
+  // 供实例使用的方法
   increment = () => {
     this.setState({ count: this.state.count + 1 });
   };
@@ -200,9 +210,9 @@ class Counter extends React.Component {
 }
 ```
 
-- **函数式组件**
+- **函数组件**
 
-函数组件是一个 JavaScript 函数，==当我们把函数名称大写时，React 会将此函数视为组件。!==
+函数组件是一个 JavaScript 函数，==当我们把函数名称大写时，React 会将此函数视为组件。==
 
 ```jsx
 import { useState } from "react"; // 引入 useState Hooks
@@ -221,10 +231,8 @@ function Counter() {
 
 从上面的代码可以看出来函数式组件更简洁，逻辑复用更简单。类式组件是 React 16.8 版本之前创建组件的方式。
 
-React 16.8（2019）推出了 hooks API，函数组件成为与类组件平级的主流开发方式，而后官方持续强化函数组件生态，如今** 函数组件 + Hooks** 已成为主流开发范式。
-React 团队也明确表示：未来不会为类组件添加新功能，函数组件是唯一推荐的编写方式。
-
-==因此创建新项目推荐使用函数式组件。==
+React 16.8（2019）推出了 hooks API，函数组件成为与类组件平级的主流开发方式，而后官方持续强化函数组件生态，如今 **函数组件 + Hooks** 已成为主流开发范式。
+React 团队也明确表示：未来不会为类组件添加新功能，函数组件是推荐的编写方式。
 
 :::table title="方式对比"
 | 特性 | 类式组件 | 函数式组件 |
@@ -233,7 +241,7 @@ React 团队也明确表示：未来不会为类组件添加新功能，函数�
 | 状态管理 | `this.state` + `this.setState()` | `useState` / `useReducer` |
 | 逻辑复用 | 需借助 HOC 或 render props，较复杂 | 自定义 Hooks，组合性强、复用简单 |
 | 性能优化 | `shouldComponentUpdate` 或 `PureComponent` | `React.memo`、`useMemo`、`useCallback` |
-| React 官方推荐 | ❌ 已不再推荐新项目使用 | ✅ **当前及未来唯一推荐方式** |
+| React 官方推荐 | ❌ 已不再推荐新项目使用 | ✅ **当前及未来推荐的方式** |
 | 新特性支持（React 18+）| 不支持（如并发渲染、新 Hooks） | 完全支持 |
 :::
 
@@ -298,7 +306,7 @@ export default function Profile({ name = "React", desc }) {
 ```
 
 props 还可以传递组件的子内容。它与 [Vue 中的插槽](https://cn.vuejs.org/guide/components/slots.html) 一样，
-都是用于将父组件的内容“透传”到子组件的指定位置，实现组件的灵活组合。
+用于将父组件的内容“透传”到子组件的指定位置，实现组件的灵活组合。
 
 :::tabs
 
@@ -334,16 +342,16 @@ function Children({ children, title }) {
 
 ### 条件渲染
 
-在 Vue 中，我们可以在标签上使用 `v-if` 、 `v-else` 和 `v-else-if` 指令来实现条件渲染。而在 React 中，
-我们只能使用 `JavaScript` 中的 `if` 语句、`&&` 和 `? :` 运算符来选择性地渲染 JSX。
+在 Vue 中，我们使用 `v-if` 、 `v-else` 和 `v-else-if` 指令来实现条件渲染。而在 React 中，
+我们使用 `JavaScript` 中的 `if` 语句、`&&` 和 `? :` 运算符来选择性地渲染 JSX。
 
 ```jsx
 export default function App() {
-  const isLoggedIn = true;
-  if (isLoggedIn) {
-    return <div>今天</div>;
+  const isOpen = true;
+  if (isOpen) {
+    return <div>Open</div>;
   } else {
-    return <div>明天</div>;
+    return <div>Close</div>;
   }
 }
 ```
@@ -352,8 +360,8 @@ export default function App() {
 
 ```jsx
 export default function App() {
-  const isLoggedIn = true;
-  return <div>{isLoggedIn ? "今天" : "明天"}</div>;
+  const isOpen = true;
+  return <div>{isOpen ? "Open" : "Close"}</div>;
 }
 ```
 
@@ -368,119 +376,32 @@ export default function App() {
 
 当我们的判断更加复杂，可以 **选择性地将 JSX 赋值给变量**，这种方式代码更冗长，但更加灵活。
 
-::: tabs
-@tab Item.js
-
-```js
-function Item({ name, isPacked }) {
-  let itemContent = name;
-  if (isPacked) {
-    itemContent = <del>{name + " ✅"}</del>;
+```jsx
+export default function App() {
+  const did = true;
+  let content;
+  if (did) {
+    content = <div>学习 React✅</div>;
   }
-  return <li className="item">{itemContent}</li>;
+  return <div>{content}</div>;
 }
 ```
-
-@tab PackingList.js
-
-```js
-export default function PackingList() {
-  return (
-    <section>
-      <h1>Sally Ride 的行李清单</h1>
-      <ul>
-        <Item isPacked={true} name="宇航服" />
-        <Item isPacked={true} name="带金箔的头盔" />
-        <Item isPacked={false} name="Tam 的照片" />
-      </ul>
-    </section>
-  );
-}
-```
-
-:::
 
 ### 列表渲染
 
 在 Vue 中，我们可以在标签上使用 `v-for` 指令来实现列表渲染。而在 React 中，
 我们是通过 `JavaScript` 的数组方法来操作数组中的数据。例如使用 `filter()` 筛选需要渲染的组件、使用 `map(`) 把数组转换成组件数组。
 
-::: tabs
-@tab App.jsx
-
 ```jsx
-import { people } from "./data.js";
-import { getImageUrl } from "./utils.js";
-
 export default function List() {
-  const listItems = people.map(
-    (
-      person // [!code highlight]
-    ) => (
-      <li key={person.id}>
-        <img src={getImageUrl(person)} alt={person.name} />
-        <p>
-          <b>{person.name}</b>
-          {" " + person.profession + " "}因{person.accomplishment}而闻名世界
-        </p>
-      </li>
-    )
-  );
+  const people = [
+    { id: 0, name: "Max", profession: "数学家" },
+    { id: 1, name: "Nores", profession: "物理学家" },
+  ];
+  const listItems = people.map((person) => <li key={person.id}> ... </li>);
   return <ul>{listItems}</ul>;
 }
 ```
-
-@tab data.js
-
-```
-export const people = [
-  {
-    id: 0, // 在 JSX 中作为 key 使用
-    name: '凯瑟琳·约翰逊',
-    profession: '数学家',
-    accomplishment: '太空飞行相关数值的核算',
-    imageId: 'MK3eW3A',
-  },
-  {
-    id: 1, // 在 JSX 中作为 key 使用
-    name: '马里奥·莫利纳',
-    profession: '化学家',
-    accomplishment: '北极臭氧空洞的发现',
-    imageId: 'mynHUSa',
-  },
-  {
-    id: 2, // 在 JSX 中作为 key 使用
-    name: '穆罕默德·阿卜杜勒·萨拉姆',
-    profession: '物理学家',
-    accomplishment: '关于基本粒子间弱相互作用和电磁相互作用的统一理论',
-    imageId: 'bE7W1ji',
-  },
-  {
-    id: 3, // 在 JSX 中作为 key 使用
-    name: '珀西·莱温·朱利亚',
-    profession: '化学家',
-    accomplishment: '开创性的可的松药物、类固醇和避孕药',
-    imageId: 'IOjWm71',
-  },
-  {
-    id: 4, // 在 JSX 中作为 key 使用
-    name: '苏布拉马尼扬·钱德拉塞卡',
-    profession: '天体物理学家',
-    accomplishment: '白矮星质量计算',
-    imageId: 'lrWQx8l',
-  },
-];
-```
-
-@tab utils.js
-
-```js
-export function getImageUrl(person) {
-  return "https://i.imgur.com/" + person.imageId + "s.jpg";
-}
-```
-
-:::
 
 ::: tip
 直接放在 map() 方法里的 JSX 元素一般都需要指定 key 值，`key` 属性应该保持不变。
@@ -490,38 +411,48 @@ export function getImageUrl(person) {
 
 ### 事件处理函数
 
-在 Vue 中，我们可以使用 `v-on` 指令来监听事件。而在 React 中，我们可以使用 `onClick`、`onChange`、`onSubmit` 等属性来监听事件。
+在 React 中，我们可以使用 `onClick`、`onChange`、`onSubmit` 等属性来监听事件。
 
-处理函数通常在组件内定义，名称以 handle 开头，后跟事件名称，将其作为 Props 传入。
+处理函数通常在组件内定义，名称约定以 `handle` 开头，后跟事件名称，将其作为 Props 传入。
 
 ```js
 export default function Button() {
   function handleClick() {
-    alert("你点击了我！");
+    alert("You clicked!");
   }
-
-  return <button onClick={handleClick}> // [!code highlight] 点我</button>;
+  return <button onClick={handleClick}> Click </button>;
 }
 ```
 
 若事件处理函数需要接收参数，应该使用 `{}` 包起来：
+
+::: tabs
+
+@tab AlertButton.jsx
 
 ```js
 function AlertButton({ message, children }) {
   // [!code highlight]
   return <button onClick={() => alert(message)}>{children}</button>;
 }
+```
 
+@tab App.jsx
+
+```jsx
 export default function Toolbar() {
   return (
     <div>
-      <AlertButton message="正在上传！">上传图片</AlertButton>
+      <AlertButton message="Upload image">Upload iamge</AlertButton>
     </div>
   );
 }
 ```
 
+:::
+
 ::: warning
+
 传递给事件处理函数的函数应直接传递，而非调用。
 
 | （传递一个函数）正确                    | （调用一个函数）错误               |
@@ -532,6 +463,7 @@ export default function Toolbar() {
 事件处理函数作为 Props 传递时，应该直接传递，如果有参数应该使用箭头函数。
 
 若是直接调用，函数会在每次组件渲染时触发，而非用户操作时触发。
+
 :::
 
 ### 阻止传播
@@ -584,7 +516,7 @@ export default function Signup() {
 与在 Vue 中一样，在模板中使用普通变量，当变量改变时不会触发渲染。
 
 在 React 中，我们可以使用 `useState` Hook 来创建一个响应式变量，它接收一个默认值（可以是一个有返回值的箭头函数），并返回一个数组。数组的第一个元素是变量的值，第二个元素是更新变量的函数。
-更改 state 时需要使用 `setIndex` 函数来更新变量。
+第二个更改变量的函数我们约定使用 `set` + 变量名来命名如 `setIndex`，更改 index 时需要使用 `setIndex` 函数来更新变量。
 
 ```js
 import { useState } from "react"; // [!code highlight]
