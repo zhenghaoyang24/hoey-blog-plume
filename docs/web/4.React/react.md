@@ -1238,14 +1238,16 @@ useEffect(setup, dependencies);
 
 #### 2. 三种行为
 
-| 写法                               | 行为                               | 等效类组件生命周期             |
-| ---------------------------------- | ---------------------------------- | ------------------------------ |
-| `useEffect(() => { ... }, [])`     | 仅在**挂载时执行一次**             | `componentDidMount`            |
-| `useEffect(() => { ... }, [a, b])` | 当 `a` 或 `b` **变化时执行**       | `componentDidUpdate`（带条件） |
-| `useEffect(() => { ... })`         | **每次渲染后都执行**（无依赖数组） | 无直接对应（慎用！）           |
+`useEffect` 在初次渲染时都会执行一次，如果是在严格模式下初次渲染则会执行两次。
+
+| 写法                               | 行为                   |
+| ---------------------------------- | ----------------------|
+| `useEffect(() => { ... }, [])`     | 只在初始渲染时执行 |
+| `useEffect(() => { ... }, [a, b])` | 当 `a` 或 `b` 变化时执行 |
+| `useEffect(() => { ... })`         | 每次渲染后都执行 |
 
 ::: warning
-Effect 是逃生舱口（escape hatch），不是默认工具。在大多数场景中,并不需要使用 Effect。参考 [你可能不需要 Effect](https://zh-hans.react.dev/learn/you-might-not-need-an-effect)。
+`useEffect` 应该只用于副作用，而不是用于驱动应用逻辑流。如果 `useEffect` 只是在同步 React 内部状态，那么很可能有更好的方式。参考 [你可能不需要 Effect](https://zh-hans.react.dev/learn/you-might-not-need-an-effect)。
 :::
 
 ### 依赖数组
