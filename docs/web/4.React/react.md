@@ -797,7 +797,7 @@ return (
 并且，当我们需要在其他方也对这个复杂的数组对象进行相同操作时，我们就又不得不写很多相同的代码，状态逻辑也越来越混乱。
 这时候就可以使用 `useReducer` 来解决这个问题。
 
-在 React 中，**reducer** 是一种用于**集中管理复杂状态逻辑**的模式，接收当前状态（state）和一个动作（action），返回新的状态。
+在 React 中，**reducer** 是一种用于 **集中管理复杂状态逻辑** 的模式，接收当前状态（state）和一个动作（action），返回新的状态。
 
 React 通过内置 Hook **`useReducer`** 提供了对 reducer 模式的原生支持，特别适用于以下场景：
 
@@ -839,11 +839,11 @@ function handleChangeTask(task) {
 ```
 
 ::: tip
-其实 action 就是一个普通的 JavaScript 对象，其结构与字段没有限制。type 可以叫 option、可以叫 category 等等，但一般需要包含发生了什么的信息，
+`action` 就是一个普通的 JavaScript 对象，其结构与字段没有限制。type 可以叫 option、可以叫 category 等等，但一般需要包含发生了什么的信息，
 并且尽量选择一个能够清晰描述发生事情的名字！
 :::
 
-2. `reducer` 函数就是放置状态逻辑的地方。它接受两个参数，分别为当前 state 和 action 对象，并且返回的是更新后的 state。
+1. `reducer` 函数就是放置状态逻辑的地方。它接受两个参数，分别为当前 state 和 action 对象，并且返回的是更新后的 state。
 
 ```jsx
 function yourReducer(state, action) {
@@ -1029,7 +1029,7 @@ function reducer(draft, action) {
 
 ### 使用
 
-当我们需要将数据传递给子组件时，通常会使用 `props`，这在组件层级比较少时很奏效。
+当我们需要将数据传递给子组件时，通常会使用 `props`，这在组件层级比较少时很有效。
 但是当数据层级较深时，例如要将数据传递给孙子组件，`props` 的传递会很麻烦：需要将数据通过 props 层层传递。这时，我们可以使用 `Context` 。
 
 Context 提供一种跨层级共享数据的方式，让任意后代组件都能直接访问祖先组件提供的数据，无需手动逐层传递 props。
@@ -1072,15 +1072,7 @@ export default function NeedContext() {
 }
 ```
 
-`useContext` Hook 可以在任意组件中获取 context 的值，而不需要通过 props 传递。
-
-下面是一个 `contexr` 例子。加入有这样一个场景：我们需要渲染 App 中 `userList` 的每一项，而具体的数据需要传递给 `ProfilelCard` 下的 `ProfileInfo`。
-
-<CodeViewBox url="https://stackblitz.com/edit/vitejs-vite-2vqt2sje?ctl=1&embed=1&file=src%2FApp.jsx&hideNavigation=1" title="Context 示例" />
-
-### 注意事项
-
-==Context 是利器，不是默认选项。==
+### 注意事项`
 
 在 React 中，Context 虽能解决跨层级传参问题，但极易被滥用。
 **优先考虑显式传递 props**（即使经过多层），或**通过抽象组件并用 `children` 传递 JSX** 来减少中间层依赖——这能让数据流更清晰、组件更可维护。
@@ -1240,11 +1232,11 @@ useEffect(setup, dependencies);
 
 `useEffect` 在初次渲染时都会执行一次，如果是在严格模式下初次渲染则会执行两次。
 
-| 写法                               | 行为                   |
-| ---------------------------------- | ----------------------|
-| `useEffect(() => { ... }, [])`     | 只在初始渲染时执行 |
+| 写法                               | 行为                     |
+| ---------------------------------- | ------------------------ |
+| `useEffect(() => { ... }, [])`     | 只在初始渲染时执行       |
 | `useEffect(() => { ... }, [a, b])` | 当 `a` 或 `b` 变化时执行 |
-| `useEffect(() => { ... })`         | 每次渲染后都执行 |
+| `useEffect(() => { ... })`         | 每次渲染后都执行         |
 
 ::: warning
 `useEffect` 应该只用于副作用，而不是用于驱动应用逻辑流。如果 `useEffect` 只是在同步 React 内部状态，那么很可能有更好的方式。参考 [你可能不需要 Effect](https://zh-hans.react.dev/learn/you-might-not-need-an-effect)。
@@ -1276,7 +1268,7 @@ useEffect(() => {
 
 ### 清理函数
 
-React 中的清理函数与 Vue 中清理函数 设计目的与运行时机很相似：==为了释放资源，解决[竞态问题](/qa/javascript/wfthwb8n/)；在副作用执行之前执行上一次的清理函数，在组件卸载时执行最后一次清理函数。==
+React 中的清理函数与 Vue 中清理函数 设计目的与运行时机很相似：==为了释放资源，解决[竞态问题](/qa/basic/javascript/01obwm1d/#竞态问题)；在副作用执行之前执行上一次的清理函数，在组件卸载时执行最后一次清理函数。==
 
 **在开发环境中**，React 会在组件首次挂载后立即重新挂载一次，所以中间会额外执行一次清理函数。
 之所以会额外的执行一次清理函数，是因为在开发环境下 React 会对逻辑进行压力测试，检测代码中的 bug，帮助找到需要清理的 Effect。
@@ -1345,3 +1337,16 @@ useEffect(() => {
   };
 }, []);
 ```
+
+## 自定义 Hook
+
+如果我们有一些组件需要使用相同的逻辑，那么我们可以将它封装成一个自定义 Hook。我们就可以直接在组件中使用用这个自定义 Hook，减少重复的代码。
+
+==自定义 Hook 的名称必须以 `use` 开头，然后紧跟一个大写字母，并且你可以返回任意类型的值。==
+
+由于自定义 Hook 需要以 `use` 开头，因此我们在命名其它函数的时候，应该避免以 `use` 开头。如果一个函数内部使用了哪怕一个 Hook，那么这个函数
+都应该以 `use` 开头，让它成为一个 Hook。
+
+==自定义 Hook 只是封装了逻辑，因此它共享的是状态逻辑，而不是状态本身。==
+
+但我们在不同的组件中调用自定义 Hook，Hook 内部的状态会相互独立，不会相互干扰。
