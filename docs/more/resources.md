@@ -50,7 +50,7 @@ permalink: /more/resources/
 
 ---
 
-## Vue相关
+## Vue 相关
 
 <CardGrid>
   <LinkCard title="Element Plus" icon="logos:element" href="https://element-plus.org/" />
@@ -69,7 +69,7 @@ permalink: /more/resources/
   <LinkCard title="Vue Use" icon="logos:vueuse" href="https://vueuse.org/" />
 </CardGrid>
 
-## CSS相关
+## CSS 相关
 
 <CardGrid>
   <LinkCard title="Less" icon="logos:less" href="https://less.bootcss.com/" />
@@ -96,6 +96,7 @@ permalink: /more/resources/
 </CardGrid>
 
 ## JavaScript
+
 <CardGrid>
   <LinkCard title="js 可视化执行" icon="logos:javascript" href="https://www.jsv9000.app" />
 </CardGrid>
@@ -114,7 +115,6 @@ permalink: /more/resources/
   <LinkCard title="iconfont" icon="https://img.alicdn.com/imgextra/i2/O1CN01FF1t1g1Q3PDWpSm4b_!!6000000001920-55-tps-508-135.svg" href="https://www.iconfont.cn/" />
   <LinkCard title="React Icons" icon="" href="https://react-icons.github.io/react-icons/" />
 </CardGrid>
-
 
 ## 构建工具
 
@@ -144,11 +144,10 @@ permalink: /more/resources/
   <LinkCard title="Vue.js设计与实现" description="循序渐进讲解Vue的设计原理" href="https://weread.qq.com/web/reader/c5c32170813ab7177g0181ae#outline?noScroll=1" />
   <LinkCard title="JavaScript高级程序设计" description="JavaScript高级程序设计" href="https://weread.qq.com/web/reader/751326d0720befab7514782#outline?noScroll=1" />
 </CardGrid>
-  
 
 ## 其他
-<CarGrid>
-  <LinkCard title="Regex Vis" 
-  href="https://regex-vis.com/" 
-  description="正则生成-测试"/>
-</CarGrid>
+
+<CardGrid>
+  <LinkCard title="Regex Vis" href="https://regex-vis.com/" description="正则生成-测试"/>
+  <LinkCard title="jsonplaceholder" href="https://jsonplaceholder.typicode.com/" description="免费可靠的API数据源"/>
+</CardGrid>
