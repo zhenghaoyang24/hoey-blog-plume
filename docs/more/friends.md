@@ -6,9 +6,15 @@ permalink: /more/friends/
 comment: true
 ---
 
-## 我的好友们
+## 好友
 
-<AllFriendContent/>
+<AllFriendContent type="friend" />
+
+## 推荐
+
+
+<AllFriendContent type="recom" />
+
 
 ## 申请友链
 

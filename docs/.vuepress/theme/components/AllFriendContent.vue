@@ -1,10 +1,26 @@
-<script setup>
+<script setup lang="ts">
+import { ref } from 'vue';
 import FRIENDS from '../data/friends.json'
+import RECOM from '../data/recom.json'
+interface Friend {
+  name: string
+  link: string
+  avatar: string
+  desc: string
+}
+
+const props = defineProps<{
+  type: 'friend' | 'recom'
+}>()
+
+const list = ref<Friend[]>(props.type === 'friend' ? FRIENDS : RECOM)
+
+
 </script>
 
 <template>
   <div class="friends-content">
-    <a :href="item.link" target="_blank" class="vp-blog-post-item friend-item" v-for="(item, index) in FRIENDS"
+    <a :href="item.link" target="_blank" class="vp-blog-post-item friend-item" v-for="(item, index) in list"
        :key="index">
       <img :src="item.avatar" alt="头像">
       <div>
