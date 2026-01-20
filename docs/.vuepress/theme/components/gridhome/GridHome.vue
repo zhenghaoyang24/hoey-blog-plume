@@ -5,13 +5,7 @@
       <a href="https://github.com/zhenghaoyang24" target="_blank" class="head-social-btn">
         <icon name="grommet-icons:github" />
       </a>
-      <a href="https://gitee.com/zhenghaoyang24" target="_blank" class="head-social-btn">
-        <icon name="simple-icons:gitee" />
-      </a>
       <router-link to="/blog/" class="head-social-avatar"><img src="/avatar.jpg" alt="avatar"></router-link>
-      <a href="https://codepen.io/zhenghaoyang24" target="_blank" class="head-social-btn">
-        <icon class="head-social-btn" name="simple-icons:codepen"></icon>
-      </a>
       <a href="mailto:zhenghaoyang24@foxmail.com" target="_blank" class="head-social-btn">
         <icon class="head-social-btn" name="streamline-flex:mail-send-email-message-circle-solid"></icon>
       </a>

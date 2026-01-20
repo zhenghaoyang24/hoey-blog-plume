@@ -10,11 +10,11 @@
 
 一种是网格类型有各类卡片 的 GridHome，另一种是显示代码的 CodeHome。
 
-- CodeHome:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/a3b04aee-fc71-493e-890c-d2a204b84003" />
-
 - GridHome:
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/abc4bc54-2e85-48ef-9078-cd51cac2fe1c" />
+
+- CodeHome:
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/a3b04aee-fc71-493e-890c-d2a204b84003" />
 
 这两种方式在 `README.md` 切换：
 

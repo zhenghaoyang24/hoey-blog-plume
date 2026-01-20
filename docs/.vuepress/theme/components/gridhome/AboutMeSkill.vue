@@ -7,52 +7,65 @@
     <!-- 第一行向左移动 -->
     <div class="marquee-row first-row">
       <div class="marquee-content">
-        <span v-for="(item, index) in technology" :key="index"> <icon :name="item.icon"/> </span>
-        <span v-for="(item, index) in technology" :key="index + technology.length"><icon :name="item.icon"/></span>
+        <span v-for="(item, index) in technology" :key="index"> <icon :name="item.icon" /> </span>
+        <span v-for="(item, index) in technology" :key="index + technology.length"
+          ><icon :name="item.icon"
+        /></span>
       </div>
     </div>
     <!-- 第二行向右移动 -->
     <div class="marquee-row second-row">
       <div class="marquee-content">
-        <span v-for="(item, index) in tools" :key="index"><icon :name="item.icon"/></span>
-        <span v-for="(item, index) in tools" :key="index + tools.length"><icon :name="item.icon"/></span>
+        <span v-for="(item, index) in tools" :key="index"><icon :name="item.icon" /></span>
+        <span v-for="(item, index) in tools" :key="index + tools.length"
+          ><icon :name="item.icon"
+        /></span>
       </div>
     </div>
 
     <div class="about-me-skill-detail">
-      <span v-for="(item, index) in technology" :key="index"> <icon
-          :name="item.icon"/> <span>{{ item.type }}</span>  </span>
+      <span v-for="(item, index) in technology" :key="index">
+        <icon :name="item.icon" /> <span>{{ item.type }}</span>
+      </span>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref} from 'vue';
+import { ref } from "vue";
 
 // 技能
 const technology = ref([
-  {type: 'Vue', icon: 'logos:vue'},
-  {type: 'Pinia', icon: 'logos:pinia'},
-  {type: '微信小程序', icon: 'tabler:brand-miniprogram'},
-  {type: 'JavaScript', icon: 'vscode-icons:file-type-js'},
-  {type: 'TypeScript', icon: 'vscode-icons:file-type-typescriptdef'},
-  {type: 'Less', icon: 'logos:less'},
-  {type: 'CSS3', icon: 'logos:css-3'},
-  {type: 'HTML5', icon: 'logos:html-5'},
-  {type: 'Spring', icon: 'devicon:spring'},
-  {type: 'MySQL', icon: 'devicon:mysql'}
+  { type: "Vue", icon: "logos:vue" },
+  { type: "Pinia", icon: "logos:pinia" },
+  { type: "React", icon: "logos:react" },
+  { type: "Zustand", icon: "devicon:zustand" },
+  { type: "微信小程序", icon: "tabler:brand-miniprogram" },
+  { type: "JavaScript", icon: "vscode-icons:file-type-js" },
+  { type: "TypeScript", icon: "vscode-icons:file-type-typescriptdef" },
+  { type: "Less", icon: "logos:less" },
+  { type: "CSS3", icon: "logos:css-3" },
+  { type: "Sass", icon: "logos:sass" },
+  { type: "Tailwind", icon: "logos:tailwindcss-icon" },
+  { type: "HTML5", icon: "logos:html-5" },
+  { type: "Spring", icon: "devicon:spring" },
+  { type: "Express", icon: "devicon:express" },
+  { type: "Nest", icon: "logos:nestjs" },
+  { type: "MySQL", icon: "devicon:mysql" },
 ]);
 
 // 工具
 const tools = ref([
-  {type: 'WebStorm', icon: 'devicon:webstorm'},
-  {type: 'VSCode', icon: 'vscode-icons:file-type-vscode'},
-  {type: 'Android Studio', icon: 'devicon:androidstudio'},
-  {type: 'pnpm', icon: 'vscode-icons:file-type-light-pnpm'},
-  {type: 'npm', icon: 'logos:npm'},
-  {type: 'Vite', icon: 'devicon:vitejs'},
-  {type: 'IDEA', icon: 'logos:intellij-idea'},
-  {type: 'Netlify', icon: 'devicon:netlify'},
+  { type: "WebStorm", icon: "devicon:webstorm" },
+  { type: "VSCode", icon: "vscode-icons:file-type-vscode" },
+  { type: "Android Studio", icon: "devicon:androidstudio" },
+  { type: "pnpm", icon: "vscode-icons:file-type-light-pnpm" },
+  { type: "npm", icon: "logos:npm" },
+  { type: "Vite", icon: "devicon:vitejs" },
+  { type: "IDEA", icon: "logos:intellij-idea" },
+  { type: "Netlify", icon: "devicon:netlify" },
+  { type: "Git", icon: "devicon:git" },
+  { type: "Vercel", icon: "devicon:vercel" },
 ]);
 </script>
 
@@ -118,7 +131,6 @@ const tools = ref([
     font-size: 50px;
     margin: 0 10px;
   }
-
 }
 
 .first-row {
