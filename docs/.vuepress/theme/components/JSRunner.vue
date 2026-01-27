@@ -62,7 +62,7 @@ const consoleState = reactive<{
 }>({
   visible: true,
   logs: [],
-  position: "bottom",
+  position: "right",
   size: 50,
 });
 
@@ -297,7 +297,7 @@ const executeCode = () => {
       window.onunhandledrejection = originalUnhandledRejection;
     }, 5000); // 5秒后恢复
 
-    addLog("success", "代码执行完成");
+    addLog("success", "Finished");
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     addLog("error", `执行错误: ${errorMessage}`);
