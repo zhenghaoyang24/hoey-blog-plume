@@ -46,7 +46,7 @@ function addAndLog(a, b) {
 - 3. Strict Mode 能帮你发现问题
      在开发模式下，Strict Mode 会故意双重调用渲染函数，暴露非纯组件的问题。
 - 4. 便于测试：纯组件无需 mock 全局对象，直接传入 props 即可断言输出。
-:::
+     :::
 
 [React - 保持组件纯粹](https://zh-hans.react.dev/learn/keeping-components-pure)
 
