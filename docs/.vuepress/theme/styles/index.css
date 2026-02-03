@@ -1,67 +1,68 @@
 @font-face {
-    font-family: 'LogoFont'; /* 自定义字体的名称 */
-    src: url('/font/segoesc.ttf') format('truetype'); /* TTF字体文件的路径 */
+  font-family: "LogoFont"; /* 自定义字体的名称 */
+  src: url("/font/segoesc.ttf") format("truetype"); /* TTF字体文件的路径 */
 }
 /*颜色*/
 :root {
-
-    /*文章背景线条颜色*/
-    --vp-doc-blog-bg: rgba(100, 190, 190, 0.08);
-    /*博客单项hover border 颜色*/
-    --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.5);
-    /*博客单项hover shadow*/
-    --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.2);
+  /*文章背景线条颜色*/
+  --vp-doc-blog-bg: rgba(100, 190, 190, 0.08);
+  /*博客单项hover border 颜色*/
+  --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.5);
+  /*博客单项hover shadow*/
+  --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.2);
 }
 
 [data-theme="dark"] {
-    --vp-doc-blog-bg: rgba(30, 120, 120, 0.103);
-    --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.4);
-    --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.15);
+  --vp-doc-blog-bg: rgba(30, 120, 120, 0.103);
+  --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.4);
+  --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.15);
 }
 
 /*左上角logo*/
-.vp-navbar-title span{
-    font-family: LogoFont, serif;
-    font-weight: bolder;
-    font-size: 1.4rem;
+.vp-navbar-title span {
+  font-family: LogoFont, serif;
+  font-weight: bolder;
+  font-size: 1.4rem;
 }
 
 /*文章背景*/
 .vp-doc-container {
-    >.container{
-        >.content{
-            background-image:
+  > .container {
+    > .content {
+      background-image:
             /* 横线 */
-            linear-gradient(
-              to bottom,
-              transparent 0,
-              transparent calc(1.5em - 1px),
-              var(--vp-doc-blog-bg, rgba(0,0,0,0.08)) calc(1.25em - 1px),
-              var(--vp-doc-blog-bg, rgba(0,0,0,0.08)) 1.25em
-            ),
-            /* 竖线 */
-            linear-gradient(
-              to right,
-              transparent 0,
-              transparent calc(1.5em - 1px),
-              var(--vp-doc-blog-bg, rgba(0,0,0,0.08)) calc(1.25em - 1px),
-              var(--vp-doc-blog-bg, rgba(0,0,0,0.08)) 1.25em
-            );
-          background-size: 1.5em 1.5em; /* 正方形格子！ */
-          background-position: 0 0;
-        }
+        linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent calc(1.5em - 1px),
+          var(--vp-doc-blog-bg, rgba(0, 0, 0, 0.08)) calc(1.25em - 1px),
+          var(--vp-doc-blog-bg, rgba(0, 0, 0, 0.08)) 1.25em
+        ),
+        /* 竖线 */
+        linear-gradient(
+            to right,
+            transparent 0,
+            transparent calc(1.5em - 1px),
+            var(--vp-doc-blog-bg, rgba(0, 0, 0, 0.08)) calc(1.25em - 1px),
+            var(--vp-doc-blog-bg, rgba(0, 0, 0, 0.08)) 1.25em
+          );
+      background-size: 1.5em 1.5em; /* 正方形格子！ */
+      background-position: 0 0;
     }
+  }
 }
 /*博客页面 单个卡片效果*/
-.vp-blog-post-item{
-    @media screen and (max-width: 770px) {
-        margin: 0 0!important;
-        border-radius: 6px;
-    }
-    transition: box-shadow 0.2s ease-out,border-color 0.2s ease-out!important;
-    border: 1px rgba(255, 0, 0, 0) solid;
-    &:hover{
-        box-shadow: 0 0 7px 2px var(--vp-blog-post-item-hover-shadow)!important;
-        border: 1px var(--vp-blog-post-item-hover-border) solid;
-    }
+.vp-blog-post-item {
+  @media screen and (max-width: 770px) {
+    margin: 0 0 !important;
+    border-radius: 6px;
+  }
+  transition:
+    box-shadow 0.2s ease-out,
+    border-color 0.2s ease-out !important;
+  border: 1px rgba(255, 0, 0, 0) solid;
+  &:hover {
+    box-shadow: 0 0 7px 2px var(--vp-blog-post-item-hover-shadow) !important;
+    border: 1px var(--vp-blog-post-item-hover-border) solid;
+  }
 }
