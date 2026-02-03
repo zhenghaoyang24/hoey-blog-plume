@@ -14,7 +14,7 @@
 }
 
 [data-theme="dark"] {
-    --vp-doc-blog-bg: rgba(30, 120, 120, 0.05);
+    --vp-doc-blog-bg: rgba(30, 120, 120, 0.103);
     --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.4);
     --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.15);
 }

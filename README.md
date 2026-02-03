@@ -6,15 +6,12 @@
 
 ## 类别说明
 
-本博客目前有两种自定义主页 - `CodeHome`、`GridHome` 。
+本博客目前有两种自定义主页 - `ProfileHome`、`GridHome` 。
 
-一种是网格类型有各类卡片 的 GridHome，另一种是显示代码的 CodeHome。
+一种是网格类型有各类卡片 的 GridHome，另一种是简洁的 ProfileHome
 
 - GridHome:
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/abc4bc54-2e85-48ef-9078-cd51cac2fe1c" />
-
-- CodeHome:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/a3b04aee-fc71-493e-890c-d2a204b84003" />
 
 这两种方式在 `README.md` 切换：
 
@@ -27,38 +24,6 @@ config:
 ```
 
 ## 配置
-
-### CodeHome
-
-CodeHome 的配置较简单。
-
-1. 组件代码位置为：`docs/.vuepress/theme/components/codehome` 下的所有 `.vue` 文件。
-
-2. 在 `docs/.vuepress/client.js` 中，导入 `CodeHome.vue`：
-
-``` js
-import CodeHome from './theme/components/codehome/CodeHome.vue'
-  export default defineClientConfig({
-    enhance({ app }) {
-    app.component('CodeHome', CodeHome)
-  },
-})
-```
-
-3. 在 `docs/README.md` 修改主页配置：
-
-```markdown
----
-pageLayout: home
-externalLinkIcon: false
-config:
-  - type: CodeHome
----
-```
-
-4. 在组件中 "const reactCode = ``" 更改自己想要显示的代码（个人信息也在里面）。
-
-5. 在 `div` profile-links-box 中更改 profle 的联系方式，对应 icon 在 [iconify](https://icon-sets.iconify.design/) 里查找。
 
 ### GridHome
 
