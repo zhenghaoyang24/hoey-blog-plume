@@ -364,22 +364,66 @@ const getLogClass = (type: string) => {
       <div class="header-actions">
         <button
           @click="toggleConsolePosition"
-          class="btn btn-position"
+          class="btn btn-toggle"
           :title="consoleState.position === 'bottom' ? '切换到右侧' : '切换到底部'"
         >
-          <span v-if="consoleState.position === 'bottom'">⬇️</span>
-          <span v-else>⬅️</span>
+          <span v-if="consoleState.position === 'bottom'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <g fill="none" stroke="#fff" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.25 15.084H2.75" />
+                <rect width="18.5" height="18.5" x="2.75" y="2.75" rx="6" />
+              </g>
+            </svg>
+          </span>
+          <span v-else>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <g fill="none" stroke="#fff" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.917 21.25V2.75" />
+                <rect width="18.5" height="18.5" x="2.75" y="2.75" rx="6" />
+              </g>
+            </svg>
+          </span>
         </button>
         <button
           @click="toggleConsole"
           class="btn btn-toggle"
           :title="consoleState.visible ? '隐藏控制台' : '显示控制台'"
         >
-          <span v-if="consoleState.visible">👁️</span>
-          <span v-else>👁️‍🗨️</span>
+          <span v-if="consoleState.visible">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path
+                fill="#fff"
+                d="M20 19V7H4v12zm0-16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-7 14v-2h5v2zm-3.42-4L5.57 9H8.4l3.3 3.3c.39.39.39 1.03 0 1.42L8.42 17H5.59z"
+              />
+            </svg>
+          </span>
+          <span v-else>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path
+                fill="#fff"
+                d="M13 19v-3h8v3zm-4.5-6L2.47 7h4.24l4.96 4.95c.58.59.58 1.55 0 2.12L6.74 19H2.5z"
+              />
+            </svg>
+          </span>
         </button>
-        <button @click="executeCode" class="btn btn-run" title="运行代码">▶️ run</button>
-        <button @click="clearConsole" class="btn btn-clear" title="清除控制台">🗑️ clear</button>
+        <button @click="executeCode" class="btn btn-run" title="运行代码">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+            <path
+              fill="#fff"
+              d="M3.44 13.557a1.5 1.5 0 0 0 1.795.244l8-4.5a1.5 1.5 0 0 0 0-2.61l-8.01-4.507A1.52 1.52 0 0 0 3 3.496v9c0 .398.158.78.44 1.06m.706-10.414a.5.5 0 0 1 .599-.082l8 4.5a.5.5 0 0 1 0 .87l-7.99 4.494A.492.492 0 0 1 4 12.496v-9a.5.5 0 0 1 .146-.353m6.614 8.693l1.22-.68q.018.125.02.25a1.51 1.51 0 0 1-.76 1.31l-5.08 2.86a3.6 3.6 0 0 1-1.66.42a3 3 0 0 1-.91-.13a3.33 3.33 0 0 1-1.59-.93a3.46 3.46 0 0 1-1-2.44v-5.59a1.48 1.48 0 0 1 1-1.39v6.98a2.513 2.513 0 0 0 3.7 2.19l5.05-2.84a.01.01 0 0 0 .01-.01"
+            />
+          </svg>
+        </button>
+        <button @click="clearConsole" class="btn btn-clear" title="清除控制台">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+            <path
+              fill="none"
+              stroke="#fff"
+              d="M4.5 3V1.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1V3M0 3.5h15m-13.5 0v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-10M7.5 7v5m-3-3v3m6-3v3"
+              stroke-width="1"
+            />
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -585,9 +629,11 @@ const getLogClass = (type: string) => {
 }
 
 .console-empty {
+  display: flex;
+  text-align: start;
+  align-items: center;
   color: #858585;
   font-style: italic;
-  text-align: center;
   padding: 20px;
 }
 

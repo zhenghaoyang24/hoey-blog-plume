@@ -2,7 +2,6 @@ import { defineClientConfig } from "vuepress/client";
 import "./theme/styles/index.css";
 import RepoCard from "vuepress-theme-plume/features/RepoCard.vue";
 import AllFriendContent from "./theme/components/AllFriendContent.vue";
-
 // 网格首页
 import GridHome from "./theme/components/gridhome/GridHome.vue";
 
