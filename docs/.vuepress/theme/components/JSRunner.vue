@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import {
-  ref,
-  computed,
-  watch,
-  onMounted,
-  onBeforeUnmount,
-  reactive,
-} from "vue";
+import { ref, computed, watch, onMounted, onBeforeUnmount, reactive } from "vue";
 
 // 动态导入 monaco-editor，仅在客户端加载
 let monaco: any = null;
@@ -16,9 +9,9 @@ let editor: any = null;
  * 定义 props 和默认值
  */
 interface Props {
-  code?: string,
-  title?: string,
-  height?: number,
+  code?: string;
+  title?: string;
+  height?: number;
 }
 
 // 默认代码
@@ -141,7 +134,7 @@ watch(
     if (editorInstance && editorInstance.getValue() !== newCode) {
       editorInstance.setValue(newCode);
     }
-  }
+  },
 );
 
 // 清理编辑器
@@ -153,13 +146,12 @@ onBeforeUnmount(() => {
 
 // 切换控制台显示/隐藏
 const toggleConsole = () => {
-  consoleState.visible = !consoleState.visible
+  consoleState.visible = !consoleState.visible;
 };
 
 // 切换控制台位置
 const toggleConsolePosition = () => {
-  consoleState.position =
-    consoleState.position === "bottom" ? "right" : "bottom";
+  consoleState.position = consoleState.position === "bottom" ? "right" : "bottom";
   consoleState.size = 50; // 重置大小为 50%
 };
 
@@ -239,7 +231,7 @@ const executeCode = () => {
             }
             return val;
           },
-          2
+          2,
         );
       } catch (e) {
         // 如果JSON.stringify失败，使用toString
@@ -296,8 +288,6 @@ const executeCode = () => {
       window.onerror = originalErrorHandler;
       window.onunhandledrejection = originalUnhandledRejection;
     }, 5000); // 5秒后恢复
-
-    addLog("success", "Finished");
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : String(error);
     addLog("error", `执行错误: ${errorMessage}`);
@@ -372,21 +362,24 @@ const getLogClass = (type: string) => {
     <div class="header">
       <h3 class="title">{{ title }}</h3>
       <div class="header-actions">
-        <button @click="toggleConsolePosition" class="btn btn-position"
-          :title="consoleState.position === 'bottom' ? '切换到右侧' : '切换到底部'">
+        <button
+          @click="toggleConsolePosition"
+          class="btn btn-position"
+          :title="consoleState.position === 'bottom' ? '切换到右侧' : '切换到底部'"
+        >
           <span v-if="consoleState.position === 'bottom'">⬇️</span>
           <span v-else>⬅️</span>
         </button>
-        <button @click="toggleConsole" class="btn btn-toggle" :title="consoleState.visible ? '隐藏控制台' : '显示控制台'">
+        <button
+          @click="toggleConsole"
+          class="btn btn-toggle"
+          :title="consoleState.visible ? '隐藏控制台' : '显示控制台'"
+        >
           <span v-if="consoleState.visible">👁️</span>
           <span v-else>👁️‍🗨️</span>
         </button>
-        <button @click="executeCode" class="btn btn-run" title="运行代码">
-          ▶️ run
-        </button>
-        <button @click="clearConsole" class="btn btn-clear" title="清除控制台">
-          🗑️ clear
-        </button>
+        <button @click="executeCode" class="btn btn-run" title="运行代码">▶️ run</button>
+        <button @click="clearConsole" class="btn btn-clear" title="清除控制台">🗑️ clear</button>
       </div>
     </div>
 
@@ -398,10 +391,14 @@ const getLogClass = (type: string) => {
       <!-- 控制台 -->
       <div v-if="consoleState.visible" class="console-panel" :style="consoleStyle">
         <!-- 拖拽 -->
-        <div class="resize-handle" :class="{
-          'handle-horizontal': consoleState.position === 'bottom',
-          'handle-vertical': consoleState.position === 'right',
-        }" @mousedown="startDrag"></div>
+        <div
+          class="resize-handle"
+          :class="{
+            'handle-horizontal': consoleState.position === 'bottom',
+            'handle-vertical': consoleState.position === 'right',
+          }"
+          @mousedown="startDrag"
+        ></div>
 
         <!-- 控制台标题 -->
         <div class="console-header">
@@ -414,7 +411,11 @@ const getLogClass = (type: string) => {
             Click the run button to execute the code ...
           </div>
           <div v-else>
-            <div v-for="(log, index) in consoleState.logs" :key="index" :class="getLogClass(log.type)">
+            <div
+              v-for="(log, index) in consoleState.logs"
+              :key="index"
+              :class="getLogClass(log.type)"
+            >
               <span class="log-time">{{ log.timestamp }}</span>
               <span class="log-type">[{{ log.type.toUpperCase() }}]</span>
               <span class="log-message">{{ log.message }}</span>
