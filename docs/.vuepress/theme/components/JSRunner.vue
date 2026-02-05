@@ -69,6 +69,10 @@ const consoleContentRef = ref<HTMLElement | null>(null);
 // 拖拽相关
 const isDragging = ref(false);
 
+const resetCodeValue = () => {
+  editorInstance.setValue(props.code);
+};
+
 // 初始化 Monaco Editor
 onMounted(async () => {
   if (!editorContainer.value) return;
@@ -127,16 +131,6 @@ onMounted(async () => {
   });
 });
 
-// 监听 props.code 变化，更新编辑器内容
-watch(
-  () => props.code,
-  (newCode) => {
-    if (editorInstance && editorInstance.getValue() !== newCode) {
-      editorInstance.setValue(newCode);
-    }
-  },
-);
-
 // 清理编辑器
 onBeforeUnmount(() => {
   if (editorInstance) {
@@ -164,7 +158,6 @@ const clearConsole = () => {
 const addLog = (type: string, message: string) => {
   const timestamp = new Date().toLocaleTimeString();
   consoleState.logs.push({ type, message, timestamp });
-
   // 滚动到底部
   scrollToBottom();
 };
@@ -215,6 +208,19 @@ const executeCode = () => {
       // 检查是否为DOM元素
       if (typeof value === "object" && "nodeType" in value) {
         return `[object ${value.constructor.name}]`;
+      }
+
+      // 特殊数值处理
+      if (typeof value === "number") {
+        if (Number.isNaN(value)) {
+          return "NaN";
+        }
+        if (value === Infinity) {
+          return "Infinity";
+        }
+        if (value === -Infinity) {
+          return "-Infinity";
+        }
       }
 
       try {
@@ -403,6 +409,45 @@ const getLogClass = (type: string) => {
                 fill="#fff"
                 d="M13 19v-3h8v3zm-4.5-6L2.47 7h4.24l4.96 4.95c.58.59.58 1.55 0 2.12L6.74 19H2.5z"
               />
+            </svg>
+          </span>
+        </button>
+        <button @click="resetCodeValue" class="btn btn-toggle" title="重置代码">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path
+                fill="none"
+                stroke="#fff"
+                stroke-dasharray="48"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.25 14c0.89 3.45 4.02 6 7.75 6c4.42 0 8 -3.58 8 -8c0 -4.42 -3.58 -8 -8 -8c-2.39 0 -4.53 1.05 -6 2.71l-2 2.29"
+              >
+                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="48;0" />
+              </path>
+              <g fill="#fff">
+                <path
+                  stroke="#fff"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5.63 7.38l-2.13 -2.13l0 4.25l4.25 0Z"
+                  opacity="0"
+                  stroke-width="1"
+                >
+                  <set fill="freeze" attributeName="opacity" begin="0.6s" to="1" />
+                  <animate
+                    fill="freeze"
+                    attributeName="d"
+                    begin="0.6s"
+                    dur="0.2s"
+                    values="M4 9l0 0l0 0l0 0Z;M5.63 7.38l-2.13 -2.13l0 4.25l4.25 0Z"
+                  />
+                </path>
+                <circle cx="12" cy="12">
+                  <animate fill="freeze" attributeName="r" begin="0.8s" dur="0.2s" to="2" />
+                </circle>
+              </g>
             </svg>
           </span>
         </button>
