@@ -341,7 +341,6 @@ const handleAvatarMouseLeave = () => {
 }
 
 .home-container {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
