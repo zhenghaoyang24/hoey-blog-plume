@@ -59,6 +59,9 @@ const consoleState = reactive<{
   size: 50,
 });
 
+// 是否为移动端
+const isMobile = ref(false);
+
 // Monaco Editor 相关
 const editorContainer = ref<HTMLElement | null>(null);
 let editorInstance: any = null;
@@ -76,6 +79,16 @@ const resetCodeValue = () => {
 // 初始化 Monaco Editor
 onMounted(async () => {
   if (!editorContainer.value) return;
+
+  // 检测移动端
+  isMobile.value = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent,
+  );
+
+  // 移动端强制控制台在底部
+  if (isMobile.value) {
+    consoleState.position = "bottom";
+  }
 
   // 动态加载 monaco-editor
   try {
@@ -369,6 +382,7 @@ const getLogClass = (type: string) => {
       <h3 class="title">{{ title }}</h3>
       <div class="header-actions">
         <button
+          v-if="!isMobile"
           @click="toggleConsolePosition"
           class="btn btn-toggle"
           :title="consoleState.position === 'bottom' ? '切换到右侧' : '切换到底部'"
