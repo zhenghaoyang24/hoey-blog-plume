@@ -2,8 +2,6 @@ import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import { plumeTheme } from "vuepress-theme-plume";
 import { navbar } from "./navbar";
-import tailwindcss from "@tailwindcss/vite";
-// import musicWidget from "vuepress-plugin-music-widget";
 
 export default defineUserConfig({
   autoFrontmatter: {
