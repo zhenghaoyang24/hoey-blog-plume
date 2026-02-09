@@ -11,7 +11,7 @@ let editor: any = null;
 interface Props {
   code?: string;
   title?: string;
-  height?: number;
+  height?: number | string;
 }
 
 // 默认代码
@@ -62,6 +62,11 @@ const consoleState = reactive<{
 // 是否为移动端
 const isMobile = ref(false);
 
+// 添加响应式更新函数
+const updateIsMobile = () => {
+  isMobile.value = window.innerWidth <= 768;
+};
+
 // Monaco Editor 相关
 const editorContainer = ref<HTMLElement | null>(null);
 let editorInstance: any = null;
@@ -80,15 +85,16 @@ const resetCodeValue = () => {
 onMounted(async () => {
   if (!editorContainer.value) return;
 
-  // 检测移动端
-  isMobile.value = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent,
-  );
+  // 检测是否为移动端（像素判断）
+  updateIsMobile();
 
   // 移动端强制控制台在底部
   if (isMobile.value) {
     consoleState.position = "bottom";
   }
+
+  // 监听窗口大小变化
+  window.addEventListener("resize", updateIsMobile);
 
   // 动态加载 monaco-editor
   try {
@@ -146,6 +152,7 @@ onMounted(async () => {
 
 // 清理编辑器
 onBeforeUnmount(() => {
+  window.removeEventListener("resize", updateIsMobile);
   if (editorInstance) {
     editorInstance.dispose();
   }
@@ -566,7 +573,11 @@ const getLogClass = (type: string) => {
 }
 
 .btn {
-  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 36px;
   border: none;
   border-radius: 4px;
   background: #0e639c;
@@ -802,5 +813,11 @@ const getLogClass = (type: string) => {
     font-size: 11px;
     padding: 8px 6px;
   }
+}
+
+.icon{
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
 }
 </style>
