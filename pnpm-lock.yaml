@@ -50,7 +50,7 @@ importers:
         version: 2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.2))(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))
       vuepress-theme-plume:
         specifier: 1.0.0-rc.184
-        version: 1.0.0-rc.184(@algolia/client-search@5.46.2)(@iconify/json@2.2.425)(@types/markdown-it@14.1.2)(echarts@5.6.0)(markdown-it@14.1.0)(markmap-lib@0.18.12(markmap-common@0.18.9))(markmap-toolbar@0.18.12(markmap-common@0.18.9))(markmap-view@0.18.12(markmap-common@0.18.9))(qrcode@1.5.4)(react@19.2.0)(sass-embedded@1.97.2)(sass@1.97.2)(search-insights@2.17.3)(stylus@0.64.0)(typescript@5.9.3)(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.2))(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))
+        version: 1.0.0-rc.184(@algolia/client-search@5.46.2)(@iconify/json@2.2.425)(@types/markdown-it@14.1.2)(echarts@5.6.0)(gsap@3.14.2)(markdown-it@14.1.0)(markmap-lib@0.18.12(markmap-common@0.18.9))(markmap-toolbar@0.18.12(markmap-common@0.18.9))(markmap-view@0.18.12(markmap-common@0.18.9))(ogl@1.0.11)(qrcode@1.5.4)(react@19.2.0)(sass-embedded@1.97.2)(sass@1.97.2)(search-insights@2.17.3)(stylus@0.64.0)(typescript@5.9.3)(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.2))(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))
 
 packages:
 
@@ -1959,6 +1959,7 @@ packages:
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   gopd@1.2.0:
@@ -1971,6 +1972,9 @@ packages:
   gray-matter@4.0.3:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
     engines: {node: '>=6.0'}
+
+  gsap@3.14.2:
+    resolution: {integrity: sha512-P8/mMxVLU7o4+55+1TCnQrPmgjPKnwkzkXOK1asnR9Jg2lna4tEY5qBJjMmAaOBDDZWtlRjBXjLa0w53G/uBLA==}
 
   has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
@@ -2464,6 +2468,9 @@ packages:
   object-inspect@1.13.4:
     resolution: {integrity: sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew==}
     engines: {node: '>= 0.4'}
+
+  ogl@1.0.11:
+    resolution: {integrity: sha512-kUpC154AFfxi16pmZUK4jk3J+8zxwTWGPo03EoYA8QPbzikHoaC82n6pNTbd+oEaJonaE8aPWBlX7ad9zrqLsA==}
 
   onetime@7.0.0:
     resolution: {integrity: sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==}
@@ -5243,6 +5250,9 @@ snapshots:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
 
+  gsap@3.14.2:
+    optional: true
+
   has-flag@4.0.0: {}
 
   has-symbols@1.1.0: {}
@@ -5853,6 +5863,9 @@ snapshots:
       boolbase: 1.0.0
 
   object-inspect@1.13.4: {}
+
+  ogl@1.0.11:
+    optional: true
 
   onetime@7.0.0:
     dependencies:
@@ -6548,7 +6561,7 @@ snapshots:
       - '@types/markdown-it'
       - typescript
 
-  vuepress-theme-plume@1.0.0-rc.184(@algolia/client-search@5.46.2)(@iconify/json@2.2.425)(@types/markdown-it@14.1.2)(echarts@5.6.0)(markdown-it@14.1.0)(markmap-lib@0.18.12(markmap-common@0.18.9))(markmap-toolbar@0.18.12(markmap-common@0.18.9))(markmap-view@0.18.12(markmap-common@0.18.9))(qrcode@1.5.4)(react@19.2.0)(sass-embedded@1.97.2)(sass@1.97.2)(search-insights@2.17.3)(stylus@0.64.0)(typescript@5.9.3)(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.2))(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))):
+  vuepress-theme-plume@1.0.0-rc.184(@algolia/client-search@5.46.2)(@iconify/json@2.2.425)(@types/markdown-it@14.1.2)(echarts@5.6.0)(gsap@3.14.2)(markdown-it@14.1.0)(markmap-lib@0.18.12(markmap-common@0.18.9))(markmap-toolbar@0.18.12(markmap-common@0.18.9))(markmap-view@0.18.12(markmap-common@0.18.9))(ogl@1.0.11)(qrcode@1.5.4)(react@19.2.0)(sass-embedded@1.97.2)(sass@1.97.2)(search-insights@2.17.3)(stylus@0.64.0)(typescript@5.9.3)(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.2))(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3))):
     dependencies:
       '@iconify/utils': 3.1.0
       '@iconify/vue': 5.0.0(vue@3.5.26(typescript@5.9.3))
@@ -6593,6 +6606,8 @@ snapshots:
       vuepress-plugin-md-power: 1.0.0-rc.184(@types/markdown-it@14.1.2)(esbuild@0.27.2)(markdown-it@14.1.0)(sass-embedded@1.97.2)(sass@1.97.2)(stylus@0.64.0)(typescript@5.9.3)(vuepress@2.0.0-rc.26(@vuepress/bundler-vite@2.0.0-rc.26(@types/node@25.0.3)(jiti@2.6.1)(lightningcss@1.30.2)(sass-embedded@1.97.2)(sass@1.97.2)(stylus@0.64.0)(typescript@5.9.3)(yaml@2.8.2))(typescript@5.9.3)(vue@3.5.26(typescript@5.9.3)))
     optionalDependencies:
       '@iconify/json': 2.2.425
+      gsap: 3.14.2
+      ogl: 1.0.11
     transitivePeerDependencies:
       - '@75lb/nature'
       - '@algolia/client-search'

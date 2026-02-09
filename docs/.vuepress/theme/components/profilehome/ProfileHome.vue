@@ -3,8 +3,14 @@
     <canvas ref="canvasRef" />
     <div class="profile-container">
       <router-link class="avatar-link" to="/blog/">
-        <img ref="avatarRef" src="/avatar.jpg" alt="Hoey" class="profile-avatar" @mousemove="handleAvatarMouseMove"
-          @mouseleave="handleAvatarMouseLeave" />
+        <img
+          ref="avatarRef"
+          src="/avatar.jpg"
+          alt="Hoey"
+          class="profile-avatar"
+          @mousemove="handleAvatarMouseMove"
+          @mouseleave="handleAvatarMouseLeave"
+        />
       </router-link>
       <div class="profile-name">Hoey</div>
       <div class="profile-slogan">Teacher, I'm on fire to improve!</div>
@@ -22,14 +28,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch, type HTMLAttributes } from "vue";
-
 interface Props {
   hue?: number;
   saturation?: number;
   chroma?: number;
   class?: HTMLAttributes["class"];
 }
-
 
 // 色相 HSV
 const props = withDefaults(defineProps<Props>(), {
@@ -124,11 +128,7 @@ const fragmentShaderSource = `
     }
   `;
 
-function createShader(
-  gl: WebGLRenderingContext,
-  type: number,
-  source: string
-): WebGLShader | null {
+function createShader(gl: WebGLRenderingContext, type: number, source: string): WebGLShader | null {
   const shader = gl.createShader(type);
   if (!shader) return null;
   gl.shaderSource(shader, source);
@@ -144,7 +144,7 @@ function createShader(
 function createProgram(
   gl: WebGLRenderingContext,
   vs: WebGLShader,
-  fs: WebGLShader
+  fs: WebGLShader,
 ): WebGLProgram | null {
   const program = gl.createProgram();
   if (!program) return null;
@@ -245,10 +245,7 @@ function render(time: number) {
     pointer.x / window.innerWidth,
     1 - pointer.y / window.innerHeight,
   ]);
-  setUniform(
-    "u_scroll_progress",
-    window.pageYOffset / (2 * window.innerHeight)
-  );
+  setUniform("u_scroll_progress", window.pageYOffset / (2 * window.innerHeight));
   setUniform("u_hue", props.hue);
   setUniform("u_saturation", props.saturation);
   setUniform("u_chroma", props.chroma);
@@ -265,8 +262,7 @@ const updatePointer = (x: number, y: number) => {
   pointer.tY = y;
 };
 
-const handlePointerMove = (e: PointerEvent) =>
-  updatePointer(e.clientX, e.clientY);
+const handlePointerMove = (e: PointerEvent) => updatePointer(e.clientX, e.clientY);
 const handleTouchMove = (e: TouchEvent) => {
   if (e.touches[0]) updatePointer(e.touches[0].clientX, e.touches[0].clientY);
 };
@@ -274,15 +270,15 @@ const handleClick = (e: MouseEvent) => updatePointer(e.clientX, e.clientY);
 
 watch(
   () => props.hue,
-  () => { }
+  () => {},
 );
 watch(
   () => props.saturation,
-  () => { }
+  () => {},
 );
 watch(
   () => props.chroma,
-  () => { }
+  () => {},
 );
 
 onMounted(() => {
@@ -345,16 +341,18 @@ const handleAvatarMouseLeave = () => {
 }
 
 .home-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100vh;
   height: calc(100vh - 140px);
   margin: 0;
   padding: 0;
-  z-index: -1;
+  z-index: -999;
   overflow: hidden;
 }
 
