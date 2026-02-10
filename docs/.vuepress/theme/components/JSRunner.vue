@@ -193,6 +193,7 @@ const scrollToBottom = () => {
 };
 
 // 执行代码
+// 执行代码
 const executeCode = () => {
   if (!editorInstance) {
     addLog("error", "编辑器未初始化");
@@ -298,13 +299,15 @@ const executeCode = () => {
       event.preventDefault();
     };
 
-    // 执行代码，使用更可靠的方式确保this指向window
-    // 在函数内部添加 'use strict' 移除，确保在非严格模式下执行
+    // 修复：直接使用 eval 执行，确保在全局作用域中执行
+    // 将代码包装在立即执行函数中，确保 this 指向全局对象
     const codeToExecute = `(function() {
-      // 确保在非严格模式下执行，使this正确指向window
-      return eval(${JSON.stringify(code)});
-    }).call(window)`;
+      "use strict";
+      // 确保在全局作用域执行
+      return (0, eval)(\`${code.replace(/`/g, "\\`")}\`);
+    })()`;
 
+    // 使用 Function 构造函数创建函数，确保在全局作用域执行
     const func = new Function(codeToExecute);
     func();
 
@@ -815,7 +818,7 @@ const getLogClass = (type: string) => {
   }
 }
 
-.icon{
+.icon {
   width: 20px;
   height: 20px;
   overflow: hidden;
