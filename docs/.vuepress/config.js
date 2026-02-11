@@ -40,6 +40,7 @@ export default defineUserConfig({
   }),
 
   theme: plumeTheme({
+    appearance: "dark",
     /**
      * 文件路径，导航栏，侧边栏等配置
      */
