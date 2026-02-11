@@ -1,6 +1,16 @@
 <template>
   <div class="home-container">
-    <Orb :hoverIntensity="0.5" :rotateOnHover="true" :hue="0" :forceHoverState="false" />
+    <Dither
+      :wave-speed="0.02"
+      :wave-frequency="3"
+      :wave-amplitude="0.3"
+      :wave-color="[0.4, 0.8, 0.75]"
+      :color-num="6"
+      :pixel-size="3"
+      :disable-animation="false"
+      :enable-mouse-interaction="true"
+      :mouse-radius="0.5"
+    />
     <div class="profile-container">
       <router-link class="avatar-link" to="/blog/">
         <img
@@ -28,7 +38,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import Orb from "../bg/Orb.vue";
+import Dither from "../bg/Dither.vue";
 
 // 按压效果
 
@@ -73,8 +83,6 @@ const handleAvatarMouseLeave = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
-  left: 0;
   width: 100%;
   height: calc(100vh - 140px);
   margin: 0;
@@ -92,7 +100,7 @@ const handleAvatarMouseLeave = () => {
   justify-content: center;
   align-items: center;
   padding: 26px;
-  background-color: #8f8f8f49;
+  background-color: #7272721a;
   backdrop-filter: blur(10px);
 }
 

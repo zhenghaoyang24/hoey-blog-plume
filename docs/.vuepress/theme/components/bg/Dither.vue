@@ -234,10 +234,10 @@ void main() {
     f -= 0.5 * effect;
   }
   
-  vec3 col = mix(vec3(0.0), waveColor, f);
+  vec3 col = waveColor * f;  // 直接根据 f 值计算颜色亮度
   col = dither(uv, col);
-  
-  gl_FragColor = vec4(col, 1.0);
+  float alpha = f;  // 根据波形强度设置透明度，无波的地方完全透明
+  gl_FragColor = vec4(col, alpha);
 }
 `;
 
@@ -311,7 +311,11 @@ const initializeScene = () => {
   cleanup();
 
   const container = containerRef.value;
-  renderer = new Renderer({ alpha: true });
+  renderer = new Renderer({
+    alpha: true,
+    premultipliedAlpha: false, // 确保正确混合
+    antialias: true,
+  });
   gl = renderer.gl;
   gl.clearColor(0, 0, 0, 0);
   gl.enable(gl.BLEND);
