@@ -7,7 +7,7 @@ export default defineThemeConfig({
   logo: '',
   docsRepo: 'https://github.com/zhenghaoyang24/hoey-blog-plume',
   docsDir: 'docs',
-  appearance: 'true',
+  appearance: 'dark',
   profile: {
     avatar: 'avatar.jpg',
     name: 'Hoey',
