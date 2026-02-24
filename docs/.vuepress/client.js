@@ -14,6 +14,9 @@ import JSRunner from "./theme/components/JSRunner.vue";
 // 代码容器
 import CodeViewBox from "./theme/components/CodeViewBox.vue";
 
+// 问题组件
+import Question from "./theme/components/Question.vue";
+
 export default defineClientConfig({
   enhance({ app, router, siteData }) {
     app.component("RepoCard", RepoCard);
@@ -22,5 +25,6 @@ export default defineClientConfig({
     app.component("JSRunner", JSRunner);
     app.component("CodeViewBox", CodeViewBox);
     app.component("AllFriendContent", AllFriendContent);
+    app.component("Question", Question);
   },
 });
