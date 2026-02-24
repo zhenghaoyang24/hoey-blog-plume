@@ -51,8 +51,9 @@
     }
   }
 }
+
 /*博客页面 单个卡片效果*/
-.vp-blog-post-item {
+.vp-post-item {
   @media screen and (max-width: 770px) {
     margin: 0 0 !important;
     border-radius: 6px;
