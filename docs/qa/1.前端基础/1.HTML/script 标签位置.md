@@ -4,9 +4,9 @@ createTime: 2025/12/04 09:12:53
 permalink: /qa/basic/html/doun2rfq/
 ---
 
-::: tip 问题
-`<script>` 标签放在 head 与 body 中有什么区别？
-:::
+<Question :questions="['`<script>` 标签放在 head 与 body 中有什么区别？']"/>
+
+---
 
 `<script>` 标签放在不同位置，主要会影响页面的性能与加载产生影响。
 
@@ -23,7 +23,8 @@ permalink: /qa/basic/html/doun2rfq/
 
 3. 使用 `defer` 与 `async`
 
-- `defer：在` \<script> 标签添加 `defer` 属性，浏览器可以将 `<script>` 引用的资源在文档的 DOM 加载完成后才执行。这样脚本加载既不阻塞页面渲染，
-  又保证脚本全局使用。
+有 `defer` 与 `async` 都会被异步加载，即加载和渲染后续文档元素的过程将和 `script.js` 的加载并行进行（异步）。
+两者的区别是：
 
-- `async` ：跟 `defer` 一样也用于异步加载脚本，但 `async` 脚本会立即执行。
+- `async`：当 `script.js` 加载完成后，会立即执行。执行 script.js 时，html 解析暂停。
+- `defer`：当 `script.js` 加载完成后，会等待 html 解析完成后再执行。

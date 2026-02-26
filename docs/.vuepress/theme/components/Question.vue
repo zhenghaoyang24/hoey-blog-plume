@@ -99,13 +99,20 @@ const formattedQuestions = computed(() => {
       list-style-type: none;
       gap: 10px;
       > span {
+        transition: all 0.3s ease;
         width: 4px;
+        border-radius: 2px;
         height: 1.3em;
         background-color: var(--vp-c-brand-1);
       }
       > p {
         font-size: 0.9em;
         margin: 0;
+      }
+      &:hover{
+        > span {
+         width: 8px;
+        }
       }
     }
   }
