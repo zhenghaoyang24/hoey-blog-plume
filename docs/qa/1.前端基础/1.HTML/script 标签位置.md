@@ -27,4 +27,4 @@ permalink: /qa/basic/html/doun2rfq/
 两者的区别是：
 
 - `async`：当 `script.js` 加载完成后，会立即执行。执行 script.js 时，html 解析暂停。
-- `defer`：当 `script.js` 加载完成后，会等待 html 解析完成后再执行。
+- `defer`：当 `script.js` 加载完成后，会等待 html 解析完成后再执行。如果资源需要 DOM 则使用 `defer`。
