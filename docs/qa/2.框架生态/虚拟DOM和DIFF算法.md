@@ -6,7 +6,7 @@ permalink: /qa/framework/ps8664ca/
 
 ## 什么是虚拟 DOM？
 
-**虚拟 DOM ** 本质上是一个 **用 JavaScript 对象来描述真实 DOM 结构** 的数据结构。
+**虚拟DOM**  本质上是一个 **用 JavaScript 对象来描述真实 DOM 结构** 的数据结构。
 *   **真实 DOM:** 浏览器提供的庞大、复杂的对象树，操作成本高（触发重排 Reflow 和重绘 Repaint）。
 *   **虚拟 DOM:** 轻量级的 JS 对象，操作成本极低。
 
@@ -76,11 +76,11 @@ const vnode = {
     *   **无 Key (或 index 作为 key):** 框架倾向于就地更新。如果列表顺序变化，可能导致状态错乱（如输入框内容保留但对应数据变了）。
 
     ```javascript
-    // ❌ 错误示范：使用 index 作为 key
+    // 错误示范：使用 index 作为 key
     // 删除第一项后，第二项的 key 变成 0，React 以为它是原来的第一项，导致状态复用错误
     {list.map((item, index) => <Item key={index} data={item} />)}
 
-    // ✅ 正确示范：使用唯一 ID
+    // 正确示范：使用唯一 ID
     {list.map((item) => <Item key={item.id} data={item} />)}
     ```
 

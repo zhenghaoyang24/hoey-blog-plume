@@ -21,6 +21,7 @@ export const navbar = defineNavbarConfig([
     text: "Q&A",
     icon: "openmoji:interview",
     link: "/qa/guide/",
+    activeMatch: "^/qa/",
   },
   {
     text: "更多",
