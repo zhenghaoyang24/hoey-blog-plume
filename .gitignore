@@ -4,3 +4,5 @@ dist/
 .cache
 .idea/
 .vscode/
+.vercel
+.env*.local

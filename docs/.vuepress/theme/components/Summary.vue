@@ -1,91 +1,158 @@
 <!-- components/AISummary.vue -->
 <template>
-  <div class="ai-summary-wrap">
-    <button 
-      @click="handleSummarize" 
-      :disabled="loading"
-      class="ai-summary-btn"
-      :class="{ loading }"
-    >
-      <span v-if="loading" class="ai-spinner"></span>
-      <span v-else class="ai-icon">✨</span>
-      {{ loading ? 'AI 总结中...' : 'AI 总结' }}
-    </button>
+  <div class="ai-card" :class="{ 'ai-card--active': summary || loading }">
+    <!-- 左上角小标题 -->
+    <div class="ai-card__header">
+      <div class="ai-card__badge">
+        <span class="ai-card__title">AI 总结</span>
+      </div>
+      <div v-if="isRateLimited" class="ai-card__countdown">
+        <span class="countdown-ring"></span>
+        <span class="countdown-text">{{ countdown }}s</span>
+      </div>
+    </div>
 
-    <Transition name="fade">
-      <div v-if="summary || error" class="ai-summary-result">
-        <div v-if="summary" class="ai-summary-content">
-          <div class="ai-summary-header">
-            <span class="ai-label">AI 总结</span>
-            <button @click="copySummary" class="ai-copy-btn" title="复制">
-              📋
-            </button>
+    <!-- 中间内容区 -->
+    <div class="ai-card__body">
+      <!-- 空状态 -->
+      <div v-if="!summary && !loading && !error" class="ai-card__empty">
+        <div class="ai-illustration">
+          <div class="ai-brain">
+            <div class="brain-wave wave-1"></div>
+            <div class="brain-wave wave-2"></div>
+            <div class="brain-wave wave-3"></div>
           </div>
-          <div class="ai-summary-text">{{ summary }}</div>
         </div>
-        
-        <div v-if="error" class="ai-summary-error">
-          <span class="ai-error-icon">⚠️</span>
-          {{ error }}
-          <button @click="handleSummarize" class="ai-retry-btn">重试</button>
+        <p class="ai-hint">点击下方按钮，AI 将为您生成文章摘要</p>
+      </div>
+
+      <!-- 加载状态 -->
+      <div v-if="loading && !summary" class="ai-card__loading">
+        <div class="ai-typing">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+        <p class="ai-status">正在理解文章内容...</p>
+      </div>
+
+      <!-- 内容展示 -->
+      <div v-if="summary" class="ai-card__content">
+        <div class="ai-summary-text" v-html="formattedSummary"></div>
+        <div v-if="streaming" class="ai-streaming-indicator">
+          <span class="streaming-bar"></span>
         </div>
       </div>
-    </Transition>
+
+      <!-- 错误提示 -->
+      <div v-if="error && !isRateLimited" class="ai-card__error">
+        <span class="error-shake">⚠️</span>
+        <span>{{ error }}</span>
+      </div>
+
+      <!-- 限流提示 -->
+      <div v-if="isRateLimited" class="ai-card__limit">
+        <div class="limit-icon">⏱️</div>
+        <div class="limit-text">
+          <div class="limit-title">请求过于频繁</div>
+          <div class="limit-subtitle">请等待倒计时结束后重试</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右下角按钮 -->
+    <div class="ai-card__footer">
+      <button 
+        @click="handleSummarize"
+        :disabled="loading || isRateLimited"
+        class="ai-btn"
+        :class="{ 
+          'ai-btn--loading': loading, 
+          'ai-btn--limited': isRateLimited,
+          'ai-btn--reset': summary && !loading 
+        }"
+      >
+        <span class="btn-glow"></span>
+        <span class="btn-content">
+          <span v-if="loading" class="btn-spinner"></span>
+          <span v-else-if="isRateLimited" class="btn-icon">⏳</span>
+          <span v-else-if="summary" class="btn-icon"></span>
+          <span v-else class="btn-icon">✨</span>
+          <span class="btn-text">{{ buttonText }}</span>
+        </span>
+      </button>
+    </div>
+
+    <!-- 装饰元素 -->
+    <div class="ai-card__glow"></div>
+    <div class="ai-card__border"></div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onUnmounted } from 'vue'
 
 const loading = ref(false)
+const streaming = ref(false)
 const summary = ref('')
 const error = ref('')
+const isRateLimited = ref(false)
+const countdown = ref(0)
+let countdownTimer = null
 
-// 从 DOM 获取内容
+const buttonText = computed(() => {
+  if (isRateLimited.value) return '请等待'
+  if (loading.value) return '生成中'
+  if (summary.value) return '重新生成'
+  return '开始总结'
+})
+
+// 格式化总结（支持换行）
+const formattedSummary = computed(() => {
+  if (!summary.value) return ''
+  return summary.value.replace(/\n/g, '<br>')
+})
+
+// 开始倒计时
+const startCountdown = (seconds) => {
+  isRateLimited.value = true
+  countdown.value = seconds
+  
+  countdownTimer = setInterval(() => {
+    countdown.value--
+    if (countdown.value <= 0) {
+      clearInterval(countdownTimer)
+      isRateLimited.value = false
+      error.value = ''
+    }
+  }, 1000)
+}
+
+// 清理
+onUnmounted(() => {
+  if (countdownTimer) clearInterval(countdownTimer)
+})
+
+// 获取页面内容
 const getPageContent = () => {
-  // 获取标题
   const titleEl = document.querySelector('.page-title')
   const title = titleEl?.textContent?.trim() || document.title || '无标题'
 
-  console.log('标题:', title)
-
-  // 获取正文内容（vp-doc 是 VuePress 默认的文章内容容器）
   const contentEl = document.querySelector('.vp-doc')
-
-  console.log('正文内容:', contentEl)
-  
   if (!contentEl) {
     throw new Error('未找到文章内容')
   }
 
-  // 提取纯文本，去掉代码块等
   const clone = contentEl.cloneNode(true)
-  
-  // 移除不需要的元素
-  const removeSelectors = [
-    'pre',           // 代码块
-    'code',          // 行内代码（可选，保留用于技术文章）
-    '.line-numbers', // 行号
-    'table',         // 表格（可选）
-    '.demo-wrapper', // VuePress 示例块
-    'style',         // 内联样式
-    'script'         // 脚本
-  ]
+  const removeSelectors = ['pre', '.line-numbers', 'style', 'script', '.demo-wrapper', 'blockquote']
   
   removeSelectors.forEach(sel => {
     clone.querySelectorAll(sel).forEach(el => el.remove())
   })
 
-  // 获取文本并清理
   let content = clone.textContent || ''
+  content = content.replace(/\s+/g, ' ').trim()
   
-  // 压缩空白字符
-  content = content
-    .replace(/\s+/g, ' ')
-    .replace(/\n\s*\n/g, '\n')
-    .trim()
-  
-  // 限制长度（DeepSeek 有上下文限制，这里留足余地）
   const maxChars = 6000
   if (content.length > maxChars) {
     content = content.slice(0, maxChars) + '...'
@@ -95,7 +162,10 @@ const getPageContent = () => {
 }
 
 const handleSummarize = async () => {
+  if (isRateLimited.value || loading.value) return
+  
   loading.value = true
+  streaming.value = false
   error.value = ''
   summary.value = ''
 
@@ -108,87 +178,472 @@ const handleSummarize = async () => {
 
     const response = await fetch('/api/summarize', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, content })
     })
 
-    const data = await response.json()
-
-    if (!response.ok) {
-      throw new Error(data.message || data.error || '请求失败')
+    // 处理限流（429）
+    if (response.status === 429) {
+      const data = await response.json()
+      const retryAfter = data.retryAfter || 60
+      startCountdown(retryAfter)
+      throw new Error(data.message || '请求过于频繁')
     }
 
-    summary.value = data.summary
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      throw new Error(errorData.error || `请求失败: ${response.status}`)
+    }
+
+    // 读取 SSE 流
+    const reader = response.body.getReader()
+    const decoder = new TextDecoder()
+    streaming.value = true
+
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+
+      const chunk = decoder.decode(value, { stream: true })
+      const lines = chunk.split('\n')
+      
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const data = line.slice(6)
+          
+          if (data === '[DONE]') {
+            streaming.value = false
+            continue
+          }
+
+          try {
+            const parsed = JSON.parse(data)
+            if (parsed.error) throw new Error(parsed.error)
+            if (parsed.text) {
+              summary.value += parsed.text
+            }
+          } catch (e) {
+            if (e.message !== 'Stream error') {
+              console.debug('Parse error:', line)
+            }
+          }
+        }
+      }
+    }
 
   } catch (err) {
     console.error('总结失败:', err)
-    error.value = err.message || '生成总结失败，请稍后重试'
+    if (!isRateLimited.value) {
+      error.value = err.message || '生成失败，请稍后重试'
+    }
   } finally {
     loading.value = false
+    streaming.value = false
   }
 }
 
-const copySummary = async () => {
-  try {
-    await navigator.clipboard.writeText(summary.value)
-    alert('已复制到剪贴板')
-  } catch {
-    // 降级方案
-    const textarea = document.createElement('textarea')
-    textarea.value = summary.value
-    document.body.appendChild(textarea)
-    textarea.select()
-    document.execCommand('copy')
-    document.body.removeChild(textarea)
-    alert('已复制到剪贴板')
-  }
+const copySummary = () => {
+  navigator.clipboard.writeText(summary.value).then(() => {
+    // 可以添加复制成功的视觉反馈
+  })
 }
 </script>
 
 <style scoped>
-.ai-summary-wrap {
-  margin: 16px 0;
+.ai-card {
+  position: relative;
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 20px;
+  padding: 10px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
 }
 
-.ai-summary-btn {
-  display: inline-flex;
+.ai-card--active {
+  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+}
+
+/* 发光背景 */
+.ai-card__glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.ai-card:hover .ai-card__glow {
+  opacity: 1;
+}
+
+/* 边框动画 */
+.ai-card__border {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.ai-card:hover .ai-card__border {
+  opacity: 1;
+}
+
+/* 头部 */
+.ai-card__header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.ai-card__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(102, 126, 234, 0.15);
+  border-radius: 20px;
+}
+
+.ai-card__icon {
+  font-size: 14px;
+  filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.8));
+}
+
+.ai-card__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #a5b4fc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 倒计时 */
+.ai-card__countdown {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(245, 158, 11, 0.3);
+  border-top-color: #f59e0b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.countdown-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #f59e0b;
+}
+
+/* 内容区 */
+.ai-card__body {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 空状态 */
+.ai-card__empty {
+  text-align: center;
+  color: #64748b;
+}
+
+.ai-illustration {
+  /* height: 40px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.ai-brain {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.brain-wave {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  border-radius: 50%;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+.wave-2 {
+  animation-delay: 0.5s;
+}
+
+.wave-3 {
+  animation-delay: 1s;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+.ai-hint {
+  margin: 10px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* 加载状态 */
+.ai-card__loading {
+  text-align: center;
+}
+
+.ai-typing {
+  display: flex;
+  justify-content: center;
   gap: 6px;
+  margin-bottom: 16px;
+  height: 20px;
+  align-items: center;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  animation: typing-bounce 1.4s ease-in-out infinite both;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typing-bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+.ai-status {
+  font-size: 14px;
+  color: #a5b4fc;
+  animation: pulse 2s infinite;
+}
+
+/* 内容展示 */
+.ai-card__content {
+  color: #e2e8f0;
+  font-size: 15px;
+  line-height: 1.8;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.ai-card__content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.ai-card__content::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 2px;
+}
+
+.ai-card__content::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.5);
+  border-radius: 2px;
+}
+
+.ai-summary-text {
+  text-align: left;
+}
+
+.ai-streaming-indicator {
+  margin-top: 12px;
+  height: 2px;
+  background: rgba(102, 126, 234, 0.2);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.streaming-bar {
+  display: block;
+  height: 100%;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, #667eea, transparent);
+  animation: streaming 1.5s infinite;
+}
+
+@keyframes streaming {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+/* 错误提示 */
+.ai-card__error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 12px;
+  color: #fca5a5;
+  font-size: 14px;
+}
+
+.error-shake {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* 限流提示 */
+.ai-card__limit {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 12px;
+}
+
+.limit-icon {
+  font-size: 32px;
+  animation: pulse 2s infinite;
+}
+
+.limit-text {
+  text-align: left;
+}
+
+.limit-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fbbf24;
+  margin-bottom: 4px;
+}
+
+.limit-subtitle {
+  font-size: 13px;
+  color: #d97706;
+}
+
+/* 底部按钮区 */
+.ai-card__footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.ai-btn {
+  position: relative;
   padding: 8px 16px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
+  color: white;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
+  overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
-.ai-summary-btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+.ai-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
 }
 
-.ai-summary-btn:disabled {
-  opacity: 0.7;
+.ai-btn:disabled {
   cursor: not-allowed;
+  opacity: 0.7;
 }
 
-.ai-summary-btn.loading {
-  background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+.btn-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
 }
 
-.ai-icon {
+.ai-btn:hover:not(:disabled) .btn-glow {
+  transform: translateX(100%);
+}
+
+.btn-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-icon {
   font-size: 16px;
 }
 
-.ai-spinner {
-  width: 14px;
-  height: 14px;
+.btn-text {
+  letter-spacing: 0.5px;
+}
+
+/* 按钮状态变体 */
+.ai-btn--loading {
+  background: linear-gradient(135deg, #475569 0%, #334155 100%);
+  box-shadow: none;
+}
+
+.ai-btn--limited {
+  background: linear-gradient(135deg, #92400e 0%, #b45309 100%);
+  box-shadow: 0 4px 15px rgba(180, 83, 9, 0.4);
+}
+
+.ai-btn--reset {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-spinner {
+  width: 16px;
+  height: 16px;
   border: 2px solid rgba(255,255,255,0.3);
   border-top-color: white;
   border-radius: 50%;
@@ -199,96 +654,20 @@ const copySummary = async () => {
   to { transform: rotate(360deg); }
 }
 
-.ai-summary-result {
-  margin-top: 16px;
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
-.ai-summary-content {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 16px;
-  position: relative;
-}
-
-.ai-summary-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.ai-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #667eea;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.ai-copy-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 4px;
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-
-.ai-copy-btn:hover {
-  background: #e2e8f0;
-}
-
-.ai-summary-text {
-  font-size: 15px;
-  line-height: 1.8;
-  color: #334155;
-  white-space: pre-wrap;
-}
-
-.ai-summary-error {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 8px;
-  color: #dc2626;
-  font-size: 14px;
-}
-
-.ai-error-icon {
-  font-size: 16px;
-}
-
-.ai-retry-btn {
-  margin-left: auto;
-  padding: 4px 12px;
-  background: #dc2626;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.ai-retry-btn:hover {
-  background: #b91c1c;
-}
-
-/* 动画 */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
+/* 响应式 */
+@media (max-width: 640px) {
+  .ai-card {
+    padding: 16px;
+    min-height: 180px;
+  }
+  
+  .ai-card__content {
+    max-height: 200px;
+  }
 }
 </style>
