@@ -17,6 +17,9 @@ import CodeViewBox from "./theme/components/CodeViewBox.vue";
 // 问题组件
 import Question from "./theme/components/Question.vue";
 
+// 总结组件
+import Summary from "./theme/components/Summary.vue";
+
 export default defineClientConfig({
   enhance({ app, router, siteData }) {
     app.component("RepoCard", RepoCard);
@@ -26,5 +29,6 @@ export default defineClientConfig({
     app.component("CodeViewBox", CodeViewBox);
     app.component("AllFriendContent", AllFriendContent);
     app.component("Question", Question);
+    app.component("Summary", Summary);
   },
 });

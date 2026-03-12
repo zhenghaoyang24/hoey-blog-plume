@@ -36,6 +36,7 @@
     "highlight.js": "^11.11.1",
     "monaco-editor": "^0.52.2",
     "ogl": "^1.0.11",
+    "openai": "^6.27.0",
     "typescript": "^5.9.3"
   }
 }
