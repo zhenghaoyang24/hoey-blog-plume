@@ -51,7 +51,7 @@
     <div class="ai-card__footer">
       <!-- 限流提示文字（按钮左侧红色小字） -->
       <span v-if="isRateLimited" class="rate-limit-hint">请求过于频繁，稍后再试</span>
-      
+
       <button
         @click="handleSummarize"
         :disabled="loading || isRateLimited"
@@ -105,7 +105,7 @@ const formattedSummary = computed(() => {
 // 开始倒计时（仅用于控制限流状态，不显示）
 const startCountdown = (seconds) => {
   isRateLimited.value = true;
-  
+
   // 清除之前的定时器
   if (countdownTimer) clearInterval(countdownTimer);
 
@@ -176,7 +176,7 @@ const handleSummarize = async () => {
 
     const response = await fetch("/api/summarize", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "X-Requested-With": "XMLHttpRequest" },
       body: JSON.stringify({ title, content }),
     });
 
@@ -197,7 +197,7 @@ const handleSummarize = async () => {
 
     // 新请求成功，清空旧总结开始新的流式输出
     summary.value = "";
-    
+
     // 读取 SSE 流
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
@@ -665,7 +665,7 @@ const copySummary = () => {
     max-height: 120px;
   }
 
-  .ai-btn{
+  .ai-btn {
     padding: 6px;
   }
 
@@ -673,10 +673,10 @@ const copySummary = () => {
     font-size: 14px;
   }
 
-  .ai-card__empty{
+  .ai-card__empty {
     gap: 0px;
   }
-  
+
   .rate-limit-hint {
     font-size: 11px;
   }
