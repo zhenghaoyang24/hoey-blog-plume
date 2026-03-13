@@ -1,5 +1,7 @@
-import { defineClientConfig } from "vuepress/client";
+import { defineClientConfig, usePageFrontmatter } from "vuepress/client";
+import { Layout } from "vuepress-theme-plume/client";
 import "./theme/styles/index.css";
+import { h } from "vue";
 import RepoCard from "vuepress-theme-plume/features/RepoCard.vue";
 import AllFriendContent from "./theme/components/AllFriendContent.vue";
 // 网格首页
@@ -29,6 +31,18 @@ export default defineClientConfig({
     app.component("CodeViewBox", CodeViewBox);
     app.component("AllFriendContent", AllFriendContent);
     app.component("Question", Question);
-    app.component("Summary", Summary);
+  },
+  layouts: {
+    Layout: () => {
+      const frontmatter = usePageFrontmatter();
+
+      // 判断是否需要显示 Summary
+      const showSummary = frontmatter.value.summary === true;
+
+      return h(Layout, null, {
+        // 只在 summary: true 时渲染 Summary 组件
+        "doc-meta-bottom": () => (showSummary ? h(Summary) : null),
+      });
+    },
   },
 });
