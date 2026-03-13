@@ -55,21 +55,20 @@
         <div class="limit-icon">⏱️</div>
         <div class="limit-text">
           <div class="limit-title">请求过于频繁</div>
-          <div class="limit-subtitle">请等待倒计时结束后重试</div>
         </div>
       </div>
     </div>
 
     <!-- 右下角按钮 -->
     <div class="ai-card__footer">
-      <button 
+      <button
         @click="handleSummarize"
         :disabled="loading || isRateLimited"
         class="ai-btn"
-        :class="{ 
-          'ai-btn--loading': loading, 
+        :class="{
+          'ai-btn--loading': loading,
           'ai-btn--limited': isRateLimited,
-          'ai-btn--reset': summary && !loading 
+          'ai-btn--reset': summary && !loading,
         }"
       >
         <span class="btn-glow"></span>
@@ -90,163 +89,169 @@
 </template>
 
 <script setup>
-import { ref, computed, onUnmounted } from 'vue'
+import { ref, computed, onUnmounted } from "vue";
 
-const loading = ref(false)
-const streaming = ref(false)
-const summary = ref('')
-const error = ref('')
-const isRateLimited = ref(false)
-const countdown = ref(0)
-let countdownTimer = null
+const loading = ref(false);
+const streaming = ref(false);
+const summary = ref("");
+const error = ref("");
+const isRateLimited = ref(false);
+const countdown = ref(0);
+let countdownTimer = null;
 
 const buttonText = computed(() => {
-  if (isRateLimited.value) return '请等待'
-  if (loading.value) return '生成中'
-  if (summary.value) return '重新生成'
-  return '开始总结'
-})
+  if (isRateLimited.value) return "请等待";
+  if (loading.value) return "生成中";
+  if (summary.value) return "重新生成";
+  return "开始总结";
+});
 
 // 格式化总结（支持换行）
 const formattedSummary = computed(() => {
-  if (!summary.value) return ''
-  return summary.value.replace(/\n/g, '<br>')
-})
+  if (!summary.value) return "";
+  return summary.value.replace(/\n/g, "<br>");
+});
 
 // 开始倒计时
 const startCountdown = (seconds) => {
-  isRateLimited.value = true
-  countdown.value = seconds
-  
+  isRateLimited.value = true;
+  countdown.value = seconds;
+
   countdownTimer = setInterval(() => {
-    countdown.value--
+    countdown.value--;
     if (countdown.value <= 0) {
-      clearInterval(countdownTimer)
-      isRateLimited.value = false
-      error.value = ''
+      clearInterval(countdownTimer);
+      isRateLimited.value = false;
+      error.value = "";
     }
-  }, 1000)
-}
+  }, 1000);
+};
 
 // 清理
 onUnmounted(() => {
-  if (countdownTimer) clearInterval(countdownTimer)
-})
+  if (countdownTimer) clearInterval(countdownTimer);
+});
 
 // 获取页面内容
 const getPageContent = () => {
-  const titleEl = document.querySelector('.page-title')
-  const title = titleEl?.textContent?.trim() || document.title || '无标题'
+  const titleEl = document.querySelector(".page-title");
+  const title = titleEl?.textContent?.trim() || document.title || "无标题";
 
-  const contentEl = document.querySelector('.vp-doc')
+  const contentEl = document.querySelector(".vp-doc");
   if (!contentEl) {
-    throw new Error('未找到文章内容')
+    throw new Error("未找到文章内容");
   }
 
-  const clone = contentEl.cloneNode(true)
-  const removeSelectors = ['pre', '.line-numbers', 'style', 'script', '.demo-wrapper', 'blockquote']
-  
-  removeSelectors.forEach(sel => {
-    clone.querySelectorAll(sel).forEach(el => el.remove())
-  })
+  const clone = contentEl.cloneNode(true);
+  const removeSelectors = [
+    "pre",
+    ".line-numbers",
+    "style",
+    "script",
+    ".demo-wrapper",
+    "blockquote",
+  ];
 
-  let content = clone.textContent || ''
-  content = content.replace(/\s+/g, ' ').trim()
-  
-  const maxChars = 6000
+  removeSelectors.forEach((sel) => {
+    clone.querySelectorAll(sel).forEach((el) => el.remove());
+  });
+
+  let content = clone.textContent || "";
+  content = content.replace(/\s+/g, " ").trim();
+
+  const maxChars = 6000;
   if (content.length > maxChars) {
-    content = content.slice(0, maxChars) + '...'
+    content = content.slice(0, maxChars) + "...";
   }
 
-  return { title, content }
-}
+  return { title, content };
+};
 
 const handleSummarize = async () => {
-  if (isRateLimited.value || loading.value) return
-  
-  loading.value = true
-  streaming.value = false
-  error.value = ''
-  summary.value = ''
+  if (isRateLimited.value || loading.value) return;
+
+  loading.value = true;
+  streaming.value = false;
+  error.value = "";
+  summary.value = "";
 
   try {
-    const { title, content } = getPageContent()
+    const { title, content } = getPageContent();
 
     if (!content || content.length < 50) {
-      throw new Error('文章内容太短，无法总结')
+      throw new Error("文章内容太短，无法总结");
     }
 
-    const response = await fetch('/api/summarize', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, content })
-    })
+    const response = await fetch("/api/summarize", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, content }),
+    });
 
     // 处理限流（429）
     if (response.status === 429) {
-      const data = await response.json()
-      const retryAfter = data.retryAfter || 60
-      startCountdown(retryAfter)
-      throw new Error(data.message || '请求过于频繁')
+      const data = await response.json();
+      const retryAfter = data.retryAfter || 60;
+      startCountdown(retryAfter);
+      throw new Error(data.message || "请求过于频繁");
     }
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}))
-      throw new Error(errorData.error || `请求失败: ${response.status}`)
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || `请求失败: ${response.status}`);
     }
 
     // 读取 SSE 流
-    const reader = response.body.getReader()
-    const decoder = new TextDecoder()
-    streaming.value = true
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
+    streaming.value = true;
 
     while (true) {
-      const { done, value } = await reader.read()
-      if (done) break
+      const { done, value } = await reader.read();
+      if (done) break;
 
-      const chunk = decoder.decode(value, { stream: true })
-      const lines = chunk.split('\n')
-      
+      const chunk = decoder.decode(value, { stream: true });
+      const lines = chunk.split("\n");
+
       for (const line of lines) {
-        if (line.startsWith('data: ')) {
-          const data = line.slice(6)
-          
-          if (data === '[DONE]') {
-            streaming.value = false
-            continue
+        if (line.startsWith("data: ")) {
+          const data = line.slice(6);
+
+          if (data === "[DONE]") {
+            streaming.value = false;
+            continue;
           }
 
           try {
-            const parsed = JSON.parse(data)
-            if (parsed.error) throw new Error(parsed.error)
+            const parsed = JSON.parse(data);
+            if (parsed.error) throw new Error(parsed.error);
             if (parsed.text) {
-              summary.value += parsed.text
+              summary.value += parsed.text;
             }
           } catch (e) {
-            if (e.message !== 'Stream error') {
-              console.debug('Parse error:', line)
+            if (e.message !== "Stream error") {
+              console.debug("Parse error:", line);
             }
           }
         }
       }
     }
-
   } catch (err) {
-    console.error('总结失败:', err)
+    console.error("总结失败:", err);
     if (!isRateLimited.value) {
-      error.value = err.message || '生成失败，请稍后重试'
+      error.value = err.message || "生成失败，请稍后重试";
     }
   } finally {
-    loading.value = false
-    streaming.value = false
+    loading.value = false;
+    streaming.value = false;
   }
-}
+};
 
 const copySummary = () => {
   navigator.clipboard.writeText(summary.value).then(() => {
     // 可以添加复制成功的视觉反馈
-  })
-}
+  });
+};
 </script>
 
 <style scoped>
@@ -291,8 +296,12 @@ const copySummary = () => {
   border-radius: 20px;
   padding: 1px;
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 0.5));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0.5;
@@ -308,16 +317,15 @@ const copySummary = () => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
   position: relative;
+  padding-bottom: 4px;
   z-index: 1;
 }
 
 .ai-card__badge {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
+  padding: 4px 10px;
   background: rgba(102, 126, 234, 0.15);
   border-radius: 20px;
 }
@@ -372,16 +380,17 @@ const copySummary = () => {
 
 /* 空状态 */
 .ai-card__empty {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   color: #64748b;
 }
 
 .ai-illustration {
-  /* height: 40px; */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
 }
 
 .ai-brain {
@@ -418,7 +427,8 @@ const copySummary = () => {
 }
 
 .ai-hint {
-  margin: 10px;
+  padding: 0;
+  margin: 0;
   font-size: 14px;
   color: #94a3b8;
 }
@@ -445,12 +455,22 @@ const copySummary = () => {
   animation: typing-bounce 1.4s ease-in-out infinite both;
 }
 
-.typing-dot:nth-child(1) { animation-delay: -0.32s; }
-.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+.typing-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
 
 @keyframes typing-bounce {
-  0%, 80%, 100% { transform: scale(0); }
-  40% { transform: scale(1); }
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
 }
 
 .ai-status {
@@ -462,11 +482,11 @@ const copySummary = () => {
 /* 内容展示 */
 .ai-card__content {
   color: #e2e8f0;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.8;
   max-height: 300px;
   overflow-y: auto;
-  padding-right: 8px;
+  padding-inline: 8px;
 }
 
 .ai-card__content::-webkit-scrollbar {
@@ -474,7 +494,7 @@ const copySummary = () => {
 }
 
 .ai-card__content::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 2px;
 }
 
@@ -504,8 +524,12 @@ const copySummary = () => {
 }
 
 @keyframes streaming {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(400%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
 }
 
 /* 错误提示 */
@@ -527,9 +551,16 @@ const copySummary = () => {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 /* 限流提示 */
@@ -566,21 +597,21 @@ const copySummary = () => {
 
 /* 底部按钮区 */
 .ai-card__footer {
+  padding-top: 4px;
   display: flex;
   justify-content: flex-end;
-  margin-top: 10px;
   position: relative;
   z-index: 1;
 }
 
 .ai-btn {
   position: relative;
-  padding: 8px 16px;
+  padding: 6px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
   border-radius: 12px;
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   overflow: hidden;
@@ -601,7 +632,7 @@ const copySummary = () => {
 .btn-glow {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transform: translateX(-100%);
   transition: transform 0.6s;
 }
@@ -614,7 +645,7 @@ const copySummary = () => {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 2px;
 }
 
 .btn-icon {
@@ -644,30 +675,49 @@ const copySummary = () => {
 .btn-spinner {
   width: 16px;
   height: 16px;
-  border: 2px solid rgba(255,255,255,0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-top-color: white;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* 响应式 */
 @media (max-width: 640px) {
   .ai-card {
-    padding: 16px;
+    padding: 6px;
     min-height: 180px;
   }
-  
+
   .ai-card__content {
-    max-height: 200px;
+    max-height: 120px;
+  }
+
+  .ai-btn{
+    padding: 6px;
+  }
+
+  .btn-icon {
+    font-size: 14px;
+  }
+
+  .ai-card__empty{
+    gap: 0px;
   }
 }
 </style>
