@@ -4,41 +4,59 @@ import crypto from 'crypto';
 
 // ============ 安全配置 ============
 const CONFIG = {
-  // 限流：每分钟最多 3 次
+  // 限流配置
   RATE_LIMIT: {
-    MAX_REQUESTS: 3,
-    WINDOW_MS: 60 * 1000,
-    BLOCK_DURATION_MS: 5 * 60 * 1000, // 超限后封禁5分钟
+    MAX_REQUESTS: 3,        // 每窗口期最大请求数
+    WINDOW_MS: 60 * 1000,   // 窗口期：1分钟
+    BLOCK_DURATION_MS: 5 * 60 * 1000, // 超限封禁：5分钟
+    SEGMENT_MAX: 10,        // IP段（/24）每分钟最大请求数
   },
   // 内容长度限制
   CONTENT: {
     MAX_LENGTH: 8000,
-    MIN_LENGTH: 10,
+    MIN_LENGTH: 50,         // 提高最小长度，防止空请求滥用
     MAX_TITLE_LENGTH: 200,
   },
   // 允许的域名（严格匹配）
   ALLOWED_ORIGINS: [
     'https://zhenghaoyang.cn',
     'https://www.zhenghaoyang.cn',
-    'http://localhost:3000', // 仅开发环境使用
+  ],
+  // 开发环境允许
+  DEV_ORIGINS: [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'http://localhost:4173',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:5173',
   ],
 };
 
-// 限流存储
-const rateLimitMap = new Map(); // IP -> { requests: [], blockedUntil: 0 }
-const blockedIps = new Map();   // IP -> 解封时间
+// 限流存储（内存）
+const rateLimitMap = new Map(); // fingerprint/IP -> { requests: [], blockedUntil: 0, count: 0 }
+const blockedIps = new Map();   // fingerprint -> 解封时间
 
-// 清理任务
+// 定期清理
 setInterval(() => {
   const now = Date.now();
   
-  // 清理过期限流记录
-  for (const [ip, data] of rateLimitMap.entries()) {
-    const valid = data.requests.filter(t => now - t < CONFIG.RATE_LIMIT.WINDOW_MS);
-    if (valid.length === 0 && now > (data.blockedUntil || 0)) {
-      rateLimitMap.delete(ip);
+  for (const [key, data] of rateLimitMap.entries()) {
+    const isSegment = key.startsWith('seg:');
+    const windowMs = isSegment ? CONFIG.RATE_LIMIT.WINDOW_MS : CONFIG.RATE_LIMIT.WINDOW_MS;
+    
+    if (isSegment) {
+      // IP段：检查是否需要重置
+      if (now > data.resetTime) {
+        rateLimitMap.delete(key);
+      }
     } else {
-      data.requests = valid;
+      // 普通限流：清理过期请求
+      const valid = data.requests.filter(t => now - t < windowMs);
+      if (valid.length === 0 && now > (data.blockedUntil || 0)) {
+        rateLimitMap.delete(key);
+      } else {
+        data.requests = valid;
+      }
     }
   }
   
@@ -46,61 +64,107 @@ setInterval(() => {
   for (const [ip, unblockTime] of blockedIps.entries()) {
     if (now > unblockTime) {
       blockedIps.delete(ip);
-      rateLimitMap.delete(ip);
     }
   }
 }, 60000);
 
+// ============ 安全工具函数 ============
+
 /**
- * 获取客户端真实 IP（多层防护防止伪造）
+ * 获取客户端真实 IP（多层防护）
  */
 const getClientIp = (req) => {
+  // Vercel 特定头（最可信）
   const vercelForwarded = req.headers['x-vercel-forwarded-for'];
   if (vercelForwarded) {
     return vercelForwarded.split(',')[0].trim();
   }
   
-  // 标准转发头
+  // 标准转发头（非 Vercel 环境取最后一个）
   const forwarded = req.headers['x-forwarded-for'];
-  if (forwarded && process.env.VERCEL !== '1') {
-    // 非 Vercel 环境下，取最后一个
+  if (forwarded) {
     const ips = forwarded.split(',').map(ip => ip.trim());
     return ips[ips.length - 1];
   }
   
-  // 其他备选
   return req.headers['x-real-ip'] 
     || req.socket?.remoteAddress 
     || 'unknown';
 };
 
 /**
- * 生成 IP 指纹
+ * 获取 IP 段（/24 网段）
+ */
+const getIpSegment = (ip) => {
+  if (!ip || ip === 'unknown' || ip.includes(':')) return ip || 'unknown';
+  const parts = ip.split('.');
+  if (parts.length === 4) {
+    return `${parts[0]}.${parts[1]}.${parts[2]}`;
+  }
+  return ip.slice(0, 12);
+};
+
+/**
+ * 生成客户端指纹
  */
 const getClientFingerprint = (req) => {
   const ip = getClientIp(req);
   const ua = req.headers['user-agent'] || '';
-  // 组合 IP + UA 前段生成指纹
+  const lang = req.headers['accept-language'] || '';
+  
   const hash = crypto.createHash('sha256')
-    .update(`${ip}:${ua.slice(0, 50)}`)
+    .update(`${ip}:${ua.slice(0, 100)}:${lang.slice(0, 10)}`)
     .digest('hex')
     .slice(0, 16);
+  
   return { ip, fingerprint: hash };
 };
 
 /**
- * 严格验证 Origin
+ * 严格验证请求来源（Origin + Referer + Ajax 头）
  */
-const validateOrigin = (origin) => {
-  // 生产环境必须验证
-  if (process.env.NODE_ENV !== 'production') {
+const validateRequestSource = (req) => {
+  const origin = req.headers.origin;
+  const referer = req.headers.referer;
+  const requestedWith = req.headers['x-requested-with'];
+  
+  // 生产环境强制验证
+  const isProd = process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production';
+  
+  if (!isProd) {
+    // 开发环境：允许特定 localhost
+    if (CONFIG.DEV_ORIGINS.includes(origin)) return true;
+  }
+  
+  // 1. 必须有 Ajax 标识（阻挡直接 curl）
+  if (requestedWith !== 'XMLHttpRequest') {
+    return false;
+  }
+  
+  // 2. 必须有来源标识
+  if (!origin && !referer) {
+    return false;
+  }
+  
+  // 3. 验证 Origin
+  if (origin && CONFIG.ALLOWED_ORIGINS.includes(origin)) {
     return true;
   }
   
-  // 拒绝无 Origin 的请求
-  if (!origin) return false;
+  // 4. 验证 Referer（备用）
+  if (referer) {
+    try {
+      const refererUrl = new URL(referer);
+      const refererOrigin = `${refererUrl.protocol}//${refererUrl.host}`;
+      if (CONFIG.ALLOWED_ORIGINS.includes(refererOrigin)) {
+        return true;
+      }
+    } catch {
+      return false;
+    }
+  }
   
-  return CONFIG.ALLOWED_ORIGINS.includes(origin);
+  return false;
 };
 
 /**
@@ -108,61 +172,84 @@ const validateOrigin = (origin) => {
  */
 const sanitizeInput = (str, maxLength) => {
   if (typeof str !== 'string') return '';
-  // 移除控制字符、零宽字符、过长换行
   return str
     .slice(0, maxLength)
-    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\u200B-\u200D\uFEFF]/g, '')
-    .replace(/\n{3,}/g, '\n\n');
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F\u200B-\u200D\uFEFF\u2028\u2029]/g, '')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
 };
 
 /**
  * 检测提示注入攻击
  */
 const detectPromptInjection = (content, title) => {
-  const injectionPatterns = [
+  const patterns = [
     /ignore previous instructions?/i,
     /system prompt/i,
-    /you are (now|no longer)/i,
-    /DAN mode/i,
-    /jailbreak/i,
-    /ignore (above|all).*instructions?/i,
-    /<\/?system>/i,
-    /\{\{.*\}\}/, // 模板注入
-    /\[system\]/i,
+    /you are (now|no longer|being)/i,
+    /DAN mode|jailbreak|dev mode/i,
+    /ignore (above|all|the|previous).*instructions?/i,
+    /<\/?system|\/\s*system>/i,
+    /\{\{.*\}\}|<%.*%>/, 
+    /\[system\]|\[user\]|\[assistant\]/i,
+    /from now on you are/i,
+    /pretend to be/i,
+    /act as (?:an? )?(?:ai|assistant|bot|gpt)/i,
   ];
   
-  const text = `${title} ${content}`;
-  for (const pattern of injectionPatterns) {
-    if (pattern.test(text)) return true;
-  }
-  return false;
+  const text = `${title} ${content}`.slice(0, 1000);
+  return patterns.some(p => p.test(text));
 };
 
 /**
- * 限流检查（带渐进式惩罚）
+ * 验证请求体结构
  */
-const checkRateLimit = (fingerprint) => {
-  const now = Date.now();
-  const { MAX_REQUESTS, WINDOW_MS, BLOCK_DURATION_MS } = CONFIG.RATE_LIMIT;
+const validateBodyStructure = (body) => {
+  if (typeof body !== 'object' || body === null || Array.isArray(body)) {
+    return false;
+  }
   
-  // 检查是否被封禁
+  const allowedKeys = ['content', 'title'];
+  const keys = Object.keys(body);
+  
+  // 检查非法字段
+  if (keys.some(k => !allowedKeys.includes(k))) {
+    return false;
+  }
+  
+  // 检查必需字段
+  if (!keys.includes('content') || !keys.includes('title')) {
+    return false;
+  }
+  
+  return true;
+};
+
+/**
+ * 限流检查（指纹 + IP段双重限流）
+ */
+const checkRateLimit = (fingerprint, ip) => {
+  const now = Date.now();
+  const { MAX_REQUESTS, WINDOW_MS, BLOCK_DURATION_MS, SEGMENT_MAX } = CONFIG.RATE_LIMIT;
+  
+  // 1. 检查指纹封禁
   if (blockedIps.has(fingerprint)) {
     const unblockTime = blockedIps.get(fingerprint);
     if (now < unblockTime) {
-      const retryAfter = Math.ceil((unblockTime - now) / 1000);
-      return { allowed: false, retryAfter, blocked: true };
+      return { 
+        allowed: false, 
+        retryAfter: Math.ceil((unblockTime - now) / 1000),
+        blocked: true 
+      };
     }
     blockedIps.delete(fingerprint);
   }
   
+  // 2. 指纹限流
   const data = rateLimitMap.get(fingerprint) || { requests: [], blockedUntil: 0 };
-  
-  // 清理过期请求
   const validRequests = data.requests.filter(t => now - t < WINDOW_MS);
   
-  // 检查是否超限
   if (validRequests.length >= MAX_REQUESTS) {
-    // 封禁该指纹
     const unblockTime = now + BLOCK_DURATION_MS;
     blockedIps.set(fingerprint, unblockTime);
     rateLimitMap.set(fingerprint, { requests: validRequests, blockedUntil: unblockTime });
@@ -174,6 +261,27 @@ const checkRateLimit = (fingerprint) => {
     };
   }
   
+  // 3. IP段限流（防止代理池）
+  const segment = getIpSegment(ip);
+  const segKey = `seg:${segment}`;
+  const segData = rateLimitMap.get(segKey) || { count: 0, resetTime: now + WINDOW_MS };
+  
+  if (now > segData.resetTime) {
+    segData.count = 0;
+    segData.resetTime = now + WINDOW_MS;
+  }
+  segData.count++;
+  rateLimitMap.set(segKey, segData);
+  
+  if (segData.count > SEGMENT_MAX) {
+    return { 
+      allowed: false, 
+      retryAfter: Math.ceil((segData.resetTime - now) / 1000),
+      blocked: true,
+      reason: 'segment' 
+    };
+  }
+  
   // 记录请求
   validRequests.push(now);
   rateLimitMap.set(fingerprint, { requests: validRequests, blockedUntil: 0 });
@@ -181,114 +289,139 @@ const checkRateLimit = (fingerprint) => {
   return { allowed: true, remaining: MAX_REQUESTS - validRequests.length };
 };
 
+/**
+ * 统一错误响应（生产环境隐藏细节）
+ */
+const errorResponse = (res, status, detail) => {
+  const isDev = process.env.VERCEL_ENV !== 'production' && process.env.NODE_ENV !== 'production';
+  
+  const messages = {
+    403: 'Access denied',
+    405: 'Method not allowed',
+    413: 'Payload too large',
+    429: 'Too many requests',
+    400: 'Invalid request',
+    500: 'Service unavailable',
+    502: 'Upstream error',
+    504: 'Request timeout',
+  };
+  
+  const response = { error: messages[status] || 'Error' };
+  
+  // 开发环境可附加调试信息
+  if (isDev && detail) {
+    response.debug = detail;
+  }
+  
+  // 限流时添加 Retry-After
+  if (status === 429 && typeof detail === 'number') {
+    res.setHeader('Retry-After', detail);
+    response.retryAfter = detail;
+  }
+  
+  res.status(status).json(response);
+};
+
 // ============ 主处理器 ============
 export default async function handler(req, res) {
-  const origin = req.headers.origin;
-  
-  // 严格 Origin 验证（生产环境）
-  if (!validateOrigin(origin)) {
-    return res.status(403).json({ 
-      error: 'Forbidden',
-      message: 'Invalid origin' 
-    });
-  }
-
-  // 设置 CORS（仅允许特定域名，不暴露过多信息）
-  if (origin && CONFIG.ALLOWED_ORIGINS.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-    res.setHeader('Access-Control-Allow-Credentials', 'false'); // 明确不携带凭证
-  }
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('X-Content-Type-Options', 'nosniff'); // 防止 MIME 嗅探
-  res.setHeader('X-Frame-Options', 'DENY'); // 防止点击劫持
-
-  // 预检请求处理
+  // 1. CORS 预检
   if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With');
     return res.status(200).end();
   }
-
-  // 方法限制
+  
+  // 2. 方法限制
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST, OPTIONS');
-    return res.status(405).json({ error: 'Method not allowed' });
+    return errorResponse(res, 405);
   }
-
-  // 获取客户端指纹并限流检查
+  
+  // 3. 请求来源验证（核心安全层）
+  if (!validateRequestSource(req)) {
+    console.warn(`[SECURITY] Invalid source: ${req.headers.origin || 'no-origin'}, Referer: ${req.headers.referer || 'none'}, Ajax: ${req.headers['x-requested-with'] || 'none'}`);
+    return errorResponse(res, 403);
+  }
+  
+  // 4. 设置安全响应头
+  const origin = req.headers.origin;
+  if (origin && (CONFIG.ALLOWED_ORIGINS.includes(origin) || CONFIG.DEV_ORIGINS.includes(origin))) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  
+  // 5. 请求体大小限制
+  const contentLength = parseInt(req.headers['content-length'] || '0');
+  if (contentLength > 50 * 1024) { // 50KB
+    return errorResponse(res, 413);
+  }
+  
+  // 6. 获取客户端信息并限流
   const { ip, fingerprint } = getClientFingerprint(req);
-  const limitCheck = checkRateLimit(fingerprint);
+  const limitCheck = checkRateLimit(fingerprint, ip);
   
   if (!limitCheck.allowed) {
-    // 添加限流头
-    res.setHeader('Retry-After', limitCheck.retryAfter);
-    return res.status(429).json({ 
-      error: 'Too many requests',
-      message: limitCheck.blocked 
-        ? `请求过于频繁，请 ${Math.ceil(limitCheck.retryAfter / 60)} 分钟后再试`
-        : `请 ${limitCheck.retryAfter} 秒后再试`,
-      retryAfter: limitCheck.retryAfter,
-    });
+    console.warn(`[RATE LIMIT] Blocked: ${ip}, Fingerprint: ${fingerprint}, Reason: ${limitCheck.reason || 'fingerprint'}`);
+    return errorResponse(res, 429, limitCheck.retryAfter);
   }
-
-  // 6. 请求体大小限制
-  const contentLength = parseInt(req.headers['content-length'] || '0');
-  if (contentLength > 100 * 1024) { // 100KB 限制
-    return res.status(413).json({ error: 'Payload too large' });
-  }
-
-  // 7. 输入验证与净化
-  let { content, title } = req.body || {};
   
-  if (!content || !title) {
-    return res.status(400).json({ error: 'Missing required fields' });
+  // 7. 请求体验证
+  if (!validateBodyStructure(req.body)) {
+    return errorResponse(res, 400, 'Invalid body structure');
   }
-
+  
+  let { content, title } = req.body;
+  
   // 类型检查
   if (typeof content !== 'string' || typeof title !== 'string') {
-    return res.status(400).json({ error: 'Invalid field types' });
+    return errorResponse(res, 400, 'Invalid field types');
   }
-
+  
   // 长度检查
   if (content.length < CONFIG.CONTENT.MIN_LENGTH) {
-    return res.status(400).json({ error: 'Content too short' });
+    return errorResponse(res, 400, 'Content too short');
   }
   if (content.length > CONFIG.CONTENT.MAX_LENGTH) {
-    return res.status(400).json({ error: 'Content too long' });
+    return errorResponse(res, 400, 'Content too long');
   }
   if (title.length > CONFIG.CONTENT.MAX_TITLE_LENGTH) {
-    return res.status(400).json({ error: 'Title too long' });
+    return errorResponse(res, 400, 'Title too long');
   }
-
-  // 提示注入检测
+  
+  // 8. 提示注入检测
   if (detectPromptInjection(content, title)) {
-    // 记录可疑请求
-    console.warn(`[SECURITY] Potential prompt injection from ${ip}: ${title.slice(0, 50)}`);
-    return res.status(400).json({ error: 'Invalid input detected' });
+    console.warn(`[SECURITY] Injection detected from ${ip}: ${title.slice(0, 50)}`);
+    return errorResponse(res, 400, 'Invalid input');
   }
-
-  // 净化输入
+  
+  // 9. 净化输入
   const cleanContent = sanitizeInput(content, CONFIG.CONTENT.MAX_LENGTH);
   const cleanTitle = sanitizeInput(title, CONFIG.CONTENT.MAX_TITLE_LENGTH);
-
-  // 环境变量检查
+  
+  // 10. 环境变量检查
   if (!process.env.OPENAI_API_KEY) {
     console.error('[CONFIG] Missing API key');
-    return res.status(500).json({ error: 'Service unavailable' });
+    return errorResponse(res, 500);
   }
-
-  // 9. 初始化 OpenAI
+  
+  // 11. 初始化 OpenAI
   const openai = new OpenAI({
     baseURL: 'https://api.deepseek.com',
     apiKey: process.env.OPENAI_API_KEY,
-    timeout: 30000, // 30秒超时
+    timeout: 25000,
     maxRetries: 1,
   });
-
+  
   try {
-    // 10. 流式调用
+    // 12. 流式调用
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 35000);
-
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
+    
     const stream = await openai.chat.completions.create({
       messages: [
         { 
@@ -302,66 +435,58 @@ export default async function handler(req, res) {
       ],
       model: "deepseek-chat",
       stream: true,
-      max_tokens: 300, // 限制输出长度，防止 Token 滥用
-      temperature: 0.3, // 降低随机性，提高稳定性
+      max_tokens: 300,
+      temperature: 0.3,
     }, { signal: controller.signal });
-
+    
     clearTimeout(timeoutId);
-
-    // 11. 设置流式响应头
+    
+    // 13. 流式响应
     res.writeHead(200, {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache, no-transform',
       'Connection': 'keep-alive',
       'X-Accel-Buffering': 'no',
     });
-
-    // 流式传输
+    
     let tokenCount = 0;
-    const MAX_TOKENS = 500; // 安全上限
+    const MAX_TOKENS = 400;
     
     for await (const chunk of stream) {
       const text = chunk.choices[0]?.delta?.content || '';
       
       if (text) {
         tokenCount++;
-        // 异常输出检测（如果输出过长可能是攻击）
         if (tokenCount > MAX_TOKENS) {
-          res.write(`data: ${JSON.stringify({ error: 'Output limit exceeded' })}\n\n`);
+          res.write(`data: ${JSON.stringify({ error: 'Output limit' })}\n\n`);
           break;
         }
-        
         res.write(`data: ${JSON.stringify({ text })}\n\n`);
       }
       
-      // 检测客户端断开
-      if (res.destroyed) {
-        break;
-      }
+      if (res.destroyed) break;
     }
-
+    
     res.write('data: [DONE]\n\n');
     res.end();
-
+    
   } catch (error) {
     console.error('[API Error]', error.name, error.message);
     
-    // 区分错误类型，不暴露内部细节
     if (!res.headersSent) {
       if (error.name === 'AbortError') {
-        res.status(504).json({ error: 'Request timeout' });
+        errorResponse(res, 504);
       } else if (error.status === 429) {
-        res.status(502).json({ error: 'AI service busy' });
+        errorResponse(res, 502);
       } else {
-        res.status(500).json({ error: 'Service temporarily unavailable' });
+        errorResponse(res, 500);
       }
     } else {
-      // 流已开始，尝试优雅关闭
       try {
-        res.write(`data: ${JSON.stringify({ error: 'Stream interrupted' })}\n\n`);
+        res.write(`data: ${JSON.stringify({ error: 'Interrupted' })}\n\n`);
         res.end();
       } catch (e) {
-        // 忽略写入错误
+        // 忽略
       }
     }
   }

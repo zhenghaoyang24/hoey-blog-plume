@@ -6,10 +6,6 @@
       <div class="ai-card__badge">
         <span class="ai-card__title">AI 总结</span>
       </div>
-      <div v-if="isRateLimited" class="ai-card__countdown">
-        <span class="countdown-ring"></span>
-        <span class="countdown-text">{{ countdown }}s</span>
-      </div>
     </div>
 
     <!-- 中间内容区 -->
@@ -36,7 +32,7 @@
         <p class="ai-status">正在理解文章内容...</p>
       </div>
 
-      <!-- 内容展示 -->
+      <!-- 内容展示（限流时也保持显示） -->
       <div v-if="summary" class="ai-card__content">
         <div class="ai-summary-text" v-html="formattedSummary"></div>
         <div v-if="streaming" class="ai-streaming-indicator">
@@ -44,23 +40,18 @@
         </div>
       </div>
 
-      <!-- 错误提示 -->
+      <!-- 错误提示（限流时不显示错误） -->
       <div v-if="error && !isRateLimited" class="ai-card__error">
         <span class="error-shake">⚠️</span>
         <span>{{ error }}</span>
       </div>
-
-      <!-- 限流提示 -->
-      <div v-if="isRateLimited" class="ai-card__limit">
-        <div class="limit-icon">⏱️</div>
-        <div class="limit-text">
-          <div class="limit-title">请求过于频繁</div>
-        </div>
-      </div>
     </div>
 
-    <!-- 右下角按钮 -->
+    <!-- 底部按钮区 -->
     <div class="ai-card__footer">
+      <!-- 限流提示文字（按钮左侧红色小字） -->
+      <span v-if="isRateLimited" class="rate-limit-hint">请求过于频繁，稍后再试</span>
+      
       <button
         @click="handleSummarize"
         :disabled="loading || isRateLimited"
@@ -68,14 +59,14 @@
         :class="{
           'ai-btn--loading': loading,
           'ai-btn--limited': isRateLimited,
-          'ai-btn--reset': summary && !loading,
+          'ai-btn--reset': summary && !loading && !isRateLimited,
         }"
       >
         <span class="btn-glow"></span>
         <span class="btn-content">
           <span v-if="loading" class="btn-spinner"></span>
           <span v-else-if="isRateLimited" class="btn-icon">⏳</span>
-          <span v-else-if="summary" class="btn-icon"></span>
+          <span v-else-if="summary" class="btn-icon">🔄</span>
           <span v-else class="btn-icon">✨</span>
           <span class="btn-text">{{ buttonText }}</span>
         </span>
@@ -96,7 +87,6 @@ const streaming = ref(false);
 const summary = ref("");
 const error = ref("");
 const isRateLimited = ref(false);
-const countdown = ref(0);
 let countdownTimer = null;
 
 const buttonText = computed(() => {
@@ -112,14 +102,16 @@ const formattedSummary = computed(() => {
   return summary.value.replace(/\n/g, "<br>");
 });
 
-// 开始倒计时
+// 开始倒计时（仅用于控制限流状态，不显示）
 const startCountdown = (seconds) => {
   isRateLimited.value = true;
-  countdown.value = seconds;
+  
+  // 清除之前的定时器
+  if (countdownTimer) clearInterval(countdownTimer);
 
   countdownTimer = setInterval(() => {
-    countdown.value--;
-    if (countdown.value <= 0) {
+    seconds--;
+    if (seconds <= 0) {
       clearInterval(countdownTimer);
       isRateLimited.value = false;
       error.value = "";
@@ -172,8 +164,8 @@ const handleSummarize = async () => {
 
   loading.value = true;
   streaming.value = false;
+  // 关键：不清空之前的 summary，限流时保持显示
   error.value = "";
-  summary.value = "";
 
   try {
     const { title, content } = getPageContent();
@@ -193,7 +185,9 @@ const handleSummarize = async () => {
       const data = await response.json();
       const retryAfter = data.retryAfter || 60;
       startCountdown(retryAfter);
-      throw new Error(data.message || "请求过于频繁");
+      // 关键：不清空 summary，保持之前的内容显示
+      loading.value = false;
+      return; // 直接返回，不抛错误（避免显示 error 区域）
     }
 
     if (!response.ok) {
@@ -201,6 +195,9 @@ const handleSummarize = async () => {
       throw new Error(errorData.error || `请求失败: ${response.status}`);
     }
 
+    // 新请求成功，清空旧总结开始新的流式输出
+    summary.value = "";
+    
     // 读取 SSE 流
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
@@ -238,6 +235,7 @@ const handleSummarize = async () => {
     }
   } catch (err) {
     console.error("总结失败:", err);
+    // 只有非限流错误才显示错误提示
     if (!isRateLimited.value) {
       error.value = err.message || "生成失败，请稍后重试";
     }
@@ -343,30 +341,7 @@ const copySummary = () => {
   letter-spacing: 1px;
 }
 
-/* 倒计时 */
-.ai-card__countdown {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.countdown-ring {
-  position: absolute;
-  inset: 0;
-  border: 2px solid rgba(245, 158, 11, 0.3);
-  border-top-color: #f59e0b;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.countdown-text {
-  font-size: 12px;
-  font-weight: 700;
-  color: #f59e0b;
-}
+/* 移除倒计时样式 */
 
 /* 内容区 */
 .ai-card__body {
@@ -563,45 +538,26 @@ const copySummary = () => {
   }
 }
 
-/* 限流提示 */
-.ai-card__limit {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 20px;
-  background: rgba(245, 158, 11, 0.1);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  border-radius: 12px;
-}
-
-.limit-icon {
-  font-size: 32px;
-  animation: pulse 2s infinite;
-}
-
-.limit-text {
-  text-align: left;
-}
-
-.limit-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #fbbf24;
-  margin-bottom: 4px;
-}
-
-.limit-subtitle {
-  font-size: 13px;
-  color: #d97706;
-}
+/* 移除限流提示区域样式 */
 
 /* 底部按钮区 */
 .ai-card__footer {
   padding-top: 4px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 12px; /* 提示文字和按钮之间的间距 */
   position: relative;
   z-index: 1;
+}
+
+/* 限流提示文字（红色小字） */
+.rate-limit-hint {
+  font-size: 12px;
+  color: #f87171; /* 红色 */
+  font-weight: 500;
+  margin-right: auto; /* 靠左显示 */
+  animation: pulse 2s infinite;
 }
 
 .ai-btn {
@@ -617,6 +573,7 @@ const copySummary = () => {
   overflow: hidden;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  flex-shrink: 0; /* 防止按钮被压缩 */
 }
 
 .ai-btn:hover:not(:disabled) {
@@ -718,6 +675,10 @@ const copySummary = () => {
 
   .ai-card__empty{
     gap: 0px;
+  }
+  
+  .rate-limit-hint {
+    font-size: 11px;
   }
 }
 </style>
