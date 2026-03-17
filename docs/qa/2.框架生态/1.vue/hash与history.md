@@ -4,7 +4,7 @@ createTime: 2026/03/16 14:53:19
 permalink: /qa/framework/vue/ayep2xno/
 ---
 
-<Question :questions="['hash 与 history模式有什么区别']" />
+<Question :questions="['hash 与 history模式有什么区别','前端资源打包部署后遇到404的原因？']" />
 
 ---
 
