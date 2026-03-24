@@ -70,16 +70,16 @@ setInterval(() => {
 // ============ 安全工具函数 ============
 
 /**
- * 获取客户端真实 IP（多层防护）
+ * 获取客户端IP
  */
 const getClientIp = (req) => {
-  // Vercel 特定头（最可信）
+  // Vercel
   const vercelForwarded = req.headers['x-vercel-forwarded-for'];
   if (vercelForwarded) {
     return vercelForwarded.split(',')[0].trim();
   }
   
-  // 标准转发头（非 Vercel 环境取最后一个）
+  // 标准转发头
   const forwarded = req.headers['x-forwarded-for'];
   if (forwarded) {
     const ips = forwarded.split(',').map(ip => ip.trim());
@@ -120,7 +120,7 @@ const getClientFingerprint = (req) => {
 };
 
 /**
- * 严格验证请求来源（Origin + Referer + Ajax 头）
+ * 验证请求来源
  */
 const validateRequestSource = (req) => {
   const origin = req.headers.origin;
@@ -135,22 +135,18 @@ const validateRequestSource = (req) => {
     if (CONFIG.DEV_ORIGINS.includes(origin)) return true;
   }
   
-  // 1. 必须有 Ajax 标识（阻挡直接 curl）
   if (requestedWith !== 'XMLHttpRequest') {
     return false;
   }
   
-  // 2. 必须有来源标识
   if (!origin && !referer) {
     return false;
   }
-  
-  // 3. 验证 Origin
+
   if (origin && CONFIG.ALLOWED_ORIGINS.includes(origin)) {
     return true;
   }
-  
-  // 4. 验证 Referer（备用）
+
   if (referer) {
     try {
       const refererUrl = new URL(referer);
@@ -225,7 +221,7 @@ const validateBodyStructure = (body) => {
 };
 
 /**
- * 限流检查（指纹 + IP段双重限流）
+ * 限流检查
  */
 const checkRateLimit = (fingerprint, ip) => {
   const now = Date.now();
@@ -289,7 +285,7 @@ const checkRateLimit = (fingerprint, ip) => {
 };
 
 /**
- * 统一错误响应（生产环境隐藏细节）
+ * 统一错误响应
  */
 const errorResponse = (res, status, detail) => {
   const isDev = process.env.VERCEL_ENV !== 'production' && process.env.NODE_ENV !== 'production';
@@ -337,7 +333,7 @@ export default async function handler(req, res) {
     return errorResponse(res, 405);
   }
   
-  // 3. 请求来源验证（核心安全层）
+  // 3. 请求来源验证
   if (!validateRequestSource(req)) {
     console.warn(`[SECURITY] Invalid source: ${req.headers.origin || 'no-origin'}, Referer: ${req.headers.referer || 'none'}, Ajax: ${req.headers['x-requested-with'] || 'none'}`);
     return errorResponse(res, 403);
