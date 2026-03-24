@@ -36,12 +36,9 @@ export default defineClientConfig({
     Layout: () => {
       const frontmatter = usePageFrontmatter();
 
-      // 判断是否需要显示 Summary
-      const showSummary = frontmatter.value.summary === true;
-
       return h(Layout, null, {
         // 只在 summary: true 时渲染 Summary 组件
-        "doc-meta-bottom": () => (showSummary ? h(Summary) : null),
+        "doc-meta-bottom": () => (frontmatter.value.summary ? h(Summary) : null),
       });
     },
   },
