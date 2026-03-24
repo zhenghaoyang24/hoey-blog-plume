@@ -1,6 +1,6 @@
 ## 个人博客
 
-网址：https://zhenghaoyang.cn/
+博客主题 - [vuepress-theme-plume](https://theme-plume.vuejs.press/)。
 
 博客主页为自定义页面，若你也在使用这个博客主题并想参考本博客主页，可查看以下详细说明。
 
