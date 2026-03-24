@@ -87,9 +87,10 @@ export default defineUserConfig({
      */
     comment: {
       provider: "Giscus", // "Artalk“ | "Giscus" | "Twikoo" | "Waline"
-      comment: false,
+      comment: true,
       repo: "zhenghaoyang24/hoey-blog-plume",
       repoId: "R_kgDONIcgog",
+      category: "Announcements",
       categoryId: "DIC_kwDONIcgos4Cwn3Q",
     },
     // 部署域名
