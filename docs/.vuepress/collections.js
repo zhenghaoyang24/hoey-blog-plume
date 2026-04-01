@@ -39,7 +39,7 @@ export default defineCollections([
     title: "Q&A",
     linkPrefix: "/qa/",
     sidebar: [
-      { text: '导读', link: '/qa/guide/' }, 
+      { text: '导读', link: '/qa/guide/' },
       { text: "HTML", prefix: "1.HTML", items: "auto", icon: "skill-icons:html", collapsed: false },
       { text: "CSS", prefix: "2.CSS", items: "auto", icon: "skill-icons:css", collapsed: false },
       {
