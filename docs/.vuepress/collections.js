@@ -33,7 +33,28 @@ import { defineCollections } from "vuepress-theme-plume";
  */
 export default defineCollections([
   { type: "post", dir: "blog", title: "博客" },
-  { type: "doc", dir: "qa", title: "Q&A", sidebar: "auto", linkPrefix: "/qa" },
+  {
+    type: "doc",
+    dir: "qa",
+    title: "Q&A",
+    linkPrefix: "/qa/",
+    sidebar: [
+      { text: '导读', link: '/qa/guide/' }, 
+      { text: "HTML", prefix: "1.HTML", items: "auto", icon: "skill-icons:html", collapsed: false },
+      { text: "CSS", prefix: "2.CSS", items: "auto", icon: "skill-icons:css", collapsed: false },
+      {
+        text: "JavaScript",
+        prefix: "3.JavaScript",
+        items: "auto",
+        icon: "skill-icons:javascript",
+        collapsed: false,
+      },
+      { text: "Vue", prefix: "4.Vue", items: "auto", icon: "logos:vue", collapsed: false },
+      { text: "浏览器", prefix: "浏览器", items: "auto", icon: "devicon:chrome", collapsed: false },
+      { text: "算法思想", prefix: "算法思想", items: "auto", collapsed: false },
+      { text: "网络与安全", prefix: "网络与安全", items: "auto", collapsed: false },
+    ],
+  },
   { type: "doc", dir: "memo", title: "备忘录", sidebar: "auto", linkPrefix: "/memo" },
   { type: "doc", dir: "web", title: "web开发", sidebar: "auto", linkPrefix: "/web" },
   { type: "post", dir: "more", title: "更多" },
