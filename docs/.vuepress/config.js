@@ -1,7 +1,9 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import { plumeTheme } from "vuepress-theme-plume";
-import { navbar } from "./navbar";
+import navbar from "./navbar";
+import collections from "./collections";
+
 
 export default defineUserConfig({
   autoFrontmatter: {
@@ -43,13 +45,7 @@ export default defineUserConfig({
     /**
      * 文件路径，导航栏，侧边栏等配置
      */
-    collections: [
-      { type: "post", dir: "blog", title: "博客" },
-      { type: "doc", dir: "qa", title: "Q&A", sidebar: "auto" },
-      { type: "doc", dir: "memo", title: "备忘录", sidebar: "auto" },
-      { type: "doc", dir: "web", title: "web开发", sidebar: "auto" },
-      { type: "post", dir: "more", title: "更多" },
-    ],
+    collections,
     navbar,
 
     /**

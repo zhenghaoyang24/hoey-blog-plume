@@ -1,6 +1,6 @@
 import { defineNavbarConfig } from "vuepress-theme-plume";
 
-export const navbar = defineNavbarConfig([
+export default defineNavbarConfig([
   { text: "首页", link: "/", icon: "flat-color-icons:home" },
   {
     text: "博客",
