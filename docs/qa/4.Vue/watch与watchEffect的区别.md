@@ -1,5 +1,5 @@
 ---
-title: watch与watchEffect的区别
+title: watch 与 watchEffect 的区别
 createTime: 2026/04/07 16:27:54
 permalink: /qa/vue/2hizbmbt/
 ---
