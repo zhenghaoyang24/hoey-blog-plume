@@ -11,7 +11,7 @@
 一种是网格类型有各类卡片 的 GridHome，另一种是简洁的 ProfileHome
 
 - GridHome:
-<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/abc4bc54-2e85-48ef-9078-cd51cac2fe1c" />
+  <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/abc4bc54-2e85-48ef-9078-cd51cac2fe1c" />
 
 这两种方式在 `README.md` 切换：
 
@@ -31,13 +31,13 @@ config:
 
 2. 在 `docs/.vuepress/client.js` 中，导入 `GridHome.vue`：
 
-``` js
-import GridHome from './theme/components/gridhome/GridHome.vue'
-  export default defineClientConfig({
-    enhance({ app }) {
-    app.component('GridHome', GridHome)
+```js
+import GridHome from "./theme/components/gridhome/GridHome.vue";
+export default defineClientConfig({
+  enhance({ app }) {
+    app.component("GridHome", GridHome);
   },
-})
+});
 ```
 
 3. 在 `docs/README.md` 修改主页配置：
@@ -85,7 +85,7 @@ npm install echarts
 若你的友情链接较多，你可以将链接信息写在 例如 `docs/.vuepress/theme/data/friends.json`中，
 同时在 `AboutMeFriendLink.vue` 中的 `script` 将 `friends.json` 导入。
 
-卡片右上角 **所有好友** 按钮的友情链接页面跳转路径位置在  `AboutMeFriendLink.vue` 中 的 `<router-link to="（相对路径）">` 进行更改。
+卡片右上角 **所有好友** 按钮的友情链接页面跳转路径位置在 `AboutMeFriendLink.vue` 中 的 `<router-link to="（相对路径）">` 进行更改。
 
 若你也想自定义友情链接页面，可以参考 `docs/notes/more/friends.md`，并在 `client.js` 中导入 `AllFriendContent.vue`。
 
