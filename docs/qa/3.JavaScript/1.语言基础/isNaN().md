@@ -10,10 +10,13 @@ permalink: /qa/js/23ssjpc4/
 
 ---
 
+NaN：NaN 是 JavaScript 中的一个特殊值，全称是 Not a Number，本应返回数值，但计算结果不是合法数字。
+
 `Number.isNaN()` 与 `isNaN()` 最大区别在于是否会进行隐式类型转换。
 
-`isNaN()` 会先强制转换值为数字再判断，导致字符串、undefined、对象等被误判为 NaN；
-`Number.isNaN()` 严格判断"值本身就是 NaN 数字"，不会强制转换，结果更可靠。
+`isNaN()` 会进行隐式类型转换，将传入的参数尝试转换为数值，不能转为数值的值都会返回 `true`，影响 NaN 的判断。
+
+`Number.isNaN()` 不会进行隐式类型转换，先判断参数是否是数值，是数值才会继续判断是否是 NaN，因此不会造成非数字也被判断为 NaN。
 
 ```js
 // 字符串
