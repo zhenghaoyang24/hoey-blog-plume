@@ -26,5 +26,5 @@ permalink: /qa/html/doun2rfq/
 有 `defer` 与 `async` 都会被异步加载，即加载和渲染后续文档元素的过程将和 `script.js` 的加载并行进行（异步）。
 两者的区别是：
 
-- `async`：当 `script.js` 加载完成后，会立即执行。执行 script.js 时，html 解析暂停。
-- `defer`：当 `script.js` 加载完成后，会等待 html 解析完成后再执行。如果资源需要 DOM 则使用 `defer`。
+- `async`：当 `script.js` 加载完成后会立即执行，不会等待 HTML 解析结束。适合加载无依赖、执行顺序无关的脚本，如广告、统计等。
+- `defer`：当 `script.js` 加载完成后，会等待 html 解析完成后再执行。如果脚本需要 DOM 则使用 `defer`。
