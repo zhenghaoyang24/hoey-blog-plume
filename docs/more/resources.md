@@ -145,6 +145,12 @@ permalink: /more/resources/
   <LinkCard title="JavaScript高级程序设计" description="JavaScript高级程序设计" href="https://weread.qq.com/web/reader/751326d0720befab7514782#outline?noScroll=1" />
 </CardGrid>
 
+## Spring
+
+<CardGrid>
+  <LinkCard title="项目启动水印" description="自定义项目启动水印" href="https://patorjk.com/software/taag" />
+</CardGrid>
+
 ## 其他
 
 <CardGrid>
