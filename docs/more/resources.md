@@ -116,6 +116,13 @@ permalink: /more/resources/
   <LinkCard title="React Icons" icon="" href="https://react-icons.github.io/react-icons/" />
 </CardGrid>
 
+## 字体
+
+<CardGrid>
+  <LinkCard title="Google Fonts" href="https://fonts.google.com/" />
+  <LinkCard title="MiSans" href="https://hyperos.mi.com/font/zh/" />
+</CardGrid>
+
 ## 构建工具
 
 <CardGrid>
