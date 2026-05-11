@@ -33,6 +33,14 @@ import { defineCollections } from "vuepress-theme-plume";
  */
 export default defineCollections([
   { type: "post", dir: "blog", title: "博客" },
+  { type: "doc", dir: "memo", title: "备忘录", sidebar: "auto", linkPrefix: "/memo" },
+  { type: "doc", dir: "web", title: "Web Dev", sidebar: "auto", linkPrefix: "/web" },
+  { type: "doc", dir: "java", title: "Java Dev",  linkPrefix: "/java",
+    sidebar: [
+      { text: "README", link: "/java/readme/" },
+      { text: "Spring Boot", prefix: "springboot", items: "auto", icon: "devicon:spring", collapsed: false }
+    ]
+   },
   {
     type: "doc",
     dir: "qa",
@@ -67,7 +75,5 @@ export default defineCollections([
       },
     ],
   },
-  { type: "doc", dir: "memo", title: "备忘录", sidebar: "auto", linkPrefix: "/memo" },
-  { type: "doc", dir: "web", title: "web开发", sidebar: "auto", linkPrefix: "/web" },
   { type: "post", dir: "more", title: "更多" },
 ]);
