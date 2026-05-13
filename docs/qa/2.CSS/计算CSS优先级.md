@@ -1,7 +1,7 @@
 ---
 title: 计算 CSS 优先级
 createTime: 2026/04/07 15:55:19
-permalink: /qa/u0vq3gcf/
+permalink: /qa/css/u0vq3gcf/
 ---
 
 <Question :questions="['如何计算 CSS 优先级？']" />
