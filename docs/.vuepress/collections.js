@@ -35,12 +35,23 @@ export default defineCollections([
   { type: "post", dir: "blog", title: "博客" },
   { type: "doc", dir: "memo", title: "备忘录", sidebar: "auto", linkPrefix: "/memo" },
   { type: "doc", dir: "web", title: "Web Dev", sidebar: "auto", linkPrefix: "/web" },
-  { type: "doc", dir: "java", title: "Java Dev",  linkPrefix: "/java",
+  {
+    type: "doc",
+    dir: "javadev",
+    title: "Java Dev",
+    linkPrefix: "/javadev",
     sidebar: [
-      { text: "README", link: "/java/readme/" },
-      { text: "Spring Boot", prefix: "springboot", items: "auto", icon: "devicon:spring", collapsed: false }
-    ]
-   },
+      { text: "README", link: "/javadev/readme/" },
+      {
+        text: "Spring Boot",
+        prefix: "2.springboot",
+        items: "auto",
+        icon: "devicon:spring",
+        collapsed: false,
+      },
+      { text: "Java", prefix: "1.java", items: "auto", icon: "devicon:java", collapsed: false },
+    ],
+  },
   {
     type: "doc",
     dir: "qa",

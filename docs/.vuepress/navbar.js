@@ -12,7 +12,7 @@ export default defineNavbarConfig([
     text: "笔记",
     items: [
       { text: "Web Dev", link: "/web/start/", icon: "logos:web-dev-icon" },
-      { text: "Java Dev", link: "/java/readme/", icon: "logos:java" },
+      { text: "Java Dev", link: "/javadev/readme/", icon: "logos:java" },
       { text: "备忘录", link: "/memo/start/", icon: "emojione:memo" },
     ],
     icon: "emojione:green-book",
