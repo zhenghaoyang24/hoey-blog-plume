@@ -10,7 +10,7 @@
   :mouse-radius="1"
 /> -->
 <template>
-  <div ref="containerRef" class="container" />
+  <div ref="containerRef" class="dither_container" />
 </template>
 
 <script setup lang="ts">
@@ -406,10 +406,10 @@ watch(
 );
 </script>
 <style scoped>
-.container {
-  width: 100%;
-  height: 100%;
-  position: absolute;
+.dither_container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
   top: 0;
   left: 0;
 }

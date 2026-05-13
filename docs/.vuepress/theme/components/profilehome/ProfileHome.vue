@@ -84,7 +84,7 @@ const handleAvatarMouseLeave = () => {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh - 140px);
+  height: calc(100dvh - 140px);
   margin: 0;
   padding: 0;
   z-index: -999;
