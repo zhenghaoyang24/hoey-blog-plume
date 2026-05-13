@@ -42,6 +42,7 @@ export default defineCollections([
     linkPrefix: "/javadev",
     sidebar: [
       { text: "README", link: "/javadev/readme/" },
+      { text: "Java", prefix: "1.java", items: "auto", icon: "devicon:java", collapsed: false },
       {
         text: "Spring Boot",
         prefix: "2.springboot",
@@ -49,7 +50,6 @@ export default defineCollections([
         icon: "devicon:spring",
         collapsed: false,
       },
-      { text: "Java", prefix: "1.java", items: "auto", icon: "devicon:java", collapsed: false },
     ],
   },
   {
