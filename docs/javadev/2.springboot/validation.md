@@ -1,5 +1,5 @@
 ---
-title: validation
+title: Validation 校验
 createTime: 2026/05/15 11:08:53
 permalink: /javadev/springboot/svi6p57k/
 ---
