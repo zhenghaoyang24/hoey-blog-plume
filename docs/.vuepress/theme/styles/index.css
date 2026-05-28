@@ -6,12 +6,36 @@
   --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.5);
   /*博客单项hover shadow*/
   --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.2);
+
+  /* 线条颜色 */
+  --line-color: rgba(200, 200, 200, 0.5);
+  /* 热力图等级颜色变量 */
+  --heatmap-level-0: #ebedf0;
+  --heatmap-level-1: #9be9a8;
+  --heatmap-level-2: #40c463;
+  --heatmap-level-3: #30a14e;
+  --heatmap-level-4: #216e39;
+  /* 滚动条 */
+  --scrollbar-thumb: #f0f0f0;
+  --scrollbar-thumb-hover: #c1c1c1;
 }
 
 [data-theme="dark"] {
   --vp-doc-blog-bg: rgba(30, 120, 120, 0.103);
   --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.4);
   --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.15);
+
+  /* 线条颜色 */
+  --line-color: rgba(53, 53, 53, 0.4);
+  /* 热力图等级颜色变量 */
+  --heatmap-level-0: #161b22;
+  --heatmap-level-1: #0e4429;
+  --heatmap-level-2: #006d32;
+  --heatmap-level-3: #26a641;
+  --heatmap-level-4: #39d353;
+  /* 滚动条 */
+  --scrollbar-thumb: #2f2f2f;
+  --scrollbar-thumb-hover: #444444;
 }
 
 body {

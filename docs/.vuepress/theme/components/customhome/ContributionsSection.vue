@@ -1,15 +1,35 @@
 <template>
   <div class="contributions-section">
-    <h3>Contributions</h3>
-    <p>Contributions in the past year</p>
-    <div>
-      <GitHubContribution username="zhenghaoyang24" />
-    </div>
+    <SectionTemplate title="Contributions" description="Contributions in the past year">
+      <ContributionTemplate :data="contributions" :showMonths="true" :show-weekdays="true" />
+    </SectionTemplate>
   </div>
 </template>
 
 <script setup lang="ts">
-import GitHubContribution from "./GitHubContribution.vue";
+import { onMounted, ref } from "vue";
+import ContributionTemplate from "./components/ContributionTemplate.vue";
+
+import axios from "axios";
+import SectionTemplate from "./components/SectionTemplate.vue";
+
+function extractDatesAndCounts(data: any) {
+  const result = [];
+  for (const week of data.contributions) {
+    for (const day of week) {
+      result.push({
+        date: day.date,
+        value: day.count,
+      });
+    }
+  }
+  return result;
+}
+const contributions = ref<{ date: string; value: number }[]>([]);
+onMounted(async () => {
+  const response = await axios.get(`https://gh-calendar.rschristian.dev/user/zhenghaoyang24`);
+  contributions.value = extractDatesAndCounts(response.data);
+});
 </script>
 
 <style scoped>
