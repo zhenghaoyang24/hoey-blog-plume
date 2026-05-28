@@ -8,7 +8,7 @@ import AllFriendContent from "./theme/components/AllFriendContent.vue";
 import GridHome from "./theme/components/gridhome/GridHome.vue";
 
 // Profile 首页
-import ProfileHome from "./theme/components/profilehome/ProfileHome.vue";
+import CustomHome from "./theme/components/customhome/CustomHome.vue";
 
 // JS代码 box
 import JSRunner from "./theme/components/JSRunner.vue";
@@ -26,7 +26,7 @@ export default defineClientConfig({
   enhance({ app, router, siteData }) {
     app.component("RepoCard", RepoCard);
     app.component("GridHome", GridHome);
-    app.component("ProfileHome", ProfileHome);
+    app.component("CustomHome", CustomHome);
     app.component("JSRunner", JSRunner);
     app.component("CodeViewBox", CodeViewBox);
     app.component("AllFriendContent", AllFriendContent);

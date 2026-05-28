@@ -1,7 +1,3 @@
-@font-face {
-  font-family: "LogoFont"; /* 自定义字体的名称 */
-  src: url("/font/segoesc.ttf") format("truetype"); /* TTF字体文件的路径 */
-}
 /*颜色*/
 :root {
   /*文章背景线条颜色*/
@@ -18,11 +14,19 @@
   --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.15);
 }
 
-/*左上角logo*/
-.vp-navbar-title span {
-  font-family: LogoFont, serif;
-  font-weight: bolder;
-  font-size: 1.4rem;
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+    "WenQuanYi Micro Hei", sans-serif;
+}
+
+/* 导航栏 */
+.vp-navbar .container {
+  max-width: 1000px;
+}
+
+.posts-container .no-profile {
+  max-width: 1000px;
 }
 
 /*文章背景*/

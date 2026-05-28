@@ -32,7 +32,7 @@ import { defineCollections } from "vuepress-theme-plume";
  * (demoDoc 为参考示例，如果不需要它，请删除)
  */
 export default defineCollections([
-  { type: "post", dir: "blog", title: "博客" },
+  { type: "post", dir: "blog", title: "博客", pagination: 10 },
   { type: "doc", dir: "memo", title: "备忘录", sidebar: "auto", linkPrefix: "/memo" },
   { type: "doc", dir: "web", title: "Web Dev", sidebar: "auto", linkPrefix: "/web" },
   {

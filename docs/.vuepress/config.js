@@ -4,7 +4,6 @@ import { plumeTheme } from "vuepress-theme-plume";
 import navbar from "./navbar";
 import collections from "./collections";
 
-
 export default defineUserConfig({
   autoFrontmatter: {
     permalink: true, // 是否生成永久链接
@@ -26,8 +25,8 @@ export default defineUserConfig({
   ],
   base: "/",
   lang: "zh-CN",
-  title: "Hoey",
-  description: "Hoey' blog.",
+  title: "",
+  description: "Teacher, I'm on fire to improve!",
 
   bundler: viteBundler({
     viteOptions: {

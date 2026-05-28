@@ -9,5 +9,5 @@ permalink: /more/projects/
   <RepoCard repo="zhenghaoyang24/you-todo" />
   <RepoCard repo="zhenghaoyang24/blueblue-words" />
   <RepoCard repo="zhenghaoyang24/english-vocabulary" />
-    <RepoCard repo="zhenghaoyang24/inputword" />
+  <RepoCard repo="zhenghaoyang24/inputword" />
 </CardGrid>

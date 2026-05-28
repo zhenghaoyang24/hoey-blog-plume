@@ -32,7 +32,9 @@
   },
   "dependencies": {
     "@iconify/json": "^2.2.454",
-    "echarts": "^5.6.0",
+    "axios": "^1.16.1",
+    "dayjs": "^1.11.21",
+    "echarts": "^6.1.0",
     "highlight.js": "^11.11.1",
     "monaco-editor": "^0.52.2",
     "ogl": "^1.0.11",
