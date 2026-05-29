@@ -2,14 +2,16 @@
   <div class="custom-home-container">
     <div class="custom-home-content">
       <InfoSection />
-      <ContributionsSection />
+      <ContributionSection />
+      <SkillSection />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import ContributionsSection from "./ContributionsSection.vue";
+import ContributionSection from "./ContributionSection.vue";
 import InfoSection from "./InfoSection.vue";
+import SkillSection from "./SkillSection.vue";
 </script>
 
 <style scoped>

@@ -4,10 +4,8 @@ import "./theme/styles/index.css";
 import { h } from "vue";
 import RepoCard from "vuepress-theme-plume/features/RepoCard.vue";
 import AllFriendContent from "./theme/components/AllFriendContent.vue";
-// 网格首页
-import GridHome from "./theme/components/gridhome/GridHome.vue";
 
-// Profile 首页
+// 首页
 import CustomHome from "./theme/components/customhome/CustomHome.vue";
 
 // JS代码 box
@@ -25,7 +23,6 @@ import Summary from "./theme/components/Summary.vue";
 export default defineClientConfig({
   enhance({ app, router, siteData }) {
     app.component("RepoCard", RepoCard);
-    app.component("GridHome", GridHome);
     app.component("CustomHome", CustomHome);
     app.component("JSRunner", JSRunner);
     app.component("CodeViewBox", CodeViewBox);

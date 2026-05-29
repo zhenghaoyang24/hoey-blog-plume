@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@iconify/json':
-        specifier: ^2.2.454
-        version: 2.2.454
       axios:
         specifier: ^1.16.1
         version: 1.16.1
@@ -3694,6 +3691,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 2.0.3
+    optional: true
 
   '@iconify/types@2.0.0': {}
 

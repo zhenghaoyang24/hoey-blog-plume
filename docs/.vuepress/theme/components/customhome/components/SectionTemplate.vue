@@ -1,6 +1,6 @@
 <template>
   <div class="section-template-container">
-    <H2>{{ props.title }}</H2>
+    <h2>{{ props.title }}</h2>
     <p>{{ props.description }}</p>
     <div class="section-template-content">
       <slot>
@@ -25,18 +25,28 @@ const props = defineProps<SectionTemplateProps>();
   margin-top: 10px;
   border-top: 1px solid var(--line-color);
   padding-top: 20px;
+  @media (max-width: 770px) {
+    margin-top: 8px;
+    padding-top: 16px;
+  }
   > h2 {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     margin: 14px 0;
     font-size: 2em;
     color: var(--vp-c-text-1);
+    @media (max-width: 770px) {
+      font-size: 1.5em;
+    }
   }
   > p {
     margin-bottom: 20px;
     font-size: 1em;
     color: var(--vp-c-text-2);
     line-height: 1.5;
+    @media (max-width: 770px) {
+      font-size: 0.9em;
+    }
   }
 }
 </style>
