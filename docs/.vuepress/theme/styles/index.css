@@ -34,7 +34,7 @@
   /*博客单项hover border 颜色*/
   --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.5);
   /*博客单项hover shadow*/
-  --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.2);
+  --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.02);
 
   /* 图标背景颜色 */
   --icon-bg: rgba(116, 116, 116, 0.1);
@@ -83,12 +83,12 @@
 
   --vp-doc-blog-bg: rgba(30, 120, 120, 0.103);
   --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.4);
-  --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.15);
+  --vp-blog-post-item-hover-shadow: rgba(1, 1, 1, 0.08);
 
   /* 图标背景颜色 */
   --icon-bg: rgba(161, 161, 161, 0.1);
   /* 线条颜色 */
-  --line-color: rgba(85, 85, 85, 0.4);
+  --line-color: rgba(85, 85, 85, 0.2);
   /* 热力图等级颜色变量 */
   --heatmap-level-0: #161b22;
   --heatmap-level-1: #0e4429;
@@ -101,6 +101,9 @@
 }
 
 body {
+  * {
+    transition: color 0.2s ease-out;
+  }
   font-family:
     -apple-system, "LXGW WenKai Screen R", "Segoe UI", "PingFang SC", "Microsoft YaHei",
     "WenQuanYi Micro Hei", sans-serif;
@@ -113,6 +116,9 @@ body {
 
 .posts-container .no-profile {
   max-width: 1000px;
+}
+.vp-posts.home-posts {
+  padding-top: 0 !important;
 }
 
 /*文章背景*/

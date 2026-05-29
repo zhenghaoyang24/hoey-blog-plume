@@ -27,30 +27,12 @@
 
 <script setup lang="ts">
 import HoeyIcon from "./icons/HoeyIcon.vue";
-// import { computed, onMounted } from "vue";
-// import { useLocalePostList } from "vuepress-theme-plume/composables";
+
 
 const SOCIAL_LINKS = [
   { id: 1, name: "github", url: "https://github.com/zhenghaoyang24", icon: "mdi:github" },
   { id: 2, name: "email", url: "mailto:zhenghaoyang24@foxmail.com", icon: "ic:round-email" },
 ];
-
-// // 获取当前语言下的所有文章列表
-// const postList = useLocalePostList();
-
-// // 按创建时间倒序排列，取前 N 篇
-// const recentPosts = computed(() => {
-//   return [...postList.value]
-//     .sort((a, b) => {
-//       // createTime 格式为字符串，如 "2024-01-15"
-//       return new Date(b.createTime).getTime() - new Date(a.createTime).getTime();
-//     })
-//     .slice(0, 5); // 取最近 5 篇
-// });
-
-// onMounted(() => {
-//   console.log("Recent Posts:", recentPosts.value);
-// });
 </script>
 
 <style scoped>
