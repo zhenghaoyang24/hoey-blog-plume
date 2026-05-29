@@ -121,6 +121,7 @@ permalink: /more/resources/
 <CardGrid>
   <LinkCard title="Google Fonts" href="https://fonts.google.com/" />
   <LinkCard title="MiSans" href="https://hyperos.mi.com/font/zh/" />
+  <LinkCard title="fonttosvg" href="https://fonttosvg.com/zh/" />
 </CardGrid>
 
 ## 构建工具

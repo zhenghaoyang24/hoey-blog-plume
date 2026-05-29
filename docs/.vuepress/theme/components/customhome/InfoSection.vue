@@ -1,7 +1,7 @@
 <template>
   <div class="info-section">
     <div class="info-slogon">
-      <h2>Hoey</h2>
+      <HoeyIcon :color="'var(--vp-c-text-1)'" :size="6" />
       <p>Teacher, I'm on fire to improve!</p>
     </div>
     <div class="info-description">
@@ -26,10 +26,31 @@
 </template>
 
 <script setup lang="ts">
+import HoeyIcon from "./icons/HoeyIcon.vue";
+// import { computed, onMounted } from "vue";
+// import { useLocalePostList } from "vuepress-theme-plume/composables";
+
 const SOCIAL_LINKS = [
   { id: 1, name: "github", url: "https://github.com/zhenghaoyang24", icon: "mdi:github" },
   { id: 2, name: "email", url: "mailto:zhenghaoyang24@foxmail.com", icon: "ic:round-email" },
 ];
+
+// // 获取当前语言下的所有文章列表
+// const postList = useLocalePostList();
+
+// // 按创建时间倒序排列，取前 N 篇
+// const recentPosts = computed(() => {
+//   return [...postList.value]
+//     .sort((a, b) => {
+//       // createTime 格式为字符串，如 "2024-01-15"
+//       return new Date(b.createTime).getTime() - new Date(a.createTime).getTime();
+//     })
+//     .slice(0, 5); // 取最近 5 篇
+// });
+
+// onMounted(() => {
+//   console.log("Recent Posts:", recentPosts.value);
+// });
 </script>
 
 <style scoped>
@@ -39,15 +60,10 @@ const SOCIAL_LINKS = [
 }
 
 .info-slogon {
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  > h2 {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: bold;
-    font-size: 3em;
-    color: var(--vp-c-text-1);
-  }
+  gap: 10px;
   > p {
     margin: 0;
     font-size: 1em;

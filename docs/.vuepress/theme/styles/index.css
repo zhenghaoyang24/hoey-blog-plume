@@ -1,4 +1,5 @@
 /*颜色*/
+@import url("https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreenr.css");
 :root {
   /**
    * 主题色
@@ -101,7 +102,7 @@
 
 body {
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+    -apple-system, "LXGW WenKai Screen R", "Segoe UI", "PingFang SC", "Microsoft YaHei",
     "WenQuanYi Micro Hei", sans-serif;
 }
 
