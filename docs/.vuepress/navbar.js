@@ -24,31 +24,31 @@ export default defineNavbarConfig([
   //   link: "/qa/guide/",
   //   activeMatch: "^/qa/",
   // },
-  {
-    text: "Projects",
-    link: "/more/projects/",
-    icon: "eos-icons:project",
-  },
   // {
-  //   text: "更多",
-  //   items: [
-  //     {
-  //       text: "友情链接",
-  //       link: "/more/friends/",
-  //       icon: "icon-park:friends-circle",
-  //     },
-  //     {
-  //       text: "我的项目",
-  //       link: "/more/projects/",
-  //       icon: "material-icon-theme:folder-project-open",
-  //     },
-  //     {
-  //       text: "资源导航",
-  //       link: "/more/resources/",
-  //       icon: "logos:sitepoint",
-  //     },
-  //   ],
-  //   icon: "icon-park:more-two",
-  //   activeMatch: "^/more/",
+  //   text: "Projects",
+  //   link: "/more/projects/",
+  //   icon: "eos-icons:project",
   // },
+  {
+    text: "More",
+    items: [
+      {
+        text: "友情链接",
+        link: "/more/friends/",
+        icon: "icon-park:friends-circle",
+      },
+      {
+        text: "我的项目",
+        link: "/more/projects/",
+        icon: "material-icon-theme:folder-project-open",
+      },
+      {
+        text: "资源导航",
+        link: "/more/resources/",
+        icon: "logos:sitepoint",
+      },
+    ],
+    icon: "hugeicons:more",
+    activeMatch: "^/more/",
+  },
 ]);

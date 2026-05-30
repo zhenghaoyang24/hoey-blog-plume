@@ -165,4 +165,5 @@ permalink: /more/resources/
   <LinkCard title="Regex Vis" href="https://regex-vis.com/" description="正则生成-测试"/>
   <LinkCard title="jsonplaceholder" href="https://jsonplaceholder.typicode.com/" description="免费可靠的API数据源"/>
   <LinkCard title="SVG 可视化编辑" href="https://yqnn.github.io/svg-path-editor/" description="可视化绘制 SVG 路径"/>
+  <LinkCard title="Excalidraw Whiteboard" href="https://excalidraw.com/" description="用于绘制手绘风格图表的虚拟白板"/>
 </CardGrid>
