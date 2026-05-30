@@ -187,11 +187,11 @@ const openUrl = (url: string | undefined) => {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
+  overflow: hidden;
   @media (max-width: 770px) {
     gap: 12px; /* 小屏幕时减少间距 */
   }
-  width: 100%;
-  overflow: hidden;
 }
 
 .marquee-content {

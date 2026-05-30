@@ -6,7 +6,7 @@
         <div v-if="showWeekdays" class="month-weekday-spacer"></div>
         <div class="months-grid" :style="monthGridStyle">
           <span v-for="(slot, idx) in monthSlots" :key="'m' + idx" class="month-cell">
-            {{ slot.text }}
+            {{ monthSlots[0] && monthSlots[1] ? (idx === 0 ? "" : slot.text) : slot.text }}
           </span>
         </div>
       </div>
@@ -462,9 +462,6 @@ onUnmounted(() => window.removeEventListener("scroll", onGlobalScroll, true));
   line-height: 1;
   white-space: nowrap;
   text-align: left;
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* 网格容器 */

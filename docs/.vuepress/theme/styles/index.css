@@ -5,10 +5,10 @@
    * 主题色
    * -------------------------------------------------------------------------- */
 
-  --vp-c-brand-1: #5086a1; /* 链接颜色、强调色 */
-  --vp-c-brand-2: #6aa1b7; /* 链接、按钮 hover 颜色 */
-  --vp-c-brand-3: #8cccd5; /* 背景色、边框色 */
-  --vp-c-brand-soft: rgba(131, 208, 218, 0.314); /* 辅助色 */
+  --vp-c-brand-1: #42b883; /* 链接颜色、强调色 */
+  --vp-c-brand-2: #39d38e; /* 链接、按钮 hover 颜色 */
+  --vp-c-brand-3: #33a06f; /* 背景色、边框色 */
+  --vp-c-brand-soft: #42b8835c; /* 辅助色 */
 
   /**
    * 文本颜色
@@ -30,9 +30,9 @@
   --vp-code-block-bg: #f6f8fa;
 
   /*文章背景线条颜色*/
-  --vp-doc-blog-bg: rgba(100, 190, 190, 0.08);
+  --vp-doc-blog-bg: #42b88323;
   /*博客单项hover border 颜色*/
-  --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.5);
+  --vp-blog-post-item-hover-border: #33a06f6c;
   /*博客单项hover shadow*/
   --vp-blog-post-item-hover-shadow: rgba(80, 134, 161, 0.02);
 
@@ -57,16 +57,16 @@
    * 主题色
    * -------------------------------------------------------------------------- */
 
-  --vp-c-brand-1: #8cccd5; /* 链接颜色、强调色 */
-  --vp-c-brand-2: #6aa1b7; /* 链接、按钮 hover 颜色 */
-  --vp-c-brand-3: #5086a1; /* 背景色、边框色 */
-  --vp-c-brand-soft: rgba(131, 208, 218, 0.314); /* 辅助色 */
+  --vp-c-brand-1: #42b883; /* 链接颜色、强调色 */
+  --vp-c-brand-2: #35eb9a; /* 链接、按钮 hover 颜色 */
+  --vp-c-brand-3: #33a06f; /* 背景色、边框色 */
+  --vp-c-brand-soft: #42b8835c; /* 辅助色 */
 
   /**
    * 文本颜色
    * -------------------------------------------------------------------------- */
 
-  --vp-c-text-1: rgba(255, 255, 245, 0.86); /* 主要文本 */
+  --vp-c-text-1: rgba(255, 255, 245, 0.919); /* 主要文本 */
   --vp-c-text-2: rgba(235, 235, 245, 0.6); /* 次要文本 */
   --vp-c-text-3: rgba(235, 235, 245, 0.38); /* 辅助文本 */
 
@@ -81,8 +81,8 @@
   --vp-sidebar-bg-color: #161618; /* 侧边栏背景 */
   --vp-code-block-bg: #202127; /* 代码块背景 */
 
-  --vp-doc-blog-bg: rgba(30, 120, 120, 0.103);
-  --vp-blog-post-item-hover-border: rgba(80, 134, 161, 0.4);
+  --vp-doc-blog-bg: #42b8830d;
+  --vp-blog-post-item-hover-border: #33a06f6c;
   --vp-blog-post-item-hover-shadow: rgba(1, 1, 1, 0.08);
 
   /* 图标背景颜色 */
@@ -101,17 +101,18 @@
 }
 
 body {
-  * {
-    transition: color 0.2s ease-out;
-  }
+  background-color: var(--vp-c-bg-alt);
   font-family:
     -apple-system, "LXGW WenKai Screen R", "Segoe UI", "PingFang SC", "Microsoft YaHei",
     "WenQuanYi Micro Hei", sans-serif;
+  > * {
+    transition: color 0.2s ease-out;
+  }
 }
 
 /* 导航栏 */
 .vp-navbar .container {
-  max-width: 1000px;
+  max-width: 780px;
 }
 
 .posts-container .no-profile {

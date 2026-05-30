@@ -1,11 +1,11 @@
 import { defineNavbarConfig } from "vuepress-theme-plume";
 
 export default defineNavbarConfig([
-  { text: "Home", link: "/", icon: "flat-color-icons:home" },
+  { text: "Home", link: "/", icon: "material-symbols:home-outline" },
   {
     text: "Posts",
     link: "/blog/",
-    icon: "fxemoji:note",
+    icon: "material-symbols:post-outline",
     activeMatch: "^/blog/",
   },
   // {
@@ -27,7 +27,7 @@ export default defineNavbarConfig([
   {
     text: "Projects",
     link: "/more/projects/",
-    icon: "material-icon-theme:folder-project-open",
+    icon: "eos-icons:project",
   },
   // {
   //   text: "更多",
