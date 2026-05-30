@@ -37,7 +37,7 @@ const customName = computed(() => props.name.replace(/^custom:/, ""));
 const svgUrl = computed(() => {
   if (!isCustomIcon.value) return null;
   // 假设 SVG 文件放在 src/assets/icons/ 目录下
-  return new URL(`../icons/${customName.value}.svg`, import.meta.url).href;
+  return new URL(`/icon/${customName.value}.svg`, import.meta.url).href;
 });
 </script>
 

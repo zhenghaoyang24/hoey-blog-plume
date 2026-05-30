@@ -26,8 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import HoeyIcon from "./icons/HoeyIcon.vue";
-
+import HoeyIcon from "./components/HoeyIcon.vue";
 
 const SOCIAL_LINKS = [
   { id: 1, name: "github", url: "https://github.com/zhenghaoyang24", icon: "mdi:github" },
