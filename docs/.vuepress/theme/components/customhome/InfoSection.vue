@@ -6,9 +6,9 @@
     </div>
     <div class="info-description">
       <p>
-        Welcome to my blog. I'm Hoey — a programmer who codes, creates, and gets curious. Outside of
-        work, I play PC games, watch movies, and listen to music. On this blog, I write about web
-        development, tools, workflows, and sometimes just the fun stuff. Glad to have you here.
+        Welcome to my blog. I'm Hoey — a programmer who codes, creates, and stays curious. Outside
+        of work, I play PC games, watch movies, and listen to music. On this blog, I write about
+        development topics, and occasionally share some fun stuff. Glad to have you here.
       </p>
     </div>
     <div class="social-link-content">

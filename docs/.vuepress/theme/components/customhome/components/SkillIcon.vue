@@ -5,7 +5,7 @@
     :is="customComponent"
     :size="size"
     class="my-icon"
-    :style="{ width: size + 'px' }"
+    :style="{ height: size + 'px' }"
   />
   <!-- 标准 Iconify 图标 -->
   <icon
@@ -13,7 +13,7 @@
     :name="name"
     :size="size"
     class="my-icon"
-    :style="{ width: size + 'px' }"
+    :style="{ height: size + 'px' }"
   />
 </template>
 
