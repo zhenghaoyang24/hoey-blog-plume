@@ -6,7 +6,7 @@
           <!-- 第一份内容 -->
           <div class="skill-set">
             <span v-for="(item, index) in SKILLS1" :key="index" @click="openUrl(item.url)">
-              <MyIcon :name="item.icon" :size="SIZE" />
+              <SkillIcon :name="item.icon" :size="SIZE" />
               <p>{{ item.name }}</p>
             </span>
           </div>
@@ -17,7 +17,7 @@
               :key="index + SKILLS1.length"
               @click="openUrl(item.url)"
             >
-              <MyIcon :name="item.icon" :size="SIZE" />
+              <SkillIcon :name="item.icon" :size="SIZE" />
               <p>{{ item.name }}</p>
             </span>
           </div>
@@ -26,7 +26,7 @@
           <!-- 第一份内容 -->
           <div class="skill-set">
             <span v-for="(item, index) in SKILLS2" :key="index" @click="openUrl(item.url)">
-              <MyIcon :name="item.icon" :size="SIZE" />
+              <SkillIcon :name="item.icon" :size="SIZE" />
               <p>{{ item.name }}</p>
             </span>
           </div>
@@ -37,7 +37,7 @@
               :key="index + SKILLS2.length"
               @click="openUrl(item.url)"
             >
-              <MyIcon :name="item.icon" :size="SIZE" />
+              <SkillIcon :name="item.icon" :size="SIZE" />
               <p>{{ item.name }}</p>
             </span>
           </div>
@@ -46,7 +46,7 @@
           <!-- 第一份内容 -->
           <div class="skill-set">
             <span v-for="(item, index) in WORKFLOW" :key="index" @click="openUrl(item.url)">
-              <MyIcon :name="item.icon" :size="SIZE" />
+              <SkillIcon :name="item.icon" :size="SIZE" />
               <p>{{ item.name }}</p>
             </span>
           </div>
@@ -57,7 +57,7 @@
               :key="index + WORKFLOW.length"
               @click="openUrl(item.url)"
             >
-              <MyIcon :name="item.icon" :size="SIZE" />
+              <SkillIcon :name="item.icon" :size="SIZE" />
               <p>{{ item.name }}</p>
             </span>
           </div>
@@ -68,9 +68,8 @@
 </template>
 
 <script setup lang="ts">
-import MyIcon from "./components/MyIcon.vue";
 import SectionTemplate from "./components/SectionTemplate.vue";
-
+import SkillIcon from "./components/SkillIcon.vue";
 const SIZE = 22;
 
 const SKILLS1 = [
@@ -154,7 +153,7 @@ const WORKFLOW = [
     url: "https://code.visualstudio.com/",
   },
   { id: 202, name: "Cursor", icon: "devicon:cursor", url: "https://cursor.sh/" },
-  { id: 203, name: "Trae", icon: "custom:trae-color", url: "https://trae.ai/" },
+  { id: 203, name: "Trae", icon: "custom:trae", url: "https://trae.ai/" },
   { id: 204, name: "Claude Code", icon: "logos:claude-icon", url: "https://claude.ai/" },
   { id: 205, name: "ChatGPT", icon: "custom:chatgpt", url: "https://chat.openai.com/" },
   { id: 206, name: "DeepSeek", icon: "logos:deepseek-icon", url: "https://deepseek.com/" },
@@ -165,7 +164,7 @@ const WORKFLOW = [
     url: "https://www.jetbrains.com/webstorm/",
   },
   { id: 208, name: "Obsidian", icon: "skill-icons:obsidian-dark", url: "https://obsidian.md/" },
-  { id: 207, name: "VuePress", icon: "custom:folder-vuepress", url: "https://vuepress.vuejs.org/" },
+  { id: 207, name: "VuePress", icon: "custom:vuepress", url: "https://vuepress.vuejs.org/" },
   { id: 209, name: "Git", icon: "devicon:git", url: "https://git-scm.com/" },
   { id: 210, name: "pnpm", icon: "vscode-icons:file-type-light-pnpm", url: "https://pnpm.io/" },
 ];
@@ -220,11 +219,13 @@ const openUrl = (url: string | undefined) => {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  gap: 2px;
   padding: 10px 8px;
   background-color: var(--icon-bg);
   white-space: nowrap;
   cursor: pointer;
+  > p {
+    margin-left: 4px;
+  }
   @media (max-width: 770px) {
     padding: 8px 6px;
     gap: 1px;
