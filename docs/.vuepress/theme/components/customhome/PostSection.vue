@@ -50,7 +50,7 @@ const recentPosts = computed(() => {
   // 按创建时间倒序排列，取前 N 篇
   return [...postList.value]
     .sort((a, b) => {
-      // createTime 格式为字符串，如 "2024-01-15"
+      // createTime 格式为字符串
       return new Date(b.createTime).getTime() - new Date(a.createTime).getTime();
     })
     .slice(0, 5); // 取最近 5 篇
