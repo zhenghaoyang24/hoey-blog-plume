@@ -118,9 +118,6 @@ body {
 .posts-container .no-profile {
   max-width: 1000px;
 }
-.vp-posts.home-posts {
-  padding-top: 0 !important;
-}
 
 /*文章背景*/
 .vp-doc-container {

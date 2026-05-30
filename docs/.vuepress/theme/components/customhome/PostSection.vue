@@ -36,6 +36,9 @@
           </div>
         </div>
       </div>
+      <div class="all-posts-link">
+        <router-link to="/blog/">View all posts</router-link>
+      </div>
     </SectionTemplate>
   </div>
 </template>
@@ -43,21 +46,19 @@
 <script setup lang="ts">
 import SectionTemplate from "./components/SectionTemplate.vue";
 import { computed, onMounted } from "vue";
-import { useLocalePostList } from "vuepress-theme-plume/composables";
 
-const postList = useLocalePostList();
+import { usePostsData } from "vuepress-theme-plume/composables";
+
+const postsData = usePostsData();
 const recentPosts = computed(() => {
-  // 按创建时间倒序排列，取前 N 篇
-  return [...postList.value]
+  return [...postsData.value["/blog/"]]
     .sort((a, b) => {
-      // createTime 格式为字符串
       return new Date(b.createTime).getTime() - new Date(a.createTime).getTime();
     })
-    .slice(0, 5); // 取最近 5 篇
+    .slice(0, 5);
 });
-
 onMounted(() => {
-  console.log("Recent Posts:", recentPosts.value);
+  console.log("Recent posts:", recentPosts.value);
 });
 </script>
 
@@ -82,6 +83,7 @@ a {
   grid-template-columns: 1fr;
   width: 100%;
   padding: 18px;
+  padding-bottom: 6px;
   background-color: var(--vp-c-bg);
   border-radius: 8px;
   box-shadow: 0 0 10px 2px var(--vp-blog-post-item-hover-shadow);
@@ -133,7 +135,7 @@ a {
   border: 1px solid var(--line-color);
   transition: all 0.2s ease-out;
   &:hover {
-    border-color: var(--vp-c-brand-2);
+    border-color: var(--vp-c-brand-1);
   }
 }
 
@@ -141,5 +143,60 @@ a {
   white-space: wrap;
   word-break: keep-all;
   unicode-bidi: isolate;
+}
+
+.all-posts-link {
+  margin-top: 20px;
+  width: 100%;
+  background-color: var(--vp-c-bg);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--vp-shadow-1);
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 0;
+    background-color: var(--vp-c-brand-1);
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  &::before {
+    left: 0;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  &::after {
+    right: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+  }
+  > a {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    color: var(--vp-c-brand-1);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    &:hover {
+      color: white;
+    }
+  }
+  &:hover::before {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  &:hover::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
 }
 </style>
