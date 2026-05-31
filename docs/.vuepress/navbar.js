@@ -8,27 +8,6 @@ export default defineNavbarConfig([
     icon: "material-symbols:post-outline",
     activeMatch: "^/blog/",
   },
-  // {
-  //   text: "笔记",
-  //   items: [
-  //     { text: "Web Dev", link: "/web/start/", icon: "logos:web-dev-icon" },
-  //     { text: "Java Dev", link: "/javadev/readme/", icon: "logos:java" },
-  //     { text: "备忘录", link: "/memo/start/", icon: "emojione:memo" },
-  //   ],
-  //   icon: "emojione:green-book",
-  //   activeMatch: "^/(web|memo)/",
-  // },
-  // {
-  //   text: "Q&A",
-  //   icon: "openmoji:interview",
-  //   link: "/qa/guide/",
-  //   activeMatch: "^/qa/",
-  // },
-  // {
-  //   text: "Projects",
-  //   link: "/more/projects/",
-  //   icon: "eos-icons:project",
-  // },
   {
     text: "More",
     items: [
