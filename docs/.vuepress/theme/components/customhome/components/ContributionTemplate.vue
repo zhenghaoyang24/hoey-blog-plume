@@ -110,11 +110,11 @@ const COLOR_LEVELS = [
   "var(--heatmap-level-4)",
 ];
 const THRESHOLDS = [0, 4, 9, 19];
-// 格子宽度
+// 格子宽度与间距
 const MIN_CELL_WIDTH = 8;
 const MAX_CELL_WIDTH = 14;
 const CELL_GAP = 6;
-
+// 格子行列
 const TOTAL_COLS = 53;
 const TOTAL_ROWS = 7;
 const WEEKDAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -318,7 +318,7 @@ const weekdayItems = computed(() => {
 const gridColumnsDef = `repeat(${TOTAL_COLS}, minmax(${MIN_CELL_WIDTH}px, ${MAX_CELL_WIDTH}px))`;
 
 const mainGridStyle = computed(() => ({
-  gridTemplateColumns: props.showWeekdays ? `30px ${gridColumnsDef}` : gridColumnsDef,
+  gridTemplateColumns: props.showWeekdays ? `17px ${gridColumnsDef}` : gridColumnsDef,
   gap: `${CELL_GAP}px`,
 }));
 
@@ -416,11 +416,13 @@ onUnmounted(() => window.removeEventListener("scroll", onGlobalScroll, true));
   flex-direction: column;
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   user-select: none;
   max-width: 100%;
 }
-
+/* .contribution-heatmap:hover > .scrollable-area::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+} */
 /* 滚动区域 */
 .scrollable-area {
   overflow-x: auto;
@@ -448,7 +450,7 @@ onUnmounted(() => window.removeEventListener("scroll", onGlobalScroll, true));
   margin-bottom: 2px;
 }
 .month-weekday-spacer {
-  width: 30px;
+  width: 17px;
   margin-right: 4px;
   flex-shrink: 0;
 }
@@ -480,7 +482,7 @@ onUnmounted(() => window.removeEventListener("scroll", onGlobalScroll, true));
 .weekday-cell::after {
   content: attr(data-text);
   position: absolute;
-  right: 2px;
+  right: 0px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 10px;

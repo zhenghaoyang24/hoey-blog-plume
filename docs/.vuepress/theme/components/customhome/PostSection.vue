@@ -153,28 +153,21 @@ a {
   overflow: hidden;
   box-shadow: var(--vp-shadow-1);
   position: relative;
-  &::before,
-  &::after {
+  position: relative;
+  &::before {
     content: "";
     position: absolute;
     top: 0;
-    width: 50%;
+    left: 0;
+    transform-origin: left;
+    transform: scaleX(0);
+    width: 100%;
     height: 100%;
     z-index: 0;
     background-color: var(--vp-c-brand-1);
     pointer-events: none;
     opacity: 0;
     transition: all 0.3s ease;
-  }
-  &::before {
-    left: 0;
-    transform-origin: left;
-    transform: scaleX(0);
-  }
-  &::after {
-    right: 0;
-    transform-origin: right;
-    transform: scaleX(0);
   }
   > a {
     position: relative;
@@ -191,10 +184,6 @@ a {
     }
   }
   &:hover::before {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-  &:hover::after {
     transform: scaleX(1);
     opacity: 1;
   }

@@ -48,7 +48,7 @@
   --heatmap-level-3: #30a14e;
   --heatmap-level-4: #216e39;
   /* 滚动条 */
-  --scrollbar-thumb: #f0f0f0;
+  --scrollbar-thumb: #e8e8e8;
   --scrollbar-thumb-hover: #c1c1c1;
 }
 
@@ -96,7 +96,7 @@
   --heatmap-level-3: #26a641;
   --heatmap-level-4: #39d353;
   /* 滚动条 */
-  --scrollbar-thumb: #2f2f2f;
+  --scrollbar-thumb: #1e1e1e;
   --scrollbar-thumb-hover: #444444;
 }
 
