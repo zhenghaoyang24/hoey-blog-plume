@@ -76,6 +76,9 @@ a {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
+  @media (max-width: 770px) {
+    gap: 16px;
+  }
 }
 
 .post-item {
@@ -90,6 +93,7 @@ a {
   border: 1px solid transparent;
   transition: all 0.2s ease-out;
   > h3 {
+    width: fit-content;
     color: var(--vp-c-text-1);
     margin: 0;
     font-size: 18px;
@@ -140,9 +144,8 @@ a {
 }
 
 .post-content {
-  white-space: wrap;
-  word-break: keep-all;
-  unicode-bidi: isolate;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .all-posts-link {
