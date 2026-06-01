@@ -57,9 +57,6 @@ const recentPosts = computed(() => {
     })
     .slice(0, 5);
 });
-onMounted(() => {
-  console.log("Recent posts:", recentPosts.value);
-});
 </script>
 
 <style scoped>
