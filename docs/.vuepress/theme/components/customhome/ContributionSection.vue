@@ -26,9 +26,34 @@ function extractDatesAndCounts(data: any) {
   return result;
 }
 const contributions = ref<{ date: string; value: number }[]>([]);
+const CACHE_KEY = "gh_contributions_cache";
+const CACHE_DURATION = 12 * 60 * 60 * 1000; // 12小时
 onMounted(async () => {
+  // 尝试从缓存读取
+  const cached = localStorage.getItem(CACHE_KEY);
+  if (cached) {
+    try {
+      const { data, timestamp } = JSON.parse(cached);
+      if (Date.now() - timestamp < CACHE_DURATION) {
+        contributions.value = data; // 缓存未过期，直接使用
+        return;
+      }
+    } catch {}
+  }
+
+  // 无缓存或已过期，重新请求
   const response = await axios.get(`https://gh-calendar.rschristian.dev/user/zhenghaoyang24`);
-  contributions.value = extractDatesAndCounts(response.data);
+  const freshData = extractDatesAndCounts(response.data);
+  contributions.value = freshData;
+
+  // 存入缓存
+  localStorage.setItem(
+    CACHE_KEY,
+    JSON.stringify({
+      data: freshData,
+      timestamp: Date.now(),
+    }),
+  );
 });
 </script>
 

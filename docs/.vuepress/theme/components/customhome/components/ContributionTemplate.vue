@@ -182,7 +182,8 @@ dataRangeStart.setDate(yesterday.getDate() - 365);
 const dataMap = computed<Map<string, number>>(() => {
   const map = new Map<string, number>();
   for (const item of props.data) {
-    if (item?.date) map.set(item.date, item.value);
+    // if (item?.date) map.set(item.date, item.value);
+    if (item?.date) map.set(item.date, item.value ?? (item as any).count ?? 0);
   }
   return map;
 });
@@ -193,17 +194,23 @@ const dataMinDate = computed(() => {
   if (!hasData.value) return null;
   let min = Infinity;
   for (const item of props.data) {
-    const t = new Date(item.date).getTime();
+    // const t = new Date(item.date).getTime();
+    const t = new Date(item.date + "T00:00:00").getTime();
     if (!isNaN(t) && t < min) min = t;
   }
   return min < Infinity ? new Date(min) : null;
 });
 
+// const actualStartDate = computed(() => {
+//   const minDate = dataMinDate.value;
+//   if (!minDate) return yesterday;
+//   const start = minDate > dataRangeStart ? minDate : dataRangeStart;
+//   return start > yesterday ? yesterday : start;
+// });
 const actualStartDate = computed(() => {
   const minDate = dataMinDate.value;
-  if (!minDate) return yesterday;
-  const start = minDate > dataRangeStart ? minDate : dataRangeStart;
-  return start > yesterday ? yesterday : start;
+  if (!minDate) return dataRangeStart; // 无数据时用默认一年前
+  return minDate > yesterday ? yesterday : minDate;
 });
 
 // ==================== 构建网格 ====================
@@ -222,8 +229,9 @@ const grid = computed<CellData[][]>(() => {
       const dateStr = toDateStr(cellDate);
       const cellIsToday = dateStr === todayStr;
       const cellIsFuture = cellDate.getTime() > today.getTime();
-      const isLastCol = col === TOTAL_COLS - 1;
-      const render = !(isLastCol && cellIsFuture);
+      // const isLastCol = col === TOTAL_COLS - 1;
+      // const render = !(isLastCol && cellIsFuture);
+      const render = !cellIsFuture;
 
       let count = 0;
       let isEmpty = false;
