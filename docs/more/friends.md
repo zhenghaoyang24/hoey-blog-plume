@@ -12,7 +12,6 @@ comment: true
 
 ## 推荐
 
-
 <AllFriendContent type="recom" />
 
 
