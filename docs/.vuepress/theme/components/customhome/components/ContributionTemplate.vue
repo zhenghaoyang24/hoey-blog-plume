@@ -185,6 +185,31 @@ const dataMap = computed<Map<string, number>>(() => {
     // if (item?.date) map.set(item.date, item.value);
     if (item?.date) map.set(item.date, item.value ?? (item as any).count ?? 0);
   }
+
+  // Fix 3: 补全数据到今天的日期
+  if (props.data.length > 0) {
+    // 找到数据中的最大日期
+    let maxDate: Date | null = null;
+    for (const item of props.data) {
+      if (!item?.date) continue;
+      const d = new Date(item.date + "T00:00:00");
+      if (!isNaN(d.getTime()) && (!maxDate || d > maxDate)) {
+        maxDate = d;
+      }
+    }
+    // 从最大日期的下一天补到今天
+    if (maxDate) {
+      const cursor = new Date(maxDate);
+      while (cursor < today) {
+        cursor.setDate(cursor.getDate() + 1);
+        const ds = toDateStr(cursor);
+        if (!map.has(ds)) {
+          map.set(ds, 0);
+        }
+      }
+    }
+  }
+
   return map;
 });
 
@@ -310,6 +335,36 @@ const monthSlots = computed<MonthSlot[]>(() => {
       lastMonth = month;
     }
   }
+
+  // 收集所有有标签的列索引
+  const labeledIndices: number[] = [];
+  for (let i = 0; i < slots.length; i++) {
+    if (slots[i].text) labeledIndices.push(i);
+  }
+
+  if (labeledIndices.length >= 2) {
+    // Fix 2: 前两列相邻显示月份时，去掉第一列（月底月份）
+    if (labeledIndices[1] - labeledIndices[0] === 1) {
+      slots[labeledIndices[0]] = { text: "", col: -1 };
+    }
+    // Fix 2: 后两列相邻显示月份时，去掉最后一列（下个月的月初）
+    const len = labeledIndices.length;
+    if (labeledIndices[len - 1] - labeledIndices[len - 2] === 1) {
+      slots[labeledIndices[len - 1]] = { text: "", col: -1 };
+    }
+
+    // Fix 1: 首尾月份名相同时（跨年导致），去掉首部重复的旧年份月份
+    const firstIdx = labeledIndices[0];
+    const lastIdx = labeledIndices[len - 1];
+    if (
+      firstIdx < lastIdx &&
+      slots[firstIdx].text &&
+      slots[firstIdx].text === slots[lastIdx].text
+    ) {
+      slots[firstIdx] = { text: "", col: -1 };
+    }
+  }
+
   return slots;
 });
 
