@@ -163,20 +163,32 @@ function formatCountText(count: number, isEmpty: boolean): string {
   return `${count} contributions`;
 }
 
-// ==================== 核心日期 ====================
-const today = new Date();
-today.setHours(0, 0, 0, 0);
+// ==================== 核心日期（computed 确保运行时计算，避免 SSG 构建时固化） ====================
+const today = computed(() => {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d;
+});
 
-const yesterday = new Date(today);
-yesterday.setDate(today.getDate() - 1);
+const yesterday = computed(() => {
+  const d = new Date(today.value);
+  d.setDate(today.value.getDate() - 1);
+  return d;
+});
 
-const todayDayOfWeek = today.getDay();
+const todayDayOfWeek = computed(() => today.value.getDay());
 
-const currentWeekSunday = new Date(today);
-currentWeekSunday.setDate(today.getDate() - todayDayOfWeek);
+const currentWeekSunday = computed(() => {
+  const d = new Date(today.value);
+  d.setDate(today.value.getDate() - todayDayOfWeek.value);
+  return d;
+});
 
-const dataRangeStart = new Date(yesterday);
-dataRangeStart.setDate(yesterday.getDate() - 365);
+const dataRangeStart = computed(() => {
+  const d = new Date(yesterday.value);
+  d.setDate(yesterday.value.getDate() - 365);
+  return d;
+});
 
 // ==================== 数据映射 ====================
 const dataMap = computed<Map<string, number>>(() => {
@@ -200,7 +212,7 @@ const dataMap = computed<Map<string, number>>(() => {
     // 从最大日期的下一天补到今天
     if (maxDate) {
       const cursor = new Date(maxDate);
-      while (cursor < today) {
+      while (cursor < today.value) {
         cursor.setDate(cursor.getDate() + 1);
         const ds = toDateStr(cursor);
         if (!map.has(ds)) {
@@ -234,26 +246,26 @@ const dataMinDate = computed(() => {
 // });
 const actualStartDate = computed(() => {
   const minDate = dataMinDate.value;
-  if (!minDate) return dataRangeStart; // 无数据时用默认一年前
-  return minDate > yesterday ? yesterday : minDate;
+  if (!minDate) return dataRangeStart.value; // 无数据时用默认一年前
+  return minDate > yesterday.value ? yesterday.value : minDate;
 });
 
 // ==================== 构建网格 ====================
 const grid = computed<CellData[][]>(() => {
   const result: CellData[][] = [];
-  const todayStr = toDateStr(today);
+  const todayStr = toDateStr(today.value);
 
   for (let col = 0; col < TOTAL_COLS; col++) {
     const week: CellData[] = [];
-    const colSunday = new Date(currentWeekSunday);
-    colSunday.setDate(currentWeekSunday.getDate() - (TOTAL_COLS - 1 - col) * 7);
+    const colSunday = new Date(currentWeekSunday.value);
+    colSunday.setDate(currentWeekSunday.value.getDate() - (TOTAL_COLS - 1 - col) * 7);
 
     for (let row = 0; row < TOTAL_ROWS; row++) {
       const cellDate = new Date(colSunday);
       cellDate.setDate(colSunday.getDate() + row);
       const dateStr = toDateStr(cellDate);
       const cellIsToday = dateStr === todayStr;
-      const cellIsFuture = cellDate.getTime() > today.getTime();
+      const cellIsFuture = cellDate.getTime() > today.value.getTime();
       // const isLastCol = col === TOTAL_COLS - 1;
       // const render = !(isLastCol && cellIsFuture);
       const render = !cellIsFuture;
