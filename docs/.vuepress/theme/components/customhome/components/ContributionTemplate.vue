@@ -163,12 +163,8 @@ function formatCountText(count: number, isEmpty: boolean): string {
   return `${count} contributions`;
 }
 
-// ==================== 核心日期（computed 确保运行时计算，避免 SSG 构建时固化） ====================
-const today = computed(() => {
-  const d = new Date();
-  d.setHours(0, 0, 0, 0);
-  return d;
-});
+// ==================== 核心日期（ref + onMounted 确保客户端实时计算，避免 SSG 构建时固化） ====================
+const today = ref(new Date(new Date().setHours(0, 0, 0, 0)));
 
 const yesterday = computed(() => {
   const d = new Date(today.value);
@@ -480,7 +476,13 @@ function onGlobalScroll() {
   if (tooltip.visible) tooltip.visible = false;
 }
 
-onMounted(() => window.addEventListener("scroll", onGlobalScroll, true));
+onMounted(() => {
+  // 客户端挂载时更新为真实当前日期（避免 SSG 构建时固化）
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  today.value = d;
+  window.addEventListener("scroll", onGlobalScroll, true);
+});
 onUnmounted(() => window.removeEventListener("scroll", onGlobalScroll, true));
 </script>
 
