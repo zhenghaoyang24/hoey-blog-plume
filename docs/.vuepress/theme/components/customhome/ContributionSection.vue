@@ -27,7 +27,7 @@ function extractDatesAndCounts(data: any) {
 }
 const contributions = ref<{ date: string; value: number }[]>([]);
 const CACHE_KEY = "gh_contributions_cache";
-const CACHE_DURATION = 8 * 60 * 60 * 1000; // 12小时
+const CACHE_DURATION = 8 * 60 * 60 * 1000; // 8小时
 onMounted(async () => {
   // 尝试从缓存读取
   const cached = localStorage.getItem(CACHE_KEY);

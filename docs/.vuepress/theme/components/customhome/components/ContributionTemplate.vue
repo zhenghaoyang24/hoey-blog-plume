@@ -31,7 +31,6 @@
           :key="index"
           class="cell"
           :class="{
-            'cell--today': cell.isToday,
             'cell--empty': cell.isEmpty,
           }"
           :style="getCellStyle(cell)"
@@ -100,7 +99,6 @@ const props = defineProps({
 });
 
 // ==================== 内部常量 ====================
-const TODAY_BORDER_COLOR = "#1b1f23";
 const EMPTY_COLOR = "var(--heatmap-level-0)";
 const COLOR_LEVELS = [
   "var(--heatmap-level-0)",
@@ -163,26 +161,36 @@ function formatCountText(count: number, isEmpty: boolean): string {
   return `${count} contributions`;
 }
 
-// ==================== 核心日期（ref + onMounted 确保客户端实时计算，避免 SSG 构建时固化） ====================
-const today = ref(new Date(new Date().setHours(0, 0, 0, 0)));
-
-const yesterday = computed(() => {
-  const d = new Date(today.value);
-  d.setDate(today.value.getDate() - 1);
-  return d;
+// ==================== 基于数据最后一条记录的锚点日期 ====================
+// 找到数据中最大的日期作为网格锚点（最后一列对应的周）
+const lastDataDate = computed(() => {
+  if (!hasData.value) {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }
+  let max: Date | null = null;
+  for (const item of props.data) {
+    if (!item?.date) continue;
+    const d = new Date(item.date + "T00:00:00");
+    if (!isNaN(d.getTime()) && (!max || d > max)) max = d;
+  }
+  return (
+    max ||
+    (() => {
+      const d = new Date();
+      d.setHours(0, 0, 0, 0);
+      return d;
+    })()
+  );
 });
 
-const todayDayOfWeek = computed(() => today.value.getDay());
+const lastDataDayOfWeek = computed(() => lastDataDate.value.getDay());
 
-const currentWeekSunday = computed(() => {
-  const d = new Date(today.value);
-  d.setDate(today.value.getDate() - todayDayOfWeek.value);
-  return d;
-});
-
-const dataRangeStart = computed(() => {
-  const d = new Date(yesterday.value);
-  d.setDate(yesterday.value.getDate() - 365);
+// 最后一列对应的周日
+const lastColumnSunday = computed(() => {
+  const d = new Date(lastDataDate.value);
+  d.setDate(lastDataDate.value.getDate() - lastDataDayOfWeek.value);
   return d;
 });
 
@@ -190,116 +198,37 @@ const dataRangeStart = computed(() => {
 const dataMap = computed<Map<string, number>>(() => {
   const map = new Map<string, number>();
   for (const item of props.data) {
-    // if (item?.date) map.set(item.date, item.value);
     if (item?.date) map.set(item.date, item.value ?? (item as any).count ?? 0);
   }
-
-  // Fix 3: 补全数据到今天的日期
-  if (props.data.length > 0) {
-    // 找到数据中的最大日期
-    let maxDate: Date | null = null;
-    for (const item of props.data) {
-      if (!item?.date) continue;
-      const d = new Date(item.date + "T00:00:00");
-      if (!isNaN(d.getTime()) && (!maxDate || d > maxDate)) {
-        maxDate = d;
-      }
-    }
-    // 从最大日期的下一天补到今天
-    if (maxDate) {
-      const cursor = new Date(maxDate);
-      while (cursor < today.value) {
-        cursor.setDate(cursor.getDate() + 1);
-        const ds = toDateStr(cursor);
-        if (!map.has(ds)) {
-          map.set(ds, 0);
-        }
-      }
-    }
-  }
-
   return map;
 });
 
 const hasData = computed(() => props.data.length > 0);
 
-const dataMinDate = computed(() => {
-  if (!hasData.value) return null;
-  let min = Infinity;
-  for (const item of props.data) {
-    // const t = new Date(item.date).getTime();
-    const t = new Date(item.date + "T00:00:00").getTime();
-    if (!isNaN(t) && t < min) min = t;
-  }
-  return min < Infinity ? new Date(min) : null;
-});
-
-// const actualStartDate = computed(() => {
-//   const minDate = dataMinDate.value;
-//   if (!minDate) return yesterday;
-//   const start = minDate > dataRangeStart ? minDate : dataRangeStart;
-//   return start > yesterday ? yesterday : start;
-// });
-const actualStartDate = computed(() => {
-  const minDate = dataMinDate.value;
-  if (!minDate) return dataRangeStart.value; // 无数据时用默认一年前
-  return minDate > yesterday.value ? yesterday.value : minDate;
-});
-
 // ==================== 构建网格 ====================
 const grid = computed<CellData[][]>(() => {
   const result: CellData[][] = [];
-  const todayStr = toDateStr(today.value);
 
   for (let col = 0; col < TOTAL_COLS; col++) {
     const week: CellData[] = [];
-    const colSunday = new Date(currentWeekSunday.value);
-    colSunday.setDate(currentWeekSunday.value.getDate() - (TOTAL_COLS - 1 - col) * 7);
+    const colSunday = new Date(lastColumnSunday.value);
+    colSunday.setDate(lastColumnSunday.value.getDate() - (TOTAL_COLS - 1 - col) * 7);
 
     for (let row = 0; row < TOTAL_ROWS; row++) {
       const cellDate = new Date(colSunday);
       cellDate.setDate(colSunday.getDate() + row);
       const dateStr = toDateStr(cellDate);
-      const cellIsToday = dateStr === todayStr;
-      const cellIsFuture = cellDate.getTime() > today.value.getTime();
-      // const isLastCol = col === TOTAL_COLS - 1;
-      // const render = !(isLastCol && cellIsFuture);
-      const render = !cellIsFuture;
-
-      let count = 0;
-      let isEmpty = false;
-
-      if (cellIsFuture) {
-        count = 0;
-        isEmpty = true;
-      } else if (cellIsToday) {
-        count = dataMap.value.get(dateStr) ?? 0;
-        isEmpty = false;
-      } else {
-        const cellTime = cellDate.getTime();
-        if (!hasData.value) {
-          isEmpty = true;
-          count = 0;
-        } else {
-          const startTime = actualStartDate.value.getTime();
-          if (cellTime >= startTime) {
-            count = dataMap.value.get(dateStr) ?? 0;
-            isEmpty = false;
-          } else {
-            isEmpty = true;
-            count = 0;
-          }
-        }
-      }
+      const count = dataMap.value.get(dateStr) ?? 0;
+      const isEmpty = !dataMap.value.has(dateStr);
 
       week.push({
         dateObj: cellDate,
         dateStr,
         count,
-        render,
-        isFuture: cellIsFuture,
+        render: true,
+        isFuture: false,
         isEmpty,
-        isToday: cellIsToday,
+        isToday: false,
         row,
         col,
         dayOfWeek: cellDate.getDay(),
@@ -410,24 +339,15 @@ function getColorForCount(count: number, isEmpty: boolean): string {
 function getCellStyle(cell: CellData): Record<string, string> {
   const bgColor = getColorForCount(cell.count, cell.isEmpty);
   const colOffset = props.showWeekdays ? 2 : 1;
-  const style: Record<string, string> = {
+  return {
     gridRow: String(cell.row + 1),
     gridColumn: String(cell.col + colOffset),
     "--cell-bg": bgColor,
   };
-  if (cell.isToday) {
-    style["--cell-border"] = TODAY_BORDER_COLOR;
-  }
-  if (!cell.render) {
-    style.display = "none";
-  }
-  return style;
 }
 
 // ==================== Tooltip ====================
 function onCellEnter(event: MouseEvent | FocusEvent, cell: CellData): void {
-  if (!cell.render && !cell.isFuture) return;
-
   tooltip.dateText = formatDateCN(cell.dateObj);
   tooltip.countText = formatCountText(cell.count, cell.isEmpty);
   tooltip.visible = true;
@@ -477,10 +397,6 @@ function onGlobalScroll() {
 }
 
 onMounted(() => {
-  // 客户端挂载时更新为真实当前日期（避免 SSG 构建时固化）
-  const d = new Date();
-  d.setHours(0, 0, 0, 0);
-  today.value = d;
   window.addEventListener("scroll", onGlobalScroll, true);
 });
 onUnmounted(() => window.removeEventListener("scroll", onGlobalScroll, true));
@@ -587,17 +503,11 @@ onUnmounted(() => window.removeEventListener("scroll", onGlobalScroll, true));
   border-radius: 2px;
   background-color: var(--cell-bg, #ebedf0);
 }
-.cell--today .cell-visual {
-  box-shadow: none;
-}
 .cell--empty .cell-visual {
   background-color: var(--heatmap-level-0);
 }
 .cell:hover .cell-visual {
   filter: brightness(0.85);
-}
-.cell--today:hover .cell-visual {
-  filter: brightness(0.9);
 }
 
 /* Tooltip */
