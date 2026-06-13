@@ -256,7 +256,10 @@ interface MonthSlot {
 }
 
 const monthSlots = computed<MonthSlot[]>(() => {
-  const slots: MonthSlot[] = Array.from({ length: TOTAL_COLS }, () => ({ text: "", col: -1 }));
+  const slots: MonthSlot[] = Array.from({ length: TOTAL_COLS }, () => ({
+    text: "",
+    col: -1,
+  }));
   let lastMonth = -1;
   for (let col = 0; col < TOTAL_COLS; col++) {
     const week = grid.value[col];
