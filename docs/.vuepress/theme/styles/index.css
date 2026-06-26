@@ -50,6 +50,9 @@
   /* 滚动条 */
   --scrollbar-thumb: #e8e8e8;
   --scrollbar-thumb-hover: #c1c1c1;
+
+  /* graph 图线条以及文本颜色 */
+  --graph-text-1: #686868;
 }
 
 [data-theme="dark"] {
@@ -98,6 +101,9 @@
   /* 滚动条 */
   --scrollbar-thumb: #1e1e1e;
   --scrollbar-thumb-hover: #444444;
+
+  /* graph 图线条以及文本颜色 */
+  --graph-text-1: #929292;
 }
 
 body {

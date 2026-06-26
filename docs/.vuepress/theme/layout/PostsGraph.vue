@@ -43,12 +43,14 @@ interface GraphData {
   edges: Edge[];
 }
 
+// 获取 CSS 变量值
+const getCSSVar = (varName: string) => {
+  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || "";
+};
+
 // 处理图谱数据
 const graphData: GraphData = {
-  categories: [
-    { name: "标签", itemStyle: { color: "#42b883" } },
-    { name: "笔记", itemStyle: { color: "#858585" } },
-  ],
+  categories: [],
   nodes: [],
   edges: [],
 };
@@ -89,48 +91,61 @@ const initGraphData = () => {
 };
 
 // ---- 构建 ECharts 配置 ----
-const getOption = () => ({
-  series: [
-    {
-      type: "graph",
-      cursor: "pointer",
-      edgeLabel: { show: false },
-      layout: "force",
-      animation: true,
-      roam: true,
-      draggable: true,
-      categories: graphData.categories,
-      data: graphData.nodes,
-      edges: graphData.edges,
-      force: {
-        edgeLength: 80, // 连线长度（越小边越短，节点越紧凑）
-        repulsion: 100, // 节点间排斥力（越大节点越分散）
-        gravity: 0.1, // 中心引力（越大节点越向中心聚集）
-        friction: 0.3, // 运动摩擦阻力（越大停止越快，越稳定）
+const getOption = () => {
+  const textColor = getCSSVar("--graph-text-1") || "#8f8f8f";
+  const tagColor = getCSSVar("--vp-c-brand-1") || "#42b883";
+  const postColor = getCSSVar("--graph-text-1") || "#8f8f8f";
+  const hoverColor = getCSSVar("--vp-c-brand-2") || "#39d38e";
+
+  // 同步更新 categories 颜色
+  graphData.categories = [
+    { name: "标签", itemStyle: { color: tagColor } },
+    { name: "笔记", itemStyle: { color: postColor } },
+  ];
+
+  return {
+    series: [
+      {
+        type: "graph",
+        cursor: "pointer",
+        edgeLabel: { show: false },
+        layout: "force",
+        animation: true,
+        roam: true,
+        draggable: true,
+        categories: graphData.categories,
+        data: graphData.nodes,
+        edges: graphData.edges,
+        force: {
+          edgeLength: 80, // 连线长度（越小边越短，节点越紧凑）
+          repulsion: 100, // 节点间排斥力（越大节点越分散）
+          gravity: 0.1, // 中心引力（越大节点越向中心聚集）
+          friction: 0.3, // 运动摩擦阻力（越大停止越快，越稳定）
+        },
+        label: {
+          show: true,
+          position: "bottom",
+          formatter: "{b}",
+          color: textColor,
+          fontSize: 10,
+          opacity: 0.8,
+          silent: true,
+        },
+        edgeSymbol: ["none", "none"],
+        lineStyle: {
+          color: textColor,
+          width: 1,
+          opacity: 0.8,
+          curveness: 0, // 直线
+        },
+        emphasis: {
+          focus: "adjacency",
+        },
+        scaleLimit: { max: 8, min: 0.3 },
       },
-      label: {
-        show: true,
-        position: "bottom",
-        formatter: "{b}",
-        color: "#aaa",
-        fontSize: 10,
-        opacity: 1,
-        silent: true,
-      },
-      edgeSymbol: ["none", "none"],
-      lineStyle: {
-        color: "#aaa",
-        opacity: 0.6,
-        width: 1.5,
-        curveness: 0, // 直线
-      },
-      emphasis: {
-        focus: "adjacency",
-      },
-      scaleLimit: { max: 8, min: 0.3 },
-    },
-  ],
-});
+    ],
+  };
+};
 
 // ---- 生命周期钩子 ----
 onMounted(() => {
@@ -176,10 +191,17 @@ onMounted(() => {
   };
   document.addEventListener("mousemove", handleMouseMove);
 
-  // 鼠标释放结束拖动
+  // 鼠标释放结束拖动，立即取消高亮
   const handleMouseUp = () => {
-    isDragging = false;
-    draggedNodeIndex = null;
+    if (isDragging) {
+      isDragging = false;
+      draggedNodeIndex = null;
+      // 立即取消高亮（包括文本显示）
+      chartInstance!.dispatchAction({
+        type: "downplay",
+        seriesIndex: 0,
+      });
+    }
   };
   document.addEventListener("mouseup", handleMouseUp);
 
@@ -187,8 +209,18 @@ onMounted(() => {
   const handleResize = () => chartInstance?.resize();
   window.addEventListener("resize", handleResize);
 
+  // 监听主题切换，重新渲染图表
+  const themeObserver = new MutationObserver(() => {
+    chartInstance?.setOption(getOption());
+  });
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+
   // 保存清理函数
   onBeforeUnmount(() => {
+    themeObserver.disconnect();
     window.removeEventListener("resize", handleResize);
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", handleMouseUp);
