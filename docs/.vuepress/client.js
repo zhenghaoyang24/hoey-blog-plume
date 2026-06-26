@@ -3,10 +3,10 @@ import { Layout } from "vuepress-theme-plume/client";
 import "./theme/styles/index.css";
 import { h } from "vue";
 import RepoCard from "vuepress-theme-plume/features/RepoCard.vue";
-import AllFriendContent from "./theme/components/AllFriendContent.vue";
+import AllFriendContent from "./theme/layout/AllFriendContent.vue";
 
 // 首页
-import CustomHome from "./theme/components/customhome/CustomHome.vue";
+import CustomHome from "./theme/customhome/posthome/CustomHome.vue";
 
 // JS代码 box
 import JSRunner from "./theme/components/JSRunner.vue";
@@ -21,7 +21,7 @@ import Question from "./theme/components/Question.vue";
 import Summary from "./theme/components/Summary.vue";
 
 // 关系图谱
-import PostsGraph from "./theme/components/PostsGraph.vue";
+import PostsGraph from "./theme/layout/PostsGraph.vue";
 
 export default defineClientConfig({
   enhance({ app, router, siteData }) {

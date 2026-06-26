@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import Dither from "../bg/Dither.vue";
+import Dither from "../../bg/Dither.vue";
 
 // 按压效果
 
