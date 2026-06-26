@@ -20,6 +20,9 @@ import Question from "./theme/components/Question.vue";
 // 总结组件
 import Summary from "./theme/components/Summary.vue";
 
+// 关系图谱
+import PostsGraph from "./theme/components/PostsGraph.vue";
+
 export default defineClientConfig({
   enhance({ app, router, siteData }) {
     app.component("RepoCard", RepoCard);
@@ -28,6 +31,7 @@ export default defineClientConfig({
     app.component("CodeViewBox", CodeViewBox);
     app.component("AllFriendContent", AllFriendContent);
     app.component("Question", Question);
+    app.component("PostsGraph", PostsGraph);
   },
   layouts: {
     Layout: () => {

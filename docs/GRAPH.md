@@ -1,0 +1,4 @@
+---
+pageLayout: PostsGraph
+permalink: /graph/
+---

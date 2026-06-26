@@ -9,6 +9,12 @@ export default defineNavbarConfig([
     activeMatch: "^/blog/",
   },
   {
+    text: "Graph",
+    link: "/graph/",
+    icon: "ph:graph",
+    activeMatch: "^/graph/",
+  },
+  {
     text: "More",
     items: [
       {

@@ -55,7 +55,7 @@
 
 <script setup lang="ts">
 import SectionTemplate from "./components/SectionTemplate.vue";
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 import { usePostsData } from "vuepress-theme-plume/composables";
 import { sortByTime, sortBySticky } from "./composables/sort.ts";
 
