@@ -9,8 +9,6 @@ import { usePostsData } from "vuepress-theme-plume/composables";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import * as echarts from "echarts";
 import { useRouter } from "vuepress/client";
-import { animateLabelValue } from "echarts/types/src/label/labelStyle.js";
-const route = useRouter();
 
 // 图表实例
 const chartRef = ref(null);
@@ -135,6 +133,7 @@ const getOption = () => ({
 
 // ---- 生命周期钩子 ----
 onMounted(() => {
+  const route = useRouter();
   // 初始化数据
   initGraphData();
 
