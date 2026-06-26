@@ -115,6 +115,7 @@ const getOption = () => ({
         color: "#aaa",
         fontSize: 10,
         opacity: 1,
+        silent: true,
       },
       edgeSymbol: ["none", "none"],
       lineStyle: {
@@ -151,6 +152,37 @@ onMounted(() => {
     }
   });
 
+  // ---- 拖动时持续高亮被拖动节点 ----
+  let isDragging = false;
+  let draggedNodeIndex: number | null = null;
+
+  // 监听节点拖动开始
+  chartInstance.on("mousedown", (params) => {
+    if (params.dataType === "node") {
+      isDragging = true;
+      draggedNodeIndex = params.dataIndex;
+    }
+  });
+
+  // 拖动过程中持续补高亮（解决鼠标超出节点或其他节点覆盖的问题）
+  const handleMouseMove = () => {
+    if (isDragging && draggedNodeIndex !== null) {
+      chartInstance!.dispatchAction({
+        type: "highlight",
+        seriesIndex: 0,
+        dataIndex: draggedNodeIndex,
+      });
+    }
+  };
+  document.addEventListener("mousemove", handleMouseMove);
+
+  // 鼠标释放结束拖动
+  const handleMouseUp = () => {
+    isDragging = false;
+    draggedNodeIndex = null;
+  };
+  document.addEventListener("mouseup", handleMouseUp);
+
   // 窗口自适应
   const handleResize = () => chartInstance?.resize();
   window.addEventListener("resize", handleResize);
@@ -158,6 +190,8 @@ onMounted(() => {
   // 保存清理函数
   onBeforeUnmount(() => {
     window.removeEventListener("resize", handleResize);
+    document.removeEventListener("mousemove", handleMouseMove);
+    document.removeEventListener("mouseup", handleMouseUp);
     chartInstance?.dispose();
     chartInstance = null;
   });
