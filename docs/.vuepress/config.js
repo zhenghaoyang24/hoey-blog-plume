@@ -3,6 +3,7 @@ import { defineUserConfig } from "vuepress";
 import { plumeTheme } from "vuepress-theme-plume";
 import navbar from "./navbar";
 import collections from "./collections";
+import postLinksPlugin from "./plugins/postLinksPlugin.mjs";
 
 export default defineUserConfig({
   autoFrontmatter: {
@@ -91,5 +92,5 @@ export default defineUserConfig({
     // 部署域名
     hostname: "https://zhenghaoyang.cn",
   }),
-  plugins: [],
+  plugins: [postLinksPlugin()],
 });
