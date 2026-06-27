@@ -2,7 +2,7 @@
   <div class="graph-container">
     <div ref="chartRef" class="chart-container"></div>
     <div class="control-container">
-      <div class="crosshair-container" title="Reset view" @click="onResetView">
+      <div class="button-item button-hover" title="Reset view" @click="onResetView">
         <icon name="tabler:crosshair" size="26" />
       </div>
       <div class="zoom-container">
@@ -34,17 +34,17 @@ const tagColor = getCSSVar("--vp-c-brand-1") || "#42b883";
 const postColor = getCSSVar("--graph-text-1") || "#8f8f8f";
 
 const grapOptions = {
-  nodeSize: { small: 8, large: 14 }, // 节点
+  nodeSize: { small: 8, large: 12 }, // 节点
   lineStyle: { color: lineColor, curveness: 0, width: 1, opacity: 0.4 }, // 线条
   labelStyle: { color: lineColor, position: "bottom", fontSize: 10 }, // 文字
-  force: { edgeLength: 50, repulsion: 80, gravity: 0.1, friction: 0.3 }, // 节点力
+  force: { edgeLength: 40, repulsion: 60, gravity: 0.2, friction: 0.4 }, // 节点力
   scaleRange: {
     min: 0.3,
     max: 3,
   },
   opacityScaleRange: {
-    transparent: 0.7, // 透明
-    opaque: 1.2       // 完全不透明
+    transparent: 1, // 透明
+    opaque: 1.3       // 完全不透明
   }
 };
 
@@ -290,6 +290,7 @@ onBeforeUnmount(() => {
   padding: 0;
   overflow: hidden;
   position: relative;
+  background-color: var(--vp-c-bg-alt);
 }
 
 .chart-container {
@@ -308,14 +309,21 @@ onBeforeUnmount(() => {
   right: 10px;
 }
 
-.crosshair-container {
+.button-item {
   user-select: none;
   cursor: pointer;
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 4px;
+  transition: all .2s;
 }
+
+.button-hover:hover {
+  background-color: var(--vp-nav-screen-bg-color);
+}
+
 
 .zoom-container {
   display: flex;
