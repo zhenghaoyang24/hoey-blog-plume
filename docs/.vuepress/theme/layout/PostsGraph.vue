@@ -1,5 +1,16 @@
 <template>
   <div class="graph-container">
+    <GraphPageBg
+      :particle-colors="['#686868', '#929292']"
+      :particle-count="200"
+      :particle-spread="10"
+      :speed="0.1"
+      :particle-base-size="90"
+      :move-particles-on-hover="false"
+      :alpha-particles="true"
+      :disable-rotation="false"
+      :className="'bg-container'"
+    />
     <div ref="chartRef" class="chart-container"></div>
     <div class="control-container">
       <div class="button-item button-hover" title="Reset view" @click="onResetView">
@@ -7,8 +18,17 @@
       </div>
       <div class="zoom-container">
         <label for="zoom" class="zoom-label">{{ zoomRef }}</label>
-        <input type="range" class="zoom-slider" :min="grapOptions.scaleRange.min" :max="grapOptions.scaleRange.max"
-          :step="0.01" name="zoom" title="Scale graph" v-model="zoomRef" @input="onSliderInput" />
+        <input
+          type="range"
+          class="zoom-slider"
+          :min="grapOptions.scaleRange.min"
+          :max="grapOptions.scaleRange.max"
+          :step="0.01"
+          name="zoom"
+          title="Scale graph"
+          v-model="zoomRef"
+          @input="onSliderInput"
+        />
       </div>
     </div>
   </div>
@@ -21,6 +41,7 @@ import * as echarts from "echarts";
 import { useRouter } from "vuepress/client";
 import { postLinks } from "@internal/postLinks";
 import type { Node, GraphData } from "../types/graph";
+import GraphPageBg from "../bg/GraphPageBg.vue";
 
 /**
  * CSS 变量 & 图谱配置
@@ -44,8 +65,8 @@ const grapOptions = {
   },
   opacityScaleRange: {
     transparent: 1, // 透明
-    opaque: 1.3       // 完全不透明
-  }
+    opaque: 1.3, // 完全不透明
+  },
 };
 
 /**
@@ -293,6 +314,14 @@ onBeforeUnmount(() => {
   background-color: var(--vp-c-bg-alt);
 }
 
+.bg-container {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
 .chart-container {
   width: 100%;
   height: 100%;
@@ -303,7 +332,7 @@ onBeforeUnmount(() => {
   flex-direction: column;
   align-items: end;
   gap: 10px;
-  z-index: 999;
+  z-index: 9999;
   position: absolute;
   bottom: 10px;
   right: 10px;
@@ -317,13 +346,12 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 .button-hover:hover {
   background-color: var(--vp-nav-screen-bg-color);
 }
-
 
 .zoom-container {
   display: flex;
