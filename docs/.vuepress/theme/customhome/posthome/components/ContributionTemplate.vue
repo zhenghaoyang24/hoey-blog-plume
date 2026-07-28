@@ -6,7 +6,7 @@
         <div v-if="showWeekdays" class="month-weekday-spacer"></div>
         <div class="months-grid" :style="monthGridStyle">
           <span v-for="(slot, idx) in monthSlots" :key="'m' + idx" class="month-cell">
-            {{ monthSlots[0] && monthSlots[1] ? (idx === 0 ? "" : slot.text) : slot.text }}
+            {{ slot.text }}
           </span>
         </div>
       </div>
@@ -282,27 +282,12 @@ const monthSlots = computed<MonthSlot[]>(() => {
     if (slots[i].text) labeledIndices.push(i);
   }
 
-  if (labeledIndices.length >= 2) {
-    // Fix 2: 前两列相邻显示月份时，去掉第一列（月底月份）
-    if (labeledIndices[1] - labeledIndices[0] === 1) {
-      slots[labeledIndices[0]] = { text: "", col: -1 };
-    }
-    // Fix 2: 后两列相邻显示月份时，去掉最后一列（下个月的月初）
-    const len = labeledIndices.length;
-    if (labeledIndices[len - 1] - labeledIndices[len - 2] === 1) {
-      slots[labeledIndices[len - 1]] = { text: "", col: -1 };
-    }
-
-    // Fix 1: 首尾月份名相同时（跨年导致），去掉首部重复的旧年份月份
-    const firstIdx = labeledIndices[0];
-    const lastIdx = labeledIndices[len - 1];
-    if (
-      firstIdx < lastIdx &&
-      slots[firstIdx].text &&
-      slots[firstIdx].text === slots[lastIdx].text
-    ) {
-      slots[firstIdx] = { text: "", col: -1 };
-    }
+  // 第一列和最后一列不显示月份（同时处理跨年重复月份）
+  if (labeledIndices.length > 0) {
+    slots[labeledIndices[0]] = { text: "", col: -1 };
+  }
+  if (labeledIndices.length > 1) {
+    slots[labeledIndices[labeledIndices.length - 1]] = { text: "", col: -1 };
   }
 
   return slots;
