@@ -1,50 +1,73 @@
 <template>
   <div class="contribution-heatmap" ref="containerRef">
     <div class="scrollable-area" ref="scrollableRef">
-      <!-- 月份行 -->
-      <div v-if="showMonths" class="month-row">
-        <div v-if="showWeekdays" class="month-weekday-spacer"></div>
-        <div class="months-grid" :style="monthGridStyle">
-          <span v-for="(slot, idx) in monthSlots" :key="'m' + idx" class="month-cell">
-            {{ slot.text }}
-          </span>
+      <template v-if="isMounted">
+        <!-- 月份行 -->
+        <div v-if="showMonths" class="month-row">
+          <div v-if="showWeekdays" class="month-weekday-spacer"></div>
+          <div class="months-grid" :style="monthGridStyle">
+            <span v-for="(slot, idx) in monthSlots" :key="'m' + idx" class="month-cell">
+              {{ slot.text }}
+            </span>
+          </div>
         </div>
-      </div>
 
-      <!-- 主网格（星期标签 + 数据格子在同一容器内） -->
-      <div class="grid-container" ref="gridRef" :style="mainGridStyle">
-        <!-- 星期标签（通过伪元素显示文字，不撑高行） -->
-        <template v-if="showWeekdays">
+        <!-- 主网格（星期标签 + 数据格子在同一容器内） -->
+        <div class="grid-container" ref="gridRef" :style="mainGridStyle">
+          <!-- 星期标签（通过伪元素显示文字，不撑高行） -->
+          <template v-if="showWeekdays">
+            <div
+              v-for="(label, idx) in weekdayItems"
+              :key="'wd' + idx"
+              class="weekday-cell"
+              :class="{ 'is-visible': label.visible }"
+              :style="{ gridRow: idx + 1, gridColumn: 1 }"
+              :data-text="label.text"
+            ></div>
+          </template>
+
+          <!-- 数据格子 -->
           <div
-            v-for="(label, idx) in weekdayItems"
-            :key="'wd' + idx"
-            class="weekday-cell"
-            :class="{ 'is-visible': label.visible }"
-            :style="{ gridRow: idx + 1, gridColumn: 1 }"
-            :data-text="label.text"
-          ></div>
-        </template>
-
-        <!-- 数据格子 -->
-        <div
-          v-for="(cell, index) in flatGrid"
-          :key="index"
-          class="cell"
-          :class="{
-            'cell--empty': cell.isEmpty,
-          }"
-          :style="getCellStyle(cell)"
-          @mouseenter="onCellEnter($event, cell)"
-          @mouseleave="onCellLeave"
-          @focus="onCellEnter($event, cell)"
-          @blur="onCellLeave"
-          tabindex="0"
-          :aria-label="getAriaLabel(cell)"
-          role="img"
-        >
-          <span class="cell-visual"></span>
+            v-for="(cell, index) in flatGrid"
+            :key="index"
+            class="cell"
+            :class="{
+              'cell--empty': cell.isEmpty,
+            }"
+            :style="getCellStyle(cell)"
+            @mouseenter="onCellEnter($event, cell)"
+            @mouseleave="onCellLeave"
+            @focus="onCellEnter($event, cell)"
+            @blur="onCellLeave"
+            tabindex="0"
+            :aria-label="getAriaLabel(cell)"
+            role="img"
+          >
+            <span class="cell-visual"></span>
+          </div>
         </div>
-      </div>
+      </template>
+
+      <!-- 挂载前占位骨架（与日期无关，保证 SSG 输出与客户端首次渲染完全一致，避免水合失配） -->
+      <template v-else>
+        <div v-if="showMonths" class="month-row month-row--skeleton">
+          <div v-if="showWeekdays" class="month-weekday-spacer"></div>
+          <div class="months-grid" :style="monthGridStyle"></div>
+        </div>
+        <div class="grid-container" :style="mainGridStyle">
+          <div
+            v-for="cell in skeletonCells"
+            :key="'sk' + cell.index"
+            class="cell cell--empty"
+            :style="{
+              gridRow: String(cell.row + 1),
+              gridColumn: String(cell.col + (showWeekdays ? 2 : 1)),
+            }"
+          >
+            <span class="cell-visual"></span>
+          </div>
+        </div>
+      </template>
     </div>
 
     <!-- Tooltip -->
@@ -136,6 +159,20 @@ const containerRef = ref<HTMLElement | null>(null);
 const scrollableRef = ref<HTMLElement | null>(null);
 const gridRef = ref<HTMLElement | null>(null);
 const tooltipRef = ref<HTMLElement | null>(null);
+
+// 挂载前不渲染任何日期相关内容（SSG 输出与客户端首次渲染必须一致，否则水合失配）
+const isMounted = ref(false);
+
+// 占位骨架格子（固定行列，与日期无关）
+const skeletonCells = computed(() => {
+  const result: { index: number; row: number; col: number }[] = [];
+  for (let col = 0; col < TOTAL_COLS; col++) {
+    for (let row = 0; row < TOTAL_ROWS; row++) {
+      result.push({ index: col * TOTAL_ROWS + row, row, col });
+    }
+  }
+  return result;
+});
 
 const tooltip = reactive<TooltipState>({
   visible: false,
@@ -385,6 +422,7 @@ function onGlobalScroll() {
 }
 
 onMounted(() => {
+  isMounted.value = true;
   window.addEventListener("scroll", onGlobalScroll, true);
 });
 onUnmounted(() => window.removeEventListener("scroll", onGlobalScroll, true));
@@ -429,6 +467,10 @@ onUnmounted(() => window.removeEventListener("scroll", onGlobalScroll, true));
 .month-row {
   display: flex;
   margin-bottom: 2px;
+}
+/* 骨架月份行占位（与 .month-cell 行高一致） */
+.month-row--skeleton {
+  height: 10px;
 }
 .month-weekday-spacer {
   width: 17px;

@@ -47,6 +47,7 @@ import GraphPageBg from "../bg/GraphPageBg.vue";
  * CSS 变量 & 图谱配置
  */
 const getCSSVar = (varName: string) => {
+  if (typeof window === "undefined") return "";
   return getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || "";
 };
 
@@ -266,10 +267,8 @@ const onResetView = () => {
 // 窗口自适应
 const onResize = () => chartInstance?.resize();
 
-// 主题切换
-const themeObserver = new MutationObserver(() => {
-  chartInstance?.setOption(getOption());
-});
+// 主题切换（客户端才创建，SSR 环境下无 MutationObserver）
+let themeObserver: MutationObserver | null = null;
 
 /**
  * 监听与移除
@@ -286,6 +285,9 @@ onMounted(() => {
   document.addEventListener("mousemove", onMouseMove);
   document.addEventListener("mouseup", onMouseUp);
   window.addEventListener("resize", onResize);
+  themeObserver = new MutationObserver(() => {
+    chartInstance?.setOption(getOption());
+  });
   themeObserver.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["data-theme"],
@@ -293,7 +295,8 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  themeObserver.disconnect();
+  themeObserver?.disconnect();
+  themeObserver = null;
   window.removeEventListener("resize", onResize);
   document.removeEventListener("mousemove", onMouseMove);
   document.removeEventListener("mouseup", onMouseUp);
