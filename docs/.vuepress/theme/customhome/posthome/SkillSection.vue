@@ -1,65 +1,77 @@
 <template>
   <div class="skill-section">
-    <SectionTemplate title="Skills" description="Skills and tools">
+    <SectionTemplate index="器" title="The Toolkit" description="skills · tools">
       <div class="skill-content">
-        <div class="marquee-content to-left" style="animation-duration: 140s">
-          <!-- 第一份内容 -->
-          <div class="skill-set">
-            <span v-for="(item, index) in SKILLS1" :key="index" @click="openUrl(item.url)">
-              <SkillIcon :name="item.icon" :size="SIZE" />
-              <p>{{ item.name }}</p>
-            </span>
-          </div>
-          <!-- 第二份内容（用于无缝衔接） -->
-          <div class="skill-set">
-            <span
-              v-for="(item, index) in SKILLS1"
-              :key="index + SKILLS1.length"
-              @click="openUrl(item.url)"
-            >
-              <SkillIcon :name="item.icon" :size="SIZE" />
-              <p>{{ item.name }}</p>
-            </span>
-          </div>
-        </div>
-        <div class="marquee-content to-right" style="animation-duration: 70s">
-          <!-- 第一份内容 -->
-          <div class="skill-set">
-            <span v-for="(item, index) in SKILLS2" :key="index" @click="openUrl(item.url)">
-              <SkillIcon :name="item.icon" :size="SIZE" />
-              <p>{{ item.name }}</p>
-            </span>
-          </div>
-          <!-- 第二份内容（用于无缝衔接） -->
-          <div class="skill-set">
-            <span
-              v-for="(item, index) in SKILLS2"
-              :key="index + SKILLS2.length"
-              @click="openUrl(item.url)"
-            >
-              <SkillIcon :name="item.icon" :size="SIZE" />
-              <p>{{ item.name }}</p>
-            </span>
+        <div class="skill-row">
+          <div class="skill-row-marquee">
+            <div class="marquee-content to-left" style="animation-duration: 140s">
+              <!-- 第一份内容 -->
+              <div class="skill-set">
+                <span v-for="(item, index) in SKILLS1" :key="index" @click="openUrl(item.url)">
+                  <SkillIcon :name="item.icon" :size="SIZE" />
+                  <p>{{ item.name }}</p>
+                </span>
+              </div>
+              <!-- 第二份内容（用于无缝衔接） -->
+              <div class="skill-set">
+                <span
+                  v-for="(item, index) in SKILLS1"
+                  :key="index + SKILLS1.length"
+                  @click="openUrl(item.url)"
+                >
+                  <SkillIcon :name="item.icon" :size="SIZE" />
+                  <p>{{ item.name }}</p>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="marquee-content to-left" style="animation-duration: 30s">
-          <!-- 第一份内容 -->
-          <div class="skill-set">
-            <span v-for="(item, index) in WORKFLOW" :key="index" @click="openUrl(item.url)">
-              <SkillIcon :name="item.icon" :size="SIZE" />
-              <p>{{ item.name }}</p>
-            </span>
+        <div class="skill-row">
+          <div class="skill-row-marquee">
+            <div class="marquee-content to-right" style="animation-duration: 70s">
+              <!-- 第一份内容 -->
+              <div class="skill-set">
+                <span v-for="(item, index) in SKILLS2" :key="index" @click="openUrl(item.url)">
+                  <SkillIcon :name="item.icon" :size="SIZE" />
+                  <p>{{ item.name }}</p>
+                </span>
+              </div>
+              <!-- 第二份内容（用于无缝衔接） -->
+              <div class="skill-set">
+                <span
+                  v-for="(item, index) in SKILLS2"
+                  :key="index + SKILLS2.length"
+                  @click="openUrl(item.url)"
+                >
+                  <SkillIcon :name="item.icon" :size="SIZE" />
+                  <p>{{ item.name }}</p>
+                </span>
+              </div>
+            </div>
           </div>
-          <!-- 第二份内容（用于无缝衔接） -->
-          <div class="skill-set">
-            <span
-              v-for="(item, index) in WORKFLOW"
-              :key="index + WORKFLOW.length"
-              @click="openUrl(item.url)"
-            >
-              <SkillIcon :name="item.icon" :size="SIZE" />
-              <p>{{ item.name }}</p>
-            </span>
+        </div>
+        <div class="skill-row">
+          <div class="skill-row-marquee">
+            <div class="marquee-content to-left" style="animation-duration: 30s">
+              <!-- 第一份内容 -->
+              <div class="skill-set">
+                <span v-for="(item, index) in WORKFLOW" :key="index" @click="openUrl(item.url)">
+                  <SkillIcon :name="item.icon" :size="SIZE" />
+                  <p>{{ item.name }}</p>
+                </span>
+              </div>
+              <!-- 第二份内容（用于无缝衔接） -->
+              <div class="skill-set">
+                <span
+                  v-for="(item, index) in WORKFLOW"
+                  :key="index + WORKFLOW.length"
+                  @click="openUrl(item.url)"
+                >
+                  <SkillIcon :name="item.icon" :size="SIZE" />
+                  <p>{{ item.name }}</p>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -187,10 +199,34 @@ const openUrl = (url: string | undefined) => {
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  overflow: hidden;
   @media (max-width: 770px) {
-    gap: 12px; /* 小屏幕时减少间距 */
+    gap: 14px; /* 小屏幕时减少间距 */
   }
+}
+
+.skill-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.skill-row-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 28px,
+    #000 calc(100% - 28px),
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 28px,
+    #000 calc(100% - 28px),
+    transparent
+  );
 }
 
 .marquee-content {
@@ -219,21 +255,29 @@ const openUrl = (url: string | undefined) => {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  padding: 10px 8px;
+  padding: 10px 12px;
   background-color: var(--icon-bg);
+  border: 1px solid transparent;
   white-space: nowrap;
   cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+  &:hover {
+    transform: translateY(-2px);
+  }
   > p {
-    margin-left: 4px;
+    margin-left: 6px;
   }
   @media (max-width: 770px) {
-    padding: 8px 6px;
+    padding: 8px 8px;
     gap: 1px;
   }
 }
 
 .skill-set p {
-  font-size: 0.9em;
+  font-family: var(--ph-font-mono);
+  font-size: 0.85em;
   color: var(--vp-c-text-1);
 }
 

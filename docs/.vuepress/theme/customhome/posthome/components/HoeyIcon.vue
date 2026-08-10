@@ -28,5 +28,5 @@ interface Props {
   size?: number;
 }
 
-const { color = "#000000", strokeWidth = 0.25, size = 2 } = defineProps<Props>();
+const { color = "#000000", strokeWidth = 0.5, size = 2 } = defineProps<Props>();
 </script>
