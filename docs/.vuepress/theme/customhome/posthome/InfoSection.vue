@@ -1,7 +1,9 @@
 <template>
   <div ref="el" class="info-section" :class="{ 'is-revealed': visible }">
-    <h1 class="info-slogan">老师，<br /><span class="info-slogan-hl">我太想进步了。</span></h1>
-    <p class="info-echo">Teacher, I'm on fire to improve.</p>
+    <h1 class="info-slogan">
+      Teacher,<br /><span class="info-slogan-hl">I'm on fire to improve.</span>
+    </h1>
+    <p class="info-echo">老师，我太想进步了。</p>
     <div class="info-sign">
       <span class="info-sign-line"></span>
       <HoeyIcon :color="'var(--ph-accent)'" :size="3" />
@@ -204,8 +206,8 @@ onBeforeUnmount(() => {
 }
 
 .info-echo {
+  font-family: var(--ph-font-kai);
   margin: 10px 0 0;
-  font-family: var(--ph-font-mono);
   font-size: 0.8rem;
   letter-spacing: 0.02em;
   color: var(--vp-c-text-2);
