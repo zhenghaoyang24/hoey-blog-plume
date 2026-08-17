@@ -56,7 +56,8 @@ const tagColor = getCSSVar("--vp-c-brand-1") || "#42b883";
 const postColor = getCSSVar("--graph-text-1") || "#8f8f8f";
 
 const grapOptions = {
-  nodeSize: { small: 8, large: 12 }, // 节点
+  nodeSize: { small: 8, large: 8 }, // 节点
+  tagSizeRange: { min: 10, max: 30 }, // 标签节点：每多一篇笔记 +1，范围 [min, max]
   lineStyle: { color: lineColor, curveness: 0, width: 1, opacity: 0.4 }, // 线条
   labelStyle: { color: lineColor, position: "bottom", fontSize: 10 }, // 文字
   force: { edgeLength: 40, repulsion: 60, gravity: 0.2, friction: 0.4 }, // 节点力
@@ -79,6 +80,7 @@ const postsData = usePostsData();
 const initGraphData = () => {
   const posts = postsData.value["/blog/"];
   const tagNodes: Node[] = [];
+  const tagCounts = new Map<string, number>();
   for (const post of posts) {
     const postNode: Node = {
       id: "post_" + graphData.nodes.length,
@@ -104,8 +106,16 @@ const initGraphData = () => {
           graphData.nodes.push(tagNode);
         }
         graphData.edges.push({ source: postNode.id, target: tagNode.id });
+        tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
       }
     }
+  }
+
+  // 标签节点：每多一篇笔记 +1，超出上限则保持最大
+  for (const tagNode of tagNodes) {
+    const count = tagCounts.get(tagNode.name) || 1;
+    const { min, max } = grapOptions.tagSizeRange;
+    tagNode.symbolSize = Math.min(max, min + (count - 1));
   }
 
   // 文章→文章 内链连线
@@ -171,7 +181,7 @@ const getOption = () => {
         edgeLabel: { show: false },
         layout: "force",
         animation: true,
-        roam: true,
+        roam: "move", // 内置双指/滚轮缩放是固定倍率、不跟手，故只保留拖动，缩放由 onPinch/onMouseWheel 接管
         draggable: true,
         categories: graphData.categories,
         data: graphData.nodes,
@@ -208,6 +218,17 @@ const onMouseWheel = (e: any) => {
   const zoom = Math.max(min, Math.min(max, zoomRef.value * delta));
   zoomRef.value = Math.round(zoom * 100) / 100;
   chartInstance?.setOption({ series: [{ zoom: zoomRef.value }] });
+  updateLabelOpacity(zoomRef.value);
+};
+
+// 缩放：移动端双指捏合，按手指实际间距等比缩放（与手指 1:1 跟随）
+const onPinch = (e: any) => {
+  if (!chartInstance || !e.pinchScale) return;
+  e.stop();
+  const { min, max } = grapOptions.scaleRange;
+  const zoom = Math.max(min, Math.min(max, zoomRef.value * e.pinchScale));
+  zoomRef.value = Math.round(zoom * 100) / 100;
+  chartInstance.setOption({ series: [{ zoom: zoomRef.value }] });
   updateLabelOpacity(zoomRef.value);
 };
 
@@ -280,6 +301,7 @@ onMounted(() => {
   chartInstance.setOption(getOption());
 
   chartInstance.getZr().on("mousewheel", onMouseWheel);
+  chartInstance.getZr().on("pinch", onPinch);
   chartInstance.on("click", onClick);
   chartInstance.on("mousedown", onMouseDown);
   document.addEventListener("mousemove", onMouseMove);
@@ -301,6 +323,7 @@ onBeforeUnmount(() => {
   document.removeEventListener("mousemove", onMouseMove);
   document.removeEventListener("mouseup", onMouseUp);
   chartInstance?.getZr().off("mousewheel", onMouseWheel);
+  chartInstance?.getZr().off("pinch", onPinch);
   chartInstance?.dispose();
   chartInstance = null;
 });
