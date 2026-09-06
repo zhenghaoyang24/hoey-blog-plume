@@ -5,6 +5,8 @@ permalink: /more/projects/
 ---
 
 <CardGrid>
+  <RepoCard repo="zhenghaoyang24/dsh-desktop" />
+  <RepoCard repo="zhenghaoyang24/obsidian-plugin-deepshian" />
   <RepoCard repo="zhenghaoyang24/vocabverse" />
   <RepoCard repo="zhenghaoyang24/you-todo" />
   <RepoCard repo="zhenghaoyang24/blueblue-words" />
