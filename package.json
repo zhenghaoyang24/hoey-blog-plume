@@ -9,8 +9,10 @@
   },
   "private": true,
   "license": "MIT",
+  "packageManager": "pnpm@12.16.1",
   "engines": {
-    "node": "^18.20.0 || >=20.0.0"
+    "node": ">=22.18.0",
+    "pnpm": ">=10"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
@@ -20,24 +22,24 @@
     "vp-update": "npx vp-update"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.26",
+    "@vuepress/bundler-vite": "2.0.0-rc.31",
     "http-server": "^14.1.1",
     "markmap-lib": "^0.18.12",
     "markmap-toolbar": "^0.18.12",
     "markmap-view": "^0.18.12",
-    "sass-embedded": "^1.98.0",
-    "vue": "^3.5.30",
-    "vuepress": "2.0.0-rc.26",
-    "vuepress-theme-plume": "1.0.0-rc.192"
+    "sass-embedded": "^1.107.1",
+    "vue": "^3.5.44",
+    "vuepress": "2.0.0-rc.31",
+    "vuepress-theme-plume": "1.0.0-rc.214"
   },
   "dependencies": {
-    "axios": "^1.16.1",
-    "dayjs": "^1.11.21",
+    "axios": "^1.21.0",
+    "dayjs": "^1.11.23",
     "echarts": "^6.1.0",
-    "highlight.js": "^11.11.1",
+    "highlight.js": "^11.12.0",
     "monaco-editor": "^0.52.2",
     "ogl": "^1.0.11",
-    "openai": "^6.32.0",
+    "openai": "^6.49.0",
     "typescript": "^5.9.3"
   }
 }
