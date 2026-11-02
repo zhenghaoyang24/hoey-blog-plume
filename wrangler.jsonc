@@ -1,0 +1,13 @@
+{
+  // Cloudflare Workers 静态资源部署配置
+  // 构建命令: pnpm run docs:build  →  产物目录: docs/.vuepress/dist
+  "name": "hoey-blog-plume",
+  "compatibility_date": "2026-11-02",
+  "assets": {
+    "directory": "./docs/.vuepress/dist",
+    // 访问 /blog/xxx 时补全为 /blog/xxx/，对应 VuePress 生成的 xxx/index.html
+    "html_handling": "auto-trailing-slash",
+    // 未命中路由返回 dist/404.html（VuePress 已生成该页面）
+    "not_found_handling": "404-page"
+  }
+}
