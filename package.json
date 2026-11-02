@@ -30,7 +30,9 @@
     "sass-embedded": "^1.107.1",
     "vue": "^3.5.44",
     "vuepress": "2.0.0-rc.31",
-    "vuepress-theme-plume": "1.0.0-rc.214"
+    "vuepress-plugin-md-power": "1.0.0-rc.214",
+    "vuepress-theme-plume": "1.0.0-rc.214",
+    "whatwg-encoding": "3.1.1"
   },
   "dependencies": {
     "axios": "^1.21.0",
